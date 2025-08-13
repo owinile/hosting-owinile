@@ -1,0 +1,6302 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateUrl='indie.xml' b:templateVersion='1.3.3' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+  
+  <!-- NichoClean v2.0.0 | Plantilla Blogger Minimalista, Rápida y Moderna -->
+  
+     <!-- titulo ERROR 404 -->
+    <b:if cond='data:blog.pageType == &quot;error_page&quot;'>  
+<title>Oops. The Page you are Looking For is not Avaible.</title>  
+</b:if>
+ 
+  <head>
+    
+    <!-- MetaDatos Estructura básica y SEO -->
+  <meta expr:charset='data:blog.encoding'/>
+  <meta expr:content='data:view.isHomepage ? &quot;website&quot; : &quot;article&quot;' property='og:type'/>
+  <meta content='width=device-width, initial-scale=1.0' name='viewport'/>
+  <b:if cond='data:view.isHomepage'>
+  <meta content='Bienvenido a nuestro blog. Explora artículos interesantes sobre tecnología, naturaleza, curiosidades y más.' name='description'/>
+  <meta content='Bienvenido a nuestro blog. Explora artículos interesantes sobre tecnología, naturaleza, curiosidades y más.' property='og:description'/>
+<b:elseif cond='data:view.description'/>
+  <meta expr:content='data:view.description.escaped' name='description'/>
+  <meta expr:content='data:view.description.escaped' property='og:description'/>
+</b:if>
+  <meta expr:content='data:blog.title' name='application-name'/>
+  <meta expr:content='data:blog.title' property='og:site_name'/>
+  <meta content='unsafe-url' name='referrer'/>
+    <b:if cond='data:view.isError or data:view.isArchive or data:view.isSearch'>
+  	<meta content='noindex,follow' name='robots'/>
+	</b:if>
+	<b:if cond='data:blog.feedLinks'>
+	<b:with value='path(data:blog.homepageUrl.canonical,&quot;feeds/posts/default&quot;)' var='feeds'>
+    <link expr:href='data:feeds' rel='alternate' title='Atom 1.0' type='application/atom+xml'/>
+    <link expr:href='data:feeds params {alt: &quot;rss&quot;}' rel='alternate' title='RSS 2.0' type='application/rss+xml'/>
+	</b:with>
+	</b:if>
+    <b:include data='blog' name='all-head-content'/>
+    <b:with value='data:view.isError ? data:messages.theresNothingHere : data:view.title.escaped' var='title'>
+    <meta expr:content='data:title' property='og:title'/>
+    <meta expr:content='data:title' name='twitter:title'/>
+    <title><data:title/></title>
+    </b:with>
+    <b:if cond='data:widgets'>
+    <b:loop values='data:widgets.Blog.first.posts where (p =&gt; p.featuredImage) map (p =&gt; p.featuredImage)' var='imageUrl'>
+    <meta expr:content='resizeImage(data:imageUrl,1200,&quot;1200:630&quot;)' property='og:image'/>
+    </b:loop>
+    <meta content='1200' property='og:image:width'/>
+    <meta content='630' property='og:image:height'/>
+    </b:if>
+  <meta content='summary_large_image' name='twitter:card'/>
+  <meta expr:content='data:view.description.escaped' name='twitter:description'/>
+  <meta expr:content='data:view.url.canonical' property='og:url'/>
+  <link expr:href='data:view.url.canonical' rel='canonical'/>
+  <link expr:href='data:blog.blogspotFaviconUrl' rel='icon' type='image/x-icon'/>
+  <link href='https://fonts.googleapis.com' rel='preconnect'/>
+  <link crossorigin='' href='https://fonts.gstatic.com' rel='preconnect'/>
+    <b:if cond='data:widgets'>
+    <b:loop values='data:widgets.Blog.first.posts where (p =&gt; p.featuredImage) map (p =&gt; p.featuredImage)' var='imageUrl'>
+    <link as='image' expr:href='resizeImage(data:imageUrl,1200,&quot;1200:630&quot;)' rel='preload'/>
+    </b:loop>
+    </b:if>  
+    <!-- Adsense -->
+    <script async='async' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'/>
+  
+   <!-- Estilos CSS -->
+    <b:skin><![CDATA[
+/*
+  ATENCIÓN: Modificar el CSS base de NichoClean puede afectar el diseño y funcionamiento.
+  Realiza copias de seguridad y prueba los cambios antes de aplicarlos en producción.
+
+=> Theme NichoClean: https://nichoclean.blogspot.com/
+=> Author NichoClean: Owinile Njalo
+=> Author NichoClean URI: https://blogspot.owinile.com/
+=> Version: v2.0.0
+=> License: Creative Commons Atribucion-NoComercial 4.0 Internacional
+=> License URI: http://creativecommons.org/licenses/by-nc/4.0/
+=> Built with Blogger technology and ChatGPT assistance
+*/
+
+/** ESTILOS GLOBALES **/
+
+:root {
+  --color-principal: #1a1a1a;       /* Texto principal */
+  --color-secundario: #f5f5f5;      /* Fondo general */
+  --color-acento: #0077cc;          /* Enlaces, botones */
+  --color-hover-link: #005fa3;      /* Hover enlaces/botones */
+  
+  /* Nuevas variables */
+  --color-borde: #e5e7eb;           /* Bordes y separadores */
+  --color-texto-suave: #6b7280;     /* Texto meta, descripciones */
+  
+  --fuente-principal: system-ui, sans-serif;
+  --sombra-suave: 0 2px 8px rgba(0,0,0,0.05);
+  --sombra-media: 0 4px 14px rgba(0,0,0,0.10);
+  --transicion: box-shadow 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fuente-principal);
+  background-color: var(--color-secundario);
+  color: var(--color-principal);
+  line-height: 1.6;
+  font-size: 1.1rem;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+header, footer {
+  width: 100%;
+  background-color: var(--color-principal);
+  color: white;
+  padding: 1rem;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.menu-toggle {
+  display: none;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  background-color: var(--color-acento);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Aquí modificamos para que nav sin clase main-nav no se afecte */
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+nav a:hover {
+  color: var(--color-acento);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: white;
+  text-decoration: underline;
+  margin: 0 0.5rem;
+}
+
+footer a:hover,
+main a:hover,
+.grid article a:hover {
+  color: var(--color-hover-link);
+}
+
+/* CONTENEDOR PRINCIPAL GENERAL PARA INDEX, BUSQUEDA, POST, PAGINA */
+
+.main-container {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: var(--sombra-suave);
+}
+
+/* Estilo específico para listado del index y búsqueda */
+.index article,
+.search article {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: var(--sombra-suave);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  transition: var(--transicion);
+}
+
+.index article:hover,
+.search article:hover {
+  box-shadow: var(--sombra-media);
+}
+
+/* Post y página: sin max-width ni margin porque lo controla main-container */
+.post,
+.page {
+  padding: 0 2rem;
+  font-family: var(--fuente-principal);
+  line-height: 1.7;
+  color: var(--color-principal);
+  background-color: transparent; /* fondo ya tiene main-container */
+}
+
+/* Títulos */
+.post-title,
+.page-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--color-principal);
+}
+
+/* Meta datos post */
+/* CONTENEDOR GENERAL */
+.post-meta {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  background: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: var(--color-texto-suave);
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+/* CADA BLOQUE: alineados y con separación tipo pleca vertical */
+.post-meta > span {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  gap: 0.3rem;
+  position: relative;
+  padding: 0 0.8rem;
+  font-weight: 500;
+  color: var(--color-texto-suave);
+}
+
+/* Pleca vertical sutil excepto en el último elemento */
+.post-meta > span:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 25%;
+  height: 50%;
+  width: 1px;
+  background-color: rgba(0,0,0,0.1);
+}
+
+/* Enlaces en general (solo texto subrayado discreto) */
+.post-meta a {
+  color: var(--color-principal);
+  text-decoration: underline dotted;
+  transition: color 0.3s ease;
+}
+
+.post-meta a:hover,
+.post-meta a:focus {
+  color: var(--color-principal-hover, #0077cc);
+  outline: none;
+  text-decoration: underline solid;
+}
+
+/* Etiquetas solo texto normal, sin chips */
+.post-meta .tags a {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  margin-right: 0.3rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  text-decoration: underline dotted;
+  transition: background-color 0.3s ease;
+}
+
+.post-meta .tags a:hover,
+.post-meta .tags a:focus {
+  background-color: transparent;
+  text-decoration: underline solid;
+  outline: none;
+}
+
+/* Comentarios sin botón, solo texto */
+.post-meta .comments-info a.numero-comentarios {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--color-principal);
+  text-decoration: underline dotted;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.post-meta .comments-info a.numero-comentarios:hover,
+.post-meta .comments-info a.numero-comentarios:focus {
+  color: var(--color-principal-hover, #0077cc);
+  outline: none;
+  text-decoration: underline solid;
+}
+
+/* MÓVIL: fondo general + filas con contraste */
+@media (max-width: 600px) {
+  .post-meta {
+    flex-direction: column;
+    gap: 0.3rem; /* un poco más compacto */
+    padding: 0.6rem 0.75rem;
+    font-size: 0.85rem;
+    background-color: #ebebeb; /* gris más suave general */
+    border-radius: 8px; /* bordes redondeados para el fondo */
+    margin: 0;
+  }
+
+  .post-meta > span {
+    width: 100%;
+    justify-content: center;
+    background-color: #fafafa; /* gris muy sutil en cada fila */
+    border-radius: 6px;
+    padding: 0.35rem 0.5rem; /* más compacto */
+    white-space: normal;
+    position: static;
+  }
+
+  .post-meta > span::after {
+    display: none;
+  }
+
+  .post-meta .tags {
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 0.5rem;
+  }
+
+  .post-meta .tags a {
+    margin-right: 0.4rem;
+    font-size: 0.8rem;
+    padding: 0.1rem 0.3rem;
+  }
+
+  .post-meta .comments-info a.numero-comentarios {
+    padding: 0;
+    font-size: 0.85rem;
+  }
+}
+
+/* Imagen destacada */
+.featured-image {
+  margin-bottom: 1.75rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.featured-image img.img-post {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+/* Contenido */
+.post-content,
+.page-content {
+  font-size: 1.1rem;
+}
+
+.post-content h2,
+.page-content h2 {
+  font-size: 1.65rem;
+  margin: 2rem 0 1rem;
+  color: var(--color-principal);
+  border-bottom: 2px solid var(--color-borde);
+  padding-bottom: 0.25rem;
+}
+
+.post-content p,
+.page-content p {
+  margin-bottom: 1.2rem;
+}
+
+.post-content ul,
+.page-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.post-content li,
+.page-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  /* SOLO afecta el menú principal, que debe tener la clase main-nav */
+  nav.main-nav ul {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    background-color: var(--color-principal);
+    padding: 1rem;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 70px;
+    right: 1rem;
+    width: 200px;
+    z-index: 1100;
+  }
+
+  nav.main-nav ul.active {
+    display: flex;
+  }
+
+  /* Refuerzo para TOC: mantenerlo normal en móvil, sin menú flotante */
+  nav#toc {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    width: auto !important;
+    max-width: 100% !important;
+    background: #f9f9f9;
+    padding: 1em;
+    border-radius: 6px;
+    box-shadow: none;
+    z-index: auto;
+    display: block !important;
+  }
+
+  .post,
+  .page {
+    padding: 1rem 1.25rem;
+  }
+
+  .post-title,
+  .page-title {
+    font-size: 1.75rem;
+  }
+
+  .post-content h2,
+  .page-content h2 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .post,
+  .page {
+    padding: 0;
+  }
+
+  .post-title,
+  .page-title {
+    font-size: 1.5rem;
+  }
+}
+
+/** MOSTRAR LAS ENTRADAS EN EL INDEX **/
+
+.grid-posts {
+  margin: 0rem auto;
+  padding: 0 0rem;
+  max-width: 960px; /* Alineado con .main-container */
+}
+
+.grid-posts h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--color-principal);
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+
+.grid article {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--sombra-suave, 0 0 8px rgba(0,0,0,0.06)); /* usa variable si está */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding-bottom: 1rem; /* para no pegar texto abajo */
+}
+
+.grid article:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-media, 0 6px 12px rgba(0,0,0,0.1));
+}
+
+.grid article img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.grid article h3 {
+  font-size: 1.2rem;
+  color: var(--color-principal);
+  margin: 0.75rem 1rem 0.25rem;
+}
+
+.grid article p {
+  padding: 0 1rem 1rem;
+  font-size: 1rem;
+  color: var(--color-texto-suave);
+  line-height: 1.5;
+}
+
+.grid article a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: color 0.2s ease;
+}
+
+.grid article a:hover {
+  color: var(--color-acento);
+}
+
+/* Listas dentro del resumen */
+ul, ol {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+ul li,
+ol li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+
+/** MARGEN IMAGEN DESTACADA DEL POST **/
+.img-post {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px 0; /* Agrega 20px de margen arriba y abajo */
+}
+
+/** ERROR 404 **/
+
+.error-container {
+      text-align: center;
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .error-code {
+      font-size: 5rem;
+      font-weight: bold;
+      color: var(--color-acento);
+      margin-bottom: 1rem;
+    }
+
+    .error-message {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .error-description {
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .error-link {
+      display: inline-block;
+      background-color: var(--color-acento);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .error-link:hover {
+      background-color: var(--color-hover-link);
+      color: black;
+    }
+
+/** paginacion **/
+
+.blog-pager {
+  display: flex;
+  justify-content: center; /* centra los botones */
+  gap: 0.5rem;              /* espacio entre ellos */
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.blog-pager a {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--color-acento);
+  border-radius: 4px;
+  background-color: white;
+  color: var(--color-acento);
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.blog-pager a:hover {
+  background-color: var(--color-acento);
+  color: white;
+}
+
+/** botones para url **/
+
+.boton {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--color-acento);
+  border-radius: 4px;
+  background-color: white;
+  color: var(--color-acento);
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s ease, color 0.2s ease;
+  display: inline-block;
+}
+
+.boton:hover {
+  background-color: var(--color-acento);
+  color: white;
+}
+.boton.redondo {
+  border-radius: 999px;
+}
+
+/** Estilo Foro **/
+.foro-lista {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+}
+
+.foro-post {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+  transition: background 0.2s ease;
+}
+
+.foro-post:hover {
+  background: var(--color-secundario);
+}
+
+.foro-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.foro-contenido {
+  flex: 1;
+}
+
+.foro-titulo {
+  font-size: 1.1rem;
+  color: var(--color-principal);
+  margin-bottom: 0.5rem;
+}
+
+.foro-extracto {
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .foro-post {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .foro-img {
+    margin-bottom: 1rem;
+  }
+
+  .foro-contenido {
+    width: 100%;
+  }
+}
+/* Código en línea */
+code {
+  font-family: monospace;
+  background-color: #f0f0f0;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  color: var(--color-principal);
+  font-size: 0.95em;
+}
+
+/* Bloques de código */
+pre {
+  background-color: #f0f0f0;
+  padding: 1rem;
+  overflow-x: auto;
+  border-radius: 6px;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+}
+
+pre code {
+  font-family: monospace;
+  color: var(--color-principal);
+  display: block;
+  white-space: pre;
+}
+
+/* Alertas */
+
+.alert {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-left: 5px solid;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Tipos de alertas */
+.alert.warning {
+  border-color: #f1c40f;
+  background-color: #fff8db;
+  color: #665c00;
+}
+
+.alert.info {
+  border-color: var(--color-acento);
+  background-color: #e8f4ff;
+  color: var(--color-principal);
+}
+
+.alert.success {
+  border-color: #2ecc71;
+  background-color: #e9fbe9;
+  color: #276738;
+}
+
+.alert.error {
+  border-color: #e74c3c;
+  background-color: #fdecea;
+  color: #8a1f11;
+}
+
+/* Estilo de Cita */
+
+blockquote {
+  border-left: 4px solid var(--color-acento);
+  background-color: #f0f0f0;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #333;
+  position: relative;
+  border-radius: 4px;
+}
+
+blockquote::before {
+  content: "\201C"; /* “ comilla izquierda */
+  font-size: 2rem;
+  color: var(--color-acento);
+  position: absolute;
+  left: 10px;
+  top: -10px;
+}
+
+blockquote::after {
+  content: "\201D"; /* ” comilla derecha */
+  font-size: 2rem;
+  color: var(--color-acento);
+  position: absolute;
+  right: 10px;
+  bottom: -10px;
+}
+
+/* Estilo de Suscripcion */
+
+.cta-suscripcion {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  max-width: 500px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.cta-suscripcion h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.cta-suscripcion p {
+  margin-bottom: 1.2rem;
+  color: #555;
+}
+
+.form-suscripcion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-suscripcion input[type="email"] {
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: var(--fuente-principal);
+  width: 100%;
+}
+
+.checkbox-politica {
+  font-size: 0.9rem;
+  color: #333;
+  text-align: left;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.checkbox-politica input[type="checkbox"] {
+  transform: scale(1.1);
+}
+
+.checkbox-politica a {
+  color: var(--color-acento);
+  text-decoration: underline;
+}
+
+.form-suscripcion button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--color-acento);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s ease;
+}
+
+.form-suscripcion button:hover {
+  background-color: var(--color-hover-link);
+}
+
+/* Estilo de suscipcion horizontal */
+.form-suscripcion-horizontal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.input-boton {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-boton input[type="email"] {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--color-acento);
+  border-radius: 4px;
+}
+
+.input-boton button {
+  padding: 0.5rem 1.2rem;
+  background-color: var(--color-acento);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.input-boton button:hover {
+  background-color: var(--color-hover-link);
+}
+
+.checkbox-politica {
+  font-size: 0.9rem;
+}
+
+/* llamada a la accion */
+
+.cta-izquierda {
+  max-width: 800px;       /* Más ancho */
+  width: 90%;             /* Ocupa el 90% del contenedor */
+  padding: 1.5rem;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  text-align: left;
+  margin: 2rem auto;      /* Centrado horizontal */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+.cta-izquierda h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--color-principal);
+}
+
+.cta-izquierda p {
+  margin: 0;
+  color: #555;
+  line-height: 1.4;
+  font-size: 1.05rem;
+}
+
+.cta-izquierda .boton {
+  align-self: flex-start;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--color-acento);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.cta-izquierda .boton:hover {
+  background-color: var(--color-hover-link);
+}
+
+/* llamada a la accion con imagen*/
+
+.cta-con-imagen-vertical {
+  display: flex;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 1000px;
+  margin: 2rem auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.cta-con-imagen-vertical img {
+  width: 300px;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.cta-con-imagen-vertical .contenido {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cta-con-imagen-vertical h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  color: var(--color-principal);
+}
+
+.cta-con-imagen-vertical p {
+  margin-bottom: 1.5rem;
+  color: #444;
+}
+
+.cta-con-imagen-vertical a.boton {
+  padding: 0.6rem 1.5rem;
+  background-color: var(--color-acento);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  align-self: flex-start;
+  transition: background-color 0.2s ease;
+}
+
+.cta-con-imagen-vertical a.boton:hover {
+  background-color: var(--color-hover-link);
+}
+@media (max-width: 768px) {
+  .cta-con-imagen-vertical {
+    flex-direction: column;
+  }
+
+  .cta-con-imagen-vertical img {
+    width: 100%;
+    height: auto;
+  }
+
+  .cta-con-imagen-vertical .contenido {
+    padding: 1.5rem;
+  }
+}
+
+/* estilo de tabla */
+
+.tabla-responsive {
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+
+.tabla-minimalista {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+  font-family: sans-serif;
+}
+
+.tabla-minimalista th,
+.tabla-minimalista td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla-minimalista thead {
+  background-color: #f8f8f8;
+}
+
+.tabla-minimalista tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+.tabla-minimalista th {
+  color: var(--color-principal, #222);
+  font-weight: bold;
+}
+
+/* === COMENTARIOS BLOGGER - Estilo Vertical con Jerarquía Clara === */
+
+/* Ocultar elementos innecesarios */
+.comments .loadmore,
+.comments .continue,
+.thread-chrome.thread-collapsed,
+.item-control {
+  display: none !important;
+}
+
+/* Reset general */
+.comments-content,
+.comment-thread ol,
+.comment-thread li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Comentarios padres e hijos */
+li.comment {
+  display: block;
+  margin-top: 1.5rem;
+  padding: 1rem 1.2rem;
+  border-radius: 1rem;
+  background-color: #fff;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  position: relative;
+}
+
+/* Fondo gris claro para respuestas (hijos) */
+.comment-replies li.comment {
+  background-color: #f7f7f7;
+  border: 1px solid #e0e0e0;
+}
+
+/* Avatar */
+.avatar-image-container {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ddd;
+  float: left;
+  margin-right: 1rem;
+}
+.avatar-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Ocultar avatar anónimo */
+.avatar-image-container img[src*="anon36.png"],
+.avatar-image-container img[src*="b36-rounded.png"] {
+  opacity: 0;
+}
+
+/* Contenido del comentario */
+.comment-block {
+  overflow: hidden;
+}
+
+/* Cabecera */
+.comment-header {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1f2937; /* gris oscuro */
+  margin-bottom: 0.3rem;
+}
+.comment-header .datetime {
+  font-size: 0.8rem;
+  color: #888;
+  margin-left: 0.5rem;
+}
+
+/* Texto */
+.comment-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  margin-top: 0.5rem;
+}
+
+/* Pie */
+.comment-footer {
+  margin-top: 0.8rem;
+}
+
+/* Botón "Responder" */
+.comment-reply {
+  appearance: none;
+  background-color: #e5e7eb;
+  color: #4b5563;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.comment-reply:hover {
+  background-color: #d1d5db;
+  color: #374151;
+  border-color: #cbd5e1;
+}
+
+/* Enlaces en el contenido y cabecera */
+.comment-header a,
+.comment-content a {
+  color: #4b5563;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.comment-header a:hover,
+.comment-content a:hover {
+  color: #374151;
+}
+
+/* Ocultar la palabra "Respuestas" */
+.thread-count {
+  display: none !important;
+}
+
+/* Caja de respuestas (contenedor de hijos) */
+.comment-replies {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 0;
+}
+
+/* Caja de respuesta */
+.comment-replybox-single,
+.comment-replybox-thread {
+  margin-top: 1rem;
+}
+.comments .comments-replybox {
+  width: 100%;
+  border: none;
+  height: 250px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .avatar-image-container {
+    float: none;
+    margin: 0 auto 0.5rem;
+  }
+
+  .comment-block {
+    text-align: center;
+  }
+
+  .comment-header {
+    justify-content: center;
+  }
+
+  .comment-footer {
+    text-align: center;
+  }
+}
+/* Limitar ancho y centrar comentarios */
+.comments {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+  width: 100%; /* fuerza ocupar todo el ancho disponible */
+}
+
+/* Opcional: si quieres un ajuste especial en móvil */
+@media (max-width: 600px) {
+  .comments {
+    padding: 0 0rem; /* menos padding para móviles */
+  }
+}
+
+
+/* Sutil sombra para el título Comentarios */
+.comments .title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Línea decorativa debajo del título (más suave con sombra) */
+.comments .title::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  border-radius: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 2px 6px rgba(59,130,246,0.3);
+}
+
+/* Número de comentarios con transición de color al pasar mouse */
+.comments .comment-count {
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: #4b5563;
+  transition: color 0.3s ease;
+}
+
+.comments .comment-count:hover {
+  color: #3b82f6;
+}
+
+/* Título "Publicar un comentario" con línea arriba, sombra y un poco más de espacio */
+#comment-post-message {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2rem 0 0.5rem;
+  color: #1f2937;
+  position: relative;
+  padding-top: 1rem;
+  text-align: left;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Línea decorativa arriba del título con sombra */
+#comment-post-message::before {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  border-radius: 2px;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 2px 6px rgba(59,130,246,0.3);
+}
+
+/* Caja del formulario: borde suave, sombra y padding */
+.comments .comment-form,
+.comments .comments-replybox {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Sombra más intensa al enfocar el formulario */
+.comments .comment-form:focus-within,
+.comments .comments-replybox:focus-within {
+  box-shadow: 0 4px 16px rgba(59,130,246,0.3);
+  border-color: #3b82f6;
+}
+
+/* Texto "sin comentarios" un poco más grande y con letra cursiva fina */
+.sin-comentarios {
+  color: #6b7280;
+  font-style: italic;
+  font-weight: 300;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+/* ==== SECCIÓN DE COMPARTIR - Estilo Minimalista ==== */
+
+.custom-share-wrapper {
+  /* No fijar max-width menor que el padre */
+  width: 100%;
+  margin: 3rem 0 1.5rem; /* Solo vertical, sin centrar horizontal */
+    padding: 0 0 1.5rem 0; /* padding-bottom para espacio bajo la línea */
+  box-sizing: border-box;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.custom-share-title {
+  font-size: 1rem;
+  color: #1f2937;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  /* Opcional: para que ocupe todo el ancho */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.custom-share {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.custom-share a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+  border: 1px solid #d1d5db;
+  /* Que el ancho sea automático para que se acomode bien */
+  width: auto;
+  box-sizing: border-box;
+}
+
+.custom-share a:hover {
+  background-color: #e5e7eb;
+}
+
+/* Móvil */
+@media screen and (max-width: 600px) {
+  .custom-share {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .custom-share a {
+    text-align: center;
+    width: 100%; /* Full width en móvil */
+  }
+}
+
+/* === FORMULARIO DE CONTACTO MINIMALISTA === */
+.contact-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-family: system-ui, sans-serif;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.contact-form .form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form label {
+  font-size: 0.95rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  background: #f9fafb;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #3b82f6;
+  background: #fff;
+}
+
+.contact-form .checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.contact-form .checkbox input {
+  width: 1rem;
+  height: 1rem;
+}
+
+.contact-form .checkbox a {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.contact-form .btn-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.contact-form .btn-submit:hover {
+  background: #2563eb;
+}
+
+.contact-form svg {
+  stroke-width: 2;
+}
+
+/* ==== BLOQUE DE IMAGENES- Estilo Minimalista ==== */
+.bloque-imagen.centrada {
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.bloque-imagen.centrada img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  display: block;
+  margin: 0 auto;
+}
+.bloque-imagen.leyenda {
+  margin: 2rem auto;
+  text-align: center;
+  max-width: 100%;
+}
+
+.bloque-imagen.leyenda img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.bloque-imagen.leyenda figcaption {
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+  font-style: italic;
+}
+.bloque-imagen.borde-sombra {
+  margin: 2rem auto;
+  text-align: center;
+  max-width: 100%;
+}
+
+.bloque-imagen.borde-sombra img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #e0e0e0; /* Borde gris muy claro */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); /* Sombra suave */
+  display: block;
+  margin: 0 auto;
+}
+.bloque-imagen-lateral {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 2rem 0;
+  gap: 1.5rem;
+}
+.bloque-imagen-lateral img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  flex-shrink: 0;
+}
+
+.bloque-imagen-lateral .contenido {
+  flex: 1;
+  min-width: 250px;
+}
+
+.bloque-imagen-lateral .contenido h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-principal, #1f2937);
+}
+
+.bloque-imagen-lateral .contenido p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+}
+.bloque-imagen-lateral.derecha {
+  flex-direction: row-reverse;
+}
+.tarjeta-imagen-destacada {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03);
+  max-width: 640px;
+  margin: 2rem auto;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-imagen-destacada:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+}
+
+.tarjeta-imagen-destacada img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.tarjeta-imagen-destacada .contenido {
+  padding: 1rem;
+}
+
+.tarjeta-imagen-destacada .contenido h3 {
+  font-size: 1.1rem;
+  color: var(--color-principal, #1f2937);
+  margin: 0;
+}
+.galeria-imagenes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.galeria-imagenes img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+  transition: transform 0.2s ease;
+}
+
+.galeria-imagenes img:hover {
+  transform: scale(1.02);
+}
+.galeria-enlazada {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.galeria-enlazada .item {
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.galeria-enlazada .item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.galeria-enlazada .item:hover img {
+  transform: scale(1.03);
+}
+
+.galeria-enlazada .item span {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--color-principal, #1f2937);
+}
+.imagen-con-badge {
+  position: relative;
+  display: inline-block;
+  margin: 2rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.imagen-con-badge img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.imagen-con-badge .badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background-color: #0077cc;
+  color: #fff;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  pointer-events: none;
+  user-select: none;
+}
+.imagen-overlay {
+  position: relative;
+  display: block;
+  margin: 2rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.imagen-overlay img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.imagen-overlay .overlay-texto {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  max-width: 90%;
+  backdrop-filter: blur(4px);
+}
+
+.text-columns {
+  column-count: 3;          /* Número de columnas */
+  column-gap: 2rem;         /* Espacio entre columnas */
+  column-rule: 1px solid #ddd; /* Línea entre columnas */
+  color: var(--color-principal);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+@media (max-width: 600px) {
+  .text-columns {
+    column-count: 1; /* En móvil, una sola columna */
+  }
+}
+.nested-columns {
+  column-count: 2;
+  column-gap: 1.5rem;
+}
+
+.nested-columns .sub-column {
+  column-count: 1; /* columnas normales dentro */
+  margin-bottom: 1rem;
+}
+.media-columns {
+  display: flex;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  align-items: center;
+}
+
+.media-columns .media {
+  flex: 1;
+}
+
+.media-columns .media img,
+.media-columns .media video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.media-columns .content {
+  flex: 2;
+  color: var(--color-principal);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .media-columns {
+    flex-direction: column;
+  }
+
+  .media-columns .media,
+  .media-columns .content {
+    width: 100%;
+  }
+}
+/* === SEPARADORES VISUALES === */
+
+/* Línea horizontal sutil */
+.divider-line {
+  border: none;
+  border-top: 1px solid #e5e7eb; /* gris claro */
+  margin: 3rem auto;
+  max-width: 900px;
+}
+
+/* Separador con ícono decorativo */
+.divider-icon {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 3rem auto;
+  color: #9ca3af; /* gris medio */
+}
+
+/* Separador doble con líneas finas */
+.divider-double {
+  margin: 3rem auto;
+  width: 90%;
+  max-width: 900px;
+  height: 1px;
+  background: linear-gradient(to right, #e5e7eb 0%, #d1d5db 50%, #e5e7eb 100%);
+  position: relative;
+}
+.divider-double::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 0.75rem;
+  background: linear-gradient(to right, #e5e7eb 0%, #d1d5db 50%, #e5e7eb 100%);
+}
+
+/* Separador con texto centrado */
+.divider-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 4rem 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+.divider-text::before,
+.divider-text::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid #e5e7eb;
+  margin: 0 1rem;
+}
+
+/* Separador espaciado tipo bloque */
+.divider-block {
+  height: 40px;
+  background-color: #f3f4f6; /* gris claro */
+  margin: 2rem 0;
+  border-radius: 8px;
+}
+
+
+/* === Estilos generales para todos los acordeones === */
+.accordion {
+  width: 100%;
+  max-width: 800px;
+  margin: 1rem auto;
+  font-family: system-ui, sans-serif;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.accordion-header {
+  background: #f5f5f5;
+  cursor: pointer;
+  padding: 1rem;
+  font-weight: 600;
+  user-select: none;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+  background: #e1e1e1;
+}
+
+.accordion-header::after {
+  content: '\25BC'; /* flecha hacia abajo */
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+/* Cambio de .active a .is-active */
+.accordion-header.is-active::after {
+  transform: translateY(-50%) rotate(180deg); /* flecha hacia arriba */
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  padding: 0 1rem;
+  background: #fafafa;
+}
+
+.accordion-content p {
+  padding: 1rem 0;
+  margin: 0;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* === Acordeón puro CSS con checkbox oculto === */
+.accordion-css label {
+  display: block;
+  background: #f5f5f5;
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  position: relative;
+  user-select: none;
+}
+
+.accordion-css label::after {
+  content: '+';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 900;
+  transition: transform 0.3s ease;
+}
+
+.accordion-css input[type="checkbox"] {
+  display: none;
+}
+
+.accordion-css input[type="checkbox"]:checked + label::after {
+  content: '-';
+}
+
+.accordion-css .content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background: #fafafa;
+  padding: 0 1rem;
+}
+
+.accordion-css input[type="checkbox"]:checked + label + .content {
+  max-height: 500px; /* valor alto para mostrar contenido */
+  padding: 1rem;
+}
+
+/* === Acordeón con detalle/summary (HTML5) solo dentro de .accordion-details === */
+.accordion-details details {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  background: #fafafa;
+}
+
+.accordion-details summary {
+  cursor: pointer;
+  padding: 1rem;
+  font-weight: 600;
+  list-style: none;
+  user-select: none;
+}
+
+.accordion-details details[open] summary {
+  background: #e1e1e1;
+}
+
+.accordion-details details > p {
+  padding: 0 1rem 1rem 1rem;
+  margin: 0;
+  color: #333;
+  line-height: 1.5;
+}
+
+
+
+/* Estilos para tarjetas individuales simples */
+.tarjeta {
+  font-family: system-ui, sans-serif;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  margin: 1rem auto;
+  max-width: 350px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #111827;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.card-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #3b82f6;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+.card-button:hover {
+  background: #2563eb;
+}
+
+/* === Variantes de cards === */
+
+/* Card horizontal */
+.card-horizontal {
+  display: flex;
+  flex-direction: row;
+  max-width: 600px;
+}
+.card-horizontal img {
+  width: 40%;
+  object-fit: cover;
+}
+.card-horizontal .card-content {
+  flex: 1;
+}
+
+/* Card con fondo color y sin imagen */
+.card-colored {
+  background: #f0f9ff;
+  border-left: 6px solid #3b82f6;
+}
+
+/* Card con ícono (sin imagen) */
+.card-icon {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.card-icon .icon {
+  font-size: 2rem;
+  color: #3b82f6;
+}
+
+/* Card con solo texto (simple) */
+.card-simple {
+  background: #f9fafb;
+  border: 1px dashed #d1d5db;
+}
+
+/* === NUEVO: Card tipo lista === */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.card-lista {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease;
+  padding: 0.5rem;
+}
+.card-lista:hover {
+  transform: scale(1.01);
+}
+.card-lista a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+.card-lista img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+}
+.card-lista h3 {
+  font-size: 0.9rem;
+  margin: 0;
+  padding-left: 0.75rem;
+  flex: 1;
+  color: #1f2937;
+  line-height: 1.3;
+}
+
+@media (max-width: 600px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .card-lista {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .card-lista a {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .card-lista img {
+    display: none;
+  }
+  .card-lista h3 {
+    padding: 0.5rem 0 0;
+  }
+}
+/* === TABLA DE COMPARACIÓN DE PRODUCTOS === */
+.tabla-comparativa {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  overflow-x: auto;
+}
+.tabla-comparativa thead {
+  background-color: #f9fafb;
+  color: #111827;
+  text-align: left;
+}
+.tabla-comparativa th,
+.tabla-comparativa td {
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  vertical-align: middle;
+}
+.tabla-comparativa img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+.tabla-comparativa .titulo-producto {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1d4ed8;
+  text-decoration: none;
+}
+.tabla-comparativa .boton-comprar {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #10b981;
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+.tabla-comparativa .boton-comprar:hover {
+  background-color: #059669;
+}
+
+/* === Responsive para móviles === */
+@media (max-width: 768px) {
+  .tabla-comparativa thead {
+    display: none;
+  }
+  .tabla-comparativa tr {
+    display: block;
+    margin-bottom: 1.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  .tabla-comparativa td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  .tabla-comparativa td:last-child {
+    border-bottom: none;
+  }
+  .tabla-comparativa td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #6b7280;
+  }
+}
+/* === FICHA DE PRODUCTO DESTACADO === */
+.ficha-producto {
+  display: flex;
+  flex-wrap: wrap;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  gap: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);
+  font-family: system-ui, sans-serif;
+}
+.ficha-producto img {
+  width: 100%;
+  max-width: 300px;
+  object-fit: contain;
+  border-radius: 0.75rem;
+}
+.ficha-info {
+  flex: 1;
+  min-width: 250px;
+}
+.ficha-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #1f2937;
+}
+.ficha-info p {
+  margin-bottom: 1rem;
+  color: #374151;
+}
+.ficha-info ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+.ficha-info ul li {
+  margin-bottom: 0.5rem;
+  color: #4b5563;
+}
+.ficha-precio {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #10b981;
+  margin-bottom: 1rem;
+}
+.ficha-boton {
+  display: inline-block;
+  background-color: #2563eb;
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+.ficha-boton:hover {
+  background-color: #1d4ed8;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .ficha-producto {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .ficha-info {
+    padding: 0;
+  }
+  .ficha-info ul {
+    text-align: left;
+    margin: 0 auto 1rem auto;
+    display: inline-block;
+  }
+}
+
+/* === boton pago === */
+
+.ficha-boton {
+  background: #1f2937;
+  color: #fff;
+  padding: 10px 20px;
+  border: 2px solid #1f2937;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.ficha-boton:hover {
+  background: #fff;
+  color: #1f2937;
+  border-color: #1f2937;
+}
+
+/* === ENTRADAS RELACIONADAS === */
+.related-posts {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.related-posts h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #1f2937;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+}
+.related-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.related-item {
+  display: flex;
+  gap: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.05);
+  transition: box-shadow 0.2s ease;
+  background: #fff;
+}
+.related-item:hover {
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+}
+.related-item img {
+  width: 100px;
+  height: 80px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 0.75rem 0 0 0.75rem; /* imagen sin bordes en el lado derecho */
+}
+.related-content {
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+}
+.related-content a {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #2563eb;
+  text-decoration: none;
+  line-height: 1.2;
+}
+.related-content a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .related-item {
+    flex-direction: row;
+  }
+  .related-item img {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 0.5rem 0 0 0.5rem; /* solo borde izquierdo */
+  }
+  .related-content {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+a {
+  font-size: 1rem;          /* Tamaño base relativo */
+  max-width: 100%;          /* No salirse del contenedor */
+  word-wrap: break-word;    /* Romper palabra si es muy larga */
+  white-space: normal;      /* Permite que el texto haga salto de línea */
+  display: inline-block;    /* Para poder controlar mejor el ancho */
+  color: #0077cc;
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  a {
+    font-size: 0.9rem;      /* Tamaño más pequeño en móviles */
+  }
+}
+
+/* Preguntas Frecuentes (FAQ) */
+.faq-section {
+  max-width: 850px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  font-family: system-ui, sans-serif;
+  color: #1f2937;
+}
+
+.faq-section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.faq-section details {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background: #f9fafb;
+}
+
+.faq-section summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #0077cc;
+}
+
+.faq-section summary:hover {
+  color: #005fa3;
+}
+
+.faq-section details[open] {
+  background: #f3f4f6;
+}
+
+.faq-section p {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+/* CLUSTER AUTOMATICO IMAGEN */
+
+.galeria-cluster {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+.item-cluster {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.item-cluster:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+.item-cluster img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+.item-cluster h3 {
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  margin: 0;
+  color: #333;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center; /* Centra el texto */
+}
+
+.item-cluster a {
+  text-decoration: none; /* quita la raya */
+  transition: color 0.3s ease;
+  display: inline-block; /* para que el hover funcione bien */
+}
+
+.item-cluster a:hover h3 {
+  color: #0077cc; /* color al pasar el ratón, cambia por el que prefieras */
+}
+
+ /* CONTENEDOR GENERAL DE LA VARIANTE CARD */
+.galeria-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  max-width: 100%;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+/* CADA TARJETA */
+.item-card {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  width: calc(33.333% - 1rem); /* 3 por fila */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+}
+
+.item-card:hover {
+  transform: translateY(-4px);
+}
+
+/* IMAGEN DE LA TARJETA */
+.item-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* CONTENIDO DE LA TARJETA */
+.item-card-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+/* TÍTULO */
+.item-card-content h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.item-card-content h3:hover {
+  color: #0077cc;
+}
+
+/* DESCRIPCIÓN */
+.item-card-content p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* BOTÓN "LEER MÁS" */
+.item-card-content .button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin-top: auto;
+  background: #f0f0f0;
+  color: #333;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.item-card-content .button:hover {
+  background: #e0e0e0;
+}
+
+/* RESPONSIVE: 2 COLUMNAS EN TABLET, 1 EN MÓVIL */
+@media (max-width: 900px) {
+  .item-card {
+    width: calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .item-card {
+    width: 100%;
+  }
+}
+/* Contenedor principal */
+.galeria-lista {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+/* Eliminar puntos de lista */
+.galeria-lista li {
+  list-style: none;
+  width: 100%;
+  padding: 0.125rem 0; /* espacio mínimo entre filas */
+  box-sizing: border-box;
+}
+
+/* En PC: dos columnas de 50% con separación mínima */
+@media (min-width: 768px) {
+  .galeria-lista li {
+    width: 50%;
+    padding: 0.125rem 0.25rem; /* espacio mínimo horizontal */
+  }
+}
+
+/* Enlace dentro de cada ítem */
+.item-lista a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 60px;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s, color 0.2s;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Hover */
+.item-lista a:hover {
+  background-color: #e5e7eb;
+  color: #0077cc;
+}
+
+/* Imagen */
+.item-lista img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Título truncado */
+.item-lista span {
+  font-size: 0.95rem;
+  line-height: 1.2;
+  font-weight: 500;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Contenedor general tipo galería */
+.galeria-tooltip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 0.5rem;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+/* Cada miniatura */
+.item-tooltip {
+  list-style: none;
+  width: 100%;
+}
+
+/* Enlace */
+.item-tooltip a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+/* Hover efecto sutil */
+.item-tooltip a:hover {
+  transform: scale(1.05);
+  border-color: #0077cc;
+}
+
+/* Imagen */
+.item-tooltip img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1; /* cuadradas */
+  object-fit: cover;
+}
+
+/* === CONTENEDOR GENERAL EN FILA === */
+.galeria-horizontal {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+/* === ITEM === */
+.item-horizontal {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.item-horizontal:hover {
+  transform: translateY(-4px);
+}
+
+/* === ENLACE ENVOLVENTE === */
+.item-horizontal a {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+/* === IMAGEN === */
+.item-horizontal img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-right: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+/* === TEXTO === */
+.item-horizontal div {
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.item-horizontal h3 {
+  font-size: 1rem;
+  line-height: 1.2;
+  margin: 0;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+/* === RESPONSIVE: En móvil se mantienen en una columna por fila === */
+@media (max-width: 600px) {
+  .item-horizontal a {
+    flex-direction: row;
+  }
+
+  .item-horizontal img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* === CONTENEDOR TIPO MASONRY === */
+.galeria-masonry {
+  column-count: 3; /* cantidad de columnas */
+  column-gap: 12px; /* espacio horizontal entre columnas */
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .galeria-masonry {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .galeria-masonry {
+    column-count: 1;
+  }
+}
+
+.item-masonry {
+  /* Para que los artículos no se fragmenten en columnas */
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 12px; /* espacio vertical entre items */
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.item-masonry img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+}
+
+.item-masonry h3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* evita que el título interfiera en el hover del enlace */
+}
+
+.item-masonry:hover img {
+  transform: scale(1.05);
+}
+
+.item-masonry:hover h3 {
+  opacity: 1;
+}
+
+.galeria-feed.slider {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  max-width: 850px;
+  margin: auto;
+  overflow: hidden;
+  height: 450px; /* Altura fija para todo el slider */
+}
+
+.galeria-feed.slider .imagen-principal {
+  flex: 2;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%; /* Ocupa toda la altura del slider */
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.galeria-feed.slider .imagen-principal img {
+  width: 100%;
+  height: 100%; /* Imagen rellena todo el contenedor */
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.galeria-feed.slider .imagen-principal h3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0.4rem 0.6rem;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 0.95rem;
+  border-radius: 0 0 8px 8px;
+  line-height: 1.2;
+}
+
+.galeria-feed.slider .miniaturas {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.3rem;
+  height: 100%; /* Igual alto que el slider */
+}
+
+.galeria-feed.slider .miniatura {
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: calc((100% - 0.6rem) / 3);
+}
+
+.galeria-feed.slider .miniatura img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  border-radius: 6px 6px 0 0;
+  display: block;
+}
+
+.galeria-feed.slider .miniatura h4 {
+  margin: 0;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border-radius: 0 0 6px 6px;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .galeria-feed.slider {
+    flex-direction: column;
+    height: auto; /* quitar altura fija en móvil */
+  }
+
+  .galeria-feed.slider .miniaturas {
+    flex-direction: row;
+    gap: 0.5rem;
+    height: auto;
+  }
+
+  .galeria-feed.slider .miniatura {
+    height: auto;
+    flex: 1 1 auto;
+  }
+
+  .galeria-feed.slider .miniatura img {
+    height: 80px;
+  }
+
+  .galeria-feed.slider .miniatura h4 {
+    font-size: 0.7rem;
+    height: auto;
+    padding: 0.1rem 0.3rem;
+  }
+}
+
+.galeria-lightbox,
+.galeria-custom-gallery {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 2px; /* espacio mínimo */
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 600px) {
+  .galeria-lightbox,
+  .galeria-custom-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .galeria-lightbox,
+  .galeria-custom-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.item-lightbox,
+.item-gallery {
+  padding: 2px; /* padding uniforme */
+  box-sizing: border-box;
+  width: 100%;
+  height: 0;
+  padding-bottom: 66.66%; /* 3:2 ratio para altura */
+  position: relative;
+  background: transparent;
+  overflow: hidden;
+}
+
+.item-lightbox img,
+.item-gallery img {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+}
+
+
+.autor-box {
+  max-width: 850px;
+  margin: 2rem auto;
+  background: #f9f9f9;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: system-ui, sans-serif;
+}
+
+.autor-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.autor-avatar {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #d1d5db;
+}
+
+.autor-detalles {
+  flex: 1;
+  min-width: 200px;
+}
+
+.autor-nombre {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 0.3rem;
+}
+
+.autor-bio {
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin: 0 0 0.5rem;
+}
+
+.autor-link {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #0077cc;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+}
+
+.autor-link:hover {
+  text-decoration: underline;
+}
+
+.autor-redes {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.autor-redes a {
+  display: inline-block;
+  background: #e5e7eb;
+  color: #1f2937;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.autor-redes a:hover {
+  background: #d1d5db;
+}
+
+.autor-redes {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.autor-redes a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  color: #1f2937;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.autor-redes a:hover {
+  background: #d1d5db;
+}
+
+.autor-redes svg {
+  display: block;
+}
+
+/* TOC CAJA DE INDICE POST & PAGE */
+
+#toc-container {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 1em;
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+  max-width: 100%;
+  margin-bottom: 1.5em;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+#toc-toggle {
+  background: none;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  color: #0366d6;
+  padding: 0;
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+#toc-toggle:hover {
+  text-decoration: underline;
+}
+
+#toc ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#toc li {
+  margin: 0.3em 0;
+}
+
+#toc li ul {
+  margin-left: 1em;
+}
+
+#toc a {
+  text-decoration: none;
+  color: #333;
+}
+
+#toc a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  #toc-container {
+    font-size: 13px;
+  }
+}
+#toc nav,
+#toc ul {
+  display: block !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#toc li {
+  display: block !important;
+  margin: 0.3em 0;
+}
+
+#toc li ul {
+  margin-left: 1em !important;
+}
+
+#toc a {
+  display: inline-block;
+  text-decoration: none;
+  color: #333;
+  padding: 2px 0;
+}
+
+#toc[hidden] {
+  display: none !important;
+}
+
+
+/* Contenedor del código pre */
+/* Bloque de código */
+pre {
+  position: relative;
+  background: #f3f4f6;
+  color: #1f2937;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.9rem;
+  max-width: 100%;
+  margin: 1.5rem 0;
+  border: 1px solid #e5e7eb;
+}
+
+/* Código */
+pre code {
+  white-space: pre;
+  display: block;
+}
+
+/* Botón de copiar */
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #e5e7eb;
+  color: #1f2937;
+  border: none;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  z-index: 10;
+}
+
+.copy-btn:hover {
+  background: #d1d5db;
+}
+.media-player {
+  position: relative;
+  width: 100%;
+  max-width: 850px;
+  margin: 2rem auto;
+  background-color: #000;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 16 / 9;
+}
+
+.media-player::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45); /* capa oscura semitransparente */
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.media-player::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 72px;
+  height: 72px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.85); /* círculo blanco translúcido */
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background-image: url('https://cdn-icons-png.flaticon.com/512/727/727245.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40%;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.media-player:hover::after {
+  transform: translate(-50%, -50%) scale(1.1);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.media-player iframe,
+.media-player video {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: none;
+  border-radius: 12px;
+}
+
+.media-player.active::before,
+.media-player.active::after {
+  display: none;
+}
+
+/* VARIANTE GRID - 3 columnas, texto + leer más */
+.feed-text[data-variant="grid"] {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  max-width: 1000px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #1f2937;
+  background: transparent;
+}
+
+.feed-text[data-variant="grid"] .item-text.grid {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: box-shadow 0.3s ease;
+}
+
+.feed-text[data-variant="grid"] .item-text.grid:hover {
+  box-shadow: 0 6px 15px rgb(0 0 0 / 0.1);
+}
+
+.feed-text[data-variant="grid"] .item-text.grid h3 {
+  font-size: 1.15rem;
+  margin: 0 0 0.7rem 0;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.feed-text[data-variant="grid"] .item-text.grid h3 a {
+  color: #1f2937;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.feed-text[data-variant="grid"] .item-text.grid h3 a:hover,
+.feed-text[data-variant="grid"] .item-text.grid h3 a:focus {
+  color: #2563eb;
+  outline: none;
+}
+
+.feed-text[data-variant="grid"] .item-text.grid p {
+  flex-grow: 1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+  color: #4b5563;
+}
+
+.feed-text[data-variant="grid"] .item-text.grid .read-more {
+  align-self: flex-start;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #2563eb;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.feed-text[data-variant="grid"] .item-text.grid .read-more:hover,
+.feed-text[data-variant="grid"] .item-text.grid .read-more:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+/* Responsive tablet - 2 columnas */
+@media (max-width: 900px) {
+  .feed-text[data-variant="grid"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Responsive móvil - 1 columna */
+@media (max-width: 550px) {
+  .feed-text[data-variant="grid"] {
+    grid-template-columns: 1fr;
+    padding: 0 0.5rem;
+  }
+
+  .feed-text[data-variant="grid"] .item-text.grid {
+    padding: 1rem;
+  }
+}
+/* VARIANTE ALTERNATE - filas con imagen y texto alternados */
+.feed-text[data-variant="alternate"] {
+  max-width: 900px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #1f2937;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.feed-text[data-variant="alternate"] .item-text.alt {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.06);
+  padding: 1rem 1.5rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.feed-text[data-variant="alternate"] .item-text.alt:hover {
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.12);
+}
+
+.feed-text[data-variant="alternate"] .item-text.alt .text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.feed-text[data-variant="alternate"] .item-text.alt .img {
+  flex: 0 0 35%;
+  max-width: 35%;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+}
+
+.feed-text[data-variant="alternate"] .item-text.alt .img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.feed-text[data-variant="alternate"] .item-text.alt h3 {
+  margin: 0 0 0.8rem 0;
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 1.25;
+}
+
+.feed-text[data-variant="alternate"] .item-text.alt h3 a {
+  color: #1f2937;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.feed-text[data-variant="alternate"] .item-text.alt h3 a:hover,
+.feed-text[data-variant="alternate"] .item-text.alt h3 a:focus {
+  color: #2563eb;
+  outline: none;
+}
+
+.feed-text[data-variant="alternate"] .item-text.alt p {
+  margin: 0 0 1rem 0;
+  color: #4b5563;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.feed-text[data-variant="alternate"] .item-text.alt .read-more {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #2563eb;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  align-self: flex-start;
+  transition: border-color 0.3s ease;
+}
+
+.feed-text[data-variant="alternate"] .item-text.alt .read-more:hover,
+.feed-text[data-variant="alternate"] .item-text.alt .read-more:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+/* Variante reversa: imagen a la izquierda, texto a la derecha */
+.feed-text[data-variant="alternate"] .item-text.alt.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Responsive móvil: apila vertical con imagen arriba */
+@media (max-width: 600px) {
+  .feed-text[data-variant="alternate"] .item-text.alt,
+  .feed-text[data-variant="alternate"] .item-text.alt.reverse {
+    flex-direction: column;
+  }
+  .feed-text[data-variant="alternate"] .item-text.alt .img,
+  .feed-text[data-variant="alternate"] .item-text.alt.reverse .img {
+    flex: none;
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+/* VARIANTE TITLES - solo títulos en 3 columnas */
+.feed-text[data-variant="titles"] {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 900px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #1f2937;
+  background: transparent;
+}
+
+.feed-text[data-variant="titles"] .item-text.title-only {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.04);
+  transition: box-shadow 0.25s ease;
+}
+
+.feed-text[data-variant="titles"] .item-text.title-only:hover {
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+}
+
+.feed-text[data-variant="titles"] .item-text.title-only h3 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.feed-text[data-variant="titles"] .item-text.title-only h3 a {
+  color: #1f2937;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.feed-text[data-variant="titles"] .item-text.title-only h3 a:hover,
+.feed-text[data-variant="titles"] .item-text.title-only h3 a:focus {
+  color: #2563eb;
+  outline: none;
+}
+
+/* Responsive tablet - 2 columnas */
+@media (max-width: 900px) {
+  .feed-text[data-variant="titles"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Responsive móvil - 1 columna */
+@media (max-width: 550px) {
+  .feed-text[data-variant="titles"] {
+    grid-template-columns: 1fr;
+    padding: 0 0.5rem;
+  }
+
+  .feed-text[data-variant="titles"] .item-text.title-only {
+    padding: 1rem;
+  }
+}
+
+/* === Estilo para Catálogo tipo Tienda === */
+.feed-catalogo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+.item-producto {
+  background: #f9f9f9;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+}
+
+.item-producto:hover {
+  transform: scale(1.02);
+}
+
+.item-producto .img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.item-producto .info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item-producto h3 {
+  font-size: 1.1rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.item-producto h3 a {
+  color: #1f2937;
+  text-decoration: none;
+}
+
+.item-producto .descripcion {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.item-producto .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.item-producto .precio {
+  font-weight: bold;
+  color: #10b981;
+  font-size: 1rem;
+}
+
+.item-producto .boton {
+  background: #1f2937;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.item-producto .boton:hover {
+  background: #111827;
+}
+.item-producto .descripcion {
+  display: none;
+}
+/* Tabla de productos */
+.tabla-comparativa {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: system-ui, sans-serif;
+  margin: 1em 0;
+  font-size: 15px;
+}
+.tabla-comparativa thead {
+  background: #f3f4f6;
+  border-bottom: 2px solid #e5e7eb;
+}
+.tabla-comparativa th, .tabla-comparativa td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+.tabla-comparativa img {
+  width: 80px;
+  height: auto;
+  border-radius: 4px;
+}
+.btn-comprar {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #111827;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+.btn-comprar:hover {
+  background: #1f2937;
+}
+/* === Estilo base BUSCAR (escritorio) === */
+.post-header {
+  max-width: 850px; /* Igual que tu contenido */
+  margin: 0 auto;
+}
+
+.post-header .search-box {
+  display: flex;
+  max-width: 300px; /* No más ancho que esto */
+  margin-top: 10px;
+}
+
+.post-header .search-box input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  font-size: 14px;
+}
+
+.post-header .search-box button {
+  background: #1f2937;
+  color: #fff;
+  border: none;
+  padding: 0 12px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* === Versión responsiva (móvil) === */
+@media (max-width: 600px) {
+  .post-header .search-box {
+    max-width: 100%;      /* Ocupar todo el ancho */
+  }
+
+  .post-header .search-box input {
+    font-size: 16px;      /* Texto un poco más grande para táctil */
+    padding: 10px;
+  }
+
+  .post-header .search-box button {
+    padding: 0 16px;
+    font-size: 16px;
+  }
+}
+
+/* === Adsense (adaptado a variables) === */
+.adsense-shortcode,
+.adsense-placeholder {
+  display: block;
+  margin: 1em 0;
+  text-align: center;
+}
+
+.adsense-placeholder {
+  background: var(--color-borde);
+  padding: 10px;
+  color: var(--color-texto-suave);
+  font-style: italic;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+
+/* Contenedor del artículo en el index */
+.index-contenedor {
+  max-width: 960px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  font-family: system-ui, sans-serif;
+  color: #374151;
+  line-height: 1.7;
+}
+
+.index-contenedor h2 {
+  font-size: 1.6rem;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.index-contenedor h3 {
+  font-size: 1.25rem;
+  color: #1f2937;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.index-contenedor p {
+  margin-bottom: 15px;
+}
+
+.index-contenedor ul {
+  list-style: none !important; /* fuerza quitar números */
+  padding-left: 0;
+  margin-bottom: 15px;
+}
+
+.index-contenedor ul li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 6px;
+}
+
+.index-contenedor ul li::before {
+  content: "\2022"; /* viñeta en Unicode para Blogger */
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #3b82f6; /* Azul suave */
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* Viñetas para sublistas */
+.index-contenedor ul ul li::before {
+  content: "\203A"; /* flecha Unicode segura */
+  color: #10b981; /* verde */
+}
+
+@media (max-width: 768px) {
+  .index-contenedor {
+    padding: 18px;
+  }
+  .index-contenedor h2 {
+    font-size: 1.4rem;
+  }
+}
+
+/* MIGAS DE PAN POST & PAGE */
+.breadcrumbs {
+  font-size: 14px;
+  padding: 6px 0.8rem;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 1rem;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  background-color: transparent;
+
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.breadcrumbs a,
+.breadcrumbs span[itemprop="name"] {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px; /* mismo tamaño */
+}
+
+.breadcrumbs a {
+  color: #4a6fa5; /* azul grisáceo suave */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumbs a:hover {
+  color: #6c85b1; /* azul suave más claro */
+  text-decoration: underline;
+}
+
+/* El título (texto plano) no cambia de color */
+.breadcrumbs span[itemprop="name"]:not(:hover) {
+  color: #475569; /* gris oscuro suave */
+}
+
+.breadcrumb-sep {
+  color: #94a3b8;
+  user-select: none;
+  padding: 0 0.2rem;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  .breadcrumbs {
+    font-size: 12px;
+    padding: 5px 0.6rem;
+    gap: 0.2rem;
+  }
+  .breadcrumbs a,
+  .breadcrumbs span[itemprop="name"],
+  .breadcrumb-sep {
+    font-size: 12px;
+  }
+}
+
+/** Clase utilitaria para ocultar elementos **/
+.none {display:none !important}
+a[imageanchor] {
+margin: 0 !important;
+}
+
+]]></b:skin>
+    
+    <!-- DATOS ENRIQUECIDOS -->
+    <script type='application/ld+json'>
+      //<![CDATA[
+  {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "<data:blog.homepageUrl.canonical/>",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "<data:blog.searchUrl/>?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+//]]>
+  </script>
+    <!-- MENU ORBITAL -->
+  <script defer='defer'>
+//<![CDATA[
+    document.addEventListener('DOMContentLoaded', function () {
+      const menuBtn = document.querySelector('.menu-toggle');
+      const menuList = document.querySelector('nav ul');
+      if (menuBtn && menuList) {
+        menuBtn.addEventListener('click', () => menuList.classList.toggle('active'));
+      }
+    });
+//]]>
+  </script>
+    
+  </head>
+
+  <body>
+    <header> 
+      <h1><data:blog.title/></h1>
+    <b:section id='Header' showaddelement='yes'>
+      <b:widget id='HTML1' locked='false' title='Menu Principal' type='HTML' version='2' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='content'><![CDATA[<button class="menu-toggle" aria-label="Abrir menú">
+      ☰
+    </button>
+    <nav class="main-nav">
+       <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/err404">404</a></li>
+        <li><a href="/p/toobox.html">Editor</a></li>
+<li><a href="/p/plugins-blogger.html">Modulos</a></li>
+ <li><a href="/p/acerca-del-sitio.html">Acerca de</a></li>
+<li><a href="/p/mapa-del-sitio.html">Indice</a></li>
+<li><a href="/p/faq.html">Faq</a></li>
+        <li><a href="/p/contacto.html">Contacto</a></li>
+<li><a href="/p/search-box.html" aria-label="Buscar">🔍</a></li>
+      </ul>
+    </nav>]]></b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+ 
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+      </b:widget>
+    </b:section> 
+    </header> 
+    <main class='main-container'>
+      
+	<!-- Posts -->
+<b:section id='Blog'>
+  <b:widget cond='data:view.isHomepage' id='HTML5' locked='true' title='Primer Texto SEO' type='HTML' version='2' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<section class="index-contenedor">
+  <h2>NichoClean v2.0 – Frontend Modular Minimalista para Blogger</h2>
+  <p><strong>NichoClean v2.0</strong> es una plantilla moderna y ligera diseñada especialmente para blogs de nicho que buscan un rendimiento óptimo y una excelente experiencia de usuario. Construida bajo la tecnología Blogger, ofrece un diseño minimalista, tipografía legible y estructura responsive que garantiza que tus contenidos se adapten perfectamente a cualquier dispositivo, mejorando la retención y el engagement de tus visitantes.</p></section>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+    <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget cond='data:view.isHomepage' id='HTML6' locked='true' title='Anuncio index 1' type='HTML' version='2' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<div class="adsense-shortcode" data-code="adsense-index-1"></div>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>  
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget cond='data:view.isHomepage' id='HTML7' locked='true' title='Texto SEO 2' type='HTML' version='2' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<section class="index-contenedor">
+  <h3>Características Principales</h3>
+  <ul>
+    <li>Optimización avanzada para <strong>SEO</strong>.</li>
+    <li>Diseño <strong>responsive</strong> adaptable a todos los dispositivos.</li>
+    <li>Integración inteligente con <strong>Google AdSense</strong>.</li>
+    <li>Carga rápida y código optimizado.</li>
+    <li>Sistema de comentarios minimalista y elegante.</li>
+    <li>Soporte para <strong>contenido modular dinámico</strong>.</li>
+  </ul>
+
+</section>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+ 
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget cond='data:view.isHomepage' id='HTML4' locked='true' title='Texto SEO Adicional' type='HTML' version='2' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<section class="index-contenedor">
+  <p>Además de su base limpia y optimizada, NichoClean se incorpora como un framework frontend modular que permite insertar fácilmente bloques funcionales y visuales directamente en las entradas o páginas, sin depender de plugins externos. Cada módulo está diseñado para integrarse de forma armónica con el estilo minimalista y ofrecer flexibilidad total en la presentación del contenido.</p></section>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+ 
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget cond='data:view.isHomepage' id='HTML8' locked='true' title='Texto SEO 3' type='HTML' version='2' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<section class="index-contenedor">
+  <h3>Módulos Incluidos</h3>
+  <ul>
+    <li>
+      <strong>Tabla de contenido</strong>
+      <p>Genera un índice automático dentro de las entradas para facilitar la navegación y mejorar la experiencia del usuario.</p>
+    </li>
+    <li>
+      <strong>Slider de entradas</strong>
+      <p>Muestra entradas destacadas en un carrusel interactivo y responsive.</p>
+    </li>
+    <li>
+      <strong>Cluster de imágenes</strong>
+      <p>Agrupa imágenes en formato compacto para una presentación visual atractiva.</p>
+    </li>
+    <li>
+      <strong>Card de entradas</strong>
+      <p>Presenta las entradas en tarjetas con imagen, título y resumen optimizados.</p>
+    </li>
+    <li>
+      <strong>Lista de entradas</strong>
+      <p>Organiza publicaciones en formato de lista simple y ordenada.</p>
+    </li>
+    <li>
+      <strong>Tooltip con miniatura</strong>
+      <p>Muestra una imagen en miniatura al pasar el cursor sobre enlaces o títulos.</p>
+    </li>
+    <li>
+      <strong>Galería Masonry</strong>
+      <p>Disposición dinámica de imágenes estilo Pinterest para un efecto visual moderno.</p>
+    </li>
+    <li>
+      <strong>Galería Horizontal</strong>
+      <p>Muestra imágenes o productos en un desplazamiento horizontal elegante.</p>
+    </li>
+    <li>
+      <strong>Galería Grid</strong>
+      <p>Organiza imágenes en cuadrículas perfectamente alineadas.</p>
+    </li>
+    <li>
+      <strong>Caja de Autor personalizable</strong>
+      <p>Sección dedicada a la biografía y redes sociales del autor.</p>
+    </li>
+    <li>
+      <strong>Bloque de código</strong>
+      <p>Permite insertar fragmentos de código con formato y resaltado.</p>
+    </li>
+    <li>
+      <strong>Social Sharing</strong>
+      <p>Botones para compartir contenido en redes sociales populares.</p>
+    </li>
+    <li>
+      <strong>Buscar en el blog</strong>
+      <p>Barra de búsqueda interna optimizada para encontrar contenido rápidamente.</p>
+    </li>
+    <li>
+      <strong>Anuncios Adsense</strong>
+      <p>Espacios adaptados para integrar publicidad de Google Adsense de forma estratégica.</p>
+    </li>
+    <li>
+      <strong>Entradas relacionadas</strong>
+      <p>Muestra publicaciones similares para aumentar el tiempo de permanencia.</p>
+    </li>
+    <li>
+      <strong>Lecturas recomendadas</strong>
+      <p>Lista de artículos sugeridos para el lector en función de su interés.</p>
+    </li>
+    <li>
+      <strong>Enlaces útiles</strong>
+      <p>Sección de enlaces externos o internos relevantes para el usuario.</p>
+    </li>
+    <li>
+      <strong>Catálogo de productos</strong>
+      <p>Muestra productos con imagen, descripción y enlaces de compra.</p>
+    </li>
+    <li>
+      <strong>Tabla de productos destacados</strong>
+      <p>Comparativa visual y organizada de productos clave.</p>
+      <ul>
+        <li>Productos en misma etiqueta, diferente precio </li>
+        <li>Productos en misma etiqueta, mismo precio </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Multimedia</strong>
+      <p>Soporte para incluir videos y archivos multimedia en las entradas.</p>
+      <ul>
+        <li>Youtube</li>
+        <li>Vimeo</li>
+        <li>MP4</li>
+      </ul>
+    </li>
+  </ul>
+</section>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='Blog1' locked='true' title='Entradas del blog' type='Blog' version='2' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+      <b:widget-setting name='commentLabel'>comments</b:widget-setting>
+      <b:widget-setting name='style.textcolor'>#ffffff</b:widget-setting>
+      <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+      <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+      <b:widget-setting name='style.urlcolor'>#ffffff</b:widget-setting>
+      <b:widget-setting name='postLocationLabel'>Location:</b:widget-setting>
+      <b:widget-setting name='showAuthor'>true</b:widget-setting>
+      <b:widget-setting name='style.linkcolor'>#ffffff</b:widget-setting>
+      <b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
+      <b:widget-setting name='style.bgcolor'>#ffffff</b:widget-setting>
+      <b:widget-setting name='reactionsLabel'/>
+      <b:widget-setting name='showAuthorProfile'>true</b:widget-setting>
+      <b:widget-setting name='style.layout'>1x1</b:widget-setting>
+      <b:widget-setting name='showLabels'>true</b:widget-setting>
+      <b:widget-setting name='showLocation'>true</b:widget-setting>
+      <b:widget-setting name='postLabelsLabel'>Labels:</b:widget-setting>
+      <b:widget-setting name='showTimestamp'>true</b:widget-setting>
+      <b:widget-setting name='postsPerAd'>1</b:widget-setting>
+      <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+      <b:widget-setting name='style.bordercolor'>#ffffff</b:widget-setting>
+      <b:widget-setting name='showInlineAds'>false</b:widget-setting>
+      <b:widget-setting name='showReactions'>false</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+    <!-- Basic structure of example. You can delete from here {{ -->
+    <b:if cond='data:view.isMultipleItems'>
+	<!-- SI ES UNA BUSQUEDA POR PALABRA O POR ETIQUETA -->
+<b:if cond='data:view.search.query or data:view.search.label'>
+  <!-- Contenedor principal para resultados búsqueda -->
+   <!-- Si no hay resultados -->
+    <b:if cond='data:posts.size == 0'>
+  <main class='main-container search'>  
+      <b:if cond='data:view.search.query'>
+        <h3>Lo sentimos :(</h3>
+        <p>No hay entradas con esos términos de búsqueda.</p>
+      <b:else/>
+        <h3>Lo sentimos :(</h3>
+        <p>Este blog aún no tiene entradas con esa etiqueta.</p>
+      </b:if>
+  </main>
+    <b:else/>
+      <!-- Aquí muestras la lista de posts encontrados -->         
+        <b:if cond='data:view.isSearch'/> 
+    </b:if>
+<b:else/>
+  <!-- Aquí iría la estructura para otros casos: index, página, post, etc. -->
+</b:if>
+	<!-- ESTO ES PAGINA PRINCIPAL DEL BLOG -->
+      
+       <section class='grid-posts'>
+         <b:if cond='data:view.isHomepage'>
+         <h2>Artículos recomendados</h2>
+           <!-- adsense algún listado de posts -->
+<div class='adsense-shortcode' data-code='adsense-index-2'/>
+         </b:if>
+     <div class='grid'>
+     <b:loop values='data:posts' var='post'>
+         <article>
+         <b:include data='post' name='post'/><!-- Include posts -->
+         </article>
+      </b:loop>
+      </div>
+     </section>
+       <b:include name='postPagination'/> <!-- Include pagination -->
+      
+      
+    <!-- CASO CONTARIOS ES UNA ENTRADA -->
+<b:elseif cond='data:view.isPost'/>
+      <b:loop values='data:posts' var='post'>
+         <b:include data='post' name='post'/><!-- Include posts -->
+         <b:include data='post' name='commentPicker'/><!-- Incluye comentarios anidados -->
+      </b:loop>
+	 <!-- CASO CONTARIOS ES UNA PAGINA ESTATICA -->
+   <b:elseif cond='data:view.isPage'/>
+   <b:loop values='data:posts' var='post'>
+                  <b:include data='post' name='post'/>  <!-- Include posts -->                 
+                  <b:include data='post' name='commentPicker'/> <!-- Include comments -->
+   </b:loop>  
+    </b:if>
+    <!-- }} Up to this point -->
+
+    </b:includable>
+    <b:includable id='aboutPostAuthor'>
+  <div class='author-name'>
+    <a class='g-profile' expr:href='data:post.author.profileUrl' rel='author' title='author profile'>
+      <span>
+        <data:post.author.name/>
+      </span>
+    </a>
+  </div>
+  <div>
+    <span class='author-desc'>
+      <data:post.author.aboutMe/>
+    </span>
+  </div>
+</b:includable>
+    <b:includable id='addComments'>
+  <a expr:href='data:post.commentsUrl' expr:onclick='data:post.commentsUrlOnclick'>
+    <b:message name='messages.postAComment'/>
+  </a>
+</b:includable>
+    <b:includable id='blogThisShare'>
+  <b:with value='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=270,width=475\&quot;); return false;&quot;' var='onclick'>
+    <b:include name='platformShare'/>
+  </b:with>
+</b:includable>
+    <b:includable id='bylineByName' var='byline'>
+  <b:switch var='data:byline.name'>
+  <b:case value='share'/>
+    <b:include cond='data:post.shareUrl' name='postShareButtons'/>
+  <b:case value='comments'/>
+    <b:include cond='data:post.allowComments' name='postCommentsLink'/>
+  <b:case value='location'/>
+    <b:include cond='data:post.location' name='postLocation'/>
+  <b:case value='timestamp'/>
+    <b:include cond='not data:view.isPage' name='postTimestamp'/>
+  <b:case value='author'/>
+    <b:include name='postAuthor'/>
+  <b:case value='labels'/>
+    <b:include cond='data:post.labels' name='postLabels'/>
+  <b:case value='icons'/>
+    <b:include cond='data:post.emailPostUrl' name='emailPostIcon'/>
+  </b:switch>
+</b:includable>
+    <b:includable id='bylineRegion' var='regionItems'>
+  <b:loop values='data:regionItems' var='byline'>
+    <b:include data='byline' name='bylineByName'/>
+  </b:loop>
+</b:includable>
+    <b:includable id='commentAuthorAvatar'>
+  <div class='avatar-image-container'>
+    <img class='author-avatar' expr:src='data:comment.authorAvatarSrc' height='35' width='35'/>
+  </div>
+</b:includable>
+    <b:includable id='commentDeleteIcon' var='comment'>
+  <span expr:class='&quot;item-control &quot; + data:comment.adminClass'>
+    <b:if cond='data:showCmtPopup'>
+      <div class='goog-toggle-button'>
+        <div class='goog-inline-block comment-action-icon'/>
+      </div>
+    <b:else/>
+      <a class='comment-delete' expr:href='data:comment.deleteUrl' expr:title='data:messages.deleteComment'>
+        <img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+      </a>
+    </b:if>
+  </span>
+</b:includable>
+    <b:includable id='commentForm' var='post'>
+  <div class='comment-form'>
+    <a name='comment-form'/>
+    <h4 id='comment-post-message'><data:messages.postAComment/></h4>
+    <b:if cond='data:this.messages.blogComment != &quot;&quot;'>
+      <p><data:this.messages.blogComment/></p>
+    </b:if>
+    <b:include data='post' name='commentFormIframeSrc'/>
+    <iframe allowtransparency='allowtransparency' class='blogger-iframe-colorize blogger-comment-from-post' expr:height='data:cmtIframeInitialHeight ?: &quot;90px&quot;' frameborder='0' id='comment-editor' name='comment-editor' src='' width='100%'/>
+    <data:post.cmtfpIframe/>
+    <script type='text/javascript'>
+      BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);
+    </script>
+  </div>
+</b:includable>
+    <b:includable id='commentFormIframeSrc' var='post'>
+  <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src'/>
+</b:includable>
+    <b:includable id='commentItem' var='comment'>
+  <div class='comment' expr:id='&quot;c&quot; + data:comment.id'>
+    <b:include cond='data:blog.enabledCommentProfileImages' name='commentAuthorAvatar'/>
+
+    <div class='comment-block'>
+      <div class='comment-author'>
+        <b:if cond='data:comment.authorUrl'>
+          <b:message name='messages.authorSaidWithLink'>
+            <b:param expr:value='data:comment.author' name='authorName'/>
+            <b:param expr:value='data:comment.authorUrl' name='authorUrl'/>
+          </b:message>
+        <b:else/>
+          <b:message name='messages.authorSaid'>
+            <b:param expr:value='data:comment.author' name='authorName'/>
+          </b:message>
+        </b:if>
+      </div>
+      <div expr:class='&quot;comment-body&quot; + (data:comment.isDeleted ? &quot; deleted&quot; : &quot;&quot;)'>
+        <data:comment.body/>
+      </div>
+      <div class='comment-footer'>
+        <span class='comment-timestamp'>
+          <a expr:href='data:comment.url' title='comment permalink'>
+            <data:comment.timestamp/>
+          </a>
+          <b:include data='comment' name='commentDeleteIcon'/>
+        </span>
+      </div>
+    </div>
+  </div>
+</b:includable>
+    <b:includable id='commentList' var='comments'>
+  <div id='comments-block'>
+    <b:loop values='data:comments' var='comment'>
+      <b:include data='comment' name='commentItem'/>
+    </b:loop>
+  </div>
+</b:includable>
+    <b:includable id='commentPicker' var='post'>
+  <b:if cond='data:post.showThreadedComments'>
+    <b:include data='post' name='threadedComments'/>
+  <b:else/>
+    <b:include data='post' name='comments'/>
+  </b:if>
+</b:includable>
+    <b:includable id='comments' var='post'>
+  <section expr:class='&quot;comments&quot; + (data:post.embedCommentForm ? &quot; embed&quot; : &quot;&quot;)' expr:data-num-comments='data:post.numberOfComments' id='comments'>
+    <a name='comments'/>
+
+    <b:if cond='data:post.allowComments'>
+      <!-- Título solo si los comentarios están habilitados -->
+      <div class='title'>
+        <span>Comentarios</span>
+        <span class='comment-count'>(<data:post.numberOfComments/>)</span>
+      </div>
+
+      <!-- Listado de comentarios o mensaje si no hay -->
+      <div expr:id='data:widget.instanceId + &quot;_comments-block-wrapper&quot;'>
+        <b:if cond='data:post.comments'>
+          <b:include data='post.comments' name='commentList'/>
+        <b:else/>
+          <p class='sin-comentarios'>Aún no hay comentarios, sé el primero en comentar.</p>
+        </b:if>
+      </div>
+
+      <!-- Paginación -->
+      <b:if cond='data:post.commentPagingRequired'>
+        <div class='paging-control-container'>
+          <b:if cond='data:post.hasOlderLinks'>
+            <a expr:class='data:post.oldLinkClass' expr:href='data:post.oldestLinkUrl'>
+              <data:messages.oldest/>
+            </a>
+            <a expr:class='data:post.oldLinkClass' expr:href='data:post.olderLinkUrl'>
+              <data:messages.older/>
+            </a>
+          </b:if>
+
+          <span class='comment-range-text'>
+            <data:post.commentRangeText/>
+          </span>
+
+          <b:if cond='data:post.hasNewerLinks'>
+            <a expr:class='data:post.newLinkClass' expr:href='data:post.newerLinkUrl'>
+              <data:messages.newer/>
+            </a>
+            <a expr:class='data:post.newLinkClass' expr:href='data:post.newestLinkUrl'>
+              <data:messages.newest/>
+            </a>
+          </b:if>
+        </div>
+      </b:if>
+
+      <!-- Formulario de comentarios -->
+      <div class='footer'>
+        <b:if cond='data:post.embedCommentForm'>
+          <b:if cond='data:post.allowNewComments'>
+            <b:include data='post' name='commentForm'/>
+          <b:else/>
+            <data:post.noNewCommentsText/>
+          </b:if>
+        <b:else/>
+          <b:if cond='data:post.allowComments'>
+            <b:include data='post' name='addComments'/>
+          </b:if>
+        </b:if>
+      </div>
+    </b:if>
+
+    <!-- Popup de comentarios -->
+    <b:if cond='data:showCmtPopup'>
+      <div id='comment-popup'>
+        <iframe allowtransparency='allowtransparency' frameborder='0' id='comment-actions' name='comment-actions' scrolling='no'/>
+      </div>
+    </b:if>
+
+  </section>
+</b:includable>
+    <b:includable id='commentsLink'>
+  <a class='comment-link' expr:href='data:post.commentsUrl' expr:onclick='data:post.commentsUrlOnclick'>
+    <b:if cond='data:post.numberOfComments &gt; 0'>
+      <b:message name='messages.numberOfComments'>
+        <b:param expr:value='data:post.numberOfComments' name='numComments'/>
+      </b:message>
+    <b:else/>
+      <data:messages.postAComment/>
+    </b:if>
+  </a>
+</b:includable>
+    <b:includable id='commentsLinkIframe'>
+  <!-- G+ comments, no longer available. The includable is retained for backwards-compatibility. -->
+</b:includable>
+    <b:includable id='commentsTitle'>
+  <h3 class='title'><data:messages.comments/></h3>
+</b:includable>
+    <b:includable id='defaultAdUnit'>
+  <ins class='adsbygoogle' data-ad-format='auto' expr:data-ad-client='data:adClientId ?: data:blog.adsenseClientId' expr:data-ad-host='data:blog.adsenseHostId' expr:style='data:style ?: &quot;display: block;&quot;'>
+    <b:attr cond='not data:blog.analytics4' expr:value='data:blog.analyticsAccountNumber' name='data-analytics-uacct'/>
+  </ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</b:includable>
+    <b:includable id='emailPostIcon'>
+  <span class='byline post-icons'>
+    <!-- email post links -->
+    <span class='item-action'>
+      <a expr:href='data:post.emailPostUrl' expr:title='data:messages.emailPost'>
+        <b:include data='{ iconClass: &quot;touch-icon sharing-icon&quot; }' name='emailIcon'/>
+      </a>
+    </span>
+  </span>
+</b:includable>
+    <b:includable id='facebookShare'>
+  <b:with value='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=430,width=640\&quot;); return false;&quot;' var='onclick'>
+    <b:include name='platformShare'/>
+  </b:with>
+</b:includable>
+    <b:includable id='feedLinks'>
+  <b:if cond='!data:view.isPost'> <!-- Blog feed links -->
+    <b:if cond='data:feedLinks'>
+      <div class='blog-feeds'>
+        <b:include data='feedLinks' name='feedLinksBody'/>
+      </div>
+    </b:if>
+  <b:else/> <!--Post feed links -->
+    <div class='post-feeds'>
+      <b:loop values='data:posts' var='post'>
+        <b:if cond='data:post.allowComments and data:post.feedLinks'>
+          <b:include data='post.feedLinks' name='feedLinksBody'/>
+        </b:if>
+      </b:loop>
+    </div>
+  </b:if>
+</b:includable>
+    <b:includable id='feedLinksBody' var='links'>
+  <div class='feed-links'>
+  <data:messages.subscribeTo/>
+  <b:loop values='data:links' var='f'>
+     <a class='feed-link' expr:href='data:f.url' expr:type='data:f.mimeType' target='_blank'><data:f.name/> (<data:f.feedType/>)</a>
+  </b:loop>
+  </div>
+</b:includable>
+    <b:includable id='footerBylines'>
+  <b:if cond='data:widgets.Blog.first.footerBylines'>
+    <b:loop index='i' values='data:widgets.Blog.first.footerBylines' var='region'>
+      <b:if cond='not data:region.items.empty'>
+        <div expr:class='&quot;post-footer-line post-footer-line-&quot; + (data:i + 1)'>
+          <b:with value='&quot;footer-&quot; + (data:i + 1)' var='regionName'>
+            <b:include data='region.items' name='bylineRegion'/>
+          </b:with>
+        </div>
+      </b:if>
+    </b:loop>
+  </b:if>
+</b:includable>
+    <b:includable id='googlePlusShare'>
+</b:includable>
+    <b:includable id='headerByline'>
+  <b:if cond='data:widgets.Blog.first.headerByline'>
+    <div class='post-header'>
+      <div class='post-header-line-1'>
+        <b:with value='&quot;header-1&quot;' var='regionName'>
+          <b:include data='data:widgets.Blog.first.headerByline.items' name='bylineRegion'/>
+        </b:with>
+      </div>
+    </div>
+  </b:if>
+</b:includable>
+    <b:includable id='homePageLink'>
+  <a class='home-link' expr:href='data:blog.homepageUrl'>
+    <data:messages.home/>
+  </a>
+</b:includable>
+    <b:includable id='iframeComments' var='post'>
+  <!-- G+ comments, no longer available. The includable is retained for backwards-compatibility. -->
+</b:includable>
+    <b:includable id='inlineAd' var='post'>
+  <b:if cond='!data:view.isPreview'>
+    <b:if cond='data:this.adCode or data:this.adClientId or data:blog.adsenseClientId'>
+      <!-- Ad -->
+      <div class='inline-ad'>
+        <b:if cond='data:this.adCode != &quot;&quot;'>
+          <data:this.adCode/>
+        <b:else/>
+          <b:include cond='data:this.adClientId or data:blog.adsenseClientId' name='defaultAdUnit'/>
+        </b:if>
+      </div>
+    </b:if>
+  <b:else/>
+    <div class='inline-ad'>
+      <div class='inline-ad-placeholder'>
+        <span><b:message name='messages.adsGoHere'/></span>
+      </div>
+    </div>
+  </b:if>
+</b:includable>
+    <b:includable id='linkShare'>
+  <b:with value='&quot;window.prompt(\&quot;Copy to clipboard: Ctrl+C, Enter\&quot;, \&quot;&quot; + data:originalUrl + &quot;\&quot;); return false;&quot;' var='onclick'>
+    <b:include name='platformShare'/>
+  </b:with>
+</b:includable>
+    <b:includable id='nextPageLink'>
+  <a class='blog-pager-older-link' expr:href='data:olderPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-older-link&quot;' expr:title='data:messages.olderPosts'>
+    Siguiente &#187;
+  </a>
+</b:includable>
+    <b:includable id='otherSharingButton'>
+  <span class='sharing-platform-button sharing-element-other' expr:aria-label='data:messages.shareToOtherApps.escaped' expr:data-url='data:originalUrl' expr:title='data:messages.shareToOtherApps.escaped' role='menuitem' tabindex='-1'>
+    <b:with value='{key: &quot;sharingOther&quot;}' var='platform'>
+      <b:include name='sharingPlatformIcon'/>
+    </b:with>
+    <span class='platform-sharing-text'><data:messages.shareOtherApps.escaped/></span>
+  </span>
+</b:includable>
+    <b:includable id='platformShare'>
+  <a expr:class='&quot;goog-inline-block sharing-&quot; + data:platform.key' expr:data-url='data:originalUrl' expr:href='data:shareUrl + &quot;&amp;target=&quot; + data:platform.target' expr:onclick='data:onclick ? data:onclick : &quot;&quot;' expr:title='data:platform.shareMessage' target='_blank'>
+    <span class='share-button-link-text'>
+      <data:platform.shareMessage/>
+    </span>
+  </a>
+</b:includable>
+    <b:includable id='post' var='post'>
+      
+      <!-- MIGAS DE PAN POST & PAGE -->
+      <b:if cond='data:view.isPost or data:view.isPage'>
+  <nav aria-label='Migas de pan' class='breadcrumbs' itemscope='' itemtype='https://schema.org/BreadcrumbList' role='navigation'>
+
+    <!-- Inicio siempre -->
+    <span itemprop='itemListElement' itemscope='' itemtype='https://schema.org/ListItem'>
+      <a expr:href='data:blog.homepageUrl' itemprop='item'>
+        <span itemprop='name'>Inicio</span>
+      </a>
+      <meta content='1' itemprop='position'/>
+    </span>
+
+    <!-- Para entradas -->
+    <b:if cond='data:view.isPost'>
+      <b:if cond='data:post.labels'>
+        <span class='breadcrumb-sep'>&#8250;</span>
+        <span itemprop='itemListElement' itemscope='' itemtype='https://schema.org/ListItem'>
+          <a expr:href='data:post.labels.first.url' itemprop='item'>
+            <span itemprop='name'><data:post.labels.first.name/></span>
+          </a>
+          <meta content='2' itemprop='position'/>
+        </span>
+      <b:else/>
+        <span class='breadcrumb-sep'>&#8250;</span>
+        <span itemprop='itemListElement' itemscope='' itemtype='https://schema.org/ListItem'>
+          <span itemprop='name'>Sin etiqueta</span>
+          <meta content='2' itemprop='position'/>
+        </span>
+      </b:if>
+      <span class='breadcrumb-sep'>&#8250;</span>
+      <span itemprop='itemListElement' itemscope='' itemtype='https://schema.org/ListItem'>
+        <span itemprop='name'><data:post.title/></span>
+        <meta content='3' itemprop='position'/>
+      </span>
+    </b:if>
+    <!-- Para páginas estáticas -->
+    <b:if cond='data:view.isPage'>
+      <span class='breadcrumb-sep'>&#8250;</span>
+      <span itemprop='itemListElement' itemscope='' itemtype='https://schema.org/ListItem'>
+        <span itemprop='name'><data:post.title/></span>
+        <meta content='2' itemprop='position'/>
+      </span>
+    </b:if>
+  </nav>      
+</b:if>
+       <!-- FIN MIGAS DE PAN POST & PAGE -->
+      
+      <b:if cond='data:view.isMultipleItems'>
+	  
+	  <b:if cond='!data:view.isSearch'>
+ 
+       <!--{{ Muestra el index }}-->         
+      <!-- {{ index con microdata automático }} -->
+<div class='post-card' itemscope='' itemtype='https://schema.org/BlogPosting'>
+  
+  <a expr:href='data:post.url' itemprop='url'>
+    <img expr:alt='data:post.title' expr:src='data:post.featuredImage' itemprop='image' loading='lazy'/>
+    <h3 itemprop='headline'><data:post.title/></h3>
+  </a>
+  
+  <p itemprop='description'>
+    <b:eval expr='data:post.snippets.short snippet {length: 80}'/>
+  </p>
+  
+  <!-- Datos automáticos -->
+   <!-- Agrupar author dentro de Person -->
+  <div itemprop='author' itemscope='' itemtype='https://schema.org/Person'>
+    <meta expr:content='data:post.author.name' itemprop='name'/>
+    <meta expr:content='data:post.author.profileUrl' itemprop='url'/>
+  </div>
+  <meta expr:content='data:post.date.iso8601' itemprop='datePublished'/>
+  <meta expr:content='data:post.lastUpdated.iso8601' itemprop='dateModified'/>
+  <meta expr:content='data:post.url' itemprop='mainEntityOfPage'/>
+  
+</div>
+
+              
+
+       <b:else/>
+ 
+       <!--{{ Muestra el blog busqueda }}-->
+        <!-- {{ búsqueda con microdata automático }} -->
+<div class='search-result' itemscope='' itemtype='https://schema.org/BlogPosting'>
+  
+  <a expr:href='data:post.url' itemprop='url'>
+    <img expr:alt='data:post.title' expr:src='data:post.featuredImage' itemprop='image' loading='lazy'/>
+    <h3 itemprop='headline'><data:post.title/></h3>
+  </a>
+  
+  <p itemprop='description'>
+    <b:eval expr='data:post.snippets.short snippet {length: 80}'/>
+  </p>
+  
+  <!-- Agrupar author dentro de Person -->
+  <div itemprop='author' itemscope='' itemtype='https://schema.org/Person'>
+    <meta expr:content='data:post.author.name' itemprop='name'/>
+    <meta expr:content='data:post.author.profileUrl' itemprop='url'/>
+  </div>
+  <meta expr:content='data:post.date.iso8601' itemprop='datePublished'/>
+  <meta expr:content='data:post.lastUpdated.iso8601' itemprop='dateModified'/>
+  <meta expr:content='data:post.url' itemprop='mainEntityOfPage'/>
+  
+</div>
+
+       </b:if> 
+        
+        <!--{{ Muestra el las entradas con etiqueta "store" }}-->
+        <b:elseif cond='data:view.isPost and data:post.labels any (l =&gt; l.name == &quot;store&quot;)'/>
+ <!-- {{ Posts con microdata automático }} -->
+<article class='post' itemscope='' itemtype='https://schema.org/BlogPosting'>
+
+  <!-- Metadatos invisibles -->
+ <!-- Agrupar author dentro de Person -->
+  <div itemprop='author' itemscope='' itemtype='https://schema.org/Person'>
+    <meta expr:content='data:post.author.name' itemprop='name'/>
+    <meta expr:content='data:post.author.profileUrl' itemprop='url'/>
+  </div>
+  <meta expr:content='data:post.date.iso8601' itemprop='datePublished'/>
+  <meta expr:content='data:post.lastUpdated.iso8601' itemprop='dateModified'/>
+  <meta expr:content='data:post.url' itemprop='mainEntityOfPage'/>
+  <meta expr:content='data:post.featuredImage' itemprop='image'/>
+
+
+  <!-- Título principal -->
+  <h1 class='post-title' itemprop='headline'><data:post.title/></h1>
+
+  <!-- titulo de post -->
+<div class='adsense-shortcode' data-code='adsense-post-1'/>
+    
+    <!-- Bloque de autor -->
+<div class='post-meta'>
+  <span class='author'>
+    👤  
+    <span itemprop='author' itemscope='' itemtype='https://schema.org/Person'>
+      <a expr:href='data:post.author.profileUrl' itemprop='url'>
+        <span itemprop='name'><data:post.author.name/></span>
+      </a>
+    </span>
+  </span>
+
+    <!-- Fecha de publicación -->
+    <span class='date'>
+      📅 <time expr:datetime='data:post.date.iso8601' itemprop='datePublished'><data:post.date/></time>
+    </span>
+
+    <!-- Etiquetas -->
+    <span class='tags'>
+      🏷&#65039;
+      <b:loop values='data:post.labels' var='label'>
+        <a expr:href='data:label.url'><data:label.name/></a><b:if cond='data:label.isLast != &quot;true&quot;'>. </b:if>
+      </b:loop>
+    </span>
+
+    <!-- Comentarios -->
+    <span class='comments-info'>
+      <b:if cond='data:post.numberOfComments &gt; 0'>
+        💬 <a class='numero-comentarios' expr:href='data:post.url + &quot;#comments&quot;'>
+          <data:post.numberOfComments/> comentarios
+        </a>
+      <b:else/>
+        💬 <a class='numero-comentarios' expr:href='data:post.url + &quot;#comments&quot;'>
+          Comentar
+        </a>
+      </b:if>
+    </span>
+  </div>
+
+  <!-- Imagen destacada 
+  <figure class='featured-image'>
+    <img class='img-post' expr:alt='data:post.title' expr:src='data:post.featuredImage' itemprop='image' loading='lazy'/>
+  </figure> -->
+
+  <!-- Contenido del artículo -->
+  <div class='post-content' itemprop='articleBody'>
+    <div class='post-body'>
+      <data:post.body/>
+      
+      
+<!-- Compartir el post -->         
+  <div class='custom-share-wrapper'>
+  <h4 class='custom-share-title'>Compartir esta entrada</h4>
+  <div class='custom-share'>
+    <a expr:href='&quot;https://www.facebook.com/sharer/sharer.php?u=&quot; + data:post.url' target='_blank'>Facebook</a>
+    <a expr:href='&quot;https://twitter.com/intent/tweet?url=&quot; + data:post.url + &quot;&amp;text=&quot; + data:post.title' target='_blank'>Twitter</a>
+    <a expr:href='&quot;mailto:?subject=&quot; + data:post.title + &quot;&amp;body=Lee esto: &quot; + data:post.url'>Email</a>
+  </div>
+</div>
+
+  
+      <!-- contenido post -->
+<div class='adsense-shortcode' data-code='adsense-post-2'/>
+
+      
+    </div>
+  </div>      
+</article>
+        
+<!--{{ termina las etiqueta store }}-->
+
+
+      <b:elseif cond='data:view.isPost'/>
+
+     <!--{{ Inicia el Posts }}-->
+         <!-- {{ Posts con microdata automático }} -->
+<article class='post' itemscope='' itemtype='https://schema.org/BlogPosting'>
+
+  <!-- Metadatos invisibles -->
+ <!-- Agrupar author dentro de Person -->
+  <div itemprop='author' itemscope='' itemtype='https://schema.org/Person'>
+    <meta expr:content='data:post.author.name' itemprop='name'/>
+    <meta expr:content='data:post.author.profileUrl' itemprop='url'/>
+  </div>
+  <meta expr:content='data:post.date.iso8601' itemprop='datePublished'/>
+  <meta expr:content='data:post.lastUpdated.iso8601' itemprop='dateModified'/>
+  <meta expr:content='data:post.url' itemprop='mainEntityOfPage'/>
+
+  <!-- Título principal -->
+  <h1 class='post-title' itemprop='headline'><data:post.title/></h1>
+
+  <!-- titulo de post -->
+<div class='adsense-shortcode' data-code='adsense-post-1'/>
+    
+    <!-- Bloque de autor -->
+<div class='post-meta'>
+  <span class='author'>
+    👤  
+    <span itemprop='author' itemscope='' itemtype='https://schema.org/Person'>
+      <a expr:href='data:post.author.profileUrl' itemprop='url'>
+        <span itemprop='name'><data:post.author.name/></span>
+      </a>
+    </span>
+  </span>
+
+    <!-- Fecha de publicación -->
+    <span class='date'>
+      📅 <time expr:datetime='data:post.date.iso8601' itemprop='datePublished'><data:post.date/></time>
+    </span>
+
+    <!-- Etiquetas -->
+    <span class='tags'>
+      🏷&#65039;
+      <b:loop values='data:post.labels' var='label'>
+        <a expr:href='data:label.url'><data:label.name/></a><b:if cond='data:label.isLast != &quot;true&quot;'>. </b:if>
+      </b:loop>
+    </span>
+
+    <!-- Comentarios -->
+    <span class='comments-info'>
+      <b:if cond='data:post.numberOfComments &gt; 0'>
+        💬 <a class='numero-comentarios' expr:href='data:post.url + &quot;#comments&quot;'>
+          <data:post.numberOfComments/> comentarios
+        </a>
+      <b:else/>
+        💬 <a class='numero-comentarios' expr:href='data:post.url + &quot;#comments&quot;'>
+          Comentar
+        </a>
+      </b:if>
+    </span>
+  </div>
+
+  <!-- Imagen destacada -->
+  <figure class='featured-image'>
+    <img class='img-post' expr:alt='data:post.title' expr:src='data:post.featuredImage' itemprop='image' loading='lazy'/>
+  </figure>
+
+  <!-- Contenido del artículo -->
+  <div class='post-content' itemprop='articleBody'>
+    <div class='post-body'>
+      <data:post.body/>
+      
+        <!-- Compartir el post -->         
+  <div class='custom-share-wrapper'>
+  <h4 class='custom-share-title'>Compartir esta entrada</h4>
+  <div class='custom-share'>
+    <a expr:href='&quot;https://www.facebook.com/sharer/sharer.php?u=&quot; + data:post.url' target='_blank'>Facebook</a>
+    <a expr:href='&quot;https://twitter.com/intent/tweet?url=&quot; + data:post.url + &quot;&amp;text=&quot; + data:post.title' target='_blank'>Twitter</a>
+    <a expr:href='&quot;mailto:?subject=&quot; + data:post.title + &quot;&amp;body=Lee esto: &quot; + data:post.url'>Email</a>
+  </div>
+</div>
+
+  
+      <!-- contenido post -->
+<div class='adsense-shortcode' data-code='adsense-post-2'/>
+
+    </div>
+  </div>
+</article>
+<!--{{ termina el Posts }}-->
+
+
+        
+      <b:elseif cond='data:view.isPage'/>
+
+     <!--{{ Inicia la página estática }}-->  
+         <!-- {{ Page con microdata automático }} -->
+<article class='page' itemscope='' itemtype='https://schema.org/WebPage'>
+
+  <!-- Título principal -->
+  <h1 class='post-title' itemprop='headline'><data:post.title/></h1>
+  
+  <!-- Metadatos invisibles para Google -->
+ <!-- Agrupar author dentro de Person -->
+  <div itemprop='author' itemscope='' itemtype='https://schema.org/Person'>
+    <meta expr:content='data:post.author.name' itemprop='name'/>
+    <meta expr:content='data:post.author.profileUrl' itemprop='url'/>
+  </div>
+<meta expr:content='data:post.date.iso8601' itemprop='datePublished'/>
+<meta expr:content='data:post.lastUpdated.iso8601' itemprop='dateModified'/>
+<meta expr:content='data:post.url' itemprop='url'/>
+<meta expr:content='data:post.url' itemprop='mainEntityOfPage'/>
+
+
+  <!-- Contenido -->
+  <div class='post-content' itemprop='mainContentOfPage'>
+    <div class='post-body'>
+      <data:post.body/>
+    </div>
+  </div>
+
+</article>    
+<!--{{ Termina la página estática }}-->
+
+   
+      </b:if>
+
+    </b:includable>
+    <b:includable id='postAuthor'>
+  <span class='byline post-author vcard'>
+    <span class='post-author-label'>
+      <data:byline.label/>
+    </span>
+    <span class='fn'>
+      <b:if cond='data:post.author.profileUrl'>
+        <meta expr:content='data:post.author.profileUrl'/>
+        <a class='g-profile' expr:href='data:post.author.profileUrl' rel='author' title='author profile'>
+          <span><data:post.author.name/></span>
+        </a>
+      <b:else/>
+        <span><data:post.author.name/></span>
+      </b:if>
+    </span>
+  </span>
+</b:includable>
+    <b:includable id='postBody' var='post'>
+  <!-- If metaDescription is empty, use the post body as the schema.org description too, for G+/FB snippeting. -->
+  <div class='post-body entry-content float-container' expr:id='&quot;post-body-&quot; + data:post.id'>
+    <data:post.body/>
+  </div>
+</b:includable>
+    <b:includable id='postBodySnippet' var='post'>
+  <b:include data='post' name='postBody'/>
+</b:includable>
+    <b:includable id='postCommentsAndAd' var='post'>
+  <article class='post-outer-container'>
+    <!-- Post title and body -->
+    <div class='post-outer'>
+      <b:include data='post' name='post'/>
+    </div>
+
+    <!-- Comments -->
+    <b:include cond='data:view.isSingleItem' data='post' name='commentPicker'/>
+
+    <!-- Show ad inside post container, after comments, if single item. -->
+    <b:include cond='data:view.isSingleItem and data:post.includeAd' data='post' name='inlineAd'/>
+  </article>
+
+  <!-- Show ad outside post container (between posts) for feed pages. -->
+  <b:include cond='data:view.isMultipleItems and data:post.includeAd' data='post' name='inlineAd'/>
+</b:includable>
+    <b:includable id='postCommentsLink'>
+  <b:if cond='data:view.isMultipleItems'>
+    <span class='byline post-comment-link container'>
+      <b:include cond='data:post.commentSource != 1' name='commentsLink'/>
+    </span>
+  </b:if>
+</b:includable>
+    <b:includable id='postFooter' var='post'>
+  <div class='post-footer'>
+    <b:include name='footerBylines'/>
+    <b:include data='post' name='postFooterAuthorProfile'/>
+  </div>
+</b:includable>
+    <b:includable id='postFooterAuthorProfile' var='post'>
+  <b:if cond='data:post.author.aboutMe and data:view.isPost'>
+    <div class='author-profile'>
+      <b:if cond='data:post.author.authorPhoto.url'>
+        <img class='author-image' expr:src='data:post.author.authorPhoto.url' width='50px'/>
+        <div class='author-about'>
+          <b:include data='post' name='aboutPostAuthor'/>
+        </div>
+      <b:else/>
+        <b:include data='post' name='aboutPostAuthor'/>
+      </b:if>
+    </div>
+  </b:if>
+</b:includable>
+    <b:includable id='postHeader' var='post'>
+  <b:include name='headerByline'/>
+</b:includable>
+    <b:includable id='postJumpLink' var='post'>
+  <div class='jump-link flat-button'>
+    <a expr:href='data:post.url fragment &quot;more&quot;' expr:title='data:post.title'>
+      <b:eval expr='data:blog.jumpLinkMessage'/>
+    </a>
+  </div>
+</b:includable>
+    <b:includable id='postLabels'>
+  <span class='byline post-labels'>
+    <span class='byline-label'><data:byline.label/></span>
+    <b:loop index='i' values='data:post.labels' var='label'>
+      <a expr:href='data:label.url' rel='tag'>
+        <data:label.name/>
+      </a>
+    </b:loop>
+  </span>
+</b:includable>
+    <b:includable id='postLocation'>
+  <span class='byline post-location'>
+    <data:byline.label/>
+    <a expr:href='data:post.location.mapsUrl' target='_blank'><data:post.location.name/></a>
+  </span>
+</b:includable>
+    <b:includable id='postMeta' var='post'>
+  <b:include data='post' name='postMetadataJSON'/>
+</b:includable>
+    <b:includable id='postMetadataJSONImage'>
+  &quot;image&quot;: {
+    &quot;@type&quot;: &quot;ImageObject&quot;,
+    <b:if cond='data:post.featuredImage.isResizable'>
+    &quot;url&quot;: &quot;<b:eval expr='resizeImage(data:post.featuredImage, 1200, &quot;1200:630&quot;)'/>&quot;,
+    &quot;height&quot;: 630,
+    &quot;width&quot;: 1200
+    <b:else/>
+    &quot;url&quot;: &quot;https://blogger.googleusercontent.com/img/b/U2hvZWJveA/AVvXsEgfMvYAhAbdHksiBA24JKmb2Tav6K0GviwztID3Cq4VpV96HaJfy0viIu8z1SSw_G9n5FQHZWSRao61M3e58ImahqBtr7LiOUS6m_w59IvDYwjmMcbq3fKW4JSbacqkbxTo8B90dWp0Cese92xfLMPe_tg11g/w1200/&quot;,
+    &quot;height&quot;: 348,
+    &quot;width&quot;: 1200
+    </b:if>
+  },
+</b:includable>
+    <b:includable id='postMetadataJSONPublisher'>
+ &quot;publisher&quot;: {
+    &quot;@type&quot;: &quot;Organization&quot;,
+    &quot;name&quot;: &quot;Blogger&quot;,
+    &quot;logo&quot;: {
+      &quot;@type&quot;: &quot;ImageObject&quot;,
+      &quot;url&quot;: &quot;https://blogger.googleusercontent.com/img/b/U2hvZWJveA/AVvXsEgfMvYAhAbdHksiBA24JKmb2Tav6K0GviwztID3Cq4VpV96HaJfy0viIu8z1SSw_G9n5FQHZWSRao61M3e58ImahqBtr7LiOUS6m_w59IvDYwjmMcbq3fKW4JSbacqkbxTo8B90dWp0Cese92xfLMPe_tg11g/h60/&quot;,
+      &quot;width&quot;: 206,
+      &quot;height&quot;: 60
+    }
+  },
+</b:includable>
+    <b:includable id='postPagination'>
+  <div class='blog-pager container' id='blog-pager'>
+    <b:include cond='data:newerPageUrl' name='previousPageLink'/>
+    <b:include cond='data:olderPageUrl' name='nextPageLink'/>
+    <b:include cond='data:view.url != data:blog.homepageUrl' name='homePageLink'/>
+  </div>
+</b:includable>
+    <b:includable id='postReactions'>
+  <!-- Reaction feature no longer available. The includable is retained for backwards-compatibility. -->
+</b:includable>
+    <b:includable id='postShareButtons'>
+  <div class='byline post-share-buttons goog-inline-block'>
+    <b:with value='data:sharingId ?: ((data:widget.instanceId ?: &quot;sharing&quot;) + &quot;-&quot; + (data:regionName ?: &quot;byline&quot;) + &quot;-&quot; + data:post.id)' var='sharingId'>
+      <!-- Note: 'sharingButtons' includable is from the default Sharing widget markup. -->
+      <b:include data='{                                                sharingId: data:sharingId,                                                originalUrl: data:post.url,                                                platforms: data:this.sharing.platforms,                                                shareUrl: data:post.shareUrl,                                                shareTitle: data:post.title,                                              }' name='sharingButtons'/>
+    </b:with>
+  </div>
+</b:includable>
+    <b:includable id='postTimestamp'>
+  <span class='byline post-timestamp'>
+    <data:byline.label/>
+    <b:if cond='data:post.url'>
+      <meta expr:content='data:post.url.canonical'/>
+      <a class='timestamp-link' expr:href='data:post.url' rel='bookmark' title='permanent link'>
+        <time class='published' expr:datetime='data:post.date.iso8601' expr:title='data:post.date.iso8601'>
+          <data:post.date/>
+        </time>
+      </a>
+    </b:if>
+  </span>
+</b:includable>
+    <b:includable id='postTitle' var='post'>
+  <a expr:name='data:post.id'/>
+  <b:if cond='data:post.title != &quot;&quot;'>
+    <h3 class='post-title entry-title'>
+      <b:if cond='data:post.link or (data:post.url and data:view.url != data:post.url)'>
+        <a expr:href='data:post.link ?: data:post.url'><data:post.title/></a>
+      <b:else/>
+        <data:post.title/>
+      </b:if>
+    </h3>
+  </b:if>
+</b:includable>
+    <b:includable id='previousPageLink'>
+  <a class='blog-pager-newer-link' expr:href='data:newerPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-newer-link&quot;' expr:title='data:messages.newerPosts'>
+   &#171; Anterior
+  </a>
+</b:includable>
+    <b:includable id='sharingButton'>
+  <span expr:aria-label='data:platform.shareMessage' expr:class='&quot;sharing-platform-button sharing-element-&quot; + data:platform.key' expr:data-href='data:shareUrl + &quot;&amp;target=&quot; + data:platform.target' expr:data-url='data:originalUrl' expr:title='data:platform.shareMessage' role='menuitem' tabindex='-1'>
+    <b:include name='sharingPlatformIcon'/>
+    <span class='platform-sharing-text'><data:platform.name/></span>
+  </span>
+</b:includable>
+    <b:includable id='sharingButtonContent'>
+  <div class='flat-icon-button ripple'>
+    <b:include name='shareIcon'/>
+  </div>
+</b:includable>
+    <b:includable id='sharingButtons'>
+  <div class='sharing' expr:aria-owns='&quot;sharing-popup-&quot; + data:sharingId' expr:data-title='data:shareTitle'>
+    <button class='sharing-button touch-icon-button' expr:aria-controls='&quot;sharing-popup-&quot; + data:sharingId' expr:aria-label='data:messages.share.escaped' expr:id='&quot;sharing-button-&quot; + data:sharingId' role='button'>
+      <b:include name='sharingButtonContent'/>
+    </button>
+    <b:include name='sharingButtonsMenu'/>
+  </div>
+</b:includable>
+    <b:includable id='sharingButtonsMenu'>
+  <div class='share-buttons-container'>
+    <ul aria-hidden='true' class='share-buttons hidden' expr:aria-label='data:messages.share.escaped' expr:id='&quot;sharing-popup-&quot; + data:sharingId' role='menu'>
+      <b:loop values='(data:platforms ?: data:blog.sharing.platforms) filter (p =&gt; p.key not in {&quot;blogThis&quot;})' var='platform'>
+        <li>
+          <b:include name='sharingButton'/>
+        </li>
+      </b:loop>
+      <li aria-hidden='true' class='hidden'>
+        <b:include name='otherSharingButton'/>
+      </li>
+    </ul>
+  </div>
+</b:includable>
+    <b:includable id='sharingPlatformIcon'>
+  <b:include data='{ iconClass: (&quot;touch-icon sharing-&quot; + data:platform.key) }' expr:name='data:platform.key + &quot;Icon&quot;'/>
+</b:includable>
+    <b:includable id='threadedCommentForm' var='post'>
+  <div class='comment-form'>
+    <a name='comment-form'/>
+    <h4 id='comment-post-message'><data:messages.postAComment/></h4>
+    <b:if cond='data:this.messages.blogComment != &quot;&quot;'>
+      <p><data:this.messages.blogComment/></p>
+    </b:if>
+    <b:include data='post' name='commentFormIframeSrc'/>
+    <iframe allowtransparency='allowtransparency' class='blogger-iframe-colorize blogger-comment-from-post' expr:height='data:cmtIframeInitialHeight ?: &quot;90px&quot;' frameborder='0' id='comment-editor' name='comment-editor' src='' width='100%'/>
+    <data:post.cmtfpIframe/>
+    <script type='text/javascript'>
+      BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);
+    </script>
+  </div>
+</b:includable>
+    <b:includable id='threadedCommentJs' var='post'>
+  <script async='async' expr:src='data:post.commentSrc' type='text/javascript'/>
+  <b:template-script inline='true' name='threaded_comments'/>
+  <script type='text/javascript'>
+    blogger.widgets.blog.initThreadedComments(
+        <data:post.commentJso/>,
+        <data:post.commentMsgs/>,
+        <data:post.commentConfig/>);
+  </script>
+</b:includable>
+    <b:includable id='threadedComments' var='post'>
+  <section class='comments threaded' expr:data-embed='data:post.embedCommentForm' expr:data-num-comments='data:post.numberOfComments' id='comments'>
+       <a name='comments'/>
+<div class='title'>
+  <span>Comentarios</span>
+  <span class='comment-count'>(<data:post.numberOfComments/>)</span>
+</div>
+
+
+     <!-- <b:include name='commentsTitle'/> -->
+
+    <div class='comments-content'>
+      <b:if cond='data:post.embedCommentForm'>
+        <b:include data='post' name='threadedCommentJs'/>
+      </b:if>
+      <div id='comment-holder'>
+         <data:post.commentHtml/>
+      </div>
+    </div>
+
+    <p class='comment-footer'>
+      <b:if cond='data:post.allowNewComments'>
+        <b:include data='post' name='threadedCommentForm'/>
+      <b:else/>
+        <data:post.noNewCommentsText/>
+      </b:if>
+      <b:if cond='data:post.showManageComments'>
+        <b:include data='post' name='manageComments'/>
+      </b:if>
+    </p>
+
+    <b:if cond='data:showCmtPopup'>
+      <div id='comment-popup'>
+        <iframe allowtransparency='allowtransparency' frameborder='0' id='comment-actions' name='comment-actions' scrolling='no'>
+        </iframe>
+      </div>
+    </b:if>
+  </section>
+</b:includable>
+    <b:includable id='tooltipCss'>
+  <!-- LINT.IfChange -->
+  <style>
+    .post-body a.b-tooltip-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .post-body a.b-tooltip-container .b-tooltip {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translate(-20%, 1px);
+      visibility: hidden;
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    .post-body a.b-tooltip-container .b-tooltip iframe {
+      width: 200px;
+      height: 198px;
+      max-width: none;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .post-body a.b-tooltip-container:hover .b-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+  <!-- LINT.ThenChange(//depot/google3/java/com/google/blogger/b2/layouts/widgets/v2-style.css) -->
+</b:includable>
+  </b:widget>
+  <b:widget cond='data:view.isHomepage' id='HTML3' locked='true' title='Texto SEO 4' type='HTML' version='2' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<section class="index-contenedor">
+  <p><em>📌 Con NichoClean v2.0 no solo obtienes una plantilla minimalista optimizada, sino una verdadera herramienta modular que te permite armar el diseño de tu blog como un rompecabezas, adaptando cada bloque a tu estrategia de contenido y monetización.</em></p>
+</section>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+</b:section>
+      
+       <!-- page ERROR 404 -->
+    <b:if cond='data:blog.pageType == &quot;error_page&quot;'> 
+      <div class='error-container'>
+      <div class='error-code'>404</div>
+      <div class='error-message'>Página no encontrada</div>
+      <div class='error-description'>
+        Lo sentimos, la página que buscas no existe o ha sido movida.
+      </div>
+      <a class='error-link' href='/'>Volver al inicio</a>
+    </div>
+   </b:if>
+        
+ </main>
+    
+      
+    
+  <footer>   
+    
+    <p>&amp;copy; <script>document.write(new Date().getFullYear());</script> <data:blog.title/>. Creado por<a href='https://blogspot.owinile.com/' rel='noopener' style='text-decoration: none;' target='_blank'>Owinile</a></p>
+    
+<b:section id='Footer' showaddelement='yes'>
+  <b:widget id='HTML2' locked='false' title='Pie de pagina' type='HTML' version='2' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<a href="/p/politica-de-privacidad.html">Privacidad</a> |
+    <a href="/p/aviso-legal.html">Aviso legal</a> |
+    <a href="/p/cookies.html">Cookies</a>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+</b:section> 
+ </footer>
+    
+ <!-- 
+  ATENCIÓN: Modificar el JavaScript base de NichoClean puede romper la plantilla.
+  Haz copia de seguridad antes de cualquier cambio y prueba en un entorno seguro.
+-->
+   
+    <!-- ADMINISTRADOR DE CACHE PARA EVITAR SOBRECARGAR EL FEED DE BLOGGER  -->
+    <script>
+//<![CDATA[
+const fetchWithCacheManager = (() => {
+  const CACHE_DURATION_MS = 10 * 60 * 1000; // 10 minutos por defecto
+
+  // Función para obtener datos con caché
+  async function fetchWithCache(url, cacheDuration = CACHE_DURATION_MS) {
+    try {
+      const cacheKey = `cache_feed_${url}`;
+      const cached = localStorage.getItem(cacheKey);
+
+      if (cached) {
+        const cachedObj = JSON.parse(cached);
+        const age = Date.now() - cachedObj.timestamp;
+        if (age < cacheDuration) {
+          // Cache válida
+          return cachedObj.data;
+        } else {
+          // Cache vencida, eliminar
+          localStorage.removeItem(cacheKey);
+        }
+      }
+
+      // Hacer fetch real
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+      const data = await response.json();
+
+      // Guardar en cache con timestamp
+      localStorage.setItem(cacheKey, JSON.stringify({
+        timestamp: Date.now(),
+        data: data
+      }));
+
+      return data;
+
+    } catch (error) {
+      console.error(`fetchWithCache error para URL: ${url}`, error);
+
+      // Intentar devolver cache aunque esté vencida para no perder funcionalidad
+      try {
+        const cached = localStorage.getItem(`cache_feed_${url}`);
+        if (cached) {
+          const cachedObj = JSON.parse(cached);
+          return cachedObj.data;
+        }
+      } catch { /* ignorar */ }
+
+      throw error; // No hay cache y fetch falló
+    }
+  }
+
+  return fetchWithCache;
+})();
+//]]>
+</script>
+
+ 
+  <!-- MOVER Y HACER SCROLL SUAVE A LA CAJA DE COMENTARIOS -->
+<script>
+//<![CDATA[
+document.addEventListener("click", function (e) {
+  // Detectar si el click fue en un botón/enlace "Responder"
+  const btn = e.target.closest(".comment-reply");
+  if (!btn) return;
+
+  e.preventDefault();
+
+  // Buscar la caja de respuesta justo en el momento del click
+  const replyBox = document.querySelector(".comment-replybox-thread");
+  if (!replyBox) return; // si aún no existe, no hace nada
+
+  // Buscar el comentario padre
+  const commentItem = btn.closest("li.comment");
+  if (!commentItem) return;
+
+  // Mover la caja debajo del comentario padre
+  commentItem.appendChild(replyBox);
+
+  // Asegurarse que la caja esté visible
+  replyBox.style.display = "block";
+
+  // Limpiar textarea y enfocar
+  const textarea = replyBox.querySelector("textarea");
+  if (textarea) {
+    textarea.value = "";
+    textarea.focus({ preventScroll: true }); // evita salto brusco antes del scroll suave
+  }
+
+  // Hacer scroll suave al centro de la caja de respuesta
+  replyBox.scrollIntoView({ behavior: "smooth", block: "center" });
+});
+//]]>
+</script>
+
+    
+   <!-- Script para acordeón JS clásico -->
+<script>
+//<![CDATA[
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const isActive = header.classList.contains('is-active');
+      // Cerrar todos
+      document.querySelectorAll('.accordion-header').forEach(h => {
+        h.classList.remove('is-active');
+        h.nextElementSibling.style.maxHeight = null;
+      });
+      // Abrir el seleccionado si no estaba abierto
+      if (!isActive) {
+        header.classList.add('is-active');
+        const content = header.nextElementSibling;
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+    });
+  });
+//]]>
+</script>
+
+     <!-- Script (cluster, carrusel, tarjetas, entradas relacionadas, etc.) -->
+     <script>
+//<![CDATA[
+const blogURL = location.origin;
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.galeria-feed').forEach(contenedor => {
+    const etiqueta = contenedor.dataset.etiqueta;
+    const cantidad = contenedor.dataset.cantidad || 6;
+
+    let variantes = ['cluster', 'card', 'slider', 'lista', 'masonry', 'lightbox', 'horizontal', 'tooltip'];
+    let variante = variantes.find(v => contenedor.classList.contains(v)) || 'cluster';
+
+    const url = `${blogURL}/feeds/posts/default/-/${etiqueta}?alt=json&max-results=${cantidad}`;
+
+    fetchWithCacheManager(url, 600000) // 10 minutos caché
+      .then(data => {
+        let entradas = data.feed.entry || [];
+
+        entradas = entradas.sort(() => Math.random() - 0.5);
+
+        let html = '';
+
+        entradas.forEach(entry => {
+          const titulo = entry.title.$t;
+          const link = entry.link.find(l => l.rel === 'alternate').href;
+          const media = entry.media$thumbnail ? entry.media$thumbnail.url.replace('s72-c', 's400') : 'https://placehold.co/400x250?text=Sin+Imagen';
+          const autor = entry.author && entry.author[0] ? entry.author[0].name.$t : 'Autor desconocido';
+          const autorUrl = entry.author && entry.author[0] && entry.author[0].uri ? entry.author[0].uri.$t : blogURL;
+          const fechaPublicacion = entry.published ? entry.published.$t : '';
+          const fechaModificacion = entry.updated ? entry.updated.$t : '';
+
+          const metaDatos = `
+            <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+              <meta itemprop="name" content="${autor}"/>
+              <meta itemprop="url" content="${autorUrl}"/>
+            </div>
+            <meta itemprop="datePublished" content="${fechaPublicacion}"/>
+            <meta itemprop="dateModified" content="${fechaModificacion}"/>
+            <meta itemprop="mainEntityOfPage" content="${link}"/>
+          `;
+
+          switch(variante) {
+            case 'card':
+              let contenido = '';
+              if(entry.summary) contenido = entry.summary.$t;
+              else if(entry.content) contenido = entry.content.$t;
+              const descripcion = contenido.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
+
+              html += `
+                <article class='item-card' itemscope itemtype='https://schema.org/Article'>
+                  <a href='${link}' itemprop='url'>
+                    <img alt='${titulo}' itemprop='image' src='${media}'/>
+                  </a>
+                  <div class="item-card-content">
+                    <h3 itemprop='headline'>${titulo}</h3>
+                    <p itemprop="description">${descripcion}</p>
+                    ${metaDatos}
+ 					<a href='${link}' class='button'>Leer más</a>
+                  </div>
+                </article>
+              `;
+              break;
+
+            case 'slider':
+              html += `
+                <article class='item-slider' itemscope itemtype='https://schema.org/Article'>
+                  <a href='${link}' itemprop='url'>
+                    <img alt='${titulo}' itemprop='image' src='${media}'/>
+                    <h3 itemprop='headline'>${titulo}</h3>
+                  </a>
+                  ${metaDatos}
+                </article>
+              `;
+              break;
+
+            case 'lista':
+              html += `
+                <li class='item-lista' itemscope itemtype='https://schema.org/Article'>
+                  <a href='${link}' itemprop='url'>
+                    <img alt='${titulo}' height='48' itemprop='image' src='${media}' width='48'/>
+                    <span itemprop='headline'>${titulo}</span>
+                  </a>
+                  ${metaDatos}
+                </li>
+              `;
+              break;
+
+            case 'masonry':
+              html += `
+                <article class='item-masonry' itemscope itemtype='https://schema.org/Article'>
+                  <a href='${link}' itemprop='url'>
+                    <img alt='${titulo}' itemprop='image' src='${media}'/>
+                    <h3 itemprop='headline'>${titulo}</h3>
+                  </a>
+                  ${metaDatos}
+                </article>
+              `;
+              break;
+
+            case 'lightbox':
+              html += `
+                <article class='item-lightbox' itemscope itemtype='https://schema.org/Article'>
+                  <a data-lightbox='gallery' href='${media}' itemprop='url'>
+                    <img alt='${titulo}' itemprop='image' src='${media}'/>
+                  </a>
+                  <h3 itemprop='headline'>${titulo}</h3>
+                  ${metaDatos}
+                </article>
+              `;
+              break;
+
+            case 'horizontal':
+              html += `
+                <article class='item-horizontal' itemscope itemtype='https://schema.org/Article'>
+                  <a href='${link}' itemprop='url'>
+                    <img alt='${titulo}' itemprop='image' src='${media}'/>
+                    <div>
+                      <h3 itemprop='headline'>${titulo}</h3>
+                    </div>
+                  </a>
+                  ${metaDatos}
+                </article>
+              `;
+              break;
+
+            case 'tooltip':
+  html += `
+    <article class='item-tooltip' itemscope itemtype='https://schema.org/Article' title='${titulo}'>
+      <a href='${link}' itemprop='url' title='${titulo}'>
+        <img alt='${titulo}' itemprop='image' src='${media}'/>
+      </a>
+      <meta itemprop='headline' content='${titulo}'/>
+      ${metaDatos}
+    </article>
+  `;
+  break;
+
+            default:
+              html += `
+                <article class='item-cluster' itemscope itemtype='https://schema.org/Article'>
+                  <a href='${link}' itemprop='url'>
+                    <img alt='${titulo}' itemprop='image' src='${media}'/>
+                    <h3 itemprop='headline'>${titulo}</h3>
+                  </a>
+                  ${metaDatos}
+                </article>
+              `;
+          }
+        });
+
+        if (variante === 'lista') {
+          contenedor.innerHTML = `<ul class='galeria-lista'>${html}</ul>`;
+        } else {
+          contenedor.innerHTML = `<div class='galeria-${variante}'>${html}</div>`;
+        }
+      })
+      .catch(err => {
+        contenedor.innerHTML = `<p>No se pudo cargar la galería para la etiqueta <strong>${etiqueta}</strong>.</p>`;
+        console.error(err);
+      });
+  });
+});
+//]]>
+</script>
+
+    
+    <!-- Script para mini slider de imagenes -->
+   <script>//<![CDATA[
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    const galeria = document.querySelector(".galeria-feed.slider");
+    if (!galeria) return;
+
+    const items = galeria.querySelectorAll(".item-slider");
+    if (items.length < 4) return;
+
+    const arrayItems = Array.from(items).filter(item =>
+      item.querySelector("img") &&
+      item.querySelector("h3") &&
+      item.querySelector("a")
+    );
+
+    if (arrayItems.length < 4) return;
+
+    // Estructura base
+    const contenedorPrincipal = document.createElement("div");
+    contenedorPrincipal.className = "imagen-principal";
+
+    const contenedorMiniaturas = document.createElement("div");
+    contenedorMiniaturas.className = "miniaturas";
+
+    const imagenPrincipal = document.createElement("img");
+    const tituloPrincipal = document.createElement("h3");
+
+    contenedorPrincipal.appendChild(imagenPrincipal);
+    contenedorPrincipal.appendChild(tituloPrincipal);
+
+    galeria.innerHTML = "";
+    galeria.appendChild(contenedorPrincipal);
+    galeria.appendChild(contenedorMiniaturas);
+
+    // Función para mostrar un item
+    function mostrarItem(item) {
+      const img = item.querySelector("img");
+      const h3 = item.querySelector("h3");
+      const link = item.querySelector("a");
+
+      if (!img || !h3 || !link) return;
+
+      imagenPrincipal.src = img.src;
+      tituloPrincipal.textContent = h3.textContent;
+
+      contenedorPrincipal.onclick = () => {
+        window.open(link.href, "_blank");
+      };
+    }
+
+    // Generar miniaturas iniciales
+    let indices = [...Array(arrayItems.length).keys()];
+    indices = indices.sort(() => 0.5 - Math.random());
+
+    let principalIndex = indices.shift();
+    mostrarItem(arrayItems[principalIndex]);
+
+    const miniQueue = indices.slice(0, 3);
+
+    function renderMiniaturas() {
+      contenedorMiniaturas.innerHTML = "";
+      miniQueue.forEach((idx, i) => {
+        const item = arrayItems[idx];
+        const img = item.querySelector("img");
+        const h3 = item.querySelector("h3");
+
+        const mini = document.createElement("div");
+        mini.className = "miniatura";
+
+        const miniImg = document.createElement("img");
+        miniImg.src = img.src;
+
+        const miniTitle = document.createElement("h4");
+        miniTitle.textContent = h3.textContent;
+
+        mini.appendChild(miniImg);
+        mini.appendChild(miniTitle);
+
+        mini.onclick = () => {
+          mostrarItem(item);
+          miniQueue.splice(i, 1);
+          miniQueue.unshift(principalIndex);
+          principalIndex = idx;
+          renderMiniaturas();
+        };
+
+        contenedorMiniaturas.appendChild(mini);
+      });
+    }
+
+    renderMiniaturas();
+
+    // Cambio automático cada 4 segundos
+    setInterval(() => {
+      const nextIndex = miniQueue.shift();
+      miniQueue.push(principalIndex);
+      principalIndex = nextIndex;
+      mostrarItem(arrayItems[principalIndex]);
+      renderMiniaturas();
+    }, 4000);
+  }, 1000);
+});
+
+//]]>
+</script>
+    
+   <!-- Script CAJA DE AUTOR -->
+   <script>//<![CDATA[  
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const caja = document.querySelector("#autor-box");
+    if (!caja) return;
+
+    const nombreAutor = caja.dataset.autor;
+
+    // Base local de autores
+    const autores = {
+      "Juan Pérez": {
+        bio: "Especialista en desarrollo web y diseño minimalista. Comparte recursos útiles para bloggers.",
+        avatar: "https://ui-avatars.com/api/?name=Juan+Pérez&background=0077cc&color=fff",
+        perfil: "https://www.blogger.com/profile/00000000000000000000",
+        facebook: "https://facebook.com/juan.perez",
+        twitter: "https://twitter.com/juanperez",
+        instagram: "https://instagram.com/juanperez",
+        email: "mailto:juan@example.com"
+      },
+      "Ana López": {
+        bio: "Apasionada por el SEO y la creación de contenido optimizado para blogs.",
+        avatar: "https://ui-avatars.com/api/?name=Ana+López&background=0077cc&color=fff&rounded=false",
+        perfil: "https://www.blogger.com/profile/11111111111111111111",
+        facebook: "",
+        twitter: "https://twitter.com/anal",
+        instagram: "",
+        email: ""
+      }
+    };
+
+    const autor = autores[nombreAutor];
+    if (!autor) {
+      caja.innerHTML = `<p style="color:red;">Autor "${nombreAutor}" no encontrado.</p>`;
+      return;
+    }
+
+   const redes = `
+  <div class="autor-redes">
+    ${autor.facebook ? `<a href="${autor.facebook}" target="_blank" rel="noopener nofollow" aria-label="Facebook" class="red red-fb">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 3H14v7A10 10 0 0 0 22 12z"/></svg>
+    </a>` : ""}
+    ${autor.twitter ? `<a href="${autor.twitter}" target="_blank" rel="noopener nofollow" aria-label="Twitter" class="red red-tw">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M22.5 5.9c-.8.4-1.7.6-2.6.8a4.6 4.6 0 0 0 2-2.6c-.9.6-1.9 1-3 1.2a4.5 4.5 0 0 0-7.7 4.1A12.8 12.8 0 0 1 3.1 4.9a4.5 4.5 0 0 0 1.4 6A4.4 4.4 0 0 1 3 10v.1a4.5 4.5 0 0 0 3.6 4.4c-.4.1-.8.2-1.3.2-.3 0-.6 0-.9-.1a4.5 4.5 0 0 0 4.2 3.1 9 9 0 0 1-6.6 1.8A12.8 12.8 0 0 0 9.5 21c7.9 0 12.2-6.6 12.2-12.3v-.6c.8-.6 1.5-1.3 2-2.2z"/></svg>
+    </a>` : ""}
+    ${autor.instagram ? `<a href="${autor.instagram}" target="_blank" rel="noopener nofollow" aria-label="Instagram" class="red red-ig">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm4.5-.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
+    </a>` : ""}
+    ${autor.email ? `<a href="${autor.email}" aria-label="Correo" class="red red-mail">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.5l8 5 8-5V6H4zm0 2.7v9.3h16V8.7l-8 5-8-5z"/></svg>
+    </a>` : ""}
+  </div>
+`;
+
+
+    caja.innerHTML = `
+      <section class="autor-info" itemscope itemtype="https://schema.org/Person">
+        <img src="${autor.avatar}" alt="Foto de ${nombreAutor}" class="autor-avatar" itemprop="image">
+        <div class="autor-detalles">
+          <h4 class="autor-nombre" itemprop="name">${nombreAutor}</h4>
+          <p class="autor-bio" itemprop="description">${autor.bio}</p>
+          <a href="${autor.perfil}" target="_blank" rel="author nofollow" class="autor-link">Ver perfil</a>
+          ${redes}
+        </div>
+      </section>
+    `;
+  });
+
+    //]]>
+</script>
+
+    <!-- Script TOC caja de contenido  -->
+   <script>//<![CDATA[  
+document.addEventListener("DOMContentLoaded", function () {
+  const tocContainer = document.getElementById("toc-container");
+  const toc = document.getElementById("toc");
+  const toggle = document.getElementById("toc-toggle");
+
+  const content = document.querySelector(".post-body"); // Asegúrate que es el contenedor del post
+
+  if (!content || !toc) return;
+
+  // Forzar estado inicial oculto (importante para móviles)
+  toc.setAttribute("hidden", "true");
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.textContent = "📑 Mostrar tabla de contenido";
+
+  const headers = content.querySelectorAll("h2, h3");
+
+  if (headers.length === 0) {
+    tocContainer.style.display = "none";
+    return;
+  }
+
+  // Agrega encabezado semántico dentro del <nav>
+  const title = document.createElement("strong");
+  title.textContent = "Tabla de contenido";
+  toc.appendChild(title);
+
+  const ul = document.createElement("ul");
+  let currentUl = ul;
+  let lastLevel = 2;
+
+  headers.forEach((header, index) => {
+    // Agrega id si no lo tiene (necesario para enlaces internos)
+    if (!header.id) header.id = "toc-header-" + index;
+    const level = parseInt(header.tagName.replace("H", ""), 10);
+
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = "#" + header.id;
+    a.textContent = header.textContent;
+    li.appendChild(a);
+
+    if (level === lastLevel) {
+      currentUl.appendChild(li);
+    } else if (level > lastLevel) {
+      const newUl = document.createElement("ul");
+      newUl.appendChild(li);
+      const lastLi = currentUl.lastElementChild;
+      if (lastLi) lastLi.appendChild(newUl);
+      currentUl = newUl;
+    } else {
+      let parent = currentUl.parentElement;
+      while (parent && parent.tagName === "UL" && level < lastLevel) {
+        currentUl = parent;
+        parent = currentUl.parentElement;
+        lastLevel--;
+      }
+      currentUl.appendChild(li);
+    }
+
+    lastLevel = level;
+  });
+
+  toc.appendChild(ul);
+
+  // Mostrar u ocultar TOC al hacer clic en el botón
+  toggle.addEventListener("click", () => {
+    const isHidden = toc.hasAttribute("hidden");
+    if (isHidden) {
+      toc.removeAttribute("hidden");
+      toggle.textContent = "📑 Ocultar tabla de contenido";
+      toggle.setAttribute("aria-expanded", "true");
+    } else {
+      toc.setAttribute("hidden", "true");
+      toggle.textContent = "📑 Mostrar tabla de contenido";
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  });
+});
+//]]>
+</script>
+
+    
+     <!-- Script compartir code  -->
+   <script>//<![CDATA[  
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('pre > code').forEach(codeBlock => {
+    if (codeBlock.textContent.trim() === "") return; // No añadir si está vacío
+
+    const pre = codeBlock.parentElement;
+    const button = document.createElement('button');
+    button.className = 'copy-btn';
+    button.textContent = 'Copiar';
+
+    button.addEventListener('click', () => {
+      navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+        button.textContent = 'Copiado';
+        setTimeout(() => {
+          button.textContent = 'Copiar';
+        }, 2000);
+      });
+    });
+
+    pre.appendChild(button);
+  });
+});
+//]]>
+</script>
+    
+    <!-- Script MULTIMEDIA  -->
+<script>
+//<![CDATA[
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".media-player").forEach(function (el) {
+    const type = el.dataset.type;
+    const id = el.dataset.id;
+    const src = el.dataset.src;
+    const poster = el.dataset.poster;
+
+    // Miniatura
+    if (type === "youtube" && id) {
+      el.style.backgroundImage = `url('https://img.youtube.com/vi/${id}/hqdefault.jpg')`;
+    } else if (type === "vimeo" && id) {
+      fetch(`https://vimeo.com/api/v2/video/${id}.json`)
+        .then(res => res.json())
+        .then(data => {
+          el.style.backgroundImage = `url('${data[0].thumbnail_large}')`;
+        });
+    } else if (poster && type === "mp4") {
+      el.style.backgroundImage = `url('${poster}')`;
+    }
+
+    // Reproducir al hacer clic
+    el.addEventListener("click", function () {
+      el.classList.add("active");
+      el.style.backgroundImage = "none";
+
+      let embed = "";
+      if (type === "youtube") {
+        embed = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen title="YouTube"></iframe>`;
+      } else if (type === "vimeo") {
+        embed = `<iframe src="https://player.vimeo.com/video/${id}?autoplay=1" allow="autoplay; fullscreen" allowfullscreen title="Vimeo"></iframe>`;
+      } else if (type === "mp4") {
+        embed = `<video controls autoplay poster="${poster || ''}" playsinline><source src="${src}" type="video/mp4">Tu navegador no soporta video HTML5.</video>`;
+      }
+
+      el.innerHTML = embed;
+
+      // Manejo de pausa/play en móviles (solo MP4)
+      if (type === "mp4") {
+        setTimeout(() => {
+          const video = el.querySelector("video");
+          if (video) {
+            el.addEventListener("touchstart", function () {
+              if (video.paused) video.play();
+              else video.pause();
+            });
+          }
+        }, 500);
+      }
+    }, { once: true });
+  });
+});
+//]]>
+</script>
+     <!-- Script SHORTCODE TEXTO aleatorio -->
+<script>
+//<![CDATA[
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll('.feed-text').forEach(function (block) {
+    const tag = block.dataset.tag;
+    const max = parseInt(block.dataset.max || 6);
+    const variant = block.dataset.variant || "grid";
+    const url = `/feeds/posts/default/-/${tag}?alt=json&max-results=50`;
+
+    fetchWithCacheManager(url, 600000) // 600000 ms = 10 minutos
+      .then(data => {
+        let entries = data.feed.entry || [];
+
+        // Mezclar aleatoriamente
+        entries = entries.sort(() => Math.random() - 0.5).slice(0, max);
+
+        let html = '';
+        entries.forEach((entry, i) => {
+          const title = entry.title.$t;
+          const link = entry.link.find(l => l.rel === 'alternate').href;
+          const content = entry.content?.$t || entry.summary?.$t || '';
+          const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
+          const img = imgMatch ? imgMatch[1] : '';
+          const cleanText = content.replace(/<[^>]+>/g, '').substring(0, 150) + '...';
+
+          if (variant === 'grid') {
+            html += `
+              <div class="item-text grid">
+                <h3><a href="${link}">${title}</a></h3>
+                <p>${cleanText}</p>
+                <a href="${link}" class="read-more">Leer más</a>
+              </div>`;
+          } else if (variant === 'alternate') {
+            const reversed = i % 2 !== 0;
+            html += `
+              <div class="item-text alt ${reversed ? 'reverse' : ''}">
+                <div class="img"><img src="${img}" alt="${title}"></div>
+                <div class="text">
+                  <h3><a href="${link}">${title}</a></h3>
+                  <p>${cleanText}</p>
+                  <a href="${link}" class="read-more">Leer más</a>
+                </div>
+              </div>`;
+          } else if (variant === 'titles') {
+            html += `
+              <div class="item-text title-only">
+                <h3><a href="${link}">${title}</a></h3>
+              </div>`;
+          }
+        });
+
+        block.innerHTML = html;
+      })
+      .catch(err => {
+        block.innerHTML = "<p>No se pudieron cargar las entradas.</p>";
+        console.error("Feed error:", err);
+      });
+  });
+});
+//]]>
+</script>
+
+       <!-- Script CATALOGO STORE -->
+<script>
+//<![CDATA[
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".feed-catalogo").forEach(function (container) {
+    const max = parseInt(container.dataset.max, 10) || 6;
+    const feedUrl = '/feeds/posts/default?alt=json&max-results=50';
+
+    // Uso fetch con cache para reducir llamadas repetidas
+    fetchWithCacheManager(feedUrl, 600000) // cache 10 minutos
+      .then(data => {
+        const entries = data.feed.entry || [];
+
+        const productos = entries
+          .map(entry => {
+            const title = entry.title.$t;
+            const link = entry.link.find(l => l.rel === 'alternate').href;
+            const content = (entry.content && entry.content.$t) || "";
+            const tags = (entry.category || []).map(cat => cat.term);
+            const priceTag = tags.find(t => /^\$\d+(\.\d{1,2})?$/.test(t));
+
+            if (!priceTag) return null;
+
+            // Imagen destacada
+            const imgMatch = content.match(/<img[^>]+src="([^"]+)"/);
+            const img = imgMatch ? imgMatch[1] : "https://placehold.co/300x200?text=Producto";
+
+            // Descripción sin etiquetas
+            const temp = document.createElement("div");
+            temp.innerHTML = content;
+            const text = temp.textContent || temp.innerText || "";
+            const excerpt = text.substring(0, 120).trim() + "...";
+
+            return {
+              title, link, img, excerpt, price: priceTag
+            };
+          })
+          .filter(Boolean)
+          .sort(() => Math.random() - 0.5) // mezcla aleatoria
+          .slice(0, max);
+
+        if (productos.length === 0) {
+          container.innerHTML = "<p>No se encontraron productos.</p>";
+          return;
+        }
+
+        container.innerHTML = productos.map(p => `
+          <div class="item-producto">
+            <div class="img"><a href="${p.link}"><img src="${p.img}" alt="${p.title}"></a></div>
+            <div class="info">
+              <h3><a href="${p.link}">${p.title}</a></h3>
+              <p class="descripcion">${p.excerpt}</p>
+              <div class="meta">
+                <span class="precio">${p.price}</span>
+                <a href="${p.link}" class="boton">Ver producto</a>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      })
+      .catch(err => {
+        container.innerHTML = "<p>Error al cargar productos.</p>";
+        console.error("Error en feed:", err);
+      });
+  });
+});
+//]]>
+</script>
+
+    <!-- Script pago paypal -->
+<script>
+//<![CDATA[
+document.addEventListener("DOMContentLoaded", function () {
+  const paypalEmail = "hola@owinile.com"; // ← cambia esto solo UNA VEZ
+
+  const boton = document.getElementById("pago");
+  if (!boton) return;
+
+  // Detectar título más cercano (puede ser h2, h3 o cualquier encabezado)
+  const titulo = document.querySelector("h1, h2, h3, .titulo-producto")?.innerText.trim() || "Producto";
+
+  // Detectar precio (busca primero por clase, luego por texto con $)
+  let precio = document.querySelector(".precio")?.innerText.trim();
+  if (!precio) {
+    const texto = document.body.innerText;
+    const match = texto.match(/\$?\s?(\d+(?:[.,]\d{1,2})?)/);
+    precio = match ? match[1].replace(",", ".") : "0.00";
+  } else {
+    precio = precio.replace("$", "").replace(",", ".");
+  }
+
+  // Crear botón visible
+  boton.innerText = "Comprar ahora";
+  boton.classList.add("ficha-boton");
+
+  // Acción al hacer clic: redirige a PayPal con datos dinámicos
+  boton.addEventListener("click", function () {
+    const url = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(paypalEmail)}&item_name=${encodeURIComponent(titulo)}&amount=${encodeURIComponent(precio)}&currency_code=USD`;
+    window.open(url, "_blank");
+  });
+});
+//]]>
+</script>
+     <!-- Tabla productos -->
+   <script>
+//<![CDATA[
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".tabla-productos").forEach(block => {
+    const tema = block.dataset.tema || "";
+    const precio = block.dataset.precio || null;
+    const cantidadMaxima = parseInt(block.dataset.max || 10);
+
+    if (!tema) {
+      block.innerHTML = "<p>Error: No se indicó la temática (data-tema).</p>";
+      return;
+    }
+
+    const feedUrl = `/feeds/posts/default/-/${tema}?alt=json&max-results=100`;
+
+    // Cambié esta línea para usar fetchWithCacheManager con cache de 10 minutos (600000 ms)
+    fetchWithCacheManager(feedUrl, 600000)
+      .then(data => {
+        const entradas = data.feed.entry || [];
+
+        const productosFiltrados = entradas.filter(entry => {
+          const etiquetas = entry.category?.map(c => c.term) || [];
+          if (precio) {
+            return etiquetas.includes(precio) && etiquetas.includes(tema);
+          }
+          return etiquetas.includes(tema);
+        });
+
+        if (productosFiltrados.length === 0) {
+          block.innerHTML = "<p>No se encontraron productos con esos filtros.</p>";
+          return;
+        }
+
+        const seleccionados = productosFiltrados
+          .sort(() => 0.5 - Math.random())
+          .slice(0, cantidadMaxima);
+
+        let html = `
+          <table class="tabla-comparativa">
+            <thead>
+              <tr>
+                <th>Imagen</th>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Comprar</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+
+        seleccionados.forEach(entry => {
+          const title = entry.title?.$t || "Producto";
+          const link = entry.link.find(l => l.rel === "alternate").href;
+          const content = entry.content?.$t || entry.summary?.$t || "";
+          const cleanText = content.replace(/<[^>]+>/g, '').substring(0, 100) + "...";
+          const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
+          const img = imgMatch ? imgMatch[1] : "https://placehold.co/100x60?text=Sin+imagen";
+
+          const etiquetas = entry.category?.map(c => c.term) || [];
+          const precioEntry = etiquetas.find(t => /^\$\d+(\.\d{2})?$/.test(t)) || "N/A";
+
+          html += `
+            <tr>
+              <td><img src="${img}" alt="${title}" loading="lazy" width="80"></td>
+              <td><a href="${link}" target="_blank">${title}</a></td>
+              <td>${cleanText}</td>
+              <td>${precioEntry}</td>
+              <td><a href="${link}" class="btn-comprar" target="_blank">Comprar</a></td>
+            </tr>
+          `;
+        });
+
+        html += "</tbody></table>";
+        block.innerHTML = html;
+      })
+      .catch(err => {
+        block.innerHTML = "<p>Error al cargar los productos.</p>";
+        console.error("Error en feed:", err);
+      });
+  });
+});
+//]]>
+</script>
+
+
+<!-- ADSENSE AUTOMATICO EN EL 2DO PARRAFO  -->
+<script>
+//<![CDATA[
+document.addEventListener("DOMContentLoaded", function() {
+  const postBody = document.querySelector('.post-body');
+  if (!postBody) return;
+
+  const paragraphs = postBody.querySelectorAll('p');
+  if (paragraphs.length > 2) {
+    const adDiv = document.createElement('div');
+    adDiv.className = 'adsense-ad';
+
+    // Estilos inline para ambos casos
+    adDiv.style.margin = '1em 0';
+    adDiv.style.padding = '10px';
+    adDiv.style.background = '#f0f0f0';
+    adDiv.style.color = '#666';
+    adDiv.style.fontStyle = 'italic';
+    adDiv.style.textAlign = 'center';
+    adDiv.style.borderRadius = '4px';
+    adDiv.style.fontSize = '0.9rem';
+
+    const monetized = false; // Cambiar a true para mostrar anuncio real
+
+    if (monetized) {
+      // Cuando haya anuncio real, normalmente no queremos ese estilo gris ni texto en cursiva
+      // Así que lo removemos o ajustamos
+      adDiv.style.background = 'transparent';
+      adDiv.style.color = 'inherit';
+      adDiv.style.fontStyle = 'normal';
+      adDiv.style.padding = '0';
+
+      adDiv.innerHTML = `
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXX"
+             data-ad-slot="3333333333"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      `;
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    } else {
+      adDiv.textContent = 'Configurar los anuncios cuando monetices';
+    }
+
+    paragraphs[1].parentNode.insertBefore(adDiv, paragraphs[1].nextSibling);
+  }
+});
+//]]>
+</script>
+
+    
+ <!-- shortcodes por anuncios AdSense  -->
+    <script>
+//<![CDATA[
+document.addEventListener('DOMContentLoaded', function() {
+  const monetized = false; // Por defecto true o Cambiar a false para mostrar mensajes en vez de anuncios
+
+  // Mapa con códigos AdSense o mensajes según el data-code
+  const adsenseCodes = {
+    'adsense-index-1': monetized ? `
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXX"
+           data-ad-slot="INDEX_SLOT_1"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    ` : `<div class="adsense-placeholder">Configurar anuncio index 1</div>`,
+
+    'adsense-index-2': monetized ? `
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXX"
+           data-ad-slot="INDEX_SLOT_2"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    ` : `<div class="adsense-placeholder">Configurar anuncio index 2</div>`,
+
+    'adsense-post-1': monetized ? `
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXX"
+           data-ad-slot="POST_SLOT_1"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    ` : `<div class="adsense-placeholder">Configurar anuncio post 1</div>`,
+
+    'adsense-post-2': monetized ? `
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXX"
+           data-ad-slot="POST_SLOT_2"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    ` : `<div class="adsense-placeholder">Configurar anuncio post 2</div>`
+  };
+
+  // Buscar todos los divs que son shortcodes
+  const shortcodes = document.querySelectorAll('div.adsense-shortcode[data-code]');
+
+  shortcodes.forEach(div => {
+    const code = div.dataset.code;
+    if (adsenseCodes[code]) {
+      div.innerHTML = adsenseCodes[code];
+      if (monetized && window.adsbygoogle) {
+        try {
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch(e) {}
+      }
+    }
+  });
+});
+
+//]]>
+</script>
+    
+    <!-- JSON - OCULTA LA PRIMERA IMAGEN MENOS EN .ficha-producto, store, $xx.xx  -->
+<script>
+//<![CDATA[
+// Activador: true = se ejecuta / false = no hace nada
+var activarOcultarImagen = true; // Variable para activar o desactivar el script
+
+(function() {
+  if (!activarOcultarImagen) return; // Si está desactivado, no hace nada y sale
+
+  // Evita que se ejecute en páginas estáticas, detectando "/p/" en la URL
+  if (window.location.pathname.includes('/p/')) return;
+
+  // Busca el elemento que contiene las etiquetas del post
+  var etiquetasEl = document.querySelector('.post-labels, .labels, .label-head, .post-footer .labels');
+  // Obtiene el texto de las etiquetas en minúsculas, o cadena vacía si no existe
+  var etiquetas = etiquetasEl ? etiquetasEl.textContent.toLowerCase() : "";
+
+  // Comprueba si alguna etiqueta incluye la palabra "store"
+  var tieneStore = etiquetas.includes("store");
+
+  // Busca el contenido principal del post
+  var postBody = document.querySelector('.post-body');
+  if (!postBody) return; // Si no encuentra el cuerpo del post, sale
+
+  // Expresión regular para detectar precios con formato $xx o $xx.xx
+  var regexPrecio = /\$\s?\d+(\.\d{2})?/;
+  // Verifica si el contenido del post contiene un precio según la regex
+  var tienePrecio = regexPrecio.test(postBody.textContent);
+
+  // Comprueba si existe un elemento con clase "ficha-producto" dentro del post
+  var tieneFichaProducto = postBody.querySelector('.ficha-producto') !== null;
+
+  // Si alguna de las condiciones (store, precio, ficha-producto) se cumple, no oculta nada y sale
+  if (tieneStore || tienePrecio || tieneFichaProducto) return;
+
+  // Busca la primera imagen dentro del cuerpo del post
+  var primeraImg = postBody.querySelector('img');
+  if (primeraImg) {
+    // Busca el contenedor más cercano con clase ".separator" que envuelve la imagen
+    var contenedor = primeraImg.closest('.separator');
+    // Si existe dicho contenedor y solo contiene esa imagen, lo oculta completamente
+    if (contenedor && contenedor.querySelectorAll('img').length === 1) {
+      contenedor.style.display = 'none';
+    } else {
+      // Si no, busca el elemento padre inmediato de la imagen
+      var padre = primeraImg.parentElement;
+      // Si ese padre es un <p> o <div> que solo contiene la imagen, lo oculta
+      if (padre && padre.children.length === 1 && (padre.tagName === 'P' || padre.tagName === 'DIV')) {
+        padre.style.display = 'none';
+      } else {
+        // Si no cumple ninguno de los casos anteriores, oculta solo la imagen
+        primeraImg.style.display = 'none';
+      }
+    }
+  }
+})();
+
+//]]>
+</script>
+
+
+
+    
+  </body>
+</html>
