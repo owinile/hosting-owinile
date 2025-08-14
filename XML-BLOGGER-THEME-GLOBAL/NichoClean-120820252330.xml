@@ -2323,6 +2323,39 @@ li.comment {
   color: #1f2937;
   border-color: #1f2937;
 }
+/* Etiqueta de texto "Precio:" */
+.etiqueta-precio {
+  font-size: 0.95rem;
+  color: #1f2937;
+  margin-right: 0.25rem;
+}
+
+/* Símbolo $ */
+.precio-signo {
+  font-weight: bold;
+  color: #10b981;
+  font-size: 1.1rem;
+}
+
+/* Valor del precio */
+.precio-valor {
+  font-weight: bold;
+  color: #10b981;
+  font-size: 1.4rem;
+  margin-right: 0.5rem;
+}
+
+/* Texto de disponibilidad */
+.disponibilidad {
+  font-size: 0.85rem;
+  color: #6b7280; /* gris neutro por defecto */
+}
+
+/* Si está agotado, color rojo */
+.disponibilidad.agotado {
+  color: #ef4444;
+}
+
 
 /* === ENTRADAS RELACIONADAS === */
 .related-posts {
@@ -3643,6 +3676,7 @@ pre code {
 .item-producto .descripcion {
   display: none;
 }
+
 /* Tabla de productos */
 .tabla-comparativa {
   width: 100%;
@@ -3884,6 +3918,127 @@ a[imageanchor] {
 margin: 0 !important;
 }
 
+/* ==========================================================================
+   📂 CSS GLOBAL — JERARQUÍA Y NUEVOS ESTILOS
+   --------------------------------------------------------------------------
+   Esta sección contiene las reglas globales y jerarquizadas para el blog.
+   ========================================================================= */
+/* ==========================================================================
+   📦 ESTILOS NIVEL 3 — CATALOGO DE PRODUCTOS CON O SIN ETIQUETA 
+   Jerarquía:
+     1. Contenedor general
+     2. Ítem / tarjeta
+     3. Elementos internos (imagen, info, título, descripción, meta)
+     4. Componentes de precio, disponibilidad, botón
+   ========================================================================== */
+
+/* === 1. CONTENEDOR GENERAL === */
+.nivel3-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+/* === 2. TARJETA DEL PRODUCTO === */
+.nivel3-item {
+  background: #f9f9f9;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+}
+
+.nivel3-item:hover {
+  transform: scale(1.02);
+}
+
+/* === 3. ELEMENTOS INTERNOS === */
+.nivel3-item .img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.nivel3-item .info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nivel3-item h3 {
+  font-size: 1.1rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.nivel3-item h3 a {
+  color: #1f2937;
+  text-decoration: none;
+}
+
+.nivel3-item .descripcion {
+  font-size: 0.95rem;
+  color: #555;
+  display: none; /* Mantiene tu preferencia de ocultar descripción */
+}
+
+.nivel3-item .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+/* === 4. COMPONENTES === */
+
+/* ---- Precio ---- */
+.nivel3-item .precio {
+  font-weight: bold;
+  color: #10b981;
+  font-size: 1.2rem; /* Aumento de tamaño recomendado */
+}
+
+/* ---- Disponibilidad ---- */
+.nivel3-item .disponibilidad {
+  font-size: 0.85rem;        /* Más pequeña que el precio */
+  color: #6b7280;            /* Gris neutro */
+  margin-left: 0.5rem;       /* Espacio opcional entre precio y texto */
+}
+
+.nivel3-item .disponibilidad.agotado {
+  color: #ef4444;            /* Rojo cuando está agotado */
+}
+
+/* ---- Botón ---- */
+.nivel3-item .boton {
+  background: #1f2937;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.nivel3-item .boton:hover {
+  background: #111827;
+}
+
+/* ---- Contenedor precio + disponibilidad ---- */
+.nivel3-item .ficha-precio {
+  display: flex;
+  justify-content: center;   /* Centra horizontalmente ambos elementos */
+  align-items: baseline;
+  gap: 0.3rem;
+}
+
+
+
 ]]></b:skin>
     
     <!-- DATOS ENRIQUECIDOS -->
@@ -3930,6 +4085,7 @@ margin: 0 !important;
         <li><a href="/">Inicio</a></li>
         <li><a href="/err404">404</a></li>
         <li><a href="/p/toobox.html">Editor</a></li>
+<li><a href="/p/store.html">Store</a></li>
 <li><a href="/p/plugins-blogger.html">Modulos</a></li>
  <li><a href="/p/acerca-del-sitio.html">Acerca de</a></li>
 <li><a href="/p/mapa-del-sitio.html">Indice</a></li>
@@ -6123,6 +6279,8 @@ document.addEventListener("DOMContentLoaded", () => {
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", function() {
+// Evitar ejecución en páginas estáticas
+  if (window.location.pathname.includes('/p/')) return;
   const postBody = document.querySelector('.post-body');
   if (!postBody) return;
 
@@ -6294,8 +6452,118 @@ var activarOcultarImagen = true; // Variable para activar o desactivar el script
 
 //]]>
 </script>
+    
+<!-- CATALOGO DE PRODUCTO POR ETIQUETA  -->
+<script>
+//<![CDATA[
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".nivel3").forEach(block => {
+    const etiqueta = block.dataset.etiqueta || null;
+    const cantidadMaxima = parseInt(block.dataset.cantidad || 6);
 
+    const feedUrl = `/feeds/posts/default?alt=json&max-results=100`;
 
+    fetchWithCacheManager(feedUrl, 600000) // cache 10 minutos
+      .then(data => {
+        const entries = data.feed.entry || [];
+
+        // Filtra productos que tengan precio y opcionalmente etiqueta específica
+        const productosFiltrados = entries.filter(entry => {
+          const etiquetas = entry.category?.map(c => c.term) || [];
+          const tienePrecio = etiquetas.some(t => /^\$\d+(\.\d{2})?$/.test(t));
+          if (etiqueta) {
+            return etiquetas.includes(etiqueta) && tienePrecio;
+          }
+          return tienePrecio;
+        });
+
+        if (productosFiltrados.length === 0) {
+          block.innerHTML = "<p>No se encontraron productos.</p>";
+          return;
+        }
+
+        // Selección aleatoria
+        const seleccionados = productosFiltrados
+          .sort(() => 0.5 - Math.random())
+          .slice(0, cantidadMaxima);
+
+        let html = `<div class="nivel3-grid">`;
+
+        seleccionados.forEach(entry => {
+          const title = entry.title?.$t || "Producto";
+          const link = entry.link.find(l => l.rel === "alternate").href;
+          const content = entry.content?.$t || entry.summary?.$t || "";
+
+          // -----------------------------
+          // DETECCIÓN DE DISPONIBILIDAD
+          // -----------------------------
+          // Creamos un DOM temporal para procesar solo la parte visible
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = content;
+
+          // Busca el span de disponibilidad visible (no comentado)
+          let disponibilidadTexto = "En stock";
+          let disponibilidadSchema = "https://schema.org/InStock";
+
+          const spanDisponibilidad = tempDiv.querySelector("span.disponibilidad");
+          if (spanDisponibilidad) {
+            // Si tiene clase 'agotado', marcar como Agotado
+            if (spanDisponibilidad.classList.contains("agotado")) {
+              disponibilidadTexto = "Agotado";
+              disponibilidadSchema = "https://schema.org/OutOfStock";
+            } else {
+              // Si no tiene clase 'agotado', está en stock
+              disponibilidadTexto = spanDisponibilidad.textContent.trim();
+              disponibilidadSchema = "https://schema.org/InStock";
+            }
+          }
+
+          // -----------------------------
+          // Contenido limpio y precio
+          // -----------------------------
+          const cleanText = content.replace(/<[^>]+>/g, '').substring(0, 120) + "...";
+          const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
+          const img = imgMatch ? imgMatch[1] : "https://placehold.co/300x200?text=Producto";
+          const etiquetas = entry.category?.map(c => c.term) || [];
+          const precioEntry = etiquetas.find(t => /^\$\d+(\.\d{2})?$/.test(t)) || "N/A";
+
+          // -----------------------------
+          // HTML final del producto
+          // -----------------------------
+          html += `
+            <div class="nivel3-item" itemscope itemtype="https://schema.org/Product">
+              <div class="img">
+                <a href="${link}" target="_blank">
+                  <img src="${img}" alt="${title}" itemprop="image">
+                </a>
+              </div>
+              <div class="info">
+                <h3 class="titulo-producto" itemprop="name">
+                  <a href="${link}" target="_blank">${title}</a>
+                </h3>
+                <p class="descripcion" itemprop="description">${cleanText}</p>
+                <div class="meta ficha-precio" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                  <span itemprop="priceCurrency" content="USD"></span>
+                  <span class="precio" itemprop="price" content="${precioEntry.replace('$','')}">${precioEntry}</span>
+                  <link itemprop="availability" href="${disponibilidadSchema}">
+                  <span class="disponibilidad${disponibilidadTexto === "Agotado" ? " agotado" : ""}">${disponibilidadTexto}</span>
+                </div>
+                <a href="${link}" class="boton ficha-boton" target="_blank" rel="nofollow">Ver producto</a>
+              </div>
+            </div>
+          `;
+        });
+
+        html += `</div>`;
+        block.innerHTML = html;
+      })
+      .catch(err => {
+        block.innerHTML = "<p>Error al cargar productos.</p>";
+        console.error("Error en feed:", err);
+      });
+  });
+});
+//]]></script>
 
     
   </body>
