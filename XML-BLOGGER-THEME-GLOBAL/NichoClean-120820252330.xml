@@ -64,21 +64,29 @@
   
    <!-- Estilos CSS -->
     <b:skin><![CDATA[
-/*
-  ATENCIÓN: Modificar el CSS base de NichoClean puede afectar el diseño y funcionamiento.
-  Realiza copias de seguridad y prueba los cambios antes de aplicarlos en producción.
 
-=> Theme NichoClean: https://nichoclean.blogspot.com/
-=> Author NichoClean: Owinile Njalo
-=> Author NichoClean URI: https://blogspot.owinile.com/
-=> Version: v2.0.0
-=> License: Creative Commons Atribucion-NoComercial 4.0 Internacional
-=> License URI: http://creativecommons.org/licenses/by-nc/4.0/
-=> Built with Blogger technology and ChatGPT assistance
-*/
+/* ==========================================================================
+   ⚡ NichoClean CSS — Versión 2.0.0
+   ──────────────────────────────────────────────────────────────
+   Autor : Owinile Njalo
+   Web   : https://blogspot.owinile.com/
+   Licencia : CC BY-NC 4.0 → http://creativecommons.org/licenses/by-nc/4.0/
+   ──────────────────────────────────────────────────────────────
+   ⚠️ Atención: Modificar este CSS puede afectar el diseño.
+      Haz siempre copias de seguridad y prueba antes de producción.
+   ──────────────────────────────────────────────────────────────
+   Built with Blogger technology & ChatGPT assistance
+=========================================================================== */
 
-/** ESTILOS GLOBALES **/
+/* ==========================================================================
+   📂 CSS GLOBAL – THEME NICHOCLEAN v2.0 - OWINILE NJALO
+   --------------------------------------------------------------------------
+   Esta sección contiene las reglas globales y jerarquizadas para el blog.
+   ========================================================================= */
 
+/* ================================
+   1. VARIABLES Y RESET
+   ================================ */
 :root {
   --color-principal: #1a1a1a;       /* Texto principal */
   --color-secundario: #f5f5f5;      /* Fondo general */
@@ -115,6 +123,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ================================
+   2. ESTRUCTURA GENERAL
+   ================================ */
 header, footer {
   width: 100%;
   background-color: var(--color-principal);
@@ -128,6 +145,18 @@ header h1 {
   text-align: center;
 }
 
+.main-container {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: var(--sombra-suave);
+}
+
+/* ================================
+   3. NAVEGACIÓN
+   ================================ */
 .menu-toggle {
   display: none;
   position: fixed;
@@ -144,7 +173,6 @@ header h1 {
   cursor: pointer;
 }
 
-/* Aquí modificamos para que nav sin clase main-nav no se afecte */
 nav ul {
   list-style: none;
   display: flex;
@@ -165,12 +193,9 @@ nav a:hover {
   color: var(--color-acento);
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
+/* ================================
+   4. PIE DE PÁGINA
+   ================================ */
 footer {
   text-align: center;
   font-size: 0.9rem;
@@ -188,18 +213,9 @@ main a:hover,
   color: var(--color-hover-link);
 }
 
-/* CONTENEDOR PRINCIPAL GENERAL PARA INDEX, BUSQUEDA, POST, PAGINA */
-
-.main-container {
-  max-width: 960px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: var(--sombra-suave);
-}
-
-/* Estilo específico para listado del index y búsqueda */
+/* ================================
+   5. CONTENIDO – INDEX / BÚSQUEDA / POST / PÁGINA
+   ================================ */
 .index article,
 .search article {
   background-color: #fff;
@@ -215,17 +231,15 @@ main a:hover,
   box-shadow: var(--sombra-media);
 }
 
-/* Post y página: sin max-width ni margin porque lo controla main-container */
 .post,
 .page {
   padding: 0 2rem;
   font-family: var(--fuente-principal);
   line-height: 1.7;
   color: var(--color-principal);
-  background-color: transparent; /* fondo ya tiene main-container */
+  background-color: transparent;
 }
 
-/* Títulos */
 .post-title,
 .page-title {
   font-size: 2.25rem;
@@ -234,8 +248,9 @@ main a:hover,
   color: var(--color-principal);
 }
 
-/* Meta datos post */
-/* CONTENEDOR GENERAL */
+/* ================================
+   6. META DATOS DEL POST
+   ================================ */
 .post-meta {
   display: flex;
   flex-wrap: nowrap;
@@ -249,7 +264,6 @@ main a:hover,
   gap: 1rem;
 }
 
-/* CADA BLOQUE: alineados y con separación tipo pleca vertical */
 .post-meta > span {
   display: flex;
   align-items: center;
@@ -261,7 +275,6 @@ main a:hover,
   color: var(--color-texto-suave);
 }
 
-/* Pleca vertical sutil excepto en el último elemento */
 .post-meta > span:not(:last-child)::after {
   content: "";
   position: absolute;
@@ -272,7 +285,6 @@ main a:hover,
   background-color: rgba(0,0,0,0.1);
 }
 
-/* Enlaces en general (solo texto subrayado discreto) */
 .post-meta a {
   color: var(--color-principal);
   text-decoration: underline dotted;
@@ -286,7 +298,6 @@ main a:hover,
   text-decoration: underline solid;
 }
 
-/* Etiquetas solo texto normal, sin chips */
 .post-meta .tags a {
   background: none;
   padding: 0;
@@ -305,7 +316,6 @@ main a:hover,
   outline: none;
 }
 
-/* Comentarios sin botón, solo texto */
 .post-meta .comments-info a.numero-comentarios {
   background: none;
   padding: 0;
@@ -325,52 +335,9 @@ main a:hover,
   text-decoration: underline solid;
 }
 
-/* MÓVIL: fondo general + filas con contraste */
-@media (max-width: 600px) {
-  .post-meta {
-    flex-direction: column;
-    gap: 0.3rem; /* un poco más compacto */
-    padding: 0.6rem 0.75rem;
-    font-size: 0.85rem;
-    background-color: #ebebeb; /* gris más suave general */
-    border-radius: 8px; /* bordes redondeados para el fondo */
-    margin: 0;
-  }
-
-  .post-meta > span {
-    width: 100%;
-    justify-content: center;
-    background-color: #fafafa; /* gris muy sutil en cada fila */
-    border-radius: 6px;
-    padding: 0.35rem 0.5rem; /* más compacto */
-    white-space: normal;
-    position: static;
-  }
-
-  .post-meta > span::after {
-    display: none;
-  }
-
-  .post-meta .tags {
-    overflow-x: auto;
-    max-width: 100%;
-    -webkit-overflow-scrolling: touch;
-    padding: 0 0.5rem;
-  }
-
-  .post-meta .tags a {
-    margin-right: 0.4rem;
-    font-size: 0.8rem;
-    padding: 0.1rem 0.3rem;
-  }
-
-  .post-meta .comments-info a.numero-comentarios {
-    padding: 0;
-    font-size: 0.85rem;
-  }
-}
-
-/* Imagen destacada */
+/* ================================
+   7. IMAGEN DESTACADA
+   ================================ */
 .featured-image {
   margin-bottom: 1.75rem;
   border-radius: 8px;
@@ -384,7 +351,9 @@ main a:hover,
   border-radius: 6px;
 }
 
-/* Contenido */
+/* ================================
+   8. CONTENIDO DEL POST/PÁGINA
+   ================================ */
 .post-content,
 .page-content {
   font-size: 1.1rem;
@@ -416,13 +385,150 @@ main a:hover,
   margin-bottom: 0.5rem;
 }
 
-/* Responsive */
+/* ================================
+   9. GRID DE POSTS
+   ================================ */
+.grid-posts {
+  margin: 0rem auto;
+  padding: 0 0rem;
+  max-width: 960px;
+}
+
+.grid-posts h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--color-principal);
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.grid article {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--sombra-suave, 0 0 8px rgba(0,0,0,0.06));
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding-bottom: 1rem;
+}
+
+.grid article:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-media, 0 6px 12px rgba(0,0,0,0.1));
+}
+
+.grid article img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.grid article h3 {
+  font-size: 1.2rem;
+  color: var(--color-principal);
+  margin: 0.75rem 1rem 0.25rem;
+}
+
+.grid article p {
+  padding: 0 1rem 1rem;
+  font-size: 1rem;
+  color: var(--color-texto-suave);
+  line-height: 1.5;
+}
+
+.grid article a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: color 0.2s ease;
+}
+
+.grid article a:hover {
+  color: var(--color-acento);
+}
+
+/* ================================
+   10. LISTAS GLOBALES
+   ================================ */
+ul, ol {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+ul li,
+ol li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+/* ================================
+   11. MARGEN DE IMAGEN DESTACADA DEL POST
+   ================================ */
+.img-post {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px 0;
+}
+
+/* ================================
+   12. RESPONSIVE
+   ================================ */
+@media (max-width: 600px) {
+  .post-meta {
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.85rem;
+    background-color: #ebebeb;
+    border-radius: 8px;
+    margin: 0;
+  }
+
+  .post-meta > span {
+    width: 100%;
+    justify-content: center;
+    background-color: #fafafa;
+    border-radius: 6px;
+    padding: 0.35rem 0.5rem;
+    white-space: normal;
+    position: static;
+  }
+
+  .post-meta > span::after {
+    display: none;
+  }
+
+  .post-meta .tags {
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 0.5rem;
+  }
+
+  .post-meta .tags a {
+    margin-right: 0.4rem;
+    font-size: 0.8rem;
+    padding: 0.1rem 0.3rem;
+  }
+
+  .post-meta .comments-info a.numero-comentarios {
+    padding: 0;
+    font-size: 0.85rem;
+  }
+}
+
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
   }
 
-  /* SOLO afecta el menú principal, que debe tener la clase main-nav */
   nav.main-nav ul {
     display: none;
     flex-direction: column;
@@ -443,7 +549,6 @@ main a:hover,
     display: flex;
   }
 
-  /* Refuerzo para TOC: mantenerlo normal en móvil, sin menú flotante */
   nav#toc {
     position: relative !important;
     bottom: auto !important;
@@ -486,94 +591,797 @@ main a:hover,
   }
 }
 
-/** MOSTRAR LAS ENTRADAS EN EL INDEX **/
 
-.grid-posts {
-  margin: 0rem auto;
-  padding: 0 0rem;
-  max-width: 960px; /* Alineado con .main-container */
-}
+/* ==========================================================================
+   📦 GALERÍAS — AUTOMATIZADA CON EL FEED DE BLOGGER
+   Bloque 1 — Galería Cluster
+   Bloque 2 — Galería Card
+   Bloque 3 — Galería Lista
+   Bloque 4 — Galería Masonry
+   Bloque 5 — Galería Lightbox
+   Bloque 6 — Galería Horizontal
+   Bloque 7 — Galería Slider / Feed
+   Bloque 8 — Galería Tooltip
+   Bloque 9 — Slider genérico / placeholder antes del mini-slider
+   ==========================================================================
+*/
 
-.grid-posts h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: var(--color-principal);
-  font-weight: 700;
-}
-
-.grid {
+/* ==========================================================================
+   BLOQUE 1: Cluster automático de imágenes
+   Uso: grid de miniaturas responsivo
+   ==========================================================================
+*/
+.galeria-cluster {
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
 }
-
-
-.grid article {
-  background: white;
-  border-radius: 8px;
+.item-cluster {
+  background: #fff;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: var(--sombra-suave, 0 0 8px rgba(0,0,0,0.06)); /* usa variable si está */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  padding-bottom: 1rem; /* para no pegar texto abajo */
 }
-
-.grid article:hover {
+.item-cluster:hover {
   transform: translateY(-4px);
-  box-shadow: var(--sombra-media, 0 6px 12px rgba(0,0,0,0.1));
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
-
-.grid article img {
+.item-cluster img {
   width: 100%;
   height: auto;
   display: block;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  aspect-ratio: 4/3;
+  object-fit: cover;
 }
-
-.grid article h3 {
-  font-size: 1.2rem;
-  color: var(--color-principal);
-  margin: 0.75rem 1rem 0.25rem;
-}
-
-.grid article p {
-  padding: 0 1rem 1rem;
+.item-cluster h3 {
   font-size: 1rem;
-  color: var(--color-texto-suave);
-  line-height: 1.5;
+  padding: 0.75rem 1rem;
+  margin: 0;
+  color: #333;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
 }
-
-.grid article a {
+.item-cluster a {
   text-decoration: none;
-  color: inherit;
-  display: block;
-  transition: color 0.2s ease;
+  transition: color 0.3s ease;
+  display: inline-block;
+}
+.item-cluster a:hover h3 {
+  color: #0077cc;
 }
 
-.grid article a:hover {
-  color: var(--color-acento);
-}
-
-/* Listas dentro del resumen */
-ul, ol {
-  padding-left: 1.5rem;
-  margin: 1rem 0;
-}
-
-ul li,
-ol li {
-  margin-bottom: 0.5rem;
-  line-height: 1.5;
-}
-
-
-/** MARGEN IMAGEN DESTACADA DEL POST **/
-.img-post {
+/* ==========================================================================
+   BLOQUE 2: Variante Card
+   Uso: tarjetas tipo blog con imagen, título, descripción y botón
+   ==========================================================================
+*/
+.galeria-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
   max-width: 100%;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+.item-card {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  width: calc(33.333% - 1rem);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+}
+.item-card:hover {
+  transform: translateY(-4px);
+}
+.item-card img {
+  width: 100%;
   height: auto;
   display: block;
-  margin: 20px 0; /* Agrega 20px de margen arriba y abajo */
+  object-fit: cover;
 }
+.item-card-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: center;
+}
+.item-card-content h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+.item-card-content h3:hover {
+  color: #0077cc;
+}
+.item-card-content p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+  margin: 0;
+}
+.item-card-content .button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin-top: auto;
+  background: #f0f0f0;
+  color: #333;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+.item-card-content .button:hover {
+  background: #e0e0e0;
+}
+@media (max-width: 900px) {
+  .item-card {
+    width: calc(50% - 1rem);
+  }
+}
+@media (max-width: 600px) {
+  .item-card {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   BLOQUE 3: Galería Lista (tipo entradas relacionadas / listado)
+   ==========================================================================
+*/
+.galeria-lista {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+  padding: 0;
+}
+.galeria-lista li {
+  list-style: none;
+  width: 100%;
+  padding: 0.125rem 0;
+  box-sizing: border-box;
+}
+@media (min-width: 768px) {
+  .galeria-lista li {
+    width: 50%;
+    padding: 0.125rem 0.25rem;
+  }
+}
+.item-lista a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 60px;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s, color 0.2s;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
+}
+.item-lista a:hover {
+  background-color: #e5e7eb;
+  color: #0077cc;
+}
+.item-lista img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.item-lista span {
+  font-size: 0.95rem;
+  line-height: 1.2;
+  font-weight: 500;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ==========================================================================
+   BLOQUE 4: Galería Tooltip / Miniaturas cuadradas
+   ==========================================================================
+*/
+.galeria-tooltip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 0.5rem;
+  padding: 0;
+  margin: 1rem 0;
+}
+.item-tooltip {
+  list-style: none;
+  width: 100%;
+}
+.item-tooltip a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+.item-tooltip a:hover {
+  transform: scale(1.05);
+  border-color: #0077cc;
+}
+.item-tooltip img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   BLOQUE 5: Galería Horizontal Mejorada (gap visual + hover en título)
+   ==========================================================================
+*/
+.galeria-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.item-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  flex: 1 1 280px;
+  max-height: 100px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.item-horizontal:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.item-horizontal a {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+}
+
+.item-horizontal img {
+  width: 100px;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  flex-shrink: 0;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.05); /* gap visual */
+}
+
+.item-horizontal div {
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  flex: 1;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.item-horizontal h3 {
+  font-size: 1rem;
+  line-height: 1.2;
+  margin: 0;
+  color: #1f2937;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.item-horizontal:hover h3 {
+  color: #0077cc; /* color al pasar el mouse */
+}
+
+/* Responsive: ajustar imagen y contenedor en móvil */
+@media (max-width: 600px) {
+  .item-horizontal {
+    flex-direction: row;
+    max-height: 80px;
+  }
+  .item-horizontal img {
+    width: 80px;
+    height: 80px;
+  }
+  .item-horizontal div {
+    height: 80px;
+  }
+}
+
+/* ==========================================================================
+   BLOQUE 6: Galería Masonry
+   ==========================================================================
+*/
+.galeria-masonry {
+  column-count: 3;
+  column-gap: 12px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) {
+  .galeria-masonry {
+    column-count: 2;
+  }
+}
+@media (max-width: 600px) {
+  .galeria-masonry {
+    column-count: 1;
+  }
+}
+.item-masonry {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.item-masonry img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+}
+.item-masonry h3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.item-masonry:hover img {
+  transform: scale(1.05);
+}
+.item-masonry:hover h3 {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   BLOQUE 7: Galería Feed / Mini Slider
+   ==========================================================================
+*/
+.galeria-feed.slider {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  max-width: 850px;
+  margin: auto;
+  overflow: hidden;
+  height: 450px;
+}
+.galeria-feed.slider .imagen-principal {
+  flex: 2;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.galeria-feed.slider .imagen-principal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+.galeria-feed.slider .imagen-principal h3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0.4rem 0.6rem;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 0.95rem;
+  border-radius: 0 0 8px 8px;
+  line-height: 1.2;
+}
+.galeria-feed.slider .miniaturas {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.3rem;
+  height: 100%;
+}
+.galeria-feed.slider .miniatura {
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: calc((100% - 0.6rem) / 3);
+}
+.galeria-feed.slider .miniatura img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  border-radius: 6px 6px 0 0;
+  display: block;
+}
+.galeria-feed.slider .miniatura h4 {
+  margin: 0;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border-radius: 0 0 6px 6px;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  .galeria-feed.slider {
+    flex-direction: column;
+    height: auto;
+  }
+  .galeria-feed.slider .miniaturas {
+    flex-direction: row;
+    gap: 0.5rem;
+    height: auto;
+  }
+  .galeria-feed.slider .miniatura {
+    height: auto;
+    flex: 1 1 auto;
+  }
+  .galeria-feed.slider .miniatura img {
+    height: 80px;
+  }
+  .galeria-feed.slider .miniatura h4 {
+    font-size: 0.7rem;
+    height: auto;
+    padding: 0.1rem 0.3rem;
+  }
+}
+
+/* ==========================================================================
+   BLOQUE 8: Galerías Lightbox / Custom
+   ==========================================================================
+*/
+.galeria-lightbox,
+.galeria-custom-gallery {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 2px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+@media (min-width: 600px) {
+  .galeria-lightbox,
+  .galeria-custom-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .galeria-lightbox,
+  .galeria-custom-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.item-lightbox,
+.item-gallery {
+  padding: 2px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 0;
+  padding-bottom: 66.66%;
+  position: relative;
+  background: transparent;
+  overflow: hidden;
+}
+.item-lightbox img,
+.item-gallery img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+}
+
+/* ==========================================================================
+   BLOQUE 9: Slider genérico / placeholder antes del mini-slider
+   ==========================================================================
+*/
+.galeria-slider {
+  display: flex; /* layout inicial */
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.item-slider {
+  display: none; /* nodos que luego reemplaza el mini-slider */
+}
+
+/* ==========================================================================
+   📦 ESTILOS NIVEL 3 — CATALOGO DE PRODUCTOS CON O SIN ETIQUETA 
+   Jerarquía:
+     1. Contenedor general
+     2. Ítem / tarjeta
+     3. Elementos internos (imagen, info, título, descripción, meta)
+     4. Componentes de precio, disponibilidad, botón
+   ========================================================================== */
+
+/* === 1. CONTENEDOR GENERAL === */
+.nivel3-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+/* === 2. TARJETA DEL PRODUCTO === */
+.nivel3-item {
+  background: #f9f9f9;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+}
+
+.nivel3-item:hover {
+  transform: scale(1.02);
+}
+
+/* === 3. ELEMENTOS INTERNOS === */
+.nivel3-item .img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.nivel3-item .info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nivel3-item h3 {
+  font-size: 1.1rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.nivel3-item h3 a {
+  color: #1f2937;
+  text-decoration: none;
+}
+
+.nivel3-item .descripcion {
+  font-size: 0.95rem;
+  color: #555;
+  display: none; /* Mantiene tu preferencia de ocultar descripción */
+}
+
+.nivel3-item .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+/* === 4. COMPONENTES === */
+
+/* ---- Precio ---- */
+.nivel3-item .precio {
+  font-weight: bold;
+  color: #10b981;
+  font-size: 1.2rem; /* Aumento de tamaño recomendado */
+}
+
+/* ---- Disponibilidad ---- */
+.nivel3-item .disponibilidad {
+  font-size: 0.85rem;        /* Más pequeña que el precio */
+  color: #6b7280;            /* Gris neutro */
+  margin-left: 0.5rem;       /* Espacio opcional entre precio y texto */
+}
+
+.nivel3-item .disponibilidad.agotado {
+  color: #ef4444;            /* Rojo cuando está agotado */
+}
+
+/* ---- Botón ---- */
+.nivel3-item .boton {
+  background: #1f2937;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.nivel3-item .boton:hover {
+  background: #111827;
+}
+
+/* ---- Contenedor precio + disponibilidad ---- */
+.nivel3-item .ficha-precio {
+  display: flex;
+  justify-content: center;   /* Centra horizontalmente ambos elementos */
+  align-items: baseline;
+  gap: 0.3rem;
+}
+
+/* =========================================================
+   ESTILOS PARA EL CONTENIDO DEL HOME / INDEX (ESPACIADO AJUSTADO)
+   -------------------------
+   - Reduce espacio entre borde superior del contenedor y primer título
+   - Colores de títulos distinguibles
+   - Línea separadora al final de cada bloque
+   - Padding y márgenes optimizados
+   - Respeta shortcodes internos
+   - Responsive incluido
+   ========================================================= */
+
+.home-section {
+  background-color: transparent; /* sin fondo */
+  border: none;                  /* sin borde */
+  box-shadow: none;              /* sin sombra */
+  margin-bottom: 2rem;           /* separación entre secciones */
+  padding: 1.5rem 1rem;          /* espacio interno cómodo */
+  border-bottom: 1px solid var(--color-borde); /* línea separadora sutil */
+}
+
+.home-content {
+  font-family: var(--fuente-principal);
+  color: var(--color-principal);
+  line-height: 1.7;
+  font-size: 1.1rem;
+}
+
+/* Ajuste: primer título del bloque no tenga margin-top excesivo */
+.home-content > h1:first-child,
+.home-content > h2:first-child,
+.home-content > h3:first-child {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.home-content > h1 {
+  font-size: 2rem;
+  margin-top: 1rem; /* aplicado solo a h1 no primeros si hay texto antes */
+}
+
+.home-content > h2 {
+  font-size: 1.65rem;
+  margin-top: 1rem;
+}
+
+.home-content > h3 {
+  font-size: 1.35rem;
+  margin-top: 1rem;
+}
+
+.home-content > p {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: normal;
+  color: var(--color-principal);
+  line-height: 1.6;
+}
+
+/* ===================== Responsive ===================== */
+@media (max-width: 768px) {
+  .home-section {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .home-content {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .home-content > h1:first-child,
+  .home-content > h2:first-child,
+  .home-content > h3:first-child {
+    margin-top: 0;
+  }
+
+  .home-content > h1 {
+    font-size: 1.75rem;
+  }
+
+  .home-content > h2 {
+    font-size: 1.45rem;
+  }
+
+  .home-content > h3 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-section {
+    padding: 1rem 0.5rem;
+  }
+
+  .home-content {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .home-content > h1:first-child,
+  .home-content > h2:first-child,
+  .home-content > h3:first-child {
+    margin-top: 0;
+  }
+
+  .home-content > h1 {
+    font-size: 1.5rem;
+  }
+
+  .home-content > h2 {
+    font-size: 1.25rem;
+  }
+
+  .home-content > h3 {
+    font-size: 1.1rem;
+  }
+}
+
+
+/* ==========================================================================
+   ====================== FIN CSS COMENTADO ==========================
+   ========================================================================== */
+
+
 
 /** ERROR 404 **/
 
@@ -2492,545 +3300,6 @@ a {
   color: #374151;
 }
 
-/* CLUSTER AUTOMATICO IMAGEN */
-
-.galeria-cluster {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-  padding: 1rem 0;
-}
-.item-cluster {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.item-cluster:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-.item-cluster img {
-  width: 100%;
-  height: auto;
-  display: block;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-}
-.item-cluster h3 {
-  font-size: 1rem;
-  padding: 0.75rem 1rem;
-  margin: 0;
-  color: #333;
-  font-weight: 500;
-  line-height: 1.4;
-  text-align: center; /* Centra el texto */
-}
-
-.item-cluster a {
-  text-decoration: none; /* quita la raya */
-  transition: color 0.3s ease;
-  display: inline-block; /* para que el hover funcione bien */
-}
-
-.item-cluster a:hover h3 {
-  color: #0077cc; /* color al pasar el ratón, cambia por el que prefieras */
-}
-
- /* CONTENEDOR GENERAL DE LA VARIANTE CARD */
-.galeria-card {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-  max-width: 100%;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  box-sizing: border-box;
-}
-
-/* CADA TARJETA */
-.item-card {
-  background: #fff;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  width: calc(33.333% - 1rem); /* 3 por fila */
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s ease;
-}
-
-.item-card:hover {
-  transform: translateY(-4px);
-}
-
-/* IMAGEN DE LA TARJETA */
-.item-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
-
-/* CONTENIDO DE LA TARJETA */
-.item-card-content {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  text-align: center;
-}
-
-/* TÍTULO */
-.item-card-content h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #1f2937;
-  margin: 0;
-  transition: color 0.3s ease;
-}
-
-.item-card-content h3:hover {
-  color: #0077cc;
-}
-
-/* DESCRIPCIÓN */
-.item-card-content p {
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.4;
-  margin: 0;
-}
-
-/* BOTÓN "LEER MÁS" */
-.item-card-content .button {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  margin-top: auto;
-  background: #f0f0f0;
-  color: #333;
-  font-size: 0.9rem;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: background 0.3s ease;
-}
-
-.item-card-content .button:hover {
-  background: #e0e0e0;
-}
-
-/* RESPONSIVE: 2 COLUMNAS EN TABLET, 1 EN MÓVIL */
-@media (max-width: 900px) {
-  .item-card {
-    width: calc(50% - 1rem);
-  }
-}
-
-@media (max-width: 600px) {
-  .item-card {
-    width: 100%;
-  }
-}
-/* Contenedor principal */
-.galeria-lista {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 1rem 0;
-  padding: 0;
-}
-
-/* Eliminar puntos de lista */
-.galeria-lista li {
-  list-style: none;
-  width: 100%;
-  padding: 0.125rem 0; /* espacio mínimo entre filas */
-  box-sizing: border-box;
-}
-
-/* En PC: dos columnas de 50% con separación mínima */
-@media (min-width: 768px) {
-  .galeria-lista li {
-    width: 50%;
-    padding: 0.125rem 0.25rem; /* espacio mínimo horizontal */
-  }
-}
-
-/* Enlace dentro de cada ítem */
-.item-lista a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  height: 60px;
-  padding: 0.1rem 0.5rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 4px;
-  background-color: #f9f9f9;
-  text-decoration: none;
-  color: inherit;
-  transition: background 0.2s, color 0.2s;
-  box-sizing: border-box;
-  overflow: hidden;
-  width: 100%;
-}
-
-/* Hover */
-.item-lista a:hover {
-  background-color: #e5e7eb;
-  color: #0077cc;
-}
-
-/* Imagen */
-.item-lista img {
-  width: 48px;
-  height: 48px;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-/* Título truncado */
-.item-lista span {
-  font-size: 0.95rem;
-  line-height: 1.2;
-  font-weight: 500;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  flex: 1;
-  min-width: 0;
-}
-
-/* Contenedor general tipo galería */
-.galeria-tooltip {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  gap: 0.5rem;
-  padding: 0;
-  margin: 1rem 0;
-}
-
-/* Cada miniatura */
-.item-tooltip {
-  list-style: none;
-  width: 100%;
-}
-
-/* Enlace */
-.item-tooltip a {
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  overflow: hidden;
-  transition: transform 0.2s ease;
-}
-
-/* Hover efecto sutil */
-.item-tooltip a:hover {
-  transform: scale(1.05);
-  border-color: #0077cc;
-}
-
-/* Imagen */
-.item-tooltip img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1/1; /* cuadradas */
-  object-fit: cover;
-}
-
-/* === CONTENEDOR GENERAL EN FILA === */
-.galeria-horizontal {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
-  padding: 1rem 0;
-}
-
-/* === ITEM === */
-.item-horizontal {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  transition: transform 0.2s ease;
-}
-
-.item-horizontal:hover {
-  transform: translateY(-4px);
-}
-
-/* === ENLACE ENVOLVENTE === */
-.item-horizontal a {
-  display: flex;
-  flex-direction: row;
-  text-decoration: none;
-  color: inherit;
-  height: 100%;
-}
-
-/* === IMAGEN === */
-.item-horizontal img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-right: 1px solid #e5e7eb;
-  flex-shrink: 0;
-}
-
-/* === TEXTO === */
-.item-horizontal div {
-  padding: 0.75rem;
-  display: flex;
-  align-items: center;
-}
-
-.item-horizontal h3 {
-  font-size: 1rem;
-  line-height: 1.2;
-  margin: 0;
-  color: #1f2937;
-  font-weight: 600;
-}
-
-/* === RESPONSIVE: En móvil se mantienen en una columna por fila === */
-@media (max-width: 600px) {
-  .item-horizontal a {
-    flex-direction: row;
-  }
-
-  .item-horizontal img {
-    width: 80px;
-    height: 80px;
-  }
-}
-
-/* === CONTENEDOR TIPO MASONRY === */
-.galeria-masonry {
-  column-count: 3; /* cantidad de columnas */
-  column-gap: 12px; /* espacio horizontal entre columnas */
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-@media (max-width: 900px) {
-  .galeria-masonry {
-    column-count: 2;
-  }
-}
-
-@media (max-width: 600px) {
-  .galeria-masonry {
-    column-count: 1;
-  }
-}
-
-.item-masonry {
-  /* Para que los artículos no se fragmenten en columnas */
-  display: inline-block;
-  width: 100%;
-  margin-bottom: 12px; /* espacio vertical entre items */
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.item-masonry img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 6px;
-  transition: transform 0.3s ease;
-}
-
-.item-masonry h3 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
-  padding: 8px 12px;
-  background: rgba(0,0,0,0.6);
-  color: white;
-  font-size: 1rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none; /* evita que el título interfiera en el hover del enlace */
-}
-
-.item-masonry:hover img {
-  transform: scale(1.05);
-}
-
-.item-masonry:hover h3 {
-  opacity: 1;
-}
-
-.galeria-feed.slider {
-  display: flex;
-  flex-direction: row;
-  gap: 0.75rem;
-  max-width: 850px;
-  margin: auto;
-  overflow: hidden;
-  height: 450px; /* Altura fija para todo el slider */
-}
-
-.galeria-feed.slider .imagen-principal {
-  flex: 2;
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 100%; /* Ocupa toda la altura del slider */
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.galeria-feed.slider .imagen-principal img {
-  width: 100%;
-  height: 100%; /* Imagen rellena todo el contenedor */
-  object-fit: cover;
-  border-radius: 8px;
-  display: block;
-}
-
-.galeria-feed.slider .imagen-principal h3 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
-  padding: 0.4rem 0.6rem;
-  background: rgba(0,0,0,0.6);
-  color: #fff;
-  font-size: 0.95rem;
-  border-radius: 0 0 8px 8px;
-  line-height: 1.2;
-}
-
-.galeria-feed.slider .miniaturas {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 0.3rem;
-  height: 100%; /* Igual alto que el slider */
-}
-
-.galeria-feed.slider .miniatura {
-  cursor: pointer;
-  overflow: hidden;
-  border-radius: 6px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: calc((100% - 0.6rem) / 3);
-}
-
-.galeria-feed.slider .miniatura img {
-  width: 100%;
-  height: 70%;
-  object-fit: cover;
-  border-radius: 6px 6px 0 0;
-  display: block;
-}
-
-.galeria-feed.slider .miniatura h4 {
-  margin: 0;
-  padding: 0.2rem 0.5rem;
-  font-size: 0.75rem;
-  line-height: 1.2;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  border-radius: 0 0 6px 6px;
-  height: 30%;
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .galeria-feed.slider {
-    flex-direction: column;
-    height: auto; /* quitar altura fija en móvil */
-  }
-
-  .galeria-feed.slider .miniaturas {
-    flex-direction: row;
-    gap: 0.5rem;
-    height: auto;
-  }
-
-  .galeria-feed.slider .miniatura {
-    height: auto;
-    flex: 1 1 auto;
-  }
-
-  .galeria-feed.slider .miniatura img {
-    height: 80px;
-  }
-
-  .galeria-feed.slider .miniatura h4 {
-    font-size: 0.7rem;
-    height: auto;
-    padding: 0.1rem 0.3rem;
-  }
-}
-
-.galeria-lightbox,
-.galeria-custom-gallery {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 2px; /* espacio mínimo */
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-@media (min-width: 600px) {
-  .galeria-lightbox,
-  .galeria-custom-gallery {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .galeria-lightbox,
-  .galeria-custom-gallery {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-.item-lightbox,
-.item-gallery {
-  padding: 2px; /* padding uniforme */
-  box-sizing: border-box;
-  width: 100%;
-  height: 0;
-  padding-bottom: 66.66%; /* 3:2 ratio para altura */
-  position: relative;
-  background: transparent;
-  overflow: hidden;
-}
-
-.item-lightbox img,
-.item-gallery img {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  margin: 0;
-}
 
 
 .autor-box {
@@ -3918,126 +4187,6 @@ a[imageanchor] {
 margin: 0 !important;
 }
 
-/* ==========================================================================
-   📂 CSS GLOBAL — JERARQUÍA Y NUEVOS ESTILOS
-   --------------------------------------------------------------------------
-   Esta sección contiene las reglas globales y jerarquizadas para el blog.
-   ========================================================================= */
-/* ==========================================================================
-   📦 ESTILOS NIVEL 3 — CATALOGO DE PRODUCTOS CON O SIN ETIQUETA 
-   Jerarquía:
-     1. Contenedor general
-     2. Ítem / tarjeta
-     3. Elementos internos (imagen, info, título, descripción, meta)
-     4. Componentes de precio, disponibilidad, botón
-   ========================================================================== */
-
-/* === 1. CONTENEDOR GENERAL === */
-.nivel3-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  max-width: 100%;
-  margin-top: 1rem;
-}
-
-/* === 2. TARJETA DEL PRODUCTO === */
-.nivel3-item {
-  background: #f9f9f9;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s;
-}
-
-.nivel3-item:hover {
-  transform: scale(1.02);
-}
-
-/* === 3. ELEMENTOS INTERNOS === */
-.nivel3-item .img img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.nivel3-item .info {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.nivel3-item h3 {
-  font-size: 1.1rem;
-  margin: 0;
-  line-height: 1.4;
-}
-
-.nivel3-item h3 a {
-  color: #1f2937;
-  text-decoration: none;
-}
-
-.nivel3-item .descripcion {
-  font-size: 0.95rem;
-  color: #555;
-  display: none; /* Mantiene tu preferencia de ocultar descripción */
-}
-
-.nivel3-item .meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: auto;
-}
-
-/* === 4. COMPONENTES === */
-
-/* ---- Precio ---- */
-.nivel3-item .precio {
-  font-weight: bold;
-  color: #10b981;
-  font-size: 1.2rem; /* Aumento de tamaño recomendado */
-}
-
-/* ---- Disponibilidad ---- */
-.nivel3-item .disponibilidad {
-  font-size: 0.85rem;        /* Más pequeña que el precio */
-  color: #6b7280;            /* Gris neutro */
-  margin-left: 0.5rem;       /* Espacio opcional entre precio y texto */
-}
-
-.nivel3-item .disponibilidad.agotado {
-  color: #ef4444;            /* Rojo cuando está agotado */
-}
-
-/* ---- Botón ---- */
-.nivel3-item .boton {
-  background: #1f2937;
-  color: white;
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 0.85rem;
-  transition: background 0.2s;
-}
-
-.nivel3-item .boton:hover {
-  background: #111827;
-}
-
-/* ---- Contenedor precio + disponibilidad ---- */
-.nivel3-item .ficha-precio {
-  display: flex;
-  justify-content: center;   /* Centra horizontalmente ambos elementos */
-  align-items: baseline;
-  gap: 0.3rem;
-}
-
-
 
 ]]></b:skin>
     
@@ -4075,7 +4224,7 @@ margin: 0 !important;
     <header> 
       <h1><data:blog.title/></h1>
     <b:section id='Header' showaddelement='yes'>
-      <b:widget id='HTML1' locked='false' title='Menu Principal' type='HTML' version='2' visible='true'>
+      <b:widget id='HTML1' locked='true' title='Menu Principal' type='HTML' version='2' visible='true'>
         <b:widget-settings>
           <b:widget-setting name='content'><![CDATA[<button class="menu-toggle" aria-label="Abrir menú">
       ☰
@@ -4108,14 +4257,23 @@ margin: 0 !important;
       
 	<!-- Posts -->
 <b:section id='Blog'>
-  <b:widget cond='data:view.isHomepage' id='HTML5' locked='true' title='Primer Texto SEO' type='HTML' version='2' visible='true'>
+  <b:widget cond='data:view.isHomepage' id='HTML9' locked='true' title='Hero destacado' type='HTML' version='2' visible='true'>
     <b:widget-settings>
-      <b:widget-setting name='content'><![CDATA[<section class="index-contenedor">
-  <h2>NichoClean v2.0 – Frontend Modular Minimalista para Blogger</h2>
-  <p><strong>NichoClean v2.0</strong> es una plantilla moderna y ligera diseñada especialmente para blogs de nicho que buscan un rendimiento óptimo y una excelente experiencia de usuario. Construida bajo la tecnología Blogger, ofrece un diseño minimalista, tipografía legible y estructura responsive que garantiza que tus contenidos se adapten perfectamente a cualquier dispositivo, mejorando la retención y el engagement de tus visitantes.</p></section>]]></b:widget-setting>
+      <b:widget-setting name='content'><![CDATA[<!-- Hero destacado -->
+  <section class="home-section">
+    <div class="home-content">
+<h1>Cocina saludable</h1>
+      <h2>10 recetas fáciles para un verano saludable</h2>
+      <p>Descubre cómo preparar platos nutritivos, coloridos y llenos de sabor para disfrutar en cualquier momento.</p>
+      
+<div class="galeria-feed tooltip" data-etiqueta="post" data-cantidad="6"></div>
+
+    </div>
+  </section>]]></b:widget-setting>
     </b:widget-settings>
     <b:includable id='main'>
-    <div class='widget-content'>
+  
+  <div class='widget-content'>
     <data:content/>
   </div>
 </b:includable>
@@ -4130,20 +4288,18 @@ margin: 0 !important;
   </div>
 </b:includable>
   </b:widget>
-  <b:widget cond='data:view.isHomepage' id='HTML7' locked='true' title='Texto SEO 2' type='HTML' version='2' visible='true'>
+  <b:widget cond='data:view.isHomepage' id='HTML10' locked='true' title='Bloque 1' type='HTML' version='2' visible='true'>
     <b:widget-settings>
-      <b:widget-setting name='content'><![CDATA[<section class="index-contenedor">
-  <h3>Características Principales</h3>
-  <ul>
-    <li>Optimización avanzada para <strong>SEO</strong>.</li>
-    <li>Diseño <strong>responsive</strong> adaptable a todos los dispositivos.</li>
-    <li>Integración inteligente con <strong>Google AdSense</strong>.</li>
-    <li>Carga rápida y código optimizado.</li>
-    <li>Sistema de comentarios minimalista y elegante.</li>
-    <li>Soporte para <strong>contenido modular dinámico</strong>.</li>
-  </ul>
+      <b:widget-setting name='content'><![CDATA[<!-- Bloque 1 -->
+  <section class="home-section">
+    <div class="home-content">
+      <h2>Recetas saludables fáciles</h2>
+      <p>Descubre recetas rápidas, nutritivas y llenas de sabor, ideales para mantenerte en forma todo el año.</p>
+     
+<div class="galeria-feed cluster" data-etiqueta="post" data-cantidad="6"></div>
 
-</section>]]></b:widget-setting>
+    </div>
+  </section>]]></b:widget-setting>
     </b:widget-settings>
     <b:includable id='main'>
  
@@ -4152,10 +4308,19 @@ margin: 0 !important;
   </div>
 </b:includable>
   </b:widget>
-  <b:widget cond='data:view.isHomepage' id='HTML4' locked='true' title='Texto SEO Adicional' type='HTML' version='2' visible='true'>
+  <b:widget cond='data:view.isHomepage' id='HTML11' locked='true' title='Bloque 2' type='HTML' version='2' visible='true'>
     <b:widget-settings>
-      <b:widget-setting name='content'><![CDATA[<section class="index-contenedor">
-  <p>Además de su base limpia y optimizada, NichoClean se incorpora como un framework frontend modular que permite insertar fácilmente bloques funcionales y visuales directamente en las entradas o páginas, sin depender de plugins externos. Cada módulo está diseñado para integrarse de forma armónica con el estilo minimalista y ofrecer flexibilidad total en la presentación del contenido.</p></section>]]></b:widget-setting>
+      <b:widget-setting name='content'><![CDATA[<!-- Bloque 2 -->
+  <section class="home-section">
+    <div class="home-content">
+      <h2>Consejos de alimentación consciente</h2>
+      <p>Mejora tu bienestar con técnicas simples y hábitos que transformarán tu relación con la comida.</p>
+      
+
+<div class="feed-text" data-variant="grid" data-tag="seo" data-max="3"></div>
+
+    </div>
+  </section>]]></b:widget-setting>
     </b:widget-settings>
     <b:includable id='main'>
  
@@ -4164,105 +4329,42 @@ margin: 0 !important;
   </div>
 </b:includable>
   </b:widget>
-  <b:widget cond='data:view.isHomepage' id='HTML8' locked='true' title='Texto SEO 3' type='HTML' version='2' visible='true'>
+  <b:widget cond='data:view.isHomepage' id='HTML12' locked='true' title='Bloque 3' type='HTML' version='2' visible='true'>
     <b:widget-settings>
-      <b:widget-setting name='content'><![CDATA[<section class="index-contenedor">
-  <h3>Módulos Incluidos</h3>
-  <ul>
-    <li>
-      <strong>Tabla de contenido</strong>
-      <p>Genera un índice automático dentro de las entradas para facilitar la navegación y mejorar la experiencia del usuario.</p>
-    </li>
-    <li>
-      <strong>Slider de entradas</strong>
-      <p>Muestra entradas destacadas en un carrusel interactivo y responsive.</p>
-    </li>
-    <li>
-      <strong>Cluster de imágenes</strong>
-      <p>Agrupa imágenes en formato compacto para una presentación visual atractiva.</p>
-    </li>
-    <li>
-      <strong>Card de entradas</strong>
-      <p>Presenta las entradas en tarjetas con imagen, título y resumen optimizados.</p>
-    </li>
-    <li>
-      <strong>Lista de entradas</strong>
-      <p>Organiza publicaciones en formato de lista simple y ordenada.</p>
-    </li>
-    <li>
-      <strong>Tooltip con miniatura</strong>
-      <p>Muestra una imagen en miniatura al pasar el cursor sobre enlaces o títulos.</p>
-    </li>
-    <li>
-      <strong>Galería Masonry</strong>
-      <p>Disposición dinámica de imágenes estilo Pinterest para un efecto visual moderno.</p>
-    </li>
-    <li>
-      <strong>Galería Horizontal</strong>
-      <p>Muestra imágenes o productos en un desplazamiento horizontal elegante.</p>
-    </li>
-    <li>
-      <strong>Galería Grid</strong>
-      <p>Organiza imágenes en cuadrículas perfectamente alineadas.</p>
-    </li>
-    <li>
-      <strong>Caja de Autor personalizable</strong>
-      <p>Sección dedicada a la biografía y redes sociales del autor.</p>
-    </li>
-    <li>
-      <strong>Bloque de código</strong>
-      <p>Permite insertar fragmentos de código con formato y resaltado.</p>
-    </li>
-    <li>
-      <strong>Social Sharing</strong>
-      <p>Botones para compartir contenido en redes sociales populares.</p>
-    </li>
-    <li>
-      <strong>Buscar en el blog</strong>
-      <p>Barra de búsqueda interna optimizada para encontrar contenido rápidamente.</p>
-    </li>
-    <li>
-      <strong>Anuncios Adsense</strong>
-      <p>Espacios adaptados para integrar publicidad de Google Adsense de forma estratégica.</p>
-    </li>
-    <li>
-      <strong>Entradas relacionadas</strong>
-      <p>Muestra publicaciones similares para aumentar el tiempo de permanencia.</p>
-    </li>
-    <li>
-      <strong>Lecturas recomendadas</strong>
-      <p>Lista de artículos sugeridos para el lector en función de su interés.</p>
-    </li>
-    <li>
-      <strong>Enlaces útiles</strong>
-      <p>Sección de enlaces externos o internos relevantes para el usuario.</p>
-    </li>
-    <li>
-      <strong>Catálogo de productos</strong>
-      <p>Muestra productos con imagen, descripción y enlaces de compra.</p>
-    </li>
-    <li>
-      <strong>Tabla de productos destacados</strong>
-      <p>Comparativa visual y organizada de productos clave.</p>
-      <ul>
-        <li>Productos en misma etiqueta, diferente precio </li>
-        <li>Productos en misma etiqueta, mismo precio </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Multimedia</strong>
-      <p>Soporte para incluir videos y archivos multimedia en las entradas.</p>
-      <ul>
-        <li>Youtube</li>
-        <li>Vimeo</li>
-        <li>MP4</li>
-      </ul>
-    </li>
-  </ul>
-</section>]]></b:widget-setting>
+      <b:widget-setting name='content'><![CDATA[<!-- Bloque 3 -->
+  <section class="home-section">
+    <div class="home-content">
+      <h3>Postres bajos en azúcar</h3>
+      <p>Endulza tus días con opciones deliciosas y reducidas en azúcar, perfectas para cuidar tu salud.</p>
+    
+
+<div class="galeria-feed horizontal" data-etiqueta="seo" data-cantidad="4"></div>
+
+
+    </div>
+  </section>]]></b:widget-setting>
     </b:widget-settings>
     <b:includable id='main'>
-
+  
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget cond='data:view.isHomepage' id='HTML13' locked='true' title='Bloque 4' type='HTML' version='2' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<!-- Bloque 4 -->
+   <section class="home-section">
+    <div class="home-content">
+    <h2>Bebidas naturales y energizantes</h2>
+    <p>Disfruta de jugos, batidos y té con propiedades revitalizantes y 100% naturales.</p>
+    
+<div class="feed-text" data-variant="titles" data-tag="seo" data-max="6"></div>
+   </div>
+  </section>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  
   <div class='widget-content'>
     <data:content/>
   </div>
@@ -4319,10 +4421,14 @@ margin: 0 !important;
   <!-- Aquí iría la estructura para otros casos: index, página, post, etc. -->
 </b:if>
 	<!-- ESTO ES PAGINA PRINCIPAL DEL BLOG -->
-      
+        <section class='home-section'>
+  <div class='home-content'>
        <section class='grid-posts'>
          <b:if cond='data:view.isHomepage'>
-         <h2>Artículos recomendados</h2>
+         
+     <h2 style='text-align: left;'>Últimas publicaciones</h2>
+    <p>Descubre las entradas más recientes de nuestro blog y mantente al día con consejos, tutoriales y novedades seleccionadas para ti.</p>
+  
            <!-- adsense algún listado de posts -->
 <div class='adsense-shortcode' data-code='adsense-index-2'/>
          </b:if>
@@ -4334,8 +4440,10 @@ margin: 0 !important;
       </b:loop>
       </div>
      </section>
-       <b:include name='postPagination'/> <!-- Include pagination -->
+       <!-- <b:include name='postPagination'/> Include pagination -->
       
+      </div>
+</section>
       
     <!-- CASO CONTARIOS ES UNA ENTRADA -->
 <b:elseif cond='data:view.isPost'/>
@@ -5334,10 +5442,34 @@ margin: 0 !important;
   <!-- LINT.ThenChange(//depot/google3/java/com/google/blogger/b2/layouts/widgets/v2-style.css) -->
 </b:includable>
   </b:widget>
-  <b:widget cond='data:view.isHomepage' id='HTML3' locked='true' title='Texto SEO 4' type='HTML' version='2' visible='true'>
+  <b:widget cond='data:view.isHomepage' id='HTML3' locked='true' title='Artículos recomendados' type='HTML' version='2' visible='true'>
     <b:widget-settings>
-      <b:widget-setting name='content'><![CDATA[<section class="index-contenedor">
-  <p><em>📌 Con NichoClean v2.0 no solo obtienes una plantilla minimalista optimizada, sino una verdadera herramienta modular que te permite armar el diseño de tu blog como un rompecabezas, adaptando cada bloque a tu estrategia de contenido y monetización.</em></p>
+      <b:widget-setting name='content'><![CDATA[<!-- Post Relacionado -->
+  <section class="home-section">
+    <div class="home-content">
+     <h2>Artículos recomendados</h2>
+<p>Descubre contenido seleccionado especialmente para mejorar tu bienestar. Encuentra consejos prácticos, hábitos saludables y técnicas sencillas que te ayudarán a llevar una vida más equilibrada y disfrutar de una relación positiva con la comida.</p>
+      
+
+<div class="feed-text" data-variant="alternate" data-tag="seo" data-max="3"></div>
+
+
+    </div>
+  </section>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget cond='data:view.isHomepage' id='HTML14' locked='true' title='Newsletter' type='HTML' version='2' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<section class="cta-izquierda">
+  <h2>Únete a nuestra comunidad</h2>
+  <p>Recibe tips exclusivos, noticias y promociones directamente en tu correo.</p>
+  <button class="boton">Suscribirme</button>
 </section>]]></b:widget-setting>
     </b:widget-settings>
     <b:includable id='main'>
@@ -5370,7 +5502,7 @@ margin: 0 !important;
     <p>&amp;copy; <script>document.write(new Date().getFullYear());</script> <data:blog.title/>. Creado por<a href='https://blogspot.owinile.com/' rel='noopener' style='text-decoration: none;' target='_blank'>Owinile</a></p>
     
 <b:section id='Footer' showaddelement='yes'>
-  <b:widget id='HTML2' locked='false' title='Pie de pagina' type='HTML' version='2' visible='true'>
+  <b:widget id='HTML2' locked='true' title='Pie de pagina' type='HTML' version='2' visible='true'>
     <b:widget-settings>
       <b:widget-setting name='content'><![CDATA[<a href="/p/politica-de-privacidad.html">Privacidad</a> |
     <a href="/p/aviso-legal.html">Aviso legal</a> |
