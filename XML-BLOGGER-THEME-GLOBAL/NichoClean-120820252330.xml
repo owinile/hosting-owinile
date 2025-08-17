@@ -146,13 +146,16 @@ header h1 {
 }
 
 .main-container {
-  max-width: 960px;
+  flex: 1;          /* Para empujar el footer */
+  width: 100%;      /* Para que no se encoja */
+  max-width: 960px; /* Límite visual */
   margin: 2rem auto;
   padding: 2rem;
   background: white;
   border-radius: 8px;
   box-shadow: var(--sombra-suave);
 }
+
 
 /* ================================
    3. NAVEGACIÓN
@@ -194,7 +197,7 @@ nav a:hover {
 }
 
 /* ================================
-   4. PIE DE PÁGINA
+   4. PIE DE PÁGINA / FOOTER
    ================================ */
 footer {
   text-align: center;
@@ -212,6 +215,19 @@ main a:hover,
 .grid article a:hover {
   color: var(--color-hover-link);
 }
+
+footer p {
+  margin: 0 0 4px 0;       /* Reduce separación con la fila de enlaces */
+}
+
+/* Ajuste opcional en móviles: apilar enlaces si la pantalla es muy estrecha */
+@media (max-width: 600px) {
+  footer a {
+    display: inline-block;
+    margin: 4px 2px;
+  }
+}
+
 
 /* ================================
    5. CONTENIDO – INDEX / BÚSQUEDA / POST / PÁGINA
@@ -349,7 +365,15 @@ main a:hover,
   height: auto;
   display: block;
   border-radius: 6px;
+
+/* Prevención extra contra CLS */
+  aspect-ratio: 4 / 3;   
+
+  /* aspect-ratio: 16 / 9;   clásico formato horizontal */
+  /* aspect-ratio: 4 / 3;   opción más cuadrada, estilo WordPress */
+  /* aspect-ratio: 21 / 9;  panorámico tipo cine */
 }
+
 
 /* ================================
    8. CONTENIDO DEL POST/PÁGINA
@@ -589,6 +613,19 @@ ol li {
   .page-title {
     font-size: 1.5rem;
   }
+}
+
+/* ================================
+   13. STICKY FOOTER SIEMPRE AL FINAL
+   ================================ */
+html, body {
+  height: 100%; /* Asegura altura completa */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Siempre ocupa toda la pantalla */
 }
 
 
@@ -1375,6 +1412,49 @@ ol li {
     font-size: 1.1rem;
   }
 }
+
+/* =========================================================
+   BLOQUE: ADSENSE AUTOMATIZADO
+   ========================================================= */
+
+/* ================================
+   1. CONTENEDORES BÁSICOS
+   ================================ */
+.adsense-shortcode,
+.adsense-placeholder {
+  display: block;
+  margin: 1em 0;
+  text-align: center; 
+}
+
+/* ================================
+   2. PLACEHOLDER / MENSAJE SIN ANUNCIO
+   ================================ */
+.adsense-placeholder {
+  background: var(--color-borde);       /* puede ser un gris medio, ej: #e2e2e2 */
+  padding: 10px;
+  color: #1f2937;                       /* gris oscuro, suficiente contraste con gris claro */
+  font-style: italic;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* =========================================================
+   BLOQUE: SHORTCODES RESERVAR ESPACIO (CLS) PAGESPEED
+   ========================================================= */
+
+.shortcode-container {
+  min-height: 250px;          /* Altura mínima reservada */
+  display: flex;              /* Activa flexbox */
+  flex-direction: column;     /* Contenido en columna */
+  justify-content: center;    /* Centra verticalmente */
+  gap: 10px;                  /* Separación entre elementos internos */
+  padding: 10px;              /* Margen interno opcional */
+  box-sizing: border-box;     /* Incluye padding en el tamaño total */
+}
+
+
 
 
 /* ==========================================================================
@@ -4029,23 +4109,6 @@ pre code {
   }
 }
 
-/* === Adsense (adaptado a variables) === */
-.adsense-shortcode,
-.adsense-placeholder {
-  display: block;
-  margin: 1em 0;
-  text-align: center;
-}
-
-.adsense-placeholder {
-  background: var(--color-borde);
-  padding: 10px;
-  color: var(--color-texto-suave);
-  font-style: italic;
-  border-radius: 4px;
-  font-size: 0.9rem;
-}
-
 
 /* Contenedor del artículo en el index */
 .index-contenedor {
@@ -4187,7 +4250,6 @@ a[imageanchor] {
 margin: 0 !important;
 }
 
-
 ]]></b:skin>
     
     <!-- DATOS ENRIQUECIDOS -->
@@ -4232,15 +4294,16 @@ margin: 0 !important;
     <nav class="main-nav">
        <ul>
         <li><a href="/">Inicio</a></li>
-        <li><a href="/err404">404</a></li>
-        <li><a href="/p/toobox.html">Editor</a></li>
-<li><a href="/p/store.html">Store</a></li>
-<li><a href="/p/plugins-blogger.html">Modulos</a></li>
- <li><a href="/p/acerca-del-sitio.html">Acerca de</a></li>
-<li><a href="/p/mapa-del-sitio.html">Indice</a></li>
-<li><a href="/p/faq.html">Faq</a></li>
+        <li><a href="/err404">404</a></li>      
+		<li><a href="/search/label/demo">Blog</a></li>
+		<li><a href="/p/store.html">Store</a></li>
+		<li><a href="/p/toobox.html">ToolBox</a></li>
+		<li><a href="/p/plugins-blogger.html">Modulos</a></li>
+ 		<li><a href="/p/acerca-del-sitio.html">Acerca de</a></li>
+		<li><a href="/p/mapa-del-sitio.html">Indice</a></li>
+		<li><a href="/p/faq.html">Faq</a></li>
         <li><a href="/p/contacto.html">Contacto</a></li>
-<li><a href="/p/search-box.html" aria-label="Buscar">🔍</a></li>
+		<li><a href="/p/search-box.html" aria-label="Buscar">🔍</a></li>
       </ul>
     </nav>]]></b:widget-setting>
         </b:widget-settings>
@@ -4263,11 +4326,14 @@ margin: 0 !important;
   <section class="home-section">
     <div class="home-content">
 <h1>Cocina saludable</h1>
-      <h2>10 recetas fáciles para un verano saludable</h2>
+      <h2>8 recetas fáciles para un verano saludable</h2>
       <p>Descubre cómo preparar platos nutritivos, coloridos y llenos de sabor para disfrutar en cualquier momento.</p>
-      
-<div class="galeria-feed tooltip" data-etiqueta="post" data-cantidad="6"></div>
+<div class="shortcode-container">      
 
+<div class="galeria-feed tooltip" data-etiqueta="demo" data-cantidad="8"></div>
+
+
+    </div>
     </div>
   </section>]]></b:widget-setting>
     </b:widget-settings>
@@ -4296,7 +4362,7 @@ margin: 0 !important;
       <h2>Recetas saludables fáciles</h2>
       <p>Descubre recetas rápidas, nutritivas y llenas de sabor, ideales para mantenerte en forma todo el año.</p>
      
-<div class="galeria-feed cluster" data-etiqueta="post" data-cantidad="6"></div>
+<div class="galeria-feed cluster" data-etiqueta="demo" data-cantidad="6"></div>
 
     </div>
   </section>]]></b:widget-setting>
@@ -4317,7 +4383,7 @@ margin: 0 !important;
       <p>Mejora tu bienestar con técnicas simples y hábitos que transformarán tu relación con la comida.</p>
       
 
-<div class="feed-text" data-variant="grid" data-tag="seo" data-max="3"></div>
+<div class="feed-text" data-variant="grid" data-tag="demo" data-max="3"></div>
 
     </div>
   </section>]]></b:widget-setting>
@@ -4338,7 +4404,7 @@ margin: 0 !important;
       <p>Endulza tus días con opciones deliciosas y reducidas en azúcar, perfectas para cuidar tu salud.</p>
     
 
-<div class="galeria-feed horizontal" data-etiqueta="seo" data-cantidad="4"></div>
+<div class="galeria-feed horizontal" data-etiqueta="demo" data-cantidad="6"></div>
 
 
     </div>
@@ -4359,7 +4425,7 @@ margin: 0 !important;
     <h2>Bebidas naturales y energizantes</h2>
     <p>Disfruta de jugos, batidos y té con propiedades revitalizantes y 100% naturales.</p>
     
-<div class="feed-text" data-variant="titles" data-tag="seo" data-max="6"></div>
+<div class="feed-text" data-variant="titles" data-tag="demo" data-max="6"></div>
    </div>
   </section>]]></b:widget-setting>
     </b:widget-settings>
@@ -4440,7 +4506,7 @@ margin: 0 !important;
       </b:loop>
       </div>
      </section>
-       <!-- <b:include name='postPagination'/> Include pagination -->
+       <b:include name='postPagination'/> <!-- Include pagination -->
       
       </div>
 </section>
@@ -4863,7 +4929,7 @@ margin: 0 !important;
 <div class='post-card' itemscope='' itemtype='https://schema.org/BlogPosting'>
   
   <a expr:href='data:post.url' itemprop='url'>
-    <img expr:alt='data:post.title' expr:src='data:post.featuredImage' itemprop='image' loading='lazy'/>
+    <img expr:alt='&quot;Imagen del artículo: &quot; + data:post.title' expr:src='data:post.featuredImage' itemprop='image' loading='lazy'/>
     <h3 itemprop='headline'><data:post.title/></h3>
   </a>
   
@@ -4892,7 +4958,7 @@ margin: 0 !important;
 <div class='search-result' itemscope='' itemtype='https://schema.org/BlogPosting'>
   
   <a expr:href='data:post.url' itemprop='url'>
-    <img expr:alt='data:post.title' expr:src='data:post.featuredImage' itemprop='image' loading='lazy'/>
+    <img expr:alt='&quot;Imagen del artículo: &quot; + data:post.title' expr:src='data:post.featuredImage' itemprop='image' loading='lazy'/>
     <h3 itemprop='headline'><data:post.title/></h3>
   </a>
   
@@ -4976,7 +5042,7 @@ margin: 0 !important;
 
   <!-- Imagen destacada 
   <figure class='featured-image'>
-    <img class='img-post' expr:alt='data:post.title' expr:src='data:post.featuredImage' itemprop='image' loading='lazy'/>
+    <img class='img-post' expr:alt='&quot;Imagen del artículo: &quot; + data:post.title' expr:src='data:post.featuredImage' itemprop='image' loading='lazy'/>
   </figure> -->
 
   <!-- Contenido del artículo -->
@@ -5067,10 +5133,12 @@ margin: 0 !important;
     </span>
   </div>
 
+  <b:if cond='data:post.featuredImage'>
   <!-- Imagen destacada -->
   <figure class='featured-image'>
-    <img class='img-post' expr:alt='data:post.title' expr:src='data:post.featuredImage' itemprop='image' loading='lazy'/>
+    <img class='img-post' decoding='async' expr:alt='&quot;Imagen del artículo: &quot; + data:post.title' expr:height='data:post.featuredImage.height' expr:src='data:post.featuredImage' expr:width='data:post.featuredImage.width' fetchpriority='high' itemprop='image'/>
   </figure>
+</b:if>
 
   <!-- Contenido del artículo -->
   <div class='post-content' itemprop='articleBody'>
@@ -5451,7 +5519,7 @@ margin: 0 !important;
 <p>Descubre contenido seleccionado especialmente para mejorar tu bienestar. Encuentra consejos prácticos, hábitos saludables y técnicas sencillas que te ayudarán a llevar una vida más equilibrada y disfrutar de una relación positiva con la comida.</p>
       
 
-<div class="feed-text" data-variant="alternate" data-tag="seo" data-max="3"></div>
+<div class="feed-text" data-variant="alternate" data-tag="demo" data-max="3"></div>
 
 
     </div>
@@ -5581,7 +5649,7 @@ const fetchWithCacheManager = (() => {
 //]]>
 </script>
 
- 
+   
   <!-- MOVER Y HACER SCROLL SUAVE A LA CAJA DE COMENTARIOS -->
 <script>
 //<![CDATA[
@@ -5694,7 +5762,7 @@ document.addEventListener('DOMContentLoaded', () => {
               html += `
                 <article class='item-card' itemscope itemtype='https://schema.org/Article'>
                   <a href='${link}' itemprop='url'>
-                    <img alt='${titulo}' itemprop='image' src='${media}'/>
+                    <img alt='Imagen del artículo: ${titulo}' itemprop='image' src='${media}'/>
                   </a>
                   <div class="item-card-content">
                     <h3 itemprop='headline'>${titulo}</h3>
@@ -5710,7 +5778,7 @@ document.addEventListener('DOMContentLoaded', () => {
               html += `
                 <article class='item-slider' itemscope itemtype='https://schema.org/Article'>
                   <a href='${link}' itemprop='url'>
-                    <img alt='${titulo}' itemprop='image' src='${media}'/>
+                    <img alt='Imagen del artículo: ${titulo}' itemprop='image' src='${media}'/>
                     <h3 itemprop='headline'>${titulo}</h3>
                   </a>
                   ${metaDatos}
@@ -5722,7 +5790,7 @@ document.addEventListener('DOMContentLoaded', () => {
               html += `
                 <li class='item-lista' itemscope itemtype='https://schema.org/Article'>
                   <a href='${link}' itemprop='url'>
-                    <img alt='${titulo}' height='48' itemprop='image' src='${media}' width='48'/>
+                    <img alt='Imagen del artículo: ${titulo}' height='48' itemprop='image' src='${media}' width='48'/>
                     <span itemprop='headline'>${titulo}</span>
                   </a>
                   ${metaDatos}
@@ -5734,7 +5802,7 @@ document.addEventListener('DOMContentLoaded', () => {
               html += `
                 <article class='item-masonry' itemscope itemtype='https://schema.org/Article'>
                   <a href='${link}' itemprop='url'>
-                    <img alt='${titulo}' itemprop='image' src='${media}'/>
+                    <img alt='Imagen del artículo: ${titulo}' itemprop='image' src='${media}'/>
                     <h3 itemprop='headline'>${titulo}</h3>
                   </a>
                   ${metaDatos}
@@ -5746,7 +5814,7 @@ document.addEventListener('DOMContentLoaded', () => {
               html += `
                 <article class='item-lightbox' itemscope itemtype='https://schema.org/Article'>
                   <a data-lightbox='gallery' href='${media}' itemprop='url'>
-                    <img alt='${titulo}' itemprop='image' src='${media}'/>
+                    <img alt='Imagen del artículo: ${titulo}' itemprop='image' src='${media}'/>
                   </a>
                   <h3 itemprop='headline'>${titulo}</h3>
                   ${metaDatos}
@@ -5758,7 +5826,7 @@ document.addEventListener('DOMContentLoaded', () => {
               html += `
                 <article class='item-horizontal' itemscope itemtype='https://schema.org/Article'>
                   <a href='${link}' itemprop='url'>
-                    <img alt='${titulo}' itemprop='image' src='${media}'/>
+                    <img alt='Imagen del artículo: ${titulo}' itemprop='image' src='${media}'/>
                     <div>
                       <h3 itemprop='headline'>${titulo}</h3>
                     </div>
@@ -5772,7 +5840,7 @@ document.addEventListener('DOMContentLoaded', () => {
   html += `
     <article class='item-tooltip' itemscope itemtype='https://schema.org/Article' title='${titulo}'>
       <a href='${link}' itemprop='url' title='${titulo}'>
-        <img alt='${titulo}' itemprop='image' src='${media}'/>
+        <img alt='Imagen del artículo: ${titulo}' itemprop='image' src='${media}'/>
       </a>
       <meta itemprop='headline' content='${titulo}'/>
       ${metaDatos}
@@ -5784,7 +5852,7 @@ document.addEventListener('DOMContentLoaded', () => {
               html += `
                 <article class='item-cluster' itemscope itemtype='https://schema.org/Article'>
                   <a href='${link}' itemprop='url'>
-                    <img alt='${titulo}' itemprop='image' src='${media}'/>
+                    <img alt='Imagen del artículo: ${titulo}' itemprop='image' src='${media}'/>
                     <h3 itemprop='headline'>${titulo}</h3>
                   </a>
                   ${metaDatos}
@@ -5974,7 +6042,7 @@ window.addEventListener("load", () => {
 
     caja.innerHTML = `
       <section class="autor-info" itemscope itemtype="https://schema.org/Person">
-        <img src="${autor.avatar}" alt="Foto de ${nombreAutor}" class="autor-avatar" itemprop="image">
+        <img src="${autor.avatar}" loading="lazy" alt="Foto de ${nombreAutor}" class="autor-avatar" itemprop="image">
         <div class="autor-detalles">
           <h4 class="autor-nombre" itemprop="name">${nombreAutor}</h4>
           <p class="autor-bio" itemprop="description">${autor.bio}</p>
@@ -6191,7 +6259,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const reversed = i % 2 !== 0;
             html += `
               <div class="item-text alt ${reversed ? 'reverse' : ''}">
-                <div class="img"><img src="${img}" alt="${title}"></div>
+                <div class="img"><img src="${img}" loading="lazy" alt="Imagen del artículo: ${title}"></div>
                 <div class="text">
                   <h3><a href="${link}">${title}</a></h3>
                   <p>${cleanText}</p>
@@ -6265,7 +6333,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         container.innerHTML = productos.map(p => `
           <div class="item-producto">
-            <div class="img"><a href="${p.link}"><img src="${p.img}" alt="${p.title}"></a></div>
+            <div class="img"><a href="${p.link}"><img src="${p.img}" loading="lazy" alt="Imagen del artículo: ${p.title}"></a></div>
             <div class="info">
               <h3><a href="${p.link}">${p.title}</a></h3>
               <p class="descripcion">${p.excerpt}</p>
@@ -6385,7 +6453,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           html += `
             <tr>
-              <td><img src="${img}" alt="${title}" loading="lazy" width="80"></td>
+              <td><img src="${img}" alt="Imagen del artículo: ${title}" loading="lazy" width="80"></td>
               <td><a href="${link}" target="_blank">${title}</a></td>
               <td>${cleanText}</td>
               <td>${precioEntry}</td>
@@ -6424,8 +6492,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // Estilos inline para ambos casos
     adDiv.style.margin = '1em 0';
     adDiv.style.padding = '10px';
-    adDiv.style.background = '#f0f0f0';
-    adDiv.style.color = '#666';
+    adDiv.style.background = 'var(--color-borde)';
+    adDiv.style.color = '#1f2937';
     adDiv.style.fontStyle = 'italic';
     adDiv.style.textAlign = 'center';
     adDiv.style.borderRadius = '4px';
@@ -6451,7 +6519,7 @@ document.addEventListener("DOMContentLoaded", function() {
       `;
       (adsbygoogle = window.adsbygoogle || []).push({});
     } else {
-      adDiv.textContent = 'Configurar los anuncios cuando monetices';
+      adDiv.textContent = '[Espacio reservado para anuncio post 3]';
     }
 
     paragraphs[1].parentNode.insertBefore(adDiv, paragraphs[1].nextSibling);
@@ -6476,7 +6544,7 @@ document.addEventListener('DOMContentLoaded', function() {
            data-ad-slot="INDEX_SLOT_1"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
-    ` : `<div class="adsense-placeholder">Configurar anuncio index 1</div>`,
+    ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio index 1]</div>`,
 
     'adsense-index-2': monetized ? `
       <ins class="adsbygoogle"
@@ -6485,7 +6553,7 @@ document.addEventListener('DOMContentLoaded', function() {
            data-ad-slot="INDEX_SLOT_2"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
-    ` : `<div class="adsense-placeholder">Configurar anuncio index 2</div>`,
+    ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio index 2]</div>`,
 
     'adsense-post-1': monetized ? `
       <ins class="adsbygoogle"
@@ -6494,7 +6562,7 @@ document.addEventListener('DOMContentLoaded', function() {
            data-ad-slot="POST_SLOT_1"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
-    ` : `<div class="adsense-placeholder">Configurar anuncio post 1</div>`,
+    ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio post 1]</div>`,
 
     'adsense-post-2': monetized ? `
       <ins class="adsbygoogle"
@@ -6503,7 +6571,7 @@ document.addEventListener('DOMContentLoaded', function() {
            data-ad-slot="POST_SLOT_2"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
-    ` : `<div class="adsense-placeholder">Configurar anuncio post 2</div>`
+    ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio post 2]</div>`
   };
 
   // Buscar todos los divs que son shortcodes
@@ -6521,7 +6589,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
-
 //]]>
 </script>
     
@@ -6563,6 +6630,11 @@ var activarOcultarImagen = true; // Variable para activar o desactivar el script
   // Busca la primera imagen dentro del cuerpo del post
   var primeraImg = postBody.querySelector('img');
   if (primeraImg) {
+
+// Añadir lazy loading solo si no se va a ocultar
+  if (!(tieneStore || tienePrecio || tieneFichaProducto)) {
+    primeraImg.setAttribute('loading', 'lazy');
+  }
     // Busca el contenedor más cercano con clase ".separator" que envuelve la imagen
     var contenedor = primeraImg.closest('.separator');
     // Si existe dicho contenedor y solo contiene esa imagen, lo oculta completamente
@@ -6666,7 +6738,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="nivel3-item" itemscope itemtype="https://schema.org/Product">
               <div class="img">
                 <a href="${link}" target="_blank">
-                  <img src="${img}" alt="${title}" itemprop="image">
+                  <img src="${img}" alt="Imagen del artículo: ${title}" loading="lazy" itemprop="image">
                 </a>
               </div>
               <div class="info">
