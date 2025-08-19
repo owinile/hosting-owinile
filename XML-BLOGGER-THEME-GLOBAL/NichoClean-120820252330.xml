@@ -161,19 +161,56 @@ header h1 {
    3. NAVEGACIÓN
    ================================ */
 .menu-toggle {
-  display: none;
+  display: none; /* oculto en desktop */
   position: fixed;
   bottom: 1rem;
   right: 1rem;
-  z-index: 1000;
-  background-color: var(--color-acento);
-  color: white;
-  border: none;
-  border-radius: 50%;
   width: 50px;
   height: 50px;
-  font-size: 1.5rem;
+  border-radius: 50%;
+  background-color: var(--color-acento);
+  border: none;
   cursor: pointer;
+  z-index: 1000;
+ -webkit-tap-highlight-color: transparent; /* quita parpadeo */
+}
+
+/* Barras dentro del botón */
+.menu-toggle span {
+  position: absolute;
+  left: 50%;  /* centra horizontal */
+  top: 50%;   /* centra vertical */
+  width: 24px;
+  height: 2px;
+  background: white;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+/* Separar las tres barras */
+.menu-toggle span:nth-child(1) {
+  transform: translate(-50%, -10px);
+}
+
+.menu-toggle span:nth-child(2) {
+  transform: translate(-50%, 0);
+}
+
+.menu-toggle span:nth-child(3) {
+  transform: translate(-50%, 10px);
+}
+
+/* Estado abierto -> X */
+.menu-toggle.open span:nth-child(1) {
+  transform: translate(-50%, 0) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: translate(-50%, 0) rotate(-45deg);
 }
 
 nav ul {
@@ -1450,12 +1487,62 @@ body {
   flex-direction: column;     /* Contenido en columna */
   justify-content: center;    /* Centra verticalmente */
   gap: 10px;                  /* Separación entre elementos internos */
-  padding: 10px;              /* Margen interno opcional */
+  padding: 10px 0;            /* Solo espacio arriba y abajo */
   box-sizing: border-box;     /* Incluye padding en el tamaño total */
 }
 
+/* ================================
+   BLOQUES DE INFORMACIÓN DESTACADA
+   Tres variantes: info general, tip/nota y advertencia
+   ================================ */
 
+/* 1. Información general */
+.info-destacada {
+  background-color: #f0f0f0;       /* Fondo gris claro */
+  padding: 10px;                   /* Espaciado interno */
+  border-left: 4px solid #3b82f6;  /* Línea azul a la izquierda */
+  margin-bottom: 0.5rem;           /* Espacio inferior entre bloques */
+  font-size: 1.1rem;
+  /* line-height: 1.5;
+  border-radius: 4px; */
+}
+.info-destacada::before {
+  content: "📌 ";
+  display: inline-block;
+  margin-right: 4px;
+}
 
+/* 2. Tip / Nota */
+.info-tip {
+  background-color: #e0f7fa;       /* Fondo azul muy claro */
+  padding: 10px;
+  border-left: 4px solid #00bcd4;  /* Línea azul más intensa */
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  /* line-height: 1.5;
+   border-radius: 4px; */
+}
+.info-tip::before {
+  content: "💡 ";
+  display: inline-block;
+  margin-right: 4px;
+}
+
+/* 3. Advertencia / Precaución */
+.info-alerta {
+  background-color: #fff4e5;       /* Fondo amarillo suave */
+  padding: 10px;
+  border-left: 4px solid #ff9800;  /* Línea naranja */
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  /* line-height: 1.5;
+  border-radius: 4px; */
+}
+.info-alerta::before {
+  content: "\26A0 \FE0F";
+  display: inline-block;
+  margin-right: 4px;
+}
 
 /* ==========================================================================
    ====================== FIN CSS COMENTADO ==========================
@@ -4289,7 +4376,9 @@ margin: 0 !important;
       <b:widget id='HTML1' locked='true' title='Menu Principal' type='HTML' version='2' visible='true'>
         <b:widget-settings>
           <b:widget-setting name='content'><![CDATA[<button class="menu-toggle" aria-label="Abrir menú">
-      ☰
+      <span></span>
+  <span></span>
+  <span></span>
     </button>
     <nav class="main-nav">
        <ul>
@@ -4326,11 +4415,11 @@ margin: 0 !important;
   <section class="home-section">
     <div class="home-content">
 <h1>Cocina saludable</h1>
-      <h2>8 recetas fáciles para un verano saludable</h2>
+      <h2>10 recetas fáciles para un verano saludable</h2>
       <p>Descubre cómo preparar platos nutritivos, coloridos y llenos de sabor para disfrutar en cualquier momento.</p>
 <div class="shortcode-container">      
 
-<div class="galeria-feed tooltip" data-etiqueta="demo" data-cantidad="8"></div>
+<div class="galeria-feed cluster" data-etiqueta="demo" data-cantidad="6"></div>
 
 
     </div>
@@ -6768,7 +6857,53 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 //]]></script>
+    
+    <!-- CONTROL DEL SALTO EN EL MENU RESPONSIVE QUE NO TAPE EL FOOTER  -->
+    <script>//<![CDATA[
 
+document.addEventListener("DOMContentLoaded", function() {
+  const btn = document.querySelector(".menu-toggle"); // botón hamburguesa
+  const menu = document.querySelector("nav.main-nav ul"); // menú flotante
+  const footer = document.querySelector("footer");
+
+  if (btn && menu && footer) {
+    function ajustarPosiciones() {
+      const footerRect = footer.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      let overlap = 0;
+      if (footerRect.top < windowHeight) {
+        overlap = windowHeight - footerRect.top + 20; // margen extra
+      }
+
+      // Posición del botón
+      const btnBottom = overlap > 0 ? overlap : 16; // 16px ≈ 1rem
+      btn.style.bottom = btnBottom + "px";
+
+      // Menú siempre encima del botón (+60px)
+      menu.style.bottom = (btnBottom + 60) + "px";
+    }
+
+    window.addEventListener("scroll", ajustarPosiciones);
+    window.addEventListener("resize", ajustarPosiciones);
+    ajustarPosiciones(); // correr al inicio
+  }
+});
+
+//]]></script>
+ <!-- CONTROL DEL SALTO EN EL MENU RESPONSIVE QUE NO TAPE EL FOOTER  -->
+    <script>//<![CDATA[
+document.addEventListener('DOMContentLoaded', function () {
+  const menuBtn = document.querySelector('.menu-toggle');
+  if (menuBtn) {
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('open'); // cambia a X
+    });
+  }
+});
+
+
+//]]></script>
     
   </body>
 </html>
