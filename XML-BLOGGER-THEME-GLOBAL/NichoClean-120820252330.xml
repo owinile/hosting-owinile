@@ -180,17 +180,18 @@ header h1 {
   border: none;
   cursor: pointer;
   z-index: 1000;
- -webkit-tap-highlight-color: transparent; /* quita parpadeo */
+  -webkit-tap-highlight-color: transparent; /* quita parpadeo en móviles */
+  overflow: hidden; /* evita desbordes */
 }
 
 /* Barras dentro del botón */
 .menu-toggle span {
   position: absolute;
-  left: 50%;  /* centra horizontal */
-  top: 50%;   /* centra vertical */
+  left: 50%;
+  top: 50%;
   width: 24px;
   height: 2px;
-  background: white;
+  background: #fff;
   transform: translate(-50%, -50%);
   transition: all 0.3s ease;
 }
@@ -221,6 +222,7 @@ header h1 {
   transform: translate(-50%, 0) rotate(-45deg);
 }
 
+/* NAV ESTILO GENERAL */
 nav ul {
   list-style: none;
   display: flex;
@@ -231,7 +233,7 @@ nav ul {
 }
 
 nav a {
-  color: white;
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.2s ease;
@@ -239,6 +241,33 @@ nav a {
 
 nav a:hover {
   color: var(--color-acento);
+}
+
+/* === MENU ORBITAL RESPONSIVE === */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav.main-nav ul {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    background-color: var(--color-principal);
+    padding: 1rem;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 70px;
+    right: 1rem;
+    width: 200px;
+    z-index: 1100;
+  }
+
+  nav.main-nav ul.active {
+    display: flex;
+  }
 }
 
 /* ================================
@@ -525,6 +554,29 @@ footer p {
 /* ================================
    10. LISTAS GLOBALES
    ================================ */
+
+/* Contenedor de columnas demo listas */
+.lista-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* Títulos de columna */
+.lista-columns h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .lista-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* listas por defecto sin clase */
 ul, ol {
   padding-left: 1.5rem;
   margin: 1rem 0;
@@ -535,6 +587,60 @@ ol li {
   margin-bottom: 0.5rem;
   line-height: 1.5;
 }
+
+/* ================================
+  10.1. LISTAS PERSONALIZADAS CON CLASE
+   ================================ */
+ul.default,
+ul.check,
+ul.x {
+  list-style: none;      /* quitar viñetas del navegador */
+  padding-left: 1.8em;   /* espacio para viñeta personalizada */
+  margin: 1rem 0;
+}
+
+ul.default li::before,
+ul.check li::before,
+ul.x li::before {
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* Viñetas principales */
+ul.default li::before { content: "\2022"; color: #3b82f6; }
+ul.check li::before   { content: "\2705"; color: #10b981; }
+ul.x li::before       { content: "\274C"; color: #ef4444; }
+
+/* Espacio interno de los elementos */
+ul.default li,
+ul.check li,
+ul.x li {
+  position: relative;
+  padding-left: 1.8em;
+  margin-bottom: 0.5em;
+  line-height: 1.5;
+}
+
+/* Sublistas con flecha */
+ul.default ul,
+ul.check ul,
+ul.x ul {
+  list-style: none;
+  padding-left: 1em;   /* sangría más ajustada para subelementos */
+}
+
+ul.default ul li::before,
+ul.check ul li::before,
+ul.x ul li::before {
+  content: "\203A";
+  color: #10b981;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
 
 /* ================================
    11. MARGEN DE IMAGEN DESTACADA DEL POST
@@ -549,7 +655,10 @@ ol li {
 /* ================================
    12. RESPONSIVE
    ================================ */
+
 @media (max-width: 600px) {
+
+/* === META DATOS === */
   .post-meta {
     flex-direction: column;
     gap: 0.3rem;
@@ -594,29 +703,8 @@ ol li {
 }
 
 @media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
 
-  nav.main-nav ul {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    background-color: var(--color-principal);
-    padding: 1rem;
-    border-radius: 10px;
-    position: fixed;
-    bottom: 70px;
-    right: 1rem;
-    width: 200px;
-    z-index: 1100;
-  }
-
-  nav.main-nav ul.active {
-    display: flex;
-  }
+/* === EVITA CONFLICTO MENU & TOC === */
 
   nav#toc {
     position: relative !important;
@@ -631,6 +719,8 @@ ol li {
     z-index: auto;
     display: block !important;
   }
+
+/* === POST / PAGE === */
 
   .post,
   .page {
@@ -3995,6 +4085,8 @@ a {
 }
 
 
+
+
 /* Contenedor del código pre */
 /* Bloque de código */
 pre {
@@ -4653,6 +4745,7 @@ a[imageanchor] {
 margin: 0 !important;
 }
 
+
 ]]></b:skin>
     
     <!-- DATOS ENRIQUECIDOS -->
@@ -4670,56 +4763,131 @@ margin: 0 !important;
 }
 //]]>
   </script>
-    <!-- MENU ORBITAL -->
-  <script defer='defer'>
-//<![CDATA[
-    document.addEventListener('DOMContentLoaded', function () {
-      const menuBtn = document.querySelector('.menu-toggle');
-      const menuList = document.querySelector('nav ul');
-      if (menuBtn && menuList) {
-        menuBtn.addEventListener('click', () => menuList.classList.toggle('active'));
-      }
-    });
-//]]>
-  </script>
-    
+   
   </head>
 
   <body>
     <header> 
-      <h1><data:blog.title/></h1>
-    <b:section id='Header' showaddelement='yes'>
-      <b:widget id='HTML1' locked='true' title='Menu Principal' type='HTML' version='2' visible='true'>
-        <b:widget-settings>
-          <b:widget-setting name='content'><![CDATA[<button class="menu-toggle" aria-label="Abrir menú">
-      <span></span>
-  <span></span>
-  <span></span>
-    </button>
-    <nav class="main-nav">
-       <ul>
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/err404">404</a></li>      
-		<li><a href="/search/label/demo">Blog</a></li>
-		<li><a href="/p/store.html">Store</a></li>
-		<li><a href="/p/toobox.html">ToolBox</a></li>
-		<li><a href="/p/plugins-blogger.html">Modulos</a></li>
- 		<li><a href="/p/acerca-del-sitio.html">Acerca de</a></li>
-		<li><a href="/p/mapa-del-sitio.html">Indice</a></li>
-		<li><a href="/p/faq.html">Faq</a></li>
-        <li><a href="/p/contacto.html">Contacto</a></li>
-		<li><a href="/p/search-box.html" aria-label="Buscar">🔍</a></li>
-      </ul>
-    </nav>]]></b:widget-setting>
-        </b:widget-settings>
-        <b:includable id='main'>
- 
+ <b:section class='header-section' id='Header' maxwidgets='3' showaddelement='yes'>
+    <b:widget id='Header1' locked='true' title='NichoClean v2.0 (cabecera)' type='Header' version='2' visible='true'>
+      <b:widget-settings>
+        <b:widget-setting name='displayUrl'/>
+        <b:widget-setting name='displayHeight'>0</b:widget-setting>
+        <b:widget-setting name='sectionWidth'>-1</b:widget-setting>
+        <b:widget-setting name='useImage'>false</b:widget-setting>
+        <b:widget-setting name='shrinkToFit'>false</b:widget-setting>
+        <b:widget-setting name='imagePlacement'>BEHIND</b:widget-setting>
+        <b:widget-setting name='displayWidth'>0</b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main'>
+      <h1 class='blog-title'>
+        <data:title/>
+      </h1>
+    </b:includable>
+      <b:includable id='behindImageStyle'>
+    <b:if cond='data:sourceUrl'>
+      <b:include cond='data:this.image' data='{                    image: data:this.image,                    selector: &quot;.header-widget&quot;                  }' name='responsiveImageStyle'/>
+      <style type='text/css'>
+        .header-widget {
+          background-position: <data:blog.locale.languageAlignment/>;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+      </style>
+    </b:if>
+  </b:includable>
+      <b:includable id='description'>
+    <p>
+      <data:this.description/>
+    </p>
+  </b:includable>
+      <b:includable id='image'>
+    <a class='header-image-wrapper' expr:href='data:blog.homepageUrl'>
+      <b:include data='{                                                 image: data:image,                                                 altText: data:blog.title.escaped,                                                 originalWidth: data:width,                                                 originalHeight: data:height                                               }' name='responsiveImage'/>
+    </a>
+  </b:includable>
+      <b:includable id='title'>
+    <h1>
+      <b:tag cond='data:view.url != data:blog.homepageUrl' expr:href='data:blog.homepageUrl' name='a'>
+        <data:title/>
+      </b:tag>
+    </h1>
+  </b:includable>
+    </b:widget>
+    <b:widget id='HTML1' locked='true' title='Botón Menú' type='HTML' version='2' visible='true'>
+      <b:widget-settings>
+        <b:widget-setting name='content'><![CDATA[<!-- ===========================
+     Botón flotante de menú responsive
+     ⚠️ No eliminar este gadget, controla el menú orbital.
+     (El contenido visible lo añade CSS + JS)
+=========================== -->]]></b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main'>
+      <button aria-label='Abrir menú' class='menu-toggle'>
+        <span/>
+        <span/>
+        <span/>
+      </button>
+    </b:includable>
+    </b:widget>
+    <b:widget id='PageList1' locked='true' title='Menú Principal' type='PageList' version='2' visible='true'>
+      <b:widget-settings>
+        <b:widget-setting name='pageListJson'><![CDATA[{"2707630753882959278":{"href":"https://nichoclean.blogspot.com/p/faq.html","position":8,"title":"FAQ"},"link1":{"href":"/err404","position":1,"title":"404"},"link0":{"href":"/","position":0,"title":"Inicio"},"2652971899461500522":{"href":"https://nichoclean.blogspot.com/p/contacto.html","position":9,"title":"Contacto"},"link5":{"href":"/p/plugins-blogger.html","position":5,"title":"Modulos"},"link4":{"href":"/p/toolbox.html","position":4,"title":"ToolBox"},"link3":{"href":"/p/store.html","position":3,"title":"Store"},"link2":{"href":"/search/label/demo","position":2,"title":"Blog"},"link8":{"href":"/p/search-box.html","position":10,"title":"🔍"},"link7":{"href":"/p/mapa-del-sitio.html","position":7,"title":"Indice"},"link6":{"href":"/p/acerca-del-sitio.html","position":6,"title":"Acerca de"}}]]></b:widget-setting>
+        <b:widget-setting name='homeTitle'>Inicio</b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main'>
+      <nav class='main-nav'>
+        <ul>
+          <b:loop values='data:links' var='link'>
+            <li><a expr:href='data:link.href'><data:link.title/></a></li>
+          </b:loop>
+        </ul>
+      </nav>
+    </b:includable>
+      <b:includable id='content'>
   <div class='widget-content'>
-    <data:content/>
+    <b:include name='pageList'/>
   </div>
 </b:includable>
-      </b:widget>
-    </b:section> 
+      <b:includable id='overflowButton'>
+  <b:include name='verticalMoreIcon'/>
+</b:includable>
+      <b:includable id='overflowablePageList'>
+  <div class='overflowable-container'>
+    <div class='overflowable-contents'>
+      <div class='container'>
+        <b:with value='true' var='overflow'>
+        <b:with value='&quot;tabs&quot;' var='pageListClass'>
+          <b:include name='pageList'/>
+        </b:with>
+        </b:with>
+      </div>
+    </div>
+    <div class='overflow-button hidden'>
+      <b:include name='overflowButton'/>
+    </div>
+  </div>
+</b:includable>
+      <b:includable id='pageLink'>
+  <li>
+    <b:class cond='data:overflow' name='overflowable-item'/>
+    <b:class cond='data:link.isCurrentPage' name='selected'/>
+
+    <a expr:href='data:link.href'><data:link.title/></a>
+  </li>
+</b:includable>
+      <b:includable id='pageList'>
+  <ul>
+    <b:class cond='data:pageListClass' expr:name='data:pageListClass'/>
+    <b:loop values='data:links' var='link'>
+      <b:include name='pageLink'/>
+    </b:loop>
+  </ul>
+</b:includable>
+    </b:widget>
+  </b:section>
+
+    
     </header> 
     <main class='main-container'>
       
@@ -6818,15 +6986,24 @@ var activarOcultarImagen = true; // Variable para activar o desactivar el script
 //]]>
 </script>
      
-    <!-- CONTROL DEL SALTO EN EL MENU RESPONSIVE QUE NO TAPE EL FOOTER  -->
-    <script>//<![CDATA[
+<!-- MENU ORBITAL + CONTROL FOOTER -->
+<script defer='defer'>
+//<![CDATA[
+document.addEventListener("DOMContentLoaded", function () {
+  const menuBtn = document.querySelector(".menu-toggle"); // botón hamburguesa
+  const menuList = document.querySelector("nav.main-nav ul"); // menú principal
+  const footer = document.querySelector("footer");         // footer
 
-document.addEventListener("DOMContentLoaded", function() {
-  const btn = document.querySelector(".menu-toggle"); // botón hamburguesa
-  const menu = document.querySelector("nav.main-nav ul"); // menú flotante
-  const footer = document.querySelector("footer");
+  if (menuBtn && menuList) {
+    // Control de apertura/cierre del menú
+    menuBtn.addEventListener("click", () => {
+      menuList.classList.toggle("active");
+      menuBtn.classList.toggle("open"); // cambia a "X"
+    });
+  }
 
-  if (btn && menu && footer) {
+  if (menuBtn && menuList && footer) {
+    // Evita que el menú y botón tapen el footer
     function ajustarPosiciones() {
       const footerRect = footer.getBoundingClientRect();
       const windowHeight = window.innerHeight;
@@ -6836,33 +7013,22 @@ document.addEventListener("DOMContentLoaded", function() {
         overlap = windowHeight - footerRect.top + 20; // margen extra
       }
 
-      // Posición del botón
-      const btnBottom = overlap > 0 ? overlap : 16; // 16px ≈ 1rem
-      btn.style.bottom = btnBottom + "px";
+      // Botón
+      const btnBottom = overlap > 0 ? overlap : 16;
+      menuBtn.style.bottom = btnBottom + "px";
 
-      // Menú siempre encima del botón (+60px)
-      menu.style.bottom = (btnBottom + 60) + "px";
+      // Menú flotante siempre por encima del botón
+      menuList.style.bottom = (btnBottom + 60) + "px";
     }
 
     window.addEventListener("scroll", ajustarPosiciones);
     window.addEventListener("resize", ajustarPosiciones);
-    ajustarPosiciones(); // correr al inicio
+    ajustarPosiciones(); // ejecutar al inicio
   }
 });
+//]]>
+</script>
 
-//]]></script>
-    
- <!-- CONTROL DEL CAMBIO (x) EN EL MENU RESPONSIVE  -->
-    <script>//<![CDATA[
-document.addEventListener('DOMContentLoaded', function () {
-  const menuBtn = document.querySelector('.menu-toggle');
-  if (menuBtn) {
-    menuBtn.addEventListener('click', () => {
-      menuBtn.classList.toggle('open'); // cambia a X
-    });
-  }
-});
-//]]></script>
     
     
  <!-- ===========================================================
