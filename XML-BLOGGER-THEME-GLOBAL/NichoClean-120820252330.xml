@@ -294,6 +294,21 @@ footer p {
   margin: 0 0 4px 0;       /* Reduce separación con la fila de enlaces */
 }
 
+/* Ajustes para el gadget de páginas del footer */
+footer .footer-section ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+footer .footer-section li {
+  display: inline;
+}
+
 /* Ajuste opcional en móviles: apilar enlaces si la pantalla es muy estrecha */
 @media (max-width: 600px) {
   footer a {
@@ -1606,7 +1621,7 @@ body {
    ========================================================= */
 
 .shortcode-container {
-  min-height: 250px;          /* Altura mínima reservada */
+  min-height: 280px;          /* Altura mínima reservada */
   display: flex;              /* Activa flexbox */
   flex-direction: column;     /* Contenido en columna */
   justify-content: center;    /* Centra verticalmente */
@@ -6136,27 +6151,69 @@ margin: 0 !important;
         
  </main>
     
-      
-    
-  <footer>   
-    
-    <p>&amp;copy; <script>document.write(new Date().getFullYear());</script> <data:blog.title/>. Creado por<a href='https://blogspot.owinile.com/' rel='noopener' style='text-decoration: none;' target='_blank'>Owinile</a></p>
-    
-<b:section id='Footer' showaddelement='yes'>
-  <b:widget id='HTML2' locked='true' title='Pie de pagina' type='HTML' version='2' visible='true'>
-    <b:widget-settings>
-      <b:widget-setting name='content'><![CDATA[<a href="/p/politica-de-privacidad.html">Privacidad</a> |
-    <a href="/p/aviso-legal.html">Aviso legal</a> |
-    <a href="/p/cookies.html">Cookies</a>]]></b:widget-setting>
-    </b:widget-settings>
-    <b:includable id='main'>
+    <footer>
+  <b:section class='footer-section' id='footer-section' showaddelement='yes'>
+    <b:widget id='HTML2' locked='true' title='Copyright' type='HTML' version='2' visible='true'>
+      <b:widget-settings>
+        <b:widget-setting name='content'><![CDATA[<script>document.write(new Date().getFullYear());</script> <data:blog.title/>. Creado por<a href='https://blogspot.owinile.com/' rel='noopener' style='text-decoration: none;' target='_blank'>Owinile</a></data:blog.title>]]></b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main'>
+        <p>&amp;copy; <script>document.write(new Date().getFullYear());</script> <data:blog.title/>. Creado por<a href='https://blogspot.owinile.com/' rel='noopener' style='text-decoration: none;' target='_blank'>Owinile</a></p>
+      </b:includable>
+    </b:widget>
+    <b:widget id='PageList2' locked='true' title='Enlaces Footer' type='PageList' version='2' visible='true'>
+      <b:widget-settings>
+        <b:widget-setting name='pageListJson'><![CDATA[{"link1":{"href":"/p/aviso-legal.html","position":1,"title":"Aviso Legal"},"link0":{"href":"/p/politica-de-privacidad.html","position":0,"title":"Privacidad"},"link2":{"href":"/p/cookies.html","position":2,"title":"Cookies"}}]]></b:widget-setting>
+        <b:widget-setting name='homeTitle'>Inicio</b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main'>
+  
+  <b:include name='content'/>
+</b:includable>
+      <b:includable id='content'>
   <div class='widget-content'>
-    <data:content/>
+    <b:include name='pageList'/>
   </div>
 </b:includable>
-  </b:widget>
-</b:section> 
- </footer>
+      <b:includable id='overflowButton'>
+  <b:include name='verticalMoreIcon'/>
+</b:includable>
+      <b:includable id='overflowablePageList'>
+  <div class='overflowable-container'>
+    <div class='overflowable-contents'>
+      <div class='container'>
+        <b:with value='true' var='overflow'>
+        <b:with value='&quot;tabs&quot;' var='pageListClass'>
+          <b:include name='pageList'/>
+        </b:with>
+        </b:with>
+      </div>
+    </div>
+    <div class='overflow-button hidden'>
+      <b:include name='overflowButton'/>
+    </div>
+  </div>
+</b:includable>
+      <b:includable id='pageLink'>
+  <li>
+    <b:class cond='data:overflow' name='overflowable-item'/>
+    <b:class cond='data:link.isCurrentPage' name='selected'/>
+
+    <a expr:href='data:link.href'><data:link.title/></a>
+  </li>
+</b:includable>
+      <b:includable id='pageList'>
+  <ul>
+    <b:class cond='data:pageListClass' expr:name='data:pageListClass'/>
+    <b:loop values='data:links' var='link'>
+      <b:include name='pageLink'/>
+    </b:loop>
+  </ul>
+</b:includable>
+    </b:widget>
+  </b:section>
+</footer>
+
     
     <!-- =========================================================== 
   ATENCIÓN: Modificar el JavaScript base de NichoClean puede romper la plantilla.
