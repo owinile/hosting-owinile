@@ -1430,6 +1430,7 @@ body {
   border-radius: 6px;           /* bordes redondeados suaves */
   border: 2px solid #1f2937;    /* borde igual al fondo */
   text-decoration: none;
+  text-align: center;
   font-size: 0.9rem;
   display: inline-block;
   position: relative;
@@ -2221,6 +2222,530 @@ blockquote::after {
   bottom: -10px;                              /* distancia inferior */
 }
 
+/* ======================================================
+   BLOQUE: FICHA DE PRODUCTO DESTACADO
+   ====================================================== */
+
+/* === Contenedor general de la ficha === */
+.ficha-producto {
+  display: flex;
+  flex-wrap: wrap;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  gap: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);
+  font-family: system-ui, sans-serif;
+  max-width: 100%;
+}
+
+/* === Imagen del producto === */
+.ficha-producto img {
+  width: 100%;
+  max-width: 300px;
+  object-fit: contain;
+  border-radius: 0.75rem;
+}
+
+/* === Información textual del producto === */
+.ficha-info {
+  flex: 1;
+  min-width: 250px;
+}
+
+.ficha-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #1f2937;
+}
+
+.ficha-info p {
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+/* --- Lista de características --- */
+.ficha-info ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.ficha-info ul li {
+  margin-bottom: 0.5rem;
+  color: #4b5563;
+}
+
+/* === Precio del producto === */
+.ficha-precio {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--verde);
+  margin-bottom: 1rem;
+}
+
+/* ======================================================
+   BOTONES
+   ====================================================== */
+
+/* --- Botón principal: Comprar ahora --- */
+.ficha-boton {
+  display: inline-block;
+  background: var(--azul);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+.ficha-boton:hover {
+  background: #2563eb; /* azul más oscuro */
+}
+
+/* --- Botón secundario: Añadir al carrito --- */
+.ficha-boton-secundario {
+  display: inline-block;
+  background: var(--verde);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+.ficha-boton-secundario:hover {
+  background: #059669; /* verde más oscuro */
+}
+
+/* ======================================================
+   Responsive
+   ====================================================== */
+@media (max-width: 768px) {
+  .ficha-producto {
+    flex-direction: column;
+    align-items: center;
+    text-align: letf;
+  }
+  .ficha-info {
+    padding: 0;
+  }
+  .ficha-info ul {
+    text-align: left;
+    margin: 0 auto 1rem auto;
+    display: block; /* mejor que inline-block en móvil */
+  }
+}
+
+/* ======================================================
+   Etiquetas adicionales de precio y disponibilidad
+   ====================================================== */
+
+/* --- Texto "Precio:" --- */
+.etiqueta-precio {
+  font-size: 0.95rem;
+  color: #1f2937;
+  margin-right: 0.25rem;
+}
+
+/* --- Símbolo $ --- */
+.precio-signo {
+  font-weight: bold;
+  color: var(--verde);
+  font-size: 1.1rem;
+}
+
+/* --- Valor numérico del precio --- */
+.precio-valor {
+  font-weight: bold;
+  color: var(--verde);
+  font-size: 1.4rem;
+  margin-right: 0.5rem;
+}
+
+/* --- Texto de disponibilidad --- */
+.disponibilidad {
+  font-size: 0.85rem;
+  color: #6b7280; /* gris neutro por defecto */
+}
+
+/* --- Estado agotado --- */
+.disponibilidad.agotado {
+  color: var(--rojo);
+}
+
+/* ======================================================
+   BLOQUE: CORE TABLA COMPARATIVA HTML & FEED BLOGGER
+   ====================================================== */
+
+/* === Contenedor principal de la tabla === */
+.tabla-comparativa {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  overflow-x: auto; /* permite scroll horizontal */
+}
+
+/* === Encabezado de la tabla === */
+.tabla-comparativa thead {
+  background-color: #f9fafb;
+  color: #111827;
+  text-align: left;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* === Celdas de la tabla === */
+.tabla-comparativa th,
+.tabla-comparativa td {
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+/* === Hover en filas === */
+.tabla-comparativa tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+/* === Imágenes dentro de la tabla === */
+.tabla-comparativa img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+/* === Títulos de productos === */
+.tabla-comparativa .titulo-producto {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+/* === Botón de comprar invertido (estilo Tabla 2) === */
+.tabla-comparativa .boton-comprar {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #1f2937;         /* fondo gris oscuro */
+  color: #ffffff;              /* texto blanco */
+  text-decoration: none;
+  border-radius: 0.5rem;
+  border: 2px solid #1f2937;   /* borde igual al fondo */
+  font-weight: 500;
+  font-family: system-ui, sans-serif;
+  cursor: pointer;
+  transition: 
+    background 0.3s ease, 
+    color 0.3s ease, 
+    border-color 0.3s ease, 
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tabla-comparativa .boton-comprar:hover {
+  background: #ffffff;           /* fondo blanco */
+  color: #1f2937;                /* texto gris oscuro */
+  border-color: #1f2937;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Evita pseudo-elementos que puedan tapar el texto */
+.tabla-comparativa .boton-comprar::before,
+.tabla-comparativa .boton-comprar::after {
+  content: none !important;
+}
+
+/* ======================================================
+   Responsive para móviles
+   ====================================================== */
+@media (max-width: 768px) {
+
+  /* Oculta encabezado de la tabla en móviles */
+  .tabla-comparativa thead {
+    display: none;
+  }
+
+  /* Cada fila como bloque vertical */
+  .tabla-comparativa tr {
+    display: block;
+    margin-bottom: 1.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  /* Celdas como flex con separación */
+  .tabla-comparativa td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  /* Eliminar border-bottom en la última celda */
+  .tabla-comparativa td:last-child {
+    border-bottom: none;
+  }
+
+  /* Mostrar etiqueta de datos antes del contenido */
+  .tabla-comparativa td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #6b7280;
+    margin-right: 0.5rem;
+  }
+}
+
+/* ======================================================
+   BLOQUE: ESTILO DE TABLA SIMPLE HTML + SCROLL
+   ====================================================== */
+
+/* === Contenedor scroll horizontal === */
+.tabla-responsive {
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+
+/* === Tabla minimalista === */
+.tabla-minimalista {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+  font-family: sans-serif;
+}
+
+/* === Celdas de la tabla === */
+.tabla-minimalista th,
+.tabla-minimalista td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* === Encabezado de la tabla === */
+.tabla-minimalista thead {
+  background-color: #f8f8f8;
+}
+
+/* === Hover en filas de la tabla === */
+.tabla-minimalista tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+/* === Estilo específico para encabezados === */
+.tabla-minimalista th {
+  color: var(--color-principal, #222);
+  font-weight: bold;
+}
+
+/* ======================================================
+   BLOQUE: TABLA CARRITO DE COMPRAS
+   ====================================================== */
+
+/* Contenedor principal del carrito */
+.tabla-carrito {
+  width: 100%;
+  overflow-x: auto; /* scroll horizontal si es necesario */
+  font-family: system-ui, sans-serif;
+  margin: 1rem 0;
+}
+
+/* Tabla horizontal en PC */
+.tabla-carrito table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+/* Encabezado de tabla */
+.tabla-carrito th,
+.tabla-carrito td {
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Encabezados con fondo y color */
+.tabla-carrito th {
+  background-color: #1f2937;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Inputs de cantidad */
+.tabla-carrito td input[type="number"] {
+  width: 60px;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+}
+
+/* Botón eliminar */
+.tabla-carrito td button {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.tabla-carrito td button:hover {
+  background: #dc2626;
+}
+
+/* Total carrito */
+.tabla-carrito #total {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: right;
+  margin-top: 1rem;
+}
+
+/* Botón PayPal */
+.tabla-carrito .paypal-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background: #0070ba;
+  color: #fff;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.tabla-carrito .paypal-btn:hover {
+  background: #005ea6;
+}
+
+/* ======================================================
+   RESPONSIVE - VISTA MÓVIL TIPO CARD
+   ====================================================== */
+@media (max-width: 768px) {
+  
+  /* Cada fila como bloque vertical */
+  .tabla-carrito table,
+  .tabla-carrito thead,
+  .tabla-carrito tbody,
+  .tabla-carrito th,
+  .tabla-carrito td,
+  .tabla-carrito tr {
+    display: block;
+    width: 100%;
+  }
+
+  /* Ocultar encabezado en móvil */
+  .tabla-carrito thead {
+    display: none;
+  }
+
+  /* Cada fila tipo card */
+  .tabla-carrito tr {
+    margin-bottom: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.5rem;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  /* Celdas flex con separación */
+  .tabla-carrito td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .tabla-carrito td:last-child {
+    border-bottom: none;
+  }
+
+  /* Mostrar título de la celda antes del contenido */
+  .tabla-carrito td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #1f2937;
+    margin-right: 0.5rem;
+  }
+
+  /* Inputs y botones adaptados a ancho móvil */
+  .tabla-carrito td input[type="number"] {
+    width: 50px;
+  }
+  .tabla-carrito td button {
+    padding: 0.35rem 0.6rem;
+  }
+}
+
+/* ======================================================
+   BOTONES FICHA CARRITOS - AGRUPADOS
+   ====================================================== */
+.ficha-botones {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+/* Estado añadido */
+.ficha-boton-secundario.is-added {
+  background: #059669;
+  opacity: 0.9;
+}
+.ficha-boton-secundario.is-disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* ===== BOTÓN FLOTANTE CARRITO ===== */
+.cart-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1f2937; /* gris oscuro */
+  color: #fff;
+  padding: 0.7rem 1rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 9999;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cart-float:hover {
+  background: #111827; /* un poco más oscuro */
+  transform: scale(1.05);
+}
+
+.cart-float #cart-count {
+  background: #f43f5e; /* rojo */
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-weight: bold;
+}
+
+
 
 
 
@@ -2464,40 +2989,6 @@ blockquote::after {
   .cta-con-imagen-vertical .contenido {
     padding: 1.5rem;
   }
-}
-
-/* estilo de tabla */
-
-.tabla-responsive {
-  overflow-x: auto;
-  margin: 2rem 0;
-}
-
-.tabla-minimalista {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 600px;
-  font-family: sans-serif;
-}
-
-.tabla-minimalista th,
-.tabla-minimalista td {
-  padding: 0.8rem 1rem;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.tabla-minimalista thead {
-  background-color: #f8f8f8;
-}
-
-.tabla-minimalista tbody tr:hover {
-  background-color: #f0f0f0;
-}
-
-.tabla-minimalista th {
-  color: var(--color-principal, #222);
-  font-weight: bold;
 }
 
 /* === COMENTARIOS BLOGGER - Estilo Vertical con Jerarquía Clara === */
@@ -3563,214 +4054,6 @@ li.comment {
     padding: 0.5rem 0 0;
   }
 }
-/* === TABLA DE COMPARACIÓN DE PRODUCTOS === */
-.tabla-comparativa {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 2rem 0;
-  font-family: system-ui, sans-serif;
-  font-size: 0.95rem;
-  overflow-x: auto;
-}
-.tabla-comparativa thead {
-  background-color: #f9fafb;
-  color: #111827;
-  text-align: left;
-}
-.tabla-comparativa th,
-.tabla-comparativa td {
-  border: 1px solid #e5e7eb;
-  padding: 1rem;
-  vertical-align: middle;
-}
-.tabla-comparativa img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  border-radius: 0.5rem;
-}
-.tabla-comparativa .titulo-producto {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #1d4ed8;
-  text-decoration: none;
-}
-.tabla-comparativa .boton-comprar {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background-color: #10b981;
-  color: white;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-}
-.tabla-comparativa .boton-comprar:hover {
-  background-color: #059669;
-}
-
-/* === Responsive para móviles === */
-@media (max-width: 768px) {
-  .tabla-comparativa thead {
-    display: none;
-  }
-  .tabla-comparativa tr {
-    display: block;
-    margin-bottom: 1.5rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.75rem;
-    overflow: hidden;
-  }
-  .tabla-comparativa td {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.75rem 1rem;
-    border: none;
-    border-bottom: 1px solid #f3f4f6;
-  }
-  .tabla-comparativa td:last-child {
-    border-bottom: none;
-  }
-  .tabla-comparativa td::before {
-    content: attr(data-label);
-    font-weight: 600;
-    color: #6b7280;
-  }
-}
-/* === FICHA DE PRODUCTO DESTACADO === */
-.ficha-producto {
-  display: flex;
-  flex-wrap: wrap;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  gap: 2rem;
-  margin: 2rem 0;
-  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);
-  font-family: system-ui, sans-serif;
-}
-.ficha-producto img {
-  width: 100%;
-  max-width: 300px;
-  object-fit: contain;
-  border-radius: 0.75rem;
-}
-.ficha-info {
-  flex: 1;
-  min-width: 250px;
-}
-.ficha-info h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.75rem;
-  color: #1f2937;
-}
-.ficha-info p {
-  margin-bottom: 1rem;
-  color: #374151;
-}
-.ficha-info ul {
-  list-style: disc;
-  padding-left: 1.25rem;
-  margin-bottom: 1rem;
-}
-.ficha-info ul li {
-  margin-bottom: 0.5rem;
-  color: #4b5563;
-}
-.ficha-precio {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #10b981;
-  margin-bottom: 1rem;
-}
-.ficha-boton {
-  display: inline-block;
-  background-color: #2563eb;
-  color: #fff;
-  padding: 0.75rem 1.25rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
-}
-.ficha-boton:hover {
-  background-color: #1d4ed8;
-}
-
-/* === Responsive === */
-@media (max-width: 768px) {
-  .ficha-producto {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .ficha-info {
-    padding: 0;
-  }
-  .ficha-info ul {
-    text-align: left;
-    margin: 0 auto 1rem auto;
-    display: inline-block;
-  }
-}
-
-/* === boton pago === */
-
-.ficha-boton {
-  background: #1f2937;
-  color: #fff;
-  padding: 10px 20px;
-  border: 2px solid #1f2937;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.ficha-boton:hover {
-  background: #fff;
-  color: #1f2937;
-  border-color: #1f2937;
-}
-/* Etiqueta de texto "Precio:" */
-.etiqueta-precio {
-  font-size: 0.95rem;
-  color: #1f2937;
-  margin-right: 0.25rem;
-}
-
-/* Símbolo $ */
-.precio-signo {
-  font-weight: bold;
-  color: #10b981;
-  font-size: 1.1rem;
-}
-
-/* Valor del precio */
-.precio-valor {
-  font-weight: bold;
-  color: #10b981;
-  font-size: 1.4rem;
-  margin-right: 0.5rem;
-}
-
-/* Texto de disponibilidad */
-.disponibilidad {
-  font-size: 0.85rem;
-  color: #6b7280; /* gris neutro por defecto */
-}
-
-/* Si está agotado, color rojo */
-.disponibilidad.agotado {
-  color: #ef4444;
-}
-
 
 /* === ENTRADAS RELACIONADAS === */
 .related-posts {
@@ -4578,66 +4861,6 @@ pre code {
   display: none;
 }
 
-/* Tabla de productos */
-.tabla-comparativa {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: system-ui, sans-serif;
-  margin: 1em 0;
-  font-size: 15px;
-}
-.tabla-comparativa thead {
-  background: #f3f4f6;
-  border-bottom: 2px solid #e5e7eb;
-}
-.tabla-comparativa th, .tabla-comparativa td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #e5e7eb;
-  vertical-align: middle;
-}
-.tabla-comparativa img {
-  width: 80px;
-  height: auto;
-  border-radius: 4px;
-}
-/* ---- Botón Premium Invertido para Tabla Comparativa ---- */
-.btn-comprar {
-  display: inline-block;
-  padding: 6px 14px;             /* un poco más espacioso */
-  background: #1f2937;            /* fondo gris oscuro */
-  color: #ffffff;                 /* texto blanco */
-  text-decoration: none;
-  border-radius: 6px;             /* bordes redondeados suaves */
-  border: 2px solid #1f2937;      /* borde igual al fondo */
-  font-size: 14px;
-  font-family: system-ui, sans-serif;
-  cursor: pointer;
-  position: relative;
-  z-index: 1;
-  transition: 
-    background 0.3s ease, 
-    color 0.3s ease, 
-    border-color 0.3s ease, 
-    transform 0.2s ease,
-    box-shadow 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* sombra sutil por defecto */
-}
-
-.btn-comprar:hover {
-  background: #ffffff;            /* fondo blanco */
-  color: #1f2937;                 /* texto gris oscuro */
-  border-color: #1f2937;          /* borde gris oscuro */
-  transform: scale(1.05);         /* efecto de resalte */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* sombra más marcada al hover */
-}
-
-/* Evita pseudo-elementos que puedan tapar el texto */
-.btn-comprar::before,
-.btn-comprar::after {
-  content: none !important;
-}
-
 /* === Estilo base BUSCAR (escritorio) === */
 .post-header {
   max-width: 850px; /* Igual que tu contenido */
@@ -4847,7 +5070,7 @@ margin: 0 !important;
     </b:widget>
     <b:widget id='PageList1' locked='true' title='Menú Principal' type='PageList' version='2' visible='true'>
       <b:widget-settings>
-        <b:widget-setting name='pageListJson'><![CDATA[{"2707630753882959278":{"href":"https://nichoclean.blogspot.com/p/faq.html","position":8,"title":"FAQ"},"link1":{"href":"/err404","position":1,"title":"404"},"link0":{"href":"/","position":0,"title":"Inicio"},"2652971899461500522":{"href":"https://nichoclean.blogspot.com/p/contacto.html","position":9,"title":"Contacto"},"link5":{"href":"/p/plugins-blogger.html","position":5,"title":"Modulos"},"link4":{"href":"/p/toolbox.html","position":4,"title":"ToolBox"},"link3":{"href":"/p/store.html","position":3,"title":"Store"},"link2":{"href":"/search/label/demo","position":2,"title":"Blog"},"link8":{"href":"/p/search-box.html","position":10,"title":"🔍"},"link7":{"href":"/p/mapa-del-sitio.html","position":7,"title":"Indice"},"link6":{"href":"/p/acerca-del-sitio.html","position":6,"title":"Acerca de"}}]]></b:widget-setting>
+        <b:widget-setting name='pageListJson'><![CDATA[{"2707630753882959278":{"href":"https://nichoclean.blogspot.com/p/faq.html","position":8,"title":"FAQ"},"link1":{"href":"/search/label/demo","position":1,"title":"Blog"},"link0":{"href":"/","position":0,"title":"Inicio"},"2652971899461500522":{"href":"https://nichoclean.blogspot.com/p/contacto.html","position":9,"title":"Contacto"},"link5":{"href":"/p/plugins-blogger.html","position":5,"title":"Modulos"},"link4":{"href":"/p/toolbox.html","position":4,"title":"ToolBox"},"link3":{"href":"/p/store.html","position":3,"title":"Store"},"link2":{"href":"/p/carrito_22.html","position":2,"title":"shopping"},"link8":{"href":"/p/search-box.html","position":10,"title":"🔍"},"link7":{"href":"/p/mapa-del-sitio.html","position":7,"title":"Indice"},"link6":{"href":"/p/acerca-del-sitio.html","position":6,"title":"Acerca de"}}]]></b:widget-setting>
         <b:widget-setting name='homeTitle'>Inicio</b:widget-setting>
       </b:widget-settings>
       <b:includable id='main'>
@@ -4908,6 +5131,20 @@ margin: 0 !important;
       
 	<!-- Posts -->
 <b:section id='Blog'>
+  <b:widget id='HTML4' locked='false' title='' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<!-- ===== BOTÓN FLOTANTE CARRITO ===== -->
+<a href="/p/carrito_22.html" class="cart-float">
+  🛒 <span id="cart-count">0</span>
+</a>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
   <b:widget cond='data:view.isHomepage' id='HTML9' locked='true' title='Hero destacado' type='HTML' version='2' visible='true'>
     <b:widget-settings>
       <b:widget-setting name='content'><![CDATA[<!-- Hero destacado -->
@@ -7096,42 +7333,198 @@ document.addEventListener("DOMContentLoaded", function () {
      funcionalidades de la tienda en línea.
 =================================================================== -->
 
-      <!-- Script pago paypal -->
+   <!-- CORE PAGAR PAYPAL & CARRITO DE COMPRAS -->
 <script>
 //<![CDATA[
-document.addEventListener("DOMContentLoaded", function () {
-  const paypalEmail = "hola@owinile.com"; // ← cambia esto solo UNA VEZ
+document.addEventListener("DOMContentLoaded", () => {
 
-  const boton = document.getElementById("pago");
-  if (!boton) return;
+  // ===== CONFIG GLOBAL =====
+  window.TIENDA_CONFIG = {
+    paypalEmail: "hola@owinile.com",
+    returnUrl: "https://tusitio.com/p/gracias.html",
+    cancelUrl: "https://tusitio.com/p/cancelado.html",
+    mostrarContador: true // false oculta el botón completo, true lo muestra
+  };
 
-  // Detectar título más cercano (puede ser h2, h3 o cualquier encabezado)
-  const titulo = document.querySelector("h1, h2, h3, .titulo-producto")?.innerText.trim() || "Producto";
+  const KEY = 'cart';
 
-  // Detectar precio (busca primero por clase, luego por texto con $)
-  let precio = document.querySelector(".precio")?.innerText.trim();
-  if (!precio) {
-    const texto = document.body.innerText;
-    const match = texto.match(/\$?\s?(\d+(?:[.,]\d{1,2})?)/);
-    precio = match ? match[1].replace(",", ".") : "0.00";
-  } else {
-    precio = precio.replace("$", "").replace(",", ".");
+  // ==========================
+  // FUNCIONES COMUNES
+  // ==========================
+  function actualizarContadorGlobal() {
+    const cartBtn = document.querySelector(".cart-float");
+    if (!cartBtn) return;
+
+    // Mostrar u ocultar todo el botón flotante
+    cartBtn.style.display = window.TIENDA_CONFIG.mostrarContador ? "flex" : "none";
+
+    // Actualizar número interno
+    const countEl = cartBtn.querySelector("#cart-count");
+    if (countEl) {
+      const cart = JSON.parse(localStorage.getItem(KEY) || '[]');
+      const totalQty = cart.reduce((sum, i) => sum + (i.qty || 0), 0);
+      countEl.textContent = totalQty;
+    }
   }
 
-  // Crear botón visible
-  boton.innerText = "Comprar ahora";
-  boton.classList.add("ficha-boton");
+  function ajustarCarritoFlotante() {
+    const cartBtn = document.querySelector(".cart-float");
+    if (!cartBtn) return;
+    cartBtn.style.bottom = "16px";
+  }
 
-  // Acción al hacer clic: redirige a PayPal con datos dinámicos
-  boton.addEventListener("click", function () {
-    const url = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(paypalEmail)}&item_name=${encodeURIComponent(titulo)}&amount=${encodeURIComponent(precio)}&currency_code=USD`;
-    window.open(url, "_blank");
-  });
+  // ==========================
+  // PAGO DIRECTO
+  // ==========================
+  const botonPago = document.getElementById("pago");
+  if (botonPago) {
+    const titulo = document.querySelector(".titulo-producto")?.innerText.trim() || "Producto";
+    const priceEl = document.querySelector(".precio");
+    let precio = 0;
+    if (priceEl) {
+      const raw = priceEl.getAttribute("content") || priceEl.textContent;
+      precio = parseFloat(raw.replace(/[^\d.,]/g,'').replace(',','.')) || 0;
+    }
+
+    const disponibilidad = document.querySelector('.disponibilidad.agotado');
+
+    botonPago.addEventListener("click", e => {
+      e.preventDefault();
+      if(precio <= 0 || disponibilidad){
+        alert("Este producto no está disponible para compra.");
+        return;
+      }
+
+      const url = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(window.TIENDA_CONFIG.paypalEmail)}&item_name=${encodeURIComponent(titulo)}&amount=${encodeURIComponent(precio)}&currency_code=USD&return=${encodeURIComponent(window.TIENDA_CONFIG.returnUrl)}&cancel_return=${encodeURIComponent(window.TIENDA_CONFIG.cancelUrl)}`;
+      window.open(url, "_blank");
+    });
+  }
+
+  // ==========================
+  // BOTÓN AÑADIR AL CARRITO
+  // ==========================
+  const addBtn = document.getElementById('add-to-cart');
+  if (addBtn) {
+    const name  = document.querySelector('.titulo-producto')?.textContent.trim() || 'Producto';
+    const sku   = document.querySelector('[itemprop="sku"]')?.getAttribute('content') || null;
+    const image = document.querySelector('.ficha-producto img[itemprop="image"]')?.src || '';
+    const priceEl = document.querySelector('.precio');
+    let price = 0;
+    if (priceEl) {
+      const raw = priceEl.getAttribute('content') || priceEl.textContent;
+      price = parseFloat(raw.replace(/[^\d.,]/g,'').replace(',','.')) || 0;
+    }
+
+    const availabilitySoldOut = !!document.querySelector('.disponibilidad.agotado');
+
+    if(availabilitySoldOut || price <= 0){
+      addBtn.disabled = true;
+      addBtn.textContent = availabilitySoldOut ? 'Agotado' : 'No disponible';
+      addBtn.classList.add('is-disabled');
+    }
+
+    function verificarBotonFicha() {
+      const cart = JSON.parse(localStorage.getItem(KEY) || '[]');
+      const exists = cart.find(p => (p.sku && sku) ? p.sku === sku : (p.name === name && p.price === price));
+      if (exists) {
+        addBtn.textContent = 'Añadir al carrito';
+        addBtn.classList.remove('is-added');
+      }
+    }
+
+    verificarBotonFicha();
+
+    addBtn.addEventListener("click", () => {
+      if(availabilitySoldOut || price <= 0) return;
+
+      const cart = JSON.parse(localStorage.getItem(KEY) || '[]');
+      const idx = cart.findIndex(p => (p.sku && sku) ? p.sku === sku : (p.name === name && p.price === price));
+
+      if (idx >= 0) {
+        cart[idx].qty = (cart[idx].qty || 1) + 1;
+      } else {
+        cart.push({ sku, name, price, qty: 1, image, url: location.href });
+      }
+
+      localStorage.setItem(KEY, JSON.stringify(cart));
+      addBtn.textContent = 'Añadido ✓';
+      addBtn.classList.add('is-added');
+      actualizarContadorGlobal();
+      setTimeout(() => verificarBotonFicha(), 1200);
+    });
+  }
+
+  // ==========================
+  // CARRITO EN /p/carrito.html
+  // ==========================
+  const cartTable = document.getElementById('cart-table');
+  if (cartTable) {
+    function loadCart() {
+      const cart = JSON.parse(localStorage.getItem(KEY) || '[]');
+      const tbody = cartTable.querySelector("tbody");
+      tbody.innerHTML = "";
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const subtotal = item.price * item.qty;
+        total += subtotal;
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td data-label="Producto">${item.name}</td>
+          <td data-label="Precio">$${item.price.toFixed(2)}</td>
+          <td data-label="Cantidad"><input type="number" min="1" value="${item.qty}" data-index="${index}"></td>
+          <td data-label="Subtotal">$${subtotal.toFixed(2)}</td>
+          <td data-label="Eliminar"><button data-index="${index}">✖</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById("total").textContent = "Total: $" + total.toFixed(2);
+
+      let url = `https://www.paypal.com/cgi-bin/webscr?cmd=_cart&upload=1&business=${encodeURIComponent(window.TIENDA_CONFIG.paypalEmail)}&return=${encodeURIComponent(window.TIENDA_CONFIG.returnUrl)}&cancel_return=${encodeURIComponent(window.TIENDA_CONFIG.cancelUrl)}`;
+      cart.forEach((item, i) => {
+        const n = i + 1;
+        url += `&item_name_${n}=${encodeURIComponent(item.name)}&amount_${n}=${item.price}&quantity_${n}=${item.qty}`;
+      });
+      document.getElementById("paypal-link").href = url;
+
+      tbody.querySelectorAll("input").forEach(input => {
+        input.addEventListener("change", e => {
+          const i = e.target.dataset.index;
+          cart[i].qty = parseInt(e.target.value) || 1;
+          localStorage.setItem(KEY, JSON.stringify(cart));
+          loadCart();
+          actualizarContadorGlobal();
+        });
+      });
+
+      tbody.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", e => {
+          const i = e.target.dataset.index;
+          cart.splice(i, 1);
+          localStorage.setItem(KEY, JSON.stringify(cart));
+          loadCart();
+          actualizarContadorGlobal();
+        });
+      });
+    }
+
+    loadCart();
+  }
+
+  // ==========================
+  // INICIO
+  // ==========================
+  actualizarContadorGlobal();
+  ajustarCarritoFlotante();
+
 });
 //]]>
 </script>
 
-    
+
+
+   
 <!-- CATALOGO DE PRODUCTO POR ETIQUETA  -->
 <script>
 //<![CDATA[
@@ -7313,7 +7706,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //]]>
 </script>
 
-       <!-- Tabla productos -->
+       <!-- Tabla Comparativa de productos con el feed de blogger -->
    <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", () => {
@@ -7382,7 +7775,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <td><a href="${link}" target="_blank">${title}</a></td>
               <td>${cleanText}</td>
               <td>${precioEntry}</td>
-              <td><a href="${link}" class="btn-comprar" target="_blank">Comprar</a></td>
+              <td><a href="${link}" class="boton-comprar" target="_blank">Comprar</a></td>
             </tr>
           `;
         });
