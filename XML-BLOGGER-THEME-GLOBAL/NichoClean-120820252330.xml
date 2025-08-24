@@ -7279,50 +7279,83 @@ var activarOcultarImagen = true; // Variable para activar o desactivar el script
 
 //]]>
 </script>
-     
-<!-- MENU ORBITAL + CONTROL FOOTER -->
+    
+<!-- MENU ORBITAL (X) + BOTON CARRITO: CONTROL FOOTER -->
 <script defer='defer'>
 //<![CDATA[
-document.addEventListener("DOMContentLoaded", function () {
-  const menuBtn = document.querySelector(".menu-toggle"); // botón hamburguesa
-  const menuList = document.querySelector("nav.main-nav ul"); // menú principal
-  const footer = document.querySelector("footer");         // footer
+document.addEventListener("DOMContentLoaded", () => {
+  const menuBtn  = document.querySelector(".menu-toggle");      // Botón orbital
+  const menuList = document.querySelector("nav.main-nav ul");   // Menú orbital
+  const footer   = document.querySelector("footer");            // Footer
+  const cartBtn  = document.querySelector(".cart-float");       // Botón contador
 
+  const isMobile = () => window.innerWidth <= 768;
+
+  // --- Apertura / cierre menú orbital ---
   if (menuBtn && menuList) {
-    // Control de apertura/cierre del menú
     menuBtn.addEventListener("click", () => {
       menuList.classList.toggle("active");
-      menuBtn.classList.toggle("open"); // cambia a "X"
+      menuBtn.classList.toggle("open"); // Cambia a "X"
     });
   }
 
-  if (menuBtn && menuList && footer) {
-    // Evita que el menú y botón tapen el footer
-    function ajustarPosiciones() {
-      const footerRect = footer.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
+  // --- Ajuste del carrito flotante (móvil y desktop) ---
+  function ajustarCarrito() {
+    if (!cartBtn || !footer) return;
 
-      let overlap = 0;
-      if (footerRect.top < windowHeight) {
-        overlap = windowHeight - footerRect.top + 20; // margen extra
-      }
+    const vh = window.innerHeight;
+    const footerTop = footer.getBoundingClientRect().top;
 
-      // Botón
-      const btnBottom = overlap > 0 ? overlap : 16;
-      menuBtn.style.bottom = btnBottom + "px";
+    // Si el footer entra en pantalla, elevamos el botón; mínimo 20px desde abajo
+    const overlap = footerTop < vh ? (vh - footerTop + 20) : 20;
+    cartBtn.style.bottom = overlap + "px";
+  }
 
-      // Menú flotante siempre por encima del botón
-      menuList.style.bottom = (btnBottom + 60) + "px";
+  // --- Ajuste del orbital respecto al carrito y footer (solo móvil) ---
+  function ajustarOrbital() {
+    if (!menuBtn || !footer) return;
+    if (!isMobile()) {
+      menuBtn.style.bottom = "16px"; // desktop orbital deshabilitado
+      return;
     }
 
-    window.addEventListener("scroll", ajustarPosiciones);
-    window.addEventListener("resize", ajustarPosiciones);
-    ajustarPosiciones(); // ejecutar al inicio
+    const carritoVisible = window.TIENDA_CONFIG?.mostrarContador ?? false;
+
+    // Posición inicial orbital
+    let baseBottom = carritoVisible ? 80 : 16;   
+
+    // Margen al llegar al footer
+    let margenFooter = carritoVisible ? 80 : 20; 
+
+    const footerTop = footer.getBoundingClientRect().top;
+    const vh = window.innerHeight;
+
+    // Si el footer entra en pantalla, el orbital sube
+    const overlap = footerTop < vh ? (vh - footerTop + margenFooter) : 0;
+
+    // Posición final
+    const btnBottom = overlap > 0 ? overlap : baseBottom;
+    menuBtn.style.bottom = btnBottom + "px";
+
+    // Menú orbital siempre 60px por encima del orbital
+    if (menuList) {
+      menuList.style.bottom = (btnBottom + 60) + "px";
+    }
   }
+
+  // --- Inicializar posiciones ---
+  function ajustarTodo() {
+    ajustarCarrito();
+    ajustarOrbital();
+  }
+
+  // Ejecutar al inicio y en scroll/resize
+  setTimeout(ajustarTodo, 50); // Primer render
+  window.addEventListener("scroll", ajustarTodo, { passive: true });
+  window.addEventListener("resize", ajustarTodo);
 });
 //]]>
 </script>
-
     
     
  <!-- ===========================================================
