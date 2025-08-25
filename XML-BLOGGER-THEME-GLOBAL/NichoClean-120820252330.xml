@@ -1674,6 +1674,15 @@ blockquote::after {
 .checkbox-politica {
   font-size: 0.9rem;
 }
+@media (max-width: 480px) {
+  .input-boton {
+    flex-direction: column;
+  }
+
+  .input-boton button {
+    width: 100%;
+  }
+}
 
 
 /* ======================================================
@@ -5219,20 +5228,6 @@ body {
       
 	<!-- Posts -->
 <b:section id='Blog'>
-  <b:widget id='HTML4' locked='false' title='' type='HTML' visible='true'>
-    <b:widget-settings>
-      <b:widget-setting name='content'><![CDATA[<!-- ===== BOTÓN FLOTANTE CARRITO ===== -->
-<a href="/p/carrito_22.html" class="cart-float">
-  🛒 <span id="cart-count">0</span>
-</a>]]></b:widget-setting>
-    </b:widget-settings>
-    <b:includable id='main'>
-  <b:include name='widget-title'/>
-  <div class='widget-content'>
-    <data:content/>
-  </div>
-</b:includable>
-  </b:widget>
   <b:widget cond='data:view.isHomepage' id='HTML9' locked='true' title='Hero destacado' type='HTML' version='2' visible='true'>
     <b:widget-settings>
       <b:widget-setting name='content'><![CDATA[<!-- Hero destacado -->
@@ -6478,6 +6473,19 @@ body {
     
     <footer>
   <b:section class='footer-section' id='footer-section' showaddelement='yes'>
+    <b:widget id='HTML4' locked='true' title='Botón Contador Carrito' type='HTML' version='2' visible='true'>
+      <b:widget-settings>
+        <b:widget-setting name='content'><![CDATA[<!-- ===== BOTÓN FLOTANTE CARRITO ===== -->
+<a href="/p/carrito_22.html" class="cart-float">
+  🛒 <span id="cart-count">0</span>
+</a>]]></b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main'>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+    </b:widget>
     <b:widget id='HTML2' locked='true' title='Copyright' type='HTML' version='2' visible='true'>
       <b:widget-settings>
         <b:widget-setting name='content'><![CDATA[<script>document.write(new Date().getFullYear());</script> <data:blog.title/>. Creado por<a href='https://blogspot.owinile.com/' rel='noopener' style='text-decoration: none;' target='_blank'>Owinile</a></data:blog.title>]]></b:widget-setting>
