@@ -85,7 +85,7 @@
    ========================================================================= */
 
 /* ================================
-   1. VARIABLES Y RESET
+   1. BLOQUE: BLOG - VARIABLES Y RESET
    ================================ */
 :root {
   --color-principal: #1a1a1a;       /* Texto principal */
@@ -138,7 +138,7 @@ img {
 }
 
 /* ================================
-   2. ESTRUCTURA GENERAL
+   2. BLOQUE: BLOG - ESTRUCTURA GENERAL
    ================================ */
 header, footer {
   width: 100%;
@@ -166,7 +166,7 @@ header h1 {
 
 
 /* ================================
-   3. NAVEGACIÓN MENU FLOTANTE
+   3. BLOQUE: BLOG - NAVEGACIÓN MENU FLOTANTE
    ================================ */
 .menu-toggle {
   display: none; /* oculto en desktop */
@@ -271,7 +271,7 @@ nav a:hover {
 }
 
 /* ================================
-   4. PIE DE PÁGINA / FOOTER
+   4. BLOQUE: BLOG - PIE DE PÁGINA / FOOTER
    ================================ */
 footer {
   text-align: center;
@@ -319,7 +319,7 @@ footer .footer-section li {
 
 
 /* ================================
-   5. CONTENIDO – INDEX / BÚSQUEDA / POST / PÁGINA
+   5. BLOQUE: BLOG - CONTENIDO – INDEX / BÚSQUEDA / POST / PÁGINA
    ================================ */
 .index article,
 .search article {
@@ -354,7 +354,7 @@ footer .footer-section li {
 }
 
 /* ================================
-   6. META DATOS DEL POST
+   6. BLOQUE: BLOG - META DATOS DEL POST
    ================================ */
 .post-meta {
   display: flex;
@@ -441,7 +441,7 @@ footer .footer-section li {
 }
 
 /* ================================
-   7. IMAGEN DESTACADA
+   7. BLOQUE: BLOG - IMAGEN DESTACADA
    ================================ */
 .featured-image {
   margin-bottom: 1.75rem;
@@ -465,7 +465,7 @@ footer .footer-section li {
 
 
 /* ================================
-   8. CONTENIDO DEL POST/PÁGINA
+   8. BLOQUE: BLOG - CONTENIDO DEL POST/PÁGINA
    ================================ */
 .post-content,
 .page-content {
@@ -499,7 +499,7 @@ footer .footer-section li {
 }
 
 /* ================================
-   9. GRID DE POSTS
+   9. BLOQUE: BLOG - GRID DE POSTS INDEX
    ================================ */
 .grid-posts {
   margin: 0rem auto;
@@ -567,7 +567,7 @@ footer .footer-section li {
 }
 
 /* ================================
-   10. LISTAS GLOBALES
+   10. BLOQUE: BLOG - LISTAS GLOBALES
    ================================ */
 
 /* Contenedor de columnas demo listas */
@@ -656,19 +656,8 @@ ul.x ul li::before {
   line-height: 1.5;
 }
 
-
 /* ================================
-   11. MARGEN DE IMAGEN DESTACADA DEL POST
-   ================================ */
-.img-post {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 20px 0;
-}
-
-/* ================================
-   12. RESPONSIVE
+   11. BLOQUE: BLOG - RESPONSIVE (POR CONSOLIDAR)
    ================================ */
 
 @media (max-width: 600px) {
@@ -765,22 +754,2967 @@ ul.x ul li::before {
   }
 }
 
-/* ================================
-   13. STICKY FOOTER SIEMPRE AL FINAL
-   ================================ */
-html, body {
-  height: 100%; /* Asegura altura completa */
+/* =========================================================
+   12. BLOQUE: BLOG - CONTENIDO DEL HOME / INDEX (ESPACIADO AJUSTADO)
+   -------------------------
+   - Reduce espacio entre borde superior del contenedor y primer título
+   - Colores de títulos distinguibles
+   - Línea separadora al final de cada bloque
+   - Padding y márgenes optimizados
+   - Respeta shortcodes internos
+   - Responsive incluido
+   ========================================================= */
+
+.home-section {
+  background-color: transparent; /* sin fondo */
+  border: none;                  /* sin borde */
+  box-shadow: none;              /* sin sombra */
+  margin-bottom: 2rem;           /* separación entre secciones */
+  padding: 1.5rem 1rem;          /* espacio interno cómodo */
+  border-bottom: 1px solid var(--color-borde); /* línea separadora sutil */
 }
 
-body {
+.home-content {
+  font-family: var(--fuente-principal);
+  color: var(--color-principal);
+  line-height: 1.7;
+  font-size: 1.1rem;
+}
+
+/* Ajuste: primer título del bloque no tenga margin-top excesivo */
+.home-content > h1:first-child,
+.home-content > h2:first-child,
+.home-content > h3:first-child {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.home-content > h1 {
+  font-size: 2rem;
+  margin-top: 1rem; /* aplicado solo a h1 no primeros si hay texto antes */
+}
+
+.home-content > h2 {
+  font-size: 1.65rem;
+  margin-top: 1rem;
+}
+
+.home-content > h3 {
+  font-size: 1.35rem;
+  margin-top: 1rem;
+}
+
+.home-content > p {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: normal;
+  color: var(--color-principal);
+  line-height: 1.6;
+}
+
+/* ===================== Responsive ===================== */
+@media (max-width: 768px) {
+  .home-section {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .home-content {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .home-content > h1:first-child,
+  .home-content > h2:first-child,
+  .home-content > h3:first-child {
+    margin-top: 0;
+  }
+
+  .home-content > h1 {
+    font-size: 1.75rem;
+  }
+
+  .home-content > h2 {
+    font-size: 1.45rem;
+  }
+
+  .home-content > h3 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-section {
+    padding: 1rem 0.5rem;
+  }
+
+  .home-content {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .home-content > h1:first-child,
+  .home-content > h2:first-child,
+  .home-content > h3:first-child {
+    margin-top: 0;
+  }
+
+  .home-content > h1 {
+    font-size: 1.5rem;
+  }
+
+  .home-content > h2 {
+    font-size: 1.25rem;
+  }
+
+  .home-content > h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* =========================================================
+   13. BLOQUE: BLOG - ADSENSE AUTOMATIZADO
+   ========================================================= */
+
+/* ================================
+   1. CONTENEDORES BÁSICOS
+   ================================ */
+.adsense-shortcode,
+.adsense-placeholder {
+  display: block;
+  margin: 1em 0;
+  text-align: center; 
+}
+
+/* ================================
+   2. PLACEHOLDER / MENSAJE SIN ANUNCIO
+   ================================ */
+.adsense-placeholder {
+  background: var(--color-borde);       /* puede ser un gris medio, ej: #e2e2e2 */
+  padding: 10px;
+  color: #1f2937;                       /* gris oscuro, suficiente contraste con gris claro */
+  font-style: italic;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* ================================
+   14. BLOQUE: BLOG - TARJETA DE INFORMACIÓN DESTACADA
+   Tres variantes: info general, tip/nota y advertencia
+   ================================ */
+
+/* 1. Información general */
+.info-destacada {
+  background-color: #f0f0f0;       /* Fondo gris claro */
+  padding: 10px;                   /* Espaciado interno */
+  border-left: 4px solid #3b82f6;  /* Línea azul a la izquierda */
+  margin-bottom: 0.5rem;           /* Espacio inferior entre bloques */
+  font-size: 1.1rem;
+  /* line-height: 1.5;
+  border-radius: 4px; */
+}
+.info-destacada::before {
+  content: "📌 ";
+  display: inline-block;
+  margin-right: 4px;
+}
+
+/* 2. Tip / Nota */
+.info-tip {
+  background-color: #e0f7fa;       /* Fondo azul muy claro */
+  padding: 10px;
+  border-left: 4px solid #00bcd4;  /* Línea azul más intensa */
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  /* line-height: 1.5;
+   border-radius: 4px; */
+}
+.info-tip::before {
+  content: "💡 ";
+  display: inline-block;
+  margin-right: 4px;
+}
+
+/* 3. Advertencia / Precaución */
+.info-alerta {
+  background-color: #fff4e5;       /* Fondo amarillo suave */
+  padding: 10px;
+  border-left: 4px solid #ff9800;  /* Línea naranja */
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  /* line-height: 1.5;
+  border-radius: 4px; */
+}
+.info-alerta::before {
+  content: "\26A0 \FE0F";
+  display: inline-block;
+  margin-right: 4px;
+}
+
+/* =========================================================
+   15. BLOQUE: BLOG - MIGAS DE PAN (POST & PAGE)
+   ========================================================= */
+
+/* ================================
+   1. CONTENEDOR PRINCIPAL
+   ================================ */
+.breadcrumbs {
+  font-size: 14px;
+  padding: 6px 0.8rem;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 1rem;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  background-color: transparent;
+
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* ================================
+   2. ENLACES Y TEXTO
+   ================================ */
+.breadcrumbs a,
+.breadcrumbs span[itemprop="name"] {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px; /* mismo tamaño */
+}
+
+/* Estilo para enlaces */
+.breadcrumbs a {
+  color: #4a6fa5; /* azul grisáceo suave */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumbs a:hover {
+  color: #6c85b1; /* azul suave más claro */
+  text-decoration: underline;
+}
+
+/* Estilo para el título (texto plano) */
+.breadcrumbs span[itemprop="name"]:not(:hover) {
+  color: #475569; /* gris oscuro suave */
+}
+
+/* ================================
+   3. SEPARADOR ENTRE NIVELES
+   ================================ */
+.breadcrumb-sep {
+  color: #94a3b8;
+  user-select: none;
+  padding: 0 0.2rem;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+/* ================================
+   4. RESPONSIVE (MÓVIL <= 480px)
+   ================================ */
+@media (max-width: 480px) {
+  .breadcrumbs {
+    font-size: 12px;
+    padding: 5px 0.6rem;
+    gap: 0.2rem;
+  }
+  .breadcrumbs a,
+  .breadcrumbs span[itemprop="name"],
+  .breadcrumb-sep {
+    font-size: 12px;
+  }
+}
+
+/* =========================================================
+   16. BLOQUE: BLOG - REPRODUCTOR DE AUDIO HTML5
+   ========================================================= */
+
+/* === Contenedor principal del reproductor === */
+.tb-audio {
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:12px;
+  margin:1rem 0;
+  font-family:system-ui,sans-serif;
+  max-width:600px;
+}
+
+/* === Elemento <audio> interno === */
+.tb-audio audio {
+  width:100%;
+  margin-bottom:6px;
+}
+
+/* === Título del reproductor === */
+.tb-audio__title {
+  font-weight:600;
+  margin:4px 0;
+  font-size:.9rem;
+}
+
+/* === Enlaces dentro del bloque === */
+.tb-audio a {
+  font-size:.85rem;
+  color:#2563eb;
+  text-decoration:none;
+}
+
+/* Hover en enlaces */
+.tb-audio a:hover {
+  text-decoration:underline;
+}
+
+/* =========================================================
+   17. BLOQUE: BLOG - BOTONES - HTML
+   ========================================================= */
+
+/* Contenedor de botones agrupados */
+.botones-demo {
+  display: flex;
+  flex-wrap: wrap;        /* permite varias filas */
+  gap: 1rem;              /* espacio entre botones */
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 8px; 
+}
+
+.botones-demo .boton,
+.botones-demo .boton-descarga {
+  flex: 1 1 calc(33.333% - 1rem); /* 3 por fila */
+  text-align: center;
+}
+
+/* Responsivo: 2 por fila en pantallas medianas */
+@media (max-width: 768px) {
+  .botones-demo .boton,
+  .botones-demo .boton-descarga {
+    flex: 1 1 calc(50% - 1rem);
+  }
+}
+
+/* 1 por fila en móvil pequeño */
+@media (max-width: 480px) {
+  .botones-demo .boton,
+  .botones-demo .boton-descarga {
+    flex: 1 1 100%;
+  }
+}
+/** ==========================
+ * BOTONES BASE
+ * ========================== */
+.boton,
+.boton-descarga {
+  display: inline-flex;           /* flex para centrar icono + texto */
+  align-items: center;            /* centra vertical */
+  justify-content: center;        /* centra horizontal */
+  gap: 0.5rem;                    /* espacio entre icono y texto */
+  
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--color-acento);
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Estados accesibles */
+.boton:focus-visible,
+.boton-descarga:focus-visible {
+  outline: 3px solid rgba(59,130,246,0.4);
+  outline-offset: 2px;
+}
+
+/** ==========================
+ * BOTÓN NORMAL
+ * ========================== */
+.boton {
+  background-color: var(--color-acento);
+  color: #fff;
+}
+
+.boton:hover {
+  background-color: #fff;
+  color: var(--color-acento);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/** ==========================
+ * BOTÓN INVERTIDO (bordeado, sin relleno)
+ * ========================== */
+.boton.invertido {
+  background-color: #fff;
+  color: var(--color-acento);
+}
+
+.boton.invertido:hover {
+  background-color: var(--color-acento);
+  color: #fff;
+}
+
+/** ==========================
+ * BOTÓN DESCARGA
+ * ========================== */
+.boton-descarga {
+  background-color: var(--color-acento);
+  color: #fff;
+  position: relative;
+  padding-left: 0.8rem; /* ya no necesitas 2rem porque usamos flex */
+}
+
+.boton-descarga svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Hover descarga */
+.boton-descarga:hover {
+  background-color: #fff;
+  color: var(--color-acento);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/** ==========================
+ * DESCARGA INVERTIDO BOTÓN
+ * ========================== */
+.boton-descarga.invertido {
+  background-color: #fff;
+  color: var(--color-acento);
+}
+
+.boton-descarga.invertido:hover {
+  background-color: var(--color-acento);
+  color: #fff;
+}
+
+/** ==========================
+ * MODIFICADORES DE FORMA BOTÓN
+ * ========================== */
+.redondo {
+  border-radius: 999px;
+}
+
+/** ==========================
+ * VARIANTES DE COLOR BOTÓN
+ * ========================== */
+.verde   { --color-acento: var(--verde); }
+.rojo    { --color-acento: var(--rojo); }
+.azul    { --color-acento: var(--azul); }
+.naranja { --color-acento: var(--naranja); }
+.gris    { --color-acento: var(--gris); }
+.negro   { --color-acento: var(--negro); }
+
+/* =========================================================
+   18. BLOQUE: BLOG - PÁGINA DE ERROR 404
+   ========================================================= */
+
+/* === Contenedor principal del error === */
+.error-container {
+  text-align: center;
+  background: white;
+  padding: 3rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  max-width: 500px;
+  margin: auto;
+}
+
+/* === Código de error (ej. 404) === */
+.error-code {
+  font-size: 5rem;
+  font-weight: bold;
+  color: var(--color-acento);
+  margin-bottom: 1rem;
+}
+
+/* === Mensaje principal del error === */
+.error-message {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* === Descripción adicional del error === */
+.error-description {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* === Enlace de acción o retorno === */
+.error-link {
+  display: inline-block;
+  background-color: var(--color-acento);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+/* Hover del enlace de error */
+.error-link:hover {
+  background-color: var(--color-hover-link);
+  color: black;
+}
+
+/* =========================================================
+   19. BLOQUE: BLOG - PAGINACIÓN BLOGGER
+   ========================================================= */
+
+/* === Contenedor de la paginación === */
+.blog-pager {
+  display: flex;
+  justify-content: center; /* centra los botones */
+  gap: 0.5rem;             /* espacio entre ellos */
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+/* === Botones de página === */
+.blog-pager a {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--color-acento);
+  border-radius: 4px;
+  background-color: white;
+  color: var(--color-acento);
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* === Hover sobre los botones === */
+.blog-pager a:hover {
+  background-color: var(--color-acento);
+  color: white;
+}
+
+/* =========================================================
+   20. BLOQUE: BLOG - ESTILO FORO HTML ESTATICO
+   ========================================================= */
+
+/* === Contenedor principal de la lista de posts === */
+.foro-lista {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Siempre ocupa toda la pantalla */
+  gap: 1rem; /* separación entre tarjetas */
+}
+
+/* === Cada post del foro === */
+.foro-post {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+  transition: background 0.2s ease;
+}
+
+/* === Hover sobre cada post === */
+.foro-post:hover {
+  background: var(--color-secundario);
+}
+
+/* === Imagen del post === */
+.foro-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* === Contenido del post === */
+.foro-contenido {
+  flex: 1;
+}
+
+/* === Título del post === */
+.foro-titulo {
+  font-size: 1.1rem;
+  color: var(--color-principal);
+  margin-bottom: 0.5rem;
+}
+
+/* === Extracto o descripción del post === */
+.foro-extracto {
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* === Estilos responsivos para móviles === */
+@media (max-width: 600px) {
+  .foro-post {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .foro-img {
+    margin-bottom: 1rem;
+  }
+
+  .foro-contenido {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   21. BLOQUE: BLOG - CÓDIGO EN POST
+   ========================================================= */
+
+/* === Código inline dentro de párrafos === */
+code {
+  font-family: monospace;
+  background-color: #f0f0f0;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  color: var(--color-principal);
+  font-size: 0.95em;
+}
+
+/* === Bloques de código completos === */
+pre {
+  background-color: #f0f0f0;
+  padding: 1rem;
+  overflow-x: auto;
+  border-radius: 6px;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+}
+
+/* === Código dentro de los bloques <pre> === */
+pre code {
+  font-family: monospace;
+  color: var(--color-principal);
+  display: block;
+  white-space: pre;
+}
+
+/* =========================================================
+   22. BLOQUE: BLOG - ALERTAS EN POST
+   ========================================================= */
+
+/* === Estilo base de todas las alertas === */
+.alert {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-left: 5px solid;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+/* === Tipos específicos de alertas === */
+
+/* Alerta de advertencia */
+.alert.warning {
+  border-color: #f1c40f;
+  background-color: #fff8db;
+  color: #665c00;
+}
+
+/* Alerta informativa */
+.alert.info {
+  border-color: var(--color-acento);
+  background-color: #e8f4ff;
+  color: var(--color-principal);
+}
+
+/* Alerta de éxito */
+.alert.success {
+  border-color: #2ecc71;
+  background-color: #e9fbe9;
+  color: #276738;
+}
+
+/* Alerta de error */
+.alert.error {
+  border-color: #e74c3c;
+  background-color: #fdecea;
+  color: #8a1f11;
+}
+
+/* ===========================================================
+   23. BLOQUE: BLOG - ESTILO DE CITA
+   ================================================================= */
+
+/* Contenedor principal de la cita */
+blockquote {
+  border-left: 4px solid var(--color-acento); /* barra izquierda destacada */
+  background-color: #f0f0f0;                 /* fondo gris claro */
+  padding: 1rem 1.5rem;                      /* espacio interno */
+  margin: 1.5rem 0;                           /* margen vertical */
+  font-style: italic;                         /* texto en cursiva */
+  color: #333;                                /* color del texto */
+  position: relative;                         /* necesario para pseudo-elementos */
+  border-radius: 4px;                         /* esquinas redondeadas */
+}
+
+/* Pseudo-elemento: comilla izquierda decorativa */
+blockquote::before {
+  content: "\201C";                           /* “ comilla izquierda */
+  font-size: 2rem;                            /* tamaño grande */
+  color: var(--color-acento);                 /* color acento */
+  position: absolute;                          /* posición absoluta */
+  left: 10px;                                 /* distancia izquierda */
+  top: -10px;                                 /* distancia superior */
+}
+
+/* Pseudo-elemento: comilla derecha decorativa */
+blockquote::after {
+  content: "\201D";                           /* ” comilla derecha */
+  font-size: 2rem;                            /* tamaño grande */
+  color: var(--color-acento);                 /* color acento */
+  position: absolute;                         /* posición absoluta */
+  right: 10px;                                /* distancia derecha */
+  bottom: -10px;                              /* distancia inferior */
+}
+/* ======================================================
+   24. BLOQUE: BLOG - ESTILO DE TABLA SIMPLE HTML + SCROLL
+   ====================================================== */
+
+/* === Contenedor scroll horizontal === */
+.tabla-responsive {
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+
+/* === Tabla minimalista === */
+.tabla-minimalista {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+  font-family: sans-serif;
+}
+
+/* === Celdas de la tabla === */
+.tabla-minimalista th,
+.tabla-minimalista td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* === Encabezado de la tabla === */
+.tabla-minimalista thead {
+  background-color: #f8f8f8;
+}
+
+/* === Hover en filas de la tabla === */
+.tabla-minimalista tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+/* === Estilo específico para encabezados === */
+.tabla-minimalista th {
+  color: var(--color-principal, #222);
+  font-weight: bold;
+}
+/* ======================================================
+   25. BLOQUE: BLOG - ESTILO DE SUSCRIPCIÓN
+   ====================================================== */
+
+/* === Contenedor principal de la caja de suscripción === */
+.cta-suscripcion {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  max-width: 500px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+/* === Encabezado dentro de la caja === */
+.cta-suscripcion h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* === Párrafo descriptivo === */
+.cta-suscripcion p {
+  margin-bottom: 1.2rem;
+  color: #555;
+}
+
+/* ======================================================
+   FORMULARIO DE SUSCRIPCIÓN
+   ====================================================== */
+
+/* === Contenedor del formulario === */
+.form-suscripcion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* === Campo de email === */
+.form-suscripcion input[type="email"] {
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: var(--fuente-principal);
+  width: 100%;
+}
+
+/* ======================================================
+   CHECKBOX DE POLÍTICAS
+   ====================================================== */
+
+/* === Contenedor del checkbox === */
+.checkbox-politica {
+  font-size: 0.9rem;
+  color: #333;
+  text-align: left;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* === Checkbox en sí === */
+.checkbox-politica input[type="checkbox"] {
+  transform: scale(1.1);
+}
+
+/* === Enlace dentro del texto de políticas === */
+.checkbox-politica a {
+  color: var(--color-acento);
+  text-decoration: underline;
+}
+
+/* ======================================================
+   BOTÓN DE SUSCRIPCIÓN
+   ====================================================== */
+
+/* === Estilo principal del botón === */
+.form-suscripcion button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--color-acento);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s ease;
+}
+
+/* === Hover en el botón === */
+.form-suscripcion button:hover {
+  background-color: var(--color-hover-link);
+}
+
+/* ======================================================
+   26. BLOQUE: BLOG - FORMULARIO DE SUSCRIPCIÓN HORIZONTAL
+   ====================================================== */
+
+/* === Contenedor principal === */
+.form-suscripcion-horizontal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+/* === Bloque input + botón === */
+.input-boton {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-boton input[type="email"] {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--color-acento);
+  border-radius: 4px;
+}
+
+.input-boton button {
+  padding: 0.5rem 1.2rem;
+  background-color: var(--color-acento);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.input-boton button:hover {
+  background-color: var(--color-hover-link);
+}
+
+/* === Checkbox política === */
+.checkbox-politica {
+  font-size: 0.9rem;
+}
+
+
+/* ======================================================
+   27. BLOQUE: BLOG - LLAMADA A LA ACCIÓN (CTA) IZQUIERDA
+   ====================================================== */
+
+/* === Contenedor general === */
+.cta-izquierda {
+  max-width: 800px;       /* Más ancho */
+  width: 90%;             /* Ocupa el 90% del contenedor */
+  padding: 1.5rem;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  text-align: left;
+  margin: 2rem auto;      /* Centrado horizontal */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* === Título === */
+.cta-izquierda h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--color-principal);
+}
+
+/* === Texto === */
+.cta-izquierda p {
+  margin: 0;
+  color: #555;
+  line-height: 1.4;
+  font-size: 1.05rem;
+}
+
+/* === Botón CTA === */
+.cta-izquierda .boton {
+  align-self: flex-start;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--color-acento);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.cta-izquierda .boton:hover {
+  background-color: var(--color-hover-link);
+}
+/* ======================================================
+   27.1. LLAMADA A LA ACCIÓN CON IMAGEN (CTA CON IMAGEN)
+   ====================================================== */
+
+/* === Contenedor principal === */
+.cta-con-imagen-vertical {
+  display: flex;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 1000px;
+  margin: 2rem auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* === Imagen lateral === */
+.cta-con-imagen-vertical img {
+  width: 300px;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* === Contenido de texto === */
+.cta-con-imagen-vertical .contenido {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* === Encabezado === */
+.cta-con-imagen-vertical h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  color: var(--color-principal);
+}
+
+/* === Párrafo === */
+.cta-con-imagen-vertical p {
+  margin-bottom: 1.5rem;
+  color: #444;
+}
+
+/* === Botón === */
+.cta-con-imagen-vertical a.boton {
+  padding: 0.6rem 1.5rem;
+  background-color: var(--color-acento);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  align-self: flex-start;
+  transition: background-color 0.2s ease;
+}
+
+/* === Hover del botón === */
+.cta-con-imagen-vertical a.boton:hover {
+  background-color: var(--color-hover-link);
+}
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+@media (max-width: 768px) {
+  .cta-con-imagen-vertical {
+    flex-direction: column;
+  }
+
+  .cta-con-imagen-vertical img {
+    width: 100%;
+    height: auto;
+  }
+
+  .cta-con-imagen-vertical .contenido {
+    padding: 1.5rem;
+  }
+}
+
+/* ======================================================
+   28. BLOQUE: BLOG - COMENTARIOS BLOGGER - Estilo Vertical 
+   ====================================================== */
+
+/* Ocultar elementos innecesarios */
+.comments .loadmore,
+.comments .continue,
+.thread-chrome.thread-collapsed,
+.item-control {
+  display: none !important;
+}
+
+/* Reset general */
+.comments-content,
+.comment-thread ol,
+.comment-thread li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Comentarios padres e hijos */
+li.comment {
+  display: block;
+  margin-top: 1.5rem;
+  padding: 1rem 1.2rem;
+  border-radius: 1rem;
+  background-color: #fff;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  position: relative;
+}
+
+/* Fondo gris claro para respuestas (hijos) */
+.comment-replies li.comment {
+  background-color: #f7f7f7;
+  border: 1px solid #e0e0e0;
+}
+
+/* Avatar */
+.avatar-image-container {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ddd;
+  float: left;
+  margin-right: 1rem;
+}
+.avatar-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Ocultar avatar anónimo */
+.avatar-image-container img[src*="anon36.png"],
+.avatar-image-container img[src*="b36-rounded.png"] {
+  opacity: 0;
+}
+
+/* Contenido del comentario */
+.comment-block {
+  overflow: hidden;
+}
+
+/* Cabecera */
+.comment-header {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1f2937; /* gris oscuro */
+  margin-bottom: 0.3rem;
+}
+.comment-header .datetime {
+  font-size: 0.8rem;
+  color: #888;
+  margin-left: 0.5rem;
+}
+
+/* Texto */
+.comment-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  margin-top: 0.5rem;
+}
+
+/* Pie */
+.comment-footer {
+  margin-top: 0.8rem;
+}
+
+/* Botón "Responder" */
+.comment-reply {
+  appearance: none;
+  background-color: #e5e7eb;
+  color: #4b5563;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.comment-reply:hover {
+  background-color: #d1d5db;
+  color: #374151;
+  border-color: #cbd5e1;
+}
+
+/* Enlaces en el contenido y cabecera */
+.comment-header a,
+.comment-content a {
+  color: #4b5563;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.comment-header a:hover,
+.comment-content a:hover {
+  color: #374151;
+}
+
+/* Ocultar la palabra "Respuestas" */
+.thread-count {
+  display: none !important;
+}
+
+/* Caja de respuestas (contenedor de hijos) */
+.comment-replies {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 0;
+}
+
+/* Caja de respuesta */
+.comment-replybox-single,
+.comment-replybox-thread {
+  margin-top: 1rem;
+}
+.comments .comments-replybox {
+  width: 100%;
+  border: none;
+  height: 250px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .avatar-image-container {
+    float: none;
+    margin: 0 auto 0.5rem;
+  }
+
+  .comment-block {
+    text-align: center;
+  }
+
+  .comment-header {
+    justify-content: center;
+  }
+
+  .comment-footer {
+    text-align: center;
+  }
+}
+/* Limitar ancho y centrar comentarios */
+.comments {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+  width: 100%; /* fuerza ocupar todo el ancho disponible */
+}
+
+/* Opcional: si quieres un ajuste especial en móvil */
+@media (max-width: 600px) {
+  .comments {
+    padding: 0 0rem; /* menos padding para móviles */
+  }
+}
+
+
+/* Sutil sombra para el título Comentarios */
+.comments .title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Línea decorativa debajo del título (más suave con sombra) */
+.comments .title::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  border-radius: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 2px 6px rgba(59,130,246,0.3);
+}
+
+/* Número de comentarios con transición de color al pasar mouse */
+.comments .comment-count {
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: #4b5563;
+  transition: color 0.3s ease;
+}
+
+.comments .comment-count:hover {
+  color: #3b82f6;
+}
+
+/* Título "Publicar un comentario" con línea arriba, sombra y un poco más de espacio */
+#comment-post-message {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2rem 0 0.5rem;
+  color: #1f2937;
+  position: relative;
+  padding-top: 1rem;
+  text-align: left;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Línea decorativa arriba del título con sombra */
+#comment-post-message::before {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  border-radius: 2px;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 2px 6px rgba(59,130,246,0.3);
+}
+
+/* Caja del formulario: borde suave, sombra y padding */
+.comments .comment-form,
+.comments .comments-replybox {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Sombra más intensa al enfocar el formulario */
+.comments .comment-form:focus-within,
+.comments .comments-replybox:focus-within {
+  box-shadow: 0 4px 16px rgba(59,130,246,0.3);
+  border-color: #3b82f6;
+}
+
+/* Texto "sin comentarios" un poco más grande y con letra cursiva fina */
+.sin-comentarios {
+  color: #6b7280;
+  font-style: italic;
+  font-weight: 300;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+/* ======================================================
+   29. BLOQUE: BLOG - COMPARTIR REDES SOCIALES - HTML
+   ====================================================== */
+
+.custom-share-wrapper {
+  /* No fijar max-width menor que el padre */
+  width: 100%;
+  margin: 3rem 0 1.5rem; /* Solo vertical, sin centrar horizontal */
+    padding: 0 0 1.5rem 0; /* padding-bottom para espacio bajo la línea */
+  box-sizing: border-box;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.custom-share-title {
+  font-size: 1rem;
+  color: #1f2937;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  /* Opcional: para que ocupe todo el ancho */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.custom-share {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.custom-share a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+  border: 1px solid #d1d5db;
+  /* Que el ancho sea automático para que se acomode bien */
+  width: auto;
+  box-sizing: border-box;
+}
+
+.custom-share a:hover {
+  background-color: #e5e7eb;
+}
+
+/* Móvil */
+@media screen and (max-width: 600px) {
+  .custom-share {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .custom-share a {
+    text-align: center;
+    width: 100%; /* Full width en móvil */
+  }
+}
+
+/* ======================================================
+   30. BLOQUE: BLOG - FORMULARIO DE CONTACTO MINIMALISTA
+   ====================================================== */
+.contact-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-family: system-ui, sans-serif;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.contact-form .form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form label {
+  font-size: 0.95rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  background: #f9fafb;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #3b82f6;
+  background: #fff;
+}
+
+.contact-form .checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.contact-form .checkbox input {
+  width: 1rem;
+  height: 1rem;
+}
+
+.contact-form .checkbox a {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.contact-form .btn-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.contact-form .btn-submit:hover {
+  background: #2563eb;
+}
+
+.contact-form svg {
+  stroke-width: 2;
+}
+
+/* ======================================================
+   31. BLOQUE: BLOG - ESTILOS IMAGENES - HTML
+   ====================================================== */
+
+.bloque-imagen.centrada {
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.bloque-imagen.centrada img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  display: block;
+  margin: 0 auto;
+}
+.bloque-imagen.leyenda {
+  margin: 2rem auto;
+  text-align: center;
+  max-width: 100%;
+}
+
+.bloque-imagen.leyenda img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.bloque-imagen.leyenda figcaption {
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+  font-style: italic;
+}
+.bloque-imagen.borde-sombra {
+  margin: 2rem auto;
+  text-align: center;
+  max-width: 100%;
+}
+
+.bloque-imagen.borde-sombra img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #e0e0e0; /* Borde gris muy claro */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); /* Sombra suave */
+  display: block;
+  margin: 0 auto;
+}
+.bloque-imagen-lateral {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 2rem 0;
+  gap: 1.5rem;
+}
+.bloque-imagen-lateral img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  flex-shrink: 0;
+}
+
+.bloque-imagen-lateral .contenido {
+  flex: 1;
+  min-width: 250px;
+}
+
+.bloque-imagen-lateral .contenido h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-principal, #1f2937);
+}
+
+.bloque-imagen-lateral .contenido p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+}
+.bloque-imagen-lateral.derecha {
+  flex-direction: row-reverse;
+}
+
+.tarjeta-imagen-destacada {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03);
+  max-width: 640px;
+  margin: 2rem auto;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-imagen-destacada:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+}
+
+.tarjeta-imagen-destacada img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.tarjeta-imagen-destacada .contenido {
+  padding: 1rem;
+}
+
+.tarjeta-imagen-destacada .contenido h3 {
+  font-size: 1.1rem;
+  color: var(--color-principal, #1f2937);
+  margin: 0;
+}
+.galeria-imagenes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.galeria-imagenes img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+  transition: transform 0.2s ease;
+}
+
+.galeria-imagenes img:hover {
+  transform: scale(1.02);
+}
+.galeria-enlazada {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.galeria-enlazada .item {
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.galeria-enlazada .item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.galeria-enlazada .item:hover img {
+  transform: scale(1.03);
+}
+
+.galeria-enlazada .item span {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--color-principal, #1f2937);
+}
+.imagen-con-badge {
+  position: relative;
+  display: inline-block;
+  margin: 2rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.imagen-con-badge img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.imagen-con-badge .badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background-color: #0077cc;
+  color: #fff;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  pointer-events: none;
+  user-select: none;
+}
+.imagen-overlay {
+  position: relative;
+  display: block;
+  margin: 2rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.imagen-overlay img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.imagen-overlay .overlay-texto {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  max-width: 90%;
+  backdrop-filter: blur(4px);
+}
+
+/* ======================================================
+   32. BLOQUE: BLOG - FORMATO TEXTO - HTML
+   ====================================================== */
+
+.text-columns {
+  column-count: 3;          /* Número de columnas */
+  column-gap: 2rem;         /* Espacio entre columnas */
+  column-rule: 1px solid #ddd; /* Línea entre columnas */
+  color: var(--color-principal);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+@media (max-width: 600px) {
+  .text-columns {
+    column-count: 1; /* En móvil, una sola columna */
+  }
+}
+.nested-columns {
+  column-count: 2;
+  column-gap: 1.5rem;
+}
+
+.nested-columns .sub-column {
+  column-count: 1; /* columnas normales dentro */
+  margin-bottom: 1rem;
+}
+.media-columns {
+  display: flex;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  align-items: center;
+}
+
+.media-columns .media {
+  flex: 1;
+}
+
+.media-columns .media img,
+.media-columns .media video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.media-columns .content {
+  flex: 2;
+  color: var(--color-principal);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .media-columns {
+    flex-direction: column;
+  }
+
+  .media-columns .media,
+  .media-columns .content {
+    width: 100%;
+  }
+}
+
+/* ======================================================
+   33. BLOQUE: BLOG - SEPARADORES VISUALES - HTML
+   ====================================================== */
+
+/* Línea horizontal sutil */
+.divider-line {
+  border: none;
+  border-top: 1px solid #e5e7eb; /* gris claro */
+  margin: 3rem auto;
+  max-width: 900px;
+}
+
+/* Separador con ícono decorativo */
+.divider-icon {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 3rem auto;
+  color: #9ca3af; /* gris medio */
+}
+
+/* Separador doble con líneas finas */
+.divider-double {
+  margin: 3rem auto;
+  width: 90%;
+  max-width: 900px;
+  height: 1px;
+  background: linear-gradient(to right, #e5e7eb 0%, #d1d5db 50%, #e5e7eb 100%);
+  position: relative;
+}
+.divider-double::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 0.75rem;
+  background: linear-gradient(to right, #e5e7eb 0%, #d1d5db 50%, #e5e7eb 100%);
+}
+
+/* Separador con texto centrado */
+.divider-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 4rem 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+.divider-text::before,
+.divider-text::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid #e5e7eb;
+  margin: 0 1rem;
+}
+
+/* Separador espaciado tipo bloque */
+.divider-block {
+  height: 40px;
+  background-color: #f3f4f6; /* gris claro */
+  margin: 2rem 0;
+  border-radius: 8px;
+}
+
+/* ======================================================
+   34. BLOQUE: BLOG - ACORDEONES - HTML
+   ====================================================== */
+
+/* === Estilos generales para todos los acordeones === */
+.accordion {
+  width: 100%;
+  max-width: 800px;
+  margin: 1rem auto;
+  font-family: system-ui, sans-serif;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.accordion-header {
+  background: #f5f5f5;
+  cursor: pointer;
+  padding: 1rem;
+  font-weight: 600;
+  user-select: none;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+  background: #e1e1e1;
+}
+
+.accordion-header::after {
+  content: '\25BC'; /* flecha hacia abajo */
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+/* Cambio de .active a .is-active */
+.accordion-header.is-active::after {
+  transform: translateY(-50%) rotate(180deg); /* flecha hacia arriba */
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  padding: 0 1rem;
+  background: #fafafa;
+}
+
+.accordion-content p {
+  padding: 1rem 0;
+  margin: 0;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* === Acordeón puro CSS con checkbox oculto === */
+.accordion-css label {
+  display: block;
+  background: #f5f5f5;
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  position: relative;
+  user-select: none;
+}
+
+.accordion-css label::after {
+  content: '+';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 900;
+  transition: transform 0.3s ease;
+}
+
+.accordion-css input[type="checkbox"] {
+  display: none;
+}
+
+.accordion-css input[type="checkbox"]:checked + label::after {
+  content: '-';
+}
+
+.accordion-css .content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background: #fafafa;
+  padding: 0 1rem;
+}
+
+.accordion-css input[type="checkbox"]:checked + label + .content {
+  max-height: 500px; /* valor alto para mostrar contenido */
+  padding: 1rem;
+}
+
+/* === Acordeón con detalle/summary (HTML5) solo dentro de .accordion-details === */
+.accordion-details details {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  background: #fafafa;
+}
+
+.accordion-details summary {
+  cursor: pointer;
+  padding: 1rem;
+  font-weight: 600;
+  list-style: none;
+  user-select: none;
+}
+
+.accordion-details details[open] summary {
+  background: #e1e1e1;
+}
+
+.accordion-details details > p {
+  padding: 0 1rem 1rem 1rem;
+  margin: 0;
+  color: #333;
+  line-height: 1.5;
+}
+
+
+/* ======================================================
+   35. BLOQUE: BLOG - TARJETAS INDIVIDUALES SIMPLES - HTML
+   ====================================================== */
+
+.tarjeta {
+  font-family: system-ui, sans-serif;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  margin: 1rem auto;
+  max-width: 350px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #111827;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.card-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #3b82f6;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+.card-button:hover {
+  background: #2563eb;
+}
+
+/* === Variantes de cards === */
+
+/* Card horizontal */
+.card-horizontal {
+  display: flex;
+  flex-direction: row;
+  max-width: 600px;
+}
+.card-horizontal img {
+  width: 40%;
+  object-fit: cover;
+}
+.card-horizontal .card-content {
+  flex: 1;
+}
+
+/* Card con fondo color y sin imagen */
+.card-colored {
+  background: #f0f9ff;
+  border-left: 6px solid #3b82f6;
+}
+
+/* Card con ícono (sin imagen) */
+.card-icon {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.card-icon .icon {
+  font-size: 2rem;
+  color: #3b82f6;
+}
+
+/* Card con solo texto (simple) */
+.card-simple {
+  background: #f9fafb;
+  border: 1px dashed #d1d5db;
+}
+
+/* === NUEVO: Card tipo lista === */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.card-lista {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease;
+  padding: 0.5rem;
+}
+.card-lista:hover {
+  transform: scale(1.01);
+}
+.card-lista a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+.card-lista img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+}
+.card-lista h3 {
+  font-size: 0.9rem;
+  margin: 0;
+  padding-left: 0.75rem;
+  flex: 1;
+  color: #1f2937;
+  line-height: 1.3;
+}
+
+@media (max-width: 600px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .card-lista {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .card-lista a {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .card-lista img {
+    display: none;
+  }
+  .card-lista h3 {
+    padding: 0.5rem 0 0;
+  }
+}
+
+/* ======================================================
+   36. BLOQUE: BLOG - ENTRADAS RELACIONADAS - HTML
+   ====================================================== */
+
+.related-posts {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.related-posts h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #1f2937;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+}
+.related-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.related-item {
+  display: flex;
+  gap: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.05);
+  transition: box-shadow 0.2s ease;
+  background: #fff;
+}
+.related-item:hover {
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+}
+.related-item img {
+  width: 100px;
+  height: 80px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 0.75rem 0 0 0.75rem; /* imagen sin bordes en el lado derecho */
+}
+.related-content {
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+}
+.related-content a {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #2563eb;
+  text-decoration: none;
+  line-height: 1.2;
+}
+.related-content a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .related-item {
+    flex-direction: row;
+  }
+  .related-item img {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 0.5rem 0 0 0.5rem; /* solo borde izquierdo */
+  }
+  .related-content {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+a {
+  font-size: 1rem;          /* Tamaño base relativo */
+  max-width: 100%;          /* No salirse del contenedor */
+  word-wrap: break-word;    /* Romper palabra si es muy larga */
+  white-space: normal;      /* Permite que el texto haga salto de línea */
+  display: inline-block;    /* Para poder controlar mejor el ancho */
+  color: #0077cc;
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  a {
+    font-size: 0.9rem;      /* Tamaño más pequeño en móviles */
+  }
+}
+
+/* ======================================================
+   37. BLOQUE: BLOG - PREGUNTAS FRECUENTES (FAQ) HTML
+   ====================================================== */
+
+.faq-section {
+  max-width: 850px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  font-family: system-ui, sans-serif;
+  color: #1f2937;
+}
+
+.faq-section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.faq-section details {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background: #f9fafb;
+}
+
+.faq-section summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #0077cc;
+}
+
+.faq-section summary:hover {
+  color: #005fa3;
+}
+
+.faq-section details[open] {
+  background: #f3f4f6;
+}
+
+.faq-section p {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #374151;
+}
+/* ======================================================
+   38. BLOQUE: BLOG - TOC CAJA DE INDICE POST & PAGE HTML
+   ====================================================== */
+
+#toc-container {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 1em;
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+  max-width: 100%;
+  margin-bottom: 1.5em;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+#toc-toggle {
+  background: none;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  color: #0366d6;
+  padding: 0;
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+#toc-toggle:hover {
+  text-decoration: underline;
+}
+
+#toc ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#toc li {
+  margin: 0.3em 0;
+}
+
+#toc li ul {
+  margin-left: 1em;
+}
+
+#toc a {
+  text-decoration: none;
+  color: #333;
+}
+
+#toc a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  #toc-container {
+    font-size: 13px;
+  }
+}
+#toc nav,
+#toc ul {
+  display: block !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#toc li {
+  display: block !important;
+  margin: 0.3em 0;
+}
+
+#toc li ul {
+  margin-left: 1em !important;
+}
+
+#toc a {
+  display: inline-block;
+  text-decoration: none;
+  color: #333;
+  padding: 2px 0;
+}
+
+#toc[hidden] {
+  display: none !important;
+}
+
+/* ======================================================
+   39. BLOQUE:  BLOG - CONTENEDOR DE CODIGO PRE/CODE
+   ====================================================== */
+
+/* Bloque de código */
+pre {
+  position: relative;
+  background: #f3f4f6;
+  color: #1f2937;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.9rem;
+  max-width: 100%;
+  margin: 1.5rem 0;
+  border: 1px solid #e5e7eb;
+}
+
+/* Código */
+pre code {
+  white-space: pre;
+  display: block;
+}
+
+/* Botón de copiar */
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #e5e7eb;
+  color: #1f2937;
+  border: none;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  z-index: 10;
+}
+
+.copy-btn:hover {
+  background: #d1d5db;
+}
+
+/* ======================================================
+   40. BLOQUE:  BLOG - MEDIA PLAYER HTML
+   ====================================================== */
+
+.media-player {
+  position: relative;
+  width: 100%;
+  max-width: 850px;
+  margin: 2rem auto;
+  background-color: #000;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 16 / 9;
+}
+
+.media-player::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45); /* capa oscura semitransparente */
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.media-player::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 72px;
+  height: 72px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.85); /* círculo blanco translúcido */
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background-image: url('https://cdn-icons-png.flaticon.com/512/727/727245.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40%;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.media-player:hover::after {
+  transform: translate(-50%, -50%) scale(1.1);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.media-player iframe,
+.media-player video {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: none;
+  border-radius: 12px;
+}
+
+.media-player.active::before,
+.media-player.active::after {
+  display: none;
+}
+
+
+/* ======================================================
+   41. BLOQUE:  BLOG - BUSCAR (ESCRITORIO)
+   ====================================================== */
+
+.post-header {
+  max-width: 850px; /* Igual que tu contenido */
+  margin: 0 auto;
+}
+
+.post-header .search-box {
+  display: flex;
+  max-width: 300px; /* No más ancho que esto */
+  margin-top: 10px;
+}
+
+.post-header .search-box input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  font-size: 14px;
+}
+
+.post-header .search-box button {
+  background: #1f2937;
+  color: #fff;
+  border: none;
+  padding: 0 12px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* === Versión responsiva (móvil) === */
+@media (max-width: 600px) {
+  .post-header .search-box {
+    max-width: 100%;      /* Ocupar todo el ancho */
+  }
+
+  .post-header .search-box input {
+    font-size: 16px;      /* Texto un poco más grande para táctil */
+    padding: 10px;
+  }
+
+  .post-header .search-box button {
+    padding: 0 16px;
+    font-size: 16px;
+  }
+}
+
+
+/* ======================================================
+   42. BLOQUE: BLOG - CONTENEDOR DE ARTICULOS PARA EL INDEX / HOME
+   ====================================================== */
+
+.index-contenedor {
+  max-width: 960px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  font-family: system-ui, sans-serif;
+  color: #374151;
+  line-height: 1.7;
+}
+
+.index-contenedor h2 {
+  font-size: 1.6rem;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.index-contenedor h3 {
+  font-size: 1.25rem;
+  color: #1f2937;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.index-contenedor p {
+  margin-bottom: 15px;
+}
+
+.index-contenedor ul {
+  list-style: none !important; /* fuerza quitar números */
+  padding-left: 0;
+  margin-bottom: 15px;
+}
+
+.index-contenedor ul li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 6px;
+}
+
+.index-contenedor ul li::before {
+  content: "\2022"; /* viñeta en Unicode para Blogger */
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #3b82f6; /* Azul suave */
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* Viñetas para sublistas */
+.index-contenedor ul ul li::before {
+  content: "\203A"; /* flecha Unicode segura */
+  color: #10b981; /* verde */
+}
+
+@media (max-width: 768px) {
+  .index-contenedor {
+    padding: 18px;
+  }
+  .index-contenedor h2 {
+    font-size: 1.4rem;
+  }
+}
+
+
+/* ======================================================
+   43. BLOQUE: STORE - FICHA DE PRODUCTO DESTACADO
+   ====================================================== */
+
+/* === Contenedor general de la ficha === */
+.ficha-producto {
+  display: flex;
+  flex-wrap: wrap;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  gap: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);
+  font-family: system-ui, sans-serif;
+  max-width: 100%;
+}
+
+/* === Imagen del producto === */
+.ficha-producto img {
+  width: 100%;
+  max-width: 300px;
+  object-fit: contain;
+  border-radius: 0.75rem;
+}
+
+/* === Información textual del producto === */
+.ficha-info {
+  flex: 1;
+  min-width: 250px;
+}
+
+.ficha-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #1f2937;
+}
+
+.ficha-info p {
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+/* --- Lista de características --- */
+.ficha-info ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.ficha-info ul li {
+  margin-bottom: 0.5rem;
+  color: #4b5563;
+}
+
+/* === Precio del producto === */
+.ficha-precio {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--verde);
+  margin-bottom: 1rem;
+}
+
+/* ======================================================
+   BOTONES
+   ====================================================== */
+
+/* --- Botón principal: Comprar ahora --- */
+.ficha-boton {
+  display: inline-block;
+  background: var(--azul);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+.ficha-boton:hover {
+  background: #2563eb; /* azul más oscuro */
+}
+
+/* --- Botón secundario: Añadir al carrito --- */
+.ficha-boton-secundario {
+  display: inline-block;
+  background: var(--verde);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+.ficha-boton-secundario:hover {
+  background: #059669; /* verde más oscuro */
+}
+
+/* ======================================================
+   Responsive
+   ====================================================== */
+@media (max-width: 768px) {
+  .ficha-producto {
+    flex-direction: column;
+    align-items: center;
+    text-align: letf;
+  }
+  .ficha-info {
+    padding: 0;
+  }
+  .ficha-info ul {
+    text-align: left;
+    margin: 0 auto 1rem auto;
+    display: block; /* mejor que inline-block en móvil */
+  }
+}
+
+/* ======================================================
+   Etiquetas adicionales de precio y disponibilidad
+   ====================================================== */
+
+/* --- Texto "Precio:" --- */
+.etiqueta-precio {
+  font-size: 0.95rem;
+  color: #1f2937;
+  margin-right: 0.25rem;
+}
+
+/* --- Símbolo $ --- */
+.precio-signo {
+  font-weight: bold;
+  color: var(--verde);
+  font-size: 1.1rem;
+}
+
+/* --- Valor numérico del precio --- */
+.precio-valor {
+  font-weight: bold;
+  color: var(--verde);
+  font-size: 1.4rem;
+  margin-right: 0.5rem;
+}
+
+/* --- Texto de disponibilidad --- */
+.disponibilidad {
+  font-size: 0.85rem;
+  color: #6b7280; /* gris neutro por defecto */
+}
+
+/* --- Estado agotado --- */
+.disponibilidad.agotado {
+  color: var(--rojo);
+}
+
+
+/* ======================================================
+   44. BLOQUE: STORE - TABLA CARRITO DE COMPRAS
+   ====================================================== */
+
+/* Contenedor principal del carrito */
+.tabla-carrito {
+  width: 100%;
+  overflow-x: auto; /* scroll horizontal si es necesario */
+  font-family: system-ui, sans-serif;
+  margin: 1rem 0;
+}
+
+/* Tabla horizontal en PC */
+.tabla-carrito table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+/* Encabezado de tabla */
+.tabla-carrito th,
+.tabla-carrito td {
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Encabezados con fondo y color */
+.tabla-carrito th {
+  background-color: #1f2937;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Inputs de cantidad */
+.tabla-carrito td input[type="number"] {
+  width: 60px;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+}
+
+/* Botón eliminar */
+.tabla-carrito td button {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.tabla-carrito td button:hover {
+  background: #dc2626;
+}
+
+/* Total carrito */
+.tabla-carrito #total {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: right;
+  margin-top: 1rem;
+}
+
+/* Botón PayPal */
+.tabla-carrito .paypal-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background: #0070ba;
+  color: #fff;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.tabla-carrito .paypal-btn:hover {
+  background: #005ea6;
+}
+
+/* ======================================================
+   RESPONSIVE - VISTA MÓVIL TIPO CARD
+   ====================================================== */
+@media (max-width: 768px) {
+  
+  /* Cada fila como bloque vertical */
+  .tabla-carrito table,
+  .tabla-carrito thead,
+  .tabla-carrito tbody,
+  .tabla-carrito th,
+  .tabla-carrito td,
+  .tabla-carrito tr {
+    display: block;
+    width: 100%;
+  }
+
+  /* Ocultar encabezado en móvil */
+  .tabla-carrito thead {
+    display: none;
+  }
+
+  /* Cada fila tipo card */
+  .tabla-carrito tr {
+    margin-bottom: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.5rem;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  /* Celdas flex con separación */
+  .tabla-carrito td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .tabla-carrito td:last-child {
+    border-bottom: none;
+  }
+
+  /* Mostrar título de la celda antes del contenido */
+  .tabla-carrito td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #1f2937;
+    margin-right: 0.5rem;
+  }
+
+  /* Inputs y botones adaptados a ancho móvil */
+  .tabla-carrito td input[type="number"] {
+    width: 50px;
+  }
+  .tabla-carrito td button {
+    padding: 0.35rem 0.6rem;
+  }
+}
+
+/* ======================================================
+   45. STORE - BOTON CARRITO FLOTANTE
+   ====================================================== */
+.ficha-botones {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+/* Estado añadido */
+.ficha-boton-secundario.is-added {
+  background: #059669;
+  opacity: 0.9;
+}
+.ficha-boton-secundario.is-disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* ===== BOTÓN FLOTANTE CARRITO ===== */
+.cart-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1f2937; /* gris oscuro */
+  color: #fff;
+  padding: 0.7rem 1rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 9999;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cart-float:hover {
+  background: #111827; /* un poco más oscuro */
+  transform: scale(1.05);
+}
+
+.cart-float #cart-count {
+  background: #f43f5e; /* rojo */
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-weight: bold;
 }
 
 
 /* ==========================================================================
-   📦 GALERÍAS DINAMICAS — FEED DE BLOGGER
+   46. BLOQUE: FEED DE BLOGGER - GALERÍAS DINAMICAS
    Bloque 1 — Galería Cluster
    Bloque 2 — Galería Card
    Bloque 3 — Galería Lista
@@ -1331,8 +4265,7 @@ body {
 }
 
 /* ==========================================================================
-   📦 CATALOGO DINAMICO CON O SIN ETIQUETA — FEED DE BLOGGER 
-   Jerarquía:
+   47. BLOQUE: FEED DE BLOGGER - CATALOGO DINAMICO CON O SIN ETIQUETA
      1. Contenedor general
      2. Ítem / tarjeta
      3. Elementos internos (imagen, info, título, descripción, meta)
@@ -1471,915 +4404,8 @@ body {
   gap: 0.3rem;
 }
 
-/* =========================================================
-   ESTILOS PARA EL CONTENIDO DEL HOME / INDEX (ESPACIADO AJUSTADO)
-   -------------------------
-   - Reduce espacio entre borde superior del contenedor y primer título
-   - Colores de títulos distinguibles
-   - Línea separadora al final de cada bloque
-   - Padding y márgenes optimizados
-   - Respeta shortcodes internos
-   - Responsive incluido
-   ========================================================= */
-
-.home-section {
-  background-color: transparent; /* sin fondo */
-  border: none;                  /* sin borde */
-  box-shadow: none;              /* sin sombra */
-  margin-bottom: 2rem;           /* separación entre secciones */
-  padding: 1.5rem 1rem;          /* espacio interno cómodo */
-  border-bottom: 1px solid var(--color-borde); /* línea separadora sutil */
-}
-
-.home-content {
-  font-family: var(--fuente-principal);
-  color: var(--color-principal);
-  line-height: 1.7;
-  font-size: 1.1rem;
-}
-
-/* Ajuste: primer título del bloque no tenga margin-top excesivo */
-.home-content > h1:first-child,
-.home-content > h2:first-child,
-.home-content > h3:first-child {
-  margin-top: 0;
-  margin-bottom: 0.8rem;
-  font-weight: 600;
-  color: #111827;
-}
-
-.home-content > h1 {
-  font-size: 2rem;
-  margin-top: 1rem; /* aplicado solo a h1 no primeros si hay texto antes */
-}
-
-.home-content > h2 {
-  font-size: 1.65rem;
-  margin-top: 1rem;
-}
-
-.home-content > h3 {
-  font-size: 1.35rem;
-  margin-top: 1rem;
-}
-
-.home-content > p {
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  font-weight: normal;
-  color: var(--color-principal);
-  line-height: 1.6;
-}
-
-/* ===================== Responsive ===================== */
-@media (max-width: 768px) {
-  .home-section {
-    padding: 1.2rem 0.8rem;
-  }
-
-  .home-content {
-    font-size: 1rem;
-    line-height: 1.55;
-  }
-
-  .home-content > h1:first-child,
-  .home-content > h2:first-child,
-  .home-content > h3:first-child {
-    margin-top: 0;
-  }
-
-  .home-content > h1 {
-    font-size: 1.75rem;
-  }
-
-  .home-content > h2 {
-    font-size: 1.45rem;
-  }
-
-  .home-content > h3 {
-    font-size: 1.25rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .home-section {
-    padding: 1rem 0.5rem;
-  }
-
-  .home-content {
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-
-  .home-content > h1:first-child,
-  .home-content > h2:first-child,
-  .home-content > h3:first-child {
-    margin-top: 0;
-  }
-
-  .home-content > h1 {
-    font-size: 1.5rem;
-  }
-
-  .home-content > h2 {
-    font-size: 1.25rem;
-  }
-
-  .home-content > h3 {
-    font-size: 1.1rem;
-  }
-}
-
-/* =========================================================
-   BLOQUE: ADSENSE AUTOMATIZADO
-   ========================================================= */
-
-/* ================================
-   1. CONTENEDORES BÁSICOS
-   ================================ */
-.adsense-shortcode,
-.adsense-placeholder {
-  display: block;
-  margin: 1em 0;
-  text-align: center; 
-}
-
-/* ================================
-   2. PLACEHOLDER / MENSAJE SIN ANUNCIO
-   ================================ */
-.adsense-placeholder {
-  background: var(--color-borde);       /* puede ser un gris medio, ej: #e2e2e2 */
-  padding: 10px;
-  color: #1f2937;                       /* gris oscuro, suficiente contraste con gris claro */
-  font-style: italic;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-/* =========================================================
-   BLOQUE: SHORTCODES RESERVAR ESPACIO (CLS) PAGESPEED
-   ========================================================= */
-
-.shortcode-container {
-  min-height: 280px;          /* Altura mínima reservada */
-  display: flex;              /* Activa flexbox */
-  flex-direction: column;     /* Contenido en columna */
-  justify-content: center;    /* Centra verticalmente */
-  gap: 10px;                  /* Separación entre elementos internos */
-  padding: 10px 0;            /* Solo espacio arriba y abajo */
-  box-sizing: border-box;     /* Incluye padding en el tamaño total */
-}
-
-/* ================================
-   BLOQUES DE INFORMACIÓN DESTACADA
-   Tres variantes: info general, tip/nota y advertencia
-   ================================ */
-
-/* 1. Información general */
-.info-destacada {
-  background-color: #f0f0f0;       /* Fondo gris claro */
-  padding: 10px;                   /* Espaciado interno */
-  border-left: 4px solid #3b82f6;  /* Línea azul a la izquierda */
-  margin-bottom: 0.5rem;           /* Espacio inferior entre bloques */
-  font-size: 1.1rem;
-  /* line-height: 1.5;
-  border-radius: 4px; */
-}
-.info-destacada::before {
-  content: "📌 ";
-  display: inline-block;
-  margin-right: 4px;
-}
-
-/* 2. Tip / Nota */
-.info-tip {
-  background-color: #e0f7fa;       /* Fondo azul muy claro */
-  padding: 10px;
-  border-left: 4px solid #00bcd4;  /* Línea azul más intensa */
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-  /* line-height: 1.5;
-   border-radius: 4px; */
-}
-.info-tip::before {
-  content: "💡 ";
-  display: inline-block;
-  margin-right: 4px;
-}
-
-/* 3. Advertencia / Precaución */
-.info-alerta {
-  background-color: #fff4e5;       /* Fondo amarillo suave */
-  padding: 10px;
-  border-left: 4px solid #ff9800;  /* Línea naranja */
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-  /* line-height: 1.5;
-  border-radius: 4px; */
-}
-.info-alerta::before {
-  content: "\26A0 \FE0F";
-  display: inline-block;
-  margin-right: 4px;
-}
-
-/* =========================================================
-   BLOQUE: MIGAS DE PAN (POST & PAGE)
-   ========================================================= */
-
-/* ================================
-   1. CONTENEDOR PRINCIPAL
-   ================================ */
-.breadcrumbs {
-  font-size: 14px;
-  padding: 6px 0.8rem;
-  border-bottom: 1px solid #e2e8f0;
-  margin-bottom: 1rem;
-  color: #475569;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  max-width: 100%;
-  box-sizing: border-box;
-  background-color: transparent;
-
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-/* ================================
-   2. ENLACES Y TEXTO
-   ================================ */
-.breadcrumbs a,
-.breadcrumbs span[itemprop="name"] {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 14px; /* mismo tamaño */
-}
-
-/* Estilo para enlaces */
-.breadcrumbs a {
-  color: #4a6fa5; /* azul grisáceo suave */
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.breadcrumbs a:hover {
-  color: #6c85b1; /* azul suave más claro */
-  text-decoration: underline;
-}
-
-/* Estilo para el título (texto plano) */
-.breadcrumbs span[itemprop="name"]:not(:hover) {
-  color: #475569; /* gris oscuro suave */
-}
-
-/* ================================
-   3. SEPARADOR ENTRE NIVELES
-   ================================ */
-.breadcrumb-sep {
-  color: #94a3b8;
-  user-select: none;
-  padding: 0 0.2rem;
-  white-space: nowrap;
-  font-size: 14px;
-}
-
-/* ================================
-   4. RESPONSIVE (MÓVIL <= 480px)
-   ================================ */
-@media (max-width: 480px) {
-  .breadcrumbs {
-    font-size: 12px;
-    padding: 5px 0.6rem;
-    gap: 0.2rem;
-  }
-  .breadcrumbs a,
-  .breadcrumbs span[itemprop="name"],
-  .breadcrumb-sep {
-    font-size: 12px;
-  }
-}
-
-/* =========================================================
-   BLOQUE: REPRODUCTOR DE AUDIO HTML5
-   ========================================================= */
-
-/* === Contenedor principal del reproductor === */
-.tb-audio {
-  background:#fff;
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  padding:12px;
-  margin:1rem 0;
-  font-family:system-ui,sans-serif;
-  max-width:600px;
-}
-
-/* === Elemento <audio> interno === */
-.tb-audio audio {
-  width:100%;
-  margin-bottom:6px;
-}
-
-/* === Título del reproductor === */
-.tb-audio__title {
-  font-weight:600;
-  margin:4px 0;
-  font-size:.9rem;
-}
-
-/* === Enlaces dentro del bloque === */
-.tb-audio a {
-  font-size:.85rem;
-  color:#2563eb;
-  text-decoration:none;
-}
-
-/* Hover en enlaces */
-.tb-audio a:hover {
-  text-decoration:underline;
-}
-
-/* ==========================
- * CONTENEDOR DEMO DE BOTONES (agrupación)
- * ========================== */
-.botones-demo {
-  display: flex;
-  flex-wrap: wrap;        /* permite varias filas */
-  gap: 1rem;              /* espacio entre botones */
-  padding: 1rem;
-  margin: 1rem 0;
-  border-radius: 8px; 
-}
-
-.botones-demo .boton,
-.botones-demo .boton-descarga {
-  flex: 1 1 calc(33.333% - 1rem); /* 3 por fila */
-  text-align: center;
-}
-
-/* Responsivo: 2 por fila en pantallas medianas */
-@media (max-width: 768px) {
-  .botones-demo .boton,
-  .botones-demo .boton-descarga {
-    flex: 1 1 calc(50% - 1rem);
-  }
-}
-
-/* 1 por fila en móvil pequeño */
-@media (max-width: 480px) {
-  .botones-demo .boton,
-  .botones-demo .boton-descarga {
-    flex: 1 1 100%;
-  }
-}
-/** ==========================
- * BOTONES BASE
- * ========================== */
-.boton,
-.boton-descarga {
-  display: inline-flex;           /* flex para centrar icono + texto */
-  align-items: center;            /* centra vertical */
-  justify-content: center;        /* centra horizontal */
-  gap: 0.5rem;                    /* espacio entre icono y texto */
-  
-  padding: 0.5rem 1.2rem;
-  border: 1px solid var(--color-acento);
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: bold;
-  font-family: inherit;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-/* Estados accesibles */
-.boton:focus-visible,
-.boton-descarga:focus-visible {
-  outline: 3px solid rgba(59,130,246,0.4);
-  outline-offset: 2px;
-}
-
-/** ==========================
- * BOTÓN NORMAL
- * ========================== */
-.boton {
-  background-color: var(--color-acento);
-  color: #fff;
-}
-
-.boton:hover {
-  background-color: #fff;
-  color: var(--color-acento);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-/** ==========================
- * BOTÓN INVERTIDO (bordeado, sin relleno)
- * ========================== */
-.boton.invertido {
-  background-color: #fff;
-  color: var(--color-acento);
-}
-
-.boton.invertido:hover {
-  background-color: var(--color-acento);
-  color: #fff;
-}
-
-/** ==========================
- * BOTÓN DESCARGA
- * ========================== */
-.boton-descarga {
-  background-color: var(--color-acento);
-  color: #fff;
-  position: relative;
-  padding-left: 0.8rem; /* ya no necesitas 2rem porque usamos flex */
-}
-
-.boton-descarga svg {
-  width: 18px;
-  height: 18px;
-}
-
-/* Hover descarga */
-.boton-descarga:hover {
-  background-color: #fff;
-  color: var(--color-acento);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-/** ==========================
- * DESCARGA INVERTIDO BOTÓN
- * ========================== */
-.boton-descarga.invertido {
-  background-color: #fff;
-  color: var(--color-acento);
-}
-
-.boton-descarga.invertido:hover {
-  background-color: var(--color-acento);
-  color: #fff;
-}
-
-/** ==========================
- * MODIFICADORES DE FORMA BOTÓN
- * ========================== */
-.redondo {
-  border-radius: 999px;
-}
-
-/** ==========================
- * VARIANTES DE COLOR BOTÓN
- * ========================== */
-.verde   { --color-acento: var(--verde); }
-.rojo    { --color-acento: var(--rojo); }
-.azul    { --color-acento: var(--azul); }
-.naranja { --color-acento: var(--naranja); }
-.gris    { --color-acento: var(--gris); }
-.negro   { --color-acento: var(--negro); }
-
-/* =========================================================
-   BLOQUE: PÁGINA DE ERROR 404
-   ========================================================= */
-
-/* === Contenedor principal del error === */
-.error-container {
-  text-align: center;
-  background: white;
-  padding: 3rem 2rem;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-  max-width: 500px;
-  margin: auto;
-}
-
-/* === Código de error (ej. 404) === */
-.error-code {
-  font-size: 5rem;
-  font-weight: bold;
-  color: var(--color-acento);
-  margin-bottom: 1rem;
-}
-
-/* === Mensaje principal del error === */
-.error-message {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-/* === Descripción adicional del error === */
-.error-description {
-  color: #666;
-  margin-bottom: 2rem;
-}
-
-/* === Enlace de acción o retorno === */
-.error-link {
-  display: inline-block;
-  background-color: var(--color-acento);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background 0.3s ease;
-}
-
-/* Hover del enlace de error */
-.error-link:hover {
-  background-color: var(--color-hover-link);
-  color: black;
-}
-
-/* =========================================================
-   BLOQUE: PAGINACIÓN BLOGGER
-   ========================================================= */
-
-/* === Contenedor de la paginación === */
-.blog-pager {
-  display: flex;
-  justify-content: center; /* centra los botones */
-  gap: 0.5rem;             /* espacio entre ellos */
-  max-width: 600px;
-  margin: 2rem auto;
-}
-
-/* === Botones de página === */
-.blog-pager a {
-  padding: 0.5rem 1.2rem;
-  border: 1px solid var(--color-acento);
-  border-radius: 4px;
-  background-color: white;
-  color: var(--color-acento);
-  text-decoration: none;
-  font-weight: bold;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-/* === Hover sobre los botones === */
-.blog-pager a:hover {
-  background-color: var(--color-acento);
-  color: white;
-}
-
-/* =========================================================
-   BLOQUE: ESTILO FORO HTML ESTATICO
-   ========================================================= */
-
-/* === Contenedor principal de la lista de posts === */
-.foro-lista {
-  max-width: 800px;
-  margin: 0 auto 2rem;
-  padding: 0 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem; /* separación entre tarjetas */
-}
-
-/* === Cada post del foro === */
-.foro-post {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  background: white;
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-  transition: background 0.2s ease;
-}
-
-/* === Hover sobre cada post === */
-.foro-post:hover {
-  background: var(--color-secundario);
-}
-
-/* === Imagen del post === */
-.foro-img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 8px;
-  flex-shrink: 0;
-}
-
-/* === Contenido del post === */
-.foro-contenido {
-  flex: 1;
-}
-
-/* === Título del post === */
-.foro-titulo {
-  font-size: 1.1rem;
-  color: var(--color-principal);
-  margin-bottom: 0.5rem;
-}
-
-/* === Extracto o descripción del post === */
-.foro-extracto {
-  color: #444;
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-/* === Estilos responsivos para móviles === */
-@media (max-width: 600px) {
-  .foro-post {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .foro-img {
-    margin-bottom: 1rem;
-  }
-
-  .foro-contenido {
-    width: 100%;
-  }
-}
-
-/* =========================================================
-   BLOQUE: CÓDIGO EN POST
-   ========================================================= */
-
-/* === Código inline dentro de párrafos === */
-code {
-  font-family: monospace;
-  background-color: #f0f0f0;
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-  color: var(--color-principal);
-  font-size: 0.95em;
-}
-
-/* === Bloques de código completos === */
-pre {
-  background-color: #f0f0f0;
-  padding: 1rem;
-  overflow-x: auto;
-  border-radius: 6px;
-  margin: 1rem 0;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  box-shadow: 0 0 5px rgba(0,0,0,0.05);
-}
-
-/* === Código dentro de los bloques <pre> === */
-pre code {
-  font-family: monospace;
-  color: var(--color-principal);
-  display: block;
-  white-space: pre;
-}
-
-/* =========================================================
-   BLOQUE: ALERTAS EN POST
-   ========================================================= */
-
-/* === Estilo base de todas las alertas === */
-.alert {
-  padding: 1rem;
-  margin: 1rem 0;
-  border-left: 5px solid;
-  border-radius: 4px;
-  font-size: 1rem;
-  line-height: 1.5;
-  background-color: #f9f9f9;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
-}
-
-/* === Tipos específicos de alertas === */
-
-/* Alerta de advertencia */
-.alert.warning {
-  border-color: #f1c40f;
-  background-color: #fff8db;
-  color: #665c00;
-}
-
-/* Alerta informativa */
-.alert.info {
-  border-color: var(--color-acento);
-  background-color: #e8f4ff;
-  color: var(--color-principal);
-}
-
-/* Alerta de éxito */
-.alert.success {
-  border-color: #2ecc71;
-  background-color: #e9fbe9;
-  color: #276738;
-}
-
-/* Alerta de error */
-.alert.error {
-  border-color: #e74c3c;
-  background-color: #fdecea;
-  color: #8a1f11;
-}
-
-/* ===========================================================
-   BLOQUE: ESTILO DE CITA
-   ================================================================= */
-
-/* Contenedor principal de la cita */
-blockquote {
-  border-left: 4px solid var(--color-acento); /* barra izquierda destacada */
-  background-color: #f0f0f0;                 /* fondo gris claro */
-  padding: 1rem 1.5rem;                      /* espacio interno */
-  margin: 1.5rem 0;                           /* margen vertical */
-  font-style: italic;                         /* texto en cursiva */
-  color: #333;                                /* color del texto */
-  position: relative;                         /* necesario para pseudo-elementos */
-  border-radius: 4px;                         /* esquinas redondeadas */
-}
-
-/* Pseudo-elemento: comilla izquierda decorativa */
-blockquote::before {
-  content: "\201C";                           /* “ comilla izquierda */
-  font-size: 2rem;                            /* tamaño grande */
-  color: var(--color-acento);                 /* color acento */
-  position: absolute;                          /* posición absoluta */
-  left: 10px;                                 /* distancia izquierda */
-  top: -10px;                                 /* distancia superior */
-}
-
-/* Pseudo-elemento: comilla derecha decorativa */
-blockquote::after {
-  content: "\201D";                           /* ” comilla derecha */
-  font-size: 2rem;                            /* tamaño grande */
-  color: var(--color-acento);                 /* color acento */
-  position: absolute;                         /* posición absoluta */
-  right: 10px;                                /* distancia derecha */
-  bottom: -10px;                              /* distancia inferior */
-}
-
 /* ======================================================
-   BLOQUE: FICHA DE PRODUCTO DESTACADO
-   ====================================================== */
-
-/* === Contenedor general de la ficha === */
-.ficha-producto {
-  display: flex;
-  flex-wrap: wrap;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  gap: 2rem;
-  margin: 2rem 0;
-  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);
-  font-family: system-ui, sans-serif;
-  max-width: 100%;
-}
-
-/* === Imagen del producto === */
-.ficha-producto img {
-  width: 100%;
-  max-width: 300px;
-  object-fit: contain;
-  border-radius: 0.75rem;
-}
-
-/* === Información textual del producto === */
-.ficha-info {
-  flex: 1;
-  min-width: 250px;
-}
-
-.ficha-info h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.75rem;
-  color: #1f2937;
-}
-
-.ficha-info p {
-  margin-bottom: 1rem;
-  color: #374151;
-}
-
-/* --- Lista de características --- */
-.ficha-info ul {
-  list-style: disc;
-  padding-left: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-.ficha-info ul li {
-  margin-bottom: 0.5rem;
-  color: #4b5563;
-}
-
-/* === Precio del producto === */
-.ficha-precio {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: var(--verde);
-  margin-bottom: 1rem;
-}
-
-/* ======================================================
-   BOTONES
-   ====================================================== */
-
-/* --- Botón principal: Comprar ahora --- */
-.ficha-boton {
-  display: inline-block;
-  background: var(--azul);
-  color: #fff;
-  padding: 0.75rem 1.25rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: background 0.2s ease;
-  cursor: pointer;
-}
-.ficha-boton:hover {
-  background: #2563eb; /* azul más oscuro */
-}
-
-/* --- Botón secundario: Añadir al carrito --- */
-.ficha-boton-secundario {
-  display: inline-block;
-  background: var(--verde);
-  color: #fff;
-  padding: 0.75rem 1.25rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: background 0.2s ease;
-  cursor: pointer;
-}
-.ficha-boton-secundario:hover {
-  background: #059669; /* verde más oscuro */
-}
-
-/* ======================================================
-   Responsive
-   ====================================================== */
-@media (max-width: 768px) {
-  .ficha-producto {
-    flex-direction: column;
-    align-items: center;
-    text-align: letf;
-  }
-  .ficha-info {
-    padding: 0;
-  }
-  .ficha-info ul {
-    text-align: left;
-    margin: 0 auto 1rem auto;
-    display: block; /* mejor que inline-block en móvil */
-  }
-}
-
-/* ======================================================
-   Etiquetas adicionales de precio y disponibilidad
-   ====================================================== */
-
-/* --- Texto "Precio:" --- */
-.etiqueta-precio {
-  font-size: 0.95rem;
-  color: #1f2937;
-  margin-right: 0.25rem;
-}
-
-/* --- Símbolo $ --- */
-.precio-signo {
-  font-weight: bold;
-  color: var(--verde);
-  font-size: 1.1rem;
-}
-
-/* --- Valor numérico del precio --- */
-.precio-valor {
-  font-weight: bold;
-  color: var(--verde);
-  font-size: 1.4rem;
-  margin-right: 0.5rem;
-}
-
-/* --- Texto de disponibilidad --- */
-.disponibilidad {
-  font-size: 0.85rem;
-  color: #6b7280; /* gris neutro por defecto */
-}
-
-/* --- Estado agotado --- */
-.disponibilidad.agotado {
-  color: var(--rojo);
-}
-
-/* ======================================================
-   BLOQUE: CORE TABLA COMPARATIVA HTML & FEED BLOGGER
+   48. BLOQUE: FEED BLOGGER - TABLA COMPARATIVA HTML 
    ====================================================== */
 
 /* === Contenedor principal de la tabla === */
@@ -2506,1691 +4532,10 @@ blockquote::after {
   }
 }
 
-/* ======================================================
-   BLOQUE: ESTILO DE TABLA SIMPLE HTML + SCROLL
-   ====================================================== */
-
-/* === Contenedor scroll horizontal === */
-.tabla-responsive {
-  overflow-x: auto;
-  margin: 2rem 0;
-}
-
-/* === Tabla minimalista === */
-.tabla-minimalista {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 600px;
-  font-family: sans-serif;
-}
-
-/* === Celdas de la tabla === */
-.tabla-minimalista th,
-.tabla-minimalista td {
-  padding: 0.8rem 1rem;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-/* === Encabezado de la tabla === */
-.tabla-minimalista thead {
-  background-color: #f8f8f8;
-}
-
-/* === Hover en filas de la tabla === */
-.tabla-minimalista tbody tr:hover {
-  background-color: #f0f0f0;
-}
-
-/* === Estilo específico para encabezados === */
-.tabla-minimalista th {
-  color: var(--color-principal, #222);
-  font-weight: bold;
-}
 
 /* ======================================================
-   BLOQUE: TABLA CARRITO DE COMPRAS
+   49. BLOQUE: FEED BLOGGER - CAJA DEL AUTOR HTML
    ====================================================== */
-
-/* Contenedor principal del carrito */
-.tabla-carrito {
-  width: 100%;
-  overflow-x: auto; /* scroll horizontal si es necesario */
-  font-family: system-ui, sans-serif;
-  margin: 1rem 0;
-}
-
-/* Tabla horizontal en PC */
-.tabla-carrito table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1rem;
-}
-
-/* Encabezado de tabla */
-.tabla-carrito th,
-.tabla-carrito td {
-  border: 1px solid #e5e7eb;
-  padding: 0.75rem 1rem;
-  text-align: left;
-  vertical-align: middle;
-}
-
-/* Encabezados con fondo y color */
-.tabla-carrito th {
-  background-color: #1f2937;
-  color: #fff;
-  font-weight: 600;
-}
-
-/* Inputs de cantidad */
-.tabla-carrito td input[type="number"] {
-  width: 60px;
-  padding: 0.25rem 0.5rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.25rem;
-}
-
-/* Botón eliminar */
-.tabla-carrito td button {
-  background: #ef4444;
-  color: #fff;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-}
-.tabla-carrito td button:hover {
-  background: #dc2626;
-}
-
-/* Total carrito */
-.tabla-carrito #total {
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: right;
-  margin-top: 1rem;
-}
-
-/* Botón PayPal */
-.tabla-carrito .paypal-btn {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.6rem 1.2rem;
-  background: #0070ba;
-  color: #fff;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
-}
-.tabla-carrito .paypal-btn:hover {
-  background: #005ea6;
-}
-
-/* ======================================================
-   RESPONSIVE - VISTA MÓVIL TIPO CARD
-   ====================================================== */
-@media (max-width: 768px) {
-  
-  /* Cada fila como bloque vertical */
-  .tabla-carrito table,
-  .tabla-carrito thead,
-  .tabla-carrito tbody,
-  .tabla-carrito th,
-  .tabla-carrito td,
-  .tabla-carrito tr {
-    display: block;
-    width: 100%;
-  }
-
-  /* Ocultar encabezado en móvil */
-  .tabla-carrito thead {
-    display: none;
-  }
-
-  /* Cada fila tipo card */
-  .tabla-carrito tr {
-    margin-bottom: 1rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 0.5rem;
-    background: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  }
-
-  /* Celdas flex con separación */
-  .tabla-carrito td {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 0.75rem;
-    border: none;
-    border-bottom: 1px solid #f3f4f6;
-  }
-
-  .tabla-carrito td:last-child {
-    border-bottom: none;
-  }
-
-  /* Mostrar título de la celda antes del contenido */
-  .tabla-carrito td::before {
-    content: attr(data-label);
-    font-weight: bold;
-    color: #1f2937;
-    margin-right: 0.5rem;
-  }
-
-  /* Inputs y botones adaptados a ancho móvil */
-  .tabla-carrito td input[type="number"] {
-    width: 50px;
-  }
-  .tabla-carrito td button {
-    padding: 0.35rem 0.6rem;
-  }
-}
-
-/* ======================================================
-   BOTONES FICHA CARRITOS - AGRUPADOS
-   ====================================================== */
-.ficha-botones {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-}
-
-/* Estado añadido */
-.ficha-boton-secundario.is-added {
-  background: #059669;
-  opacity: 0.9;
-}
-.ficha-boton-secundario.is-disabled {
-  background: #9ca3af;
-  cursor: not-allowed;
-}
-
-/* ===== BOTÓN FLOTANTE CARRITO ===== */
-.cart-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #1f2937; /* gris oscuro */
-  color: #fff;
-  padding: 0.7rem 1rem;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 600;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  z-index: 9999;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.cart-float:hover {
-  background: #111827; /* un poco más oscuro */
-  transform: scale(1.05);
-}
-
-.cart-float #cart-count {
-  background: #f43f5e; /* rojo */
-  color: #fff;
-  font-size: 0.9rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 999px;
-  font-weight: bold;
-}
-
-
-
-
-
-/* ==========================================================================
-   ====================== FIN CSS COMENTADO ==========================
-   ========================================================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Estilo de Suscripcion */
-
-.cta-suscripcion {
-  background-color: white;
-  border: 1px solid #ddd;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  max-width: 500px;
-  margin: 2rem auto;
-  text-align: center;
-}
-
-.cta-suscripcion h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.cta-suscripcion p {
-  margin-bottom: 1.2rem;
-  color: #555;
-}
-
-.form-suscripcion {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.form-suscripcion input[type="email"] {
-  padding: 0.6rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-family: var(--fuente-principal);
-  width: 100%;
-}
-
-.checkbox-politica {
-  font-size: 0.9rem;
-  color: #333;
-  text-align: left;
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-.checkbox-politica input[type="checkbox"] {
-  transform: scale(1.1);
-}
-
-.checkbox-politica a {
-  color: var(--color-acento);
-  text-decoration: underline;
-}
-
-.form-suscripcion button {
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 4px;
-  background-color: var(--color-acento);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.2s ease;
-}
-
-.form-suscripcion button:hover {
-  background-color: var(--color-hover-link);
-}
-
-/* Estilo de suscipcion horizontal */
-.form-suscripcion-horizontal {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 600px;
-  margin: 2rem auto;
-}
-
-.input-boton {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.input-boton input[type="email"] {
-  flex: 1;
-  padding: 0.5rem;
-  border: 1px solid var(--color-acento);
-  border-radius: 4px;
-}
-
-.input-boton button {
-  padding: 0.5rem 1.2rem;
-  background-color: var(--color-acento);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.input-boton button:hover {
-  background-color: var(--color-hover-link);
-}
-
-.checkbox-politica {
-  font-size: 0.9rem;
-}
-
-/* llamada a la accion */
-
-.cta-izquierda {
-  max-width: 800px;       /* Más ancho */
-  width: 90%;             /* Ocupa el 90% del contenedor */
-  padding: 1.5rem;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  text-align: left;
-  margin: 2rem auto;      /* Centrado horizontal */
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-
-.cta-izquierda h2 {
-  margin: 0;
-  font-size: 1.8rem;
-  color: var(--color-principal);
-}
-
-.cta-izquierda p {
-  margin: 0;
-  color: #555;
-  line-height: 1.4;
-  font-size: 1.05rem;
-}
-
-.cta-izquierda .boton {
-  align-self: flex-start;
-  padding: 0.6rem 1.4rem;
-  border: none;
-  border-radius: 4px;
-  background-color: var(--color-acento);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.cta-izquierda .boton:hover {
-  background-color: var(--color-hover-link);
-}
-
-/* llamada a la accion con imagen*/
-
-.cta-con-imagen-vertical {
-  display: flex;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  max-width: 1000px;
-  margin: 2rem auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.cta-con-imagen-vertical img {
-  width: 300px;
-  height: auto;
-  object-fit: cover;
-  display: block;
-}
-
-.cta-con-imagen-vertical .contenido {
-  padding: 2rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.cta-con-imagen-vertical h2 {
-  font-size: 1.8rem;
-  margin-bottom: 0.8rem;
-  color: var(--color-principal);
-}
-
-.cta-con-imagen-vertical p {
-  margin-bottom: 1.5rem;
-  color: #444;
-}
-
-.cta-con-imagen-vertical a.boton {
-  padding: 0.6rem 1.5rem;
-  background-color: var(--color-acento);
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  align-self: flex-start;
-  transition: background-color 0.2s ease;
-}
-
-.cta-con-imagen-vertical a.boton:hover {
-  background-color: var(--color-hover-link);
-}
-@media (max-width: 768px) {
-  .cta-con-imagen-vertical {
-    flex-direction: column;
-  }
-
-  .cta-con-imagen-vertical img {
-    width: 100%;
-    height: auto;
-  }
-
-  .cta-con-imagen-vertical .contenido {
-    padding: 1.5rem;
-  }
-}
-
-/* === COMENTARIOS BLOGGER - Estilo Vertical con Jerarquía Clara === */
-
-/* Ocultar elementos innecesarios */
-.comments .loadmore,
-.comments .continue,
-.thread-chrome.thread-collapsed,
-.item-control {
-  display: none !important;
-}
-
-/* Reset general */
-.comments-content,
-.comment-thread ol,
-.comment-thread li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* Comentarios padres e hijos */
-li.comment {
-  display: block;
-  margin-top: 1.5rem;
-  padding: 1rem 1.2rem;
-  border-radius: 1rem;
-  background-color: #fff;
-  border: 1px solid #cbd5e1;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-  position: relative;
-}
-
-/* Fondo gris claro para respuestas (hijos) */
-.comment-replies li.comment {
-  background-color: #f7f7f7;
-  border: 1px solid #e0e0e0;
-}
-
-/* Avatar */
-.avatar-image-container {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: #ddd;
-  float: left;
-  margin-right: 1rem;
-}
-.avatar-image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Ocultar avatar anónimo */
-.avatar-image-container img[src*="anon36.png"],
-.avatar-image-container img[src*="b36-rounded.png"] {
-  opacity: 0;
-}
-
-/* Contenido del comentario */
-.comment-block {
-  overflow: hidden;
-}
-
-/* Cabecera */
-.comment-header {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #1f2937; /* gris oscuro */
-  margin-bottom: 0.3rem;
-}
-.comment-header .datetime {
-  font-size: 0.8rem;
-  color: #888;
-  margin-left: 0.5rem;
-}
-
-/* Texto */
-.comment-content {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #444;
-  margin-top: 0.5rem;
-}
-
-/* Pie */
-.comment-footer {
-  margin-top: 0.8rem;
-}
-
-/* Botón "Responder" */
-.comment-reply {
-  appearance: none;
-  background-color: #e5e7eb;
-  color: #4b5563;
-  padding: 0.4rem 0.9rem;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.comment-reply:hover {
-  background-color: #d1d5db;
-  color: #374151;
-  border-color: #cbd5e1;
-}
-
-/* Enlaces en el contenido y cabecera */
-.comment-header a,
-.comment-content a {
-  color: #4b5563;
-  text-decoration: underline;
-  transition: color 0.2s ease;
-}
-
-.comment-header a:hover,
-.comment-content a:hover {
-  color: #374151;
-}
-
-/* Ocultar la palabra "Respuestas" */
-.thread-count {
-  display: none !important;
-}
-
-/* Caja de respuestas (contenedor de hijos) */
-.comment-replies {
-  margin-top: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding-left: 0;
-}
-
-/* Caja de respuesta */
-.comment-replybox-single,
-.comment-replybox-thread {
-  margin-top: 1rem;
-}
-.comments .comments-replybox {
-  width: 100%;
-  border: none;
-  height: 250px;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .avatar-image-container {
-    float: none;
-    margin: 0 auto 0.5rem;
-  }
-
-  .comment-block {
-    text-align: center;
-  }
-
-  .comment-header {
-    justify-content: center;
-  }
-
-  .comment-footer {
-    text-align: center;
-  }
-}
-/* Limitar ancho y centrar comentarios */
-.comments {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  box-sizing: border-box;
-  width: 100%; /* fuerza ocupar todo el ancho disponible */
-}
-
-/* Opcional: si quieres un ajuste especial en móvil */
-@media (max-width: 600px) {
-  .comments {
-    padding: 0 0rem; /* menos padding para móviles */
-  }
-}
-
-
-/* Sutil sombra para el título Comentarios */
-.comments .title {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #1f2937;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  position: relative;
-  padding-bottom: 0.5rem;
-  letter-spacing: 0.03em;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
-}
-
-/* Línea decorativa debajo del título (más suave con sombra) */
-.comments .title::after {
-  content: "";
-  display: block;
-  width: 100px;
-  height: 3px;
-  background: linear-gradient(90deg, #3b82f6, #60a5fa);
-  border-radius: 2px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  box-shadow: 0 2px 6px rgba(59,130,246,0.3);
-}
-
-/* Número de comentarios con transición de color al pasar mouse */
-.comments .comment-count {
-  font-weight: 400;
-  font-size: 1.6rem;
-  color: #4b5563;
-  transition: color 0.3s ease;
-}
-
-.comments .comment-count:hover {
-  color: #3b82f6;
-}
-
-/* Título "Publicar un comentario" con línea arriba, sombra y un poco más de espacio */
-#comment-post-message {
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin: 2rem 0 0.5rem;
-  color: #1f2937;
-  position: relative;
-  padding-top: 1rem;
-  text-align: left;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
-}
-
-/* Línea decorativa arriba del título con sombra */
-#comment-post-message::before {
-  content: "";
-  display: block;
-  width: 100px;
-  height: 3px;
-  background: linear-gradient(90deg, #3b82f6, #60a5fa);
-  border-radius: 2px;
-  margin-bottom: 0.75rem;
-  box-shadow: 0 2px 6px rgba(59,130,246,0.3);
-}
-
-/* Caja del formulario: borde suave, sombra y padding */
-.comments .comment-form,
-.comments .comments-replybox {
-  background-color: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  transition: box-shadow 0.3s ease;
-}
-
-/* Sombra más intensa al enfocar el formulario */
-.comments .comment-form:focus-within,
-.comments .comments-replybox:focus-within {
-  box-shadow: 0 4px 16px rgba(59,130,246,0.3);
-  border-color: #3b82f6;
-}
-
-/* Texto "sin comentarios" un poco más grande y con letra cursiva fina */
-.sin-comentarios {
-  color: #6b7280;
-  font-style: italic;
-  font-weight: 300;
-  padding: 1.5rem;
-  text-align: center;
-  font-size: 1.3rem;
-}
-
-/* ==== SECCIÓN DE COMPARTIR - Estilo Minimalista ==== */
-
-.custom-share-wrapper {
-  /* No fijar max-width menor que el padre */
-  width: 100%;
-  margin: 3rem 0 1.5rem; /* Solo vertical, sin centrar horizontal */
-    padding: 0 0 1.5rem 0; /* padding-bottom para espacio bajo la línea */
-  box-sizing: border-box;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.custom-share-title {
-  font-size: 1rem;
-  color: #1f2937;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #e5e7eb;
-  /* Opcional: para que ocupe todo el ancho */
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.custom-share {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.custom-share a {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background-color: #f3f4f6;
-  color: #1f2937;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease;
-  border: 1px solid #d1d5db;
-  /* Que el ancho sea automático para que se acomode bien */
-  width: auto;
-  box-sizing: border-box;
-}
-
-.custom-share a:hover {
-  background-color: #e5e7eb;
-}
-
-/* Móvil */
-@media screen and (max-width: 600px) {
-  .custom-share {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .custom-share a {
-    text-align: center;
-    width: 100%; /* Full width en móvil */
-  }
-}
-
-/* === FORMULARIO DE CONTACTO MINIMALISTA === */
-.contact-form {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background-color: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  font-family: system-ui, sans-serif;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-}
-
-.contact-form .form-group {
-  margin-bottom: 1.2rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.contact-form label {
-  font-size: 0.95rem;
-  color: #374151;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
-.contact-form input,
-.contact-form textarea {
-  font-size: 1rem;
-  padding: 0.6rem 0.8rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  background: #f9fafb;
-  color: #111827;
-  outline: none;
-  transition: border-color 0.2s ease;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: #3b82f6;
-  background: #fff;
-}
-
-.contact-form .checkbox {
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-}
-
-.contact-form .checkbox input {
-  width: 1rem;
-  height: 1rem;
-}
-
-.contact-form .checkbox a {
-  color: #3b82f6;
-  text-decoration: underline;
-}
-
-.contact-form .btn-submit {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #3b82f6;
-  color: white;
-  border: none;
-  padding: 0.7rem 1.2rem;
-  border-radius: 0.375rem;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: background 0.3s ease;
-}
-
-.contact-form .btn-submit:hover {
-  background: #2563eb;
-}
-
-.contact-form svg {
-  stroke-width: 2;
-}
-
-/* ==== BLOQUE DE IMAGENES- Estilo Minimalista ==== */
-.bloque-imagen.centrada {
-  margin: 2rem auto;
-  text-align: center;
-}
-
-.bloque-imagen.centrada img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  display: block;
-  margin: 0 auto;
-}
-.bloque-imagen.leyenda {
-  margin: 2rem auto;
-  text-align: center;
-  max-width: 100%;
-}
-
-.bloque-imagen.leyenda img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-.bloque-imagen.leyenda figcaption {
-  font-size: 0.95rem;
-  color: #555;
-  margin-top: 0.5rem;
-  line-height: 1.4;
-  font-style: italic;
-}
-.bloque-imagen.borde-sombra {
-  margin: 2rem auto;
-  text-align: center;
-  max-width: 100%;
-}
-
-.bloque-imagen.borde-sombra img {
-  max-width: 100%;
-  height: auto;
-  border: 1px solid #e0e0e0; /* Borde gris muy claro */
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); /* Sombra suave */
-  display: block;
-  margin: 0 auto;
-}
-.bloque-imagen-lateral {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 2rem 0;
-  gap: 1.5rem;
-}
-.bloque-imagen-lateral img {
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  flex-shrink: 0;
-}
-
-.bloque-imagen-lateral .contenido {
-  flex: 1;
-  min-width: 250px;
-}
-
-.bloque-imagen-lateral .contenido h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: var(--color-principal, #1f2937);
-}
-
-.bloque-imagen-lateral .contenido p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #444;
-}
-.bloque-imagen-lateral.derecha {
-  flex-direction: row-reverse;
-}
-.tarjeta-imagen-destacada {
-  background-color: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03);
-  max-width: 640px;
-  margin: 2rem auto;
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.tarjeta-imagen-destacada:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
-}
-
-.tarjeta-imagen-destacada img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.tarjeta-imagen-destacada .contenido {
-  padding: 1rem;
-}
-
-.tarjeta-imagen-destacada .contenido h3 {
-  font-size: 1.1rem;
-  color: var(--color-principal, #1f2937);
-  margin: 0;
-}
-.galeria-imagenes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin: 2rem 0;
-}
-
-.galeria-imagenes img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-  transition: transform 0.2s ease;
-}
-
-.galeria-imagenes img:hover {
-  transform: scale(1.02);
-}
-.galeria-enlazada {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-
-.galeria-enlazada .item {
-  text-decoration: none;
-  color: inherit;
-  text-align: center;
-  transition: transform 0.2s ease;
-}
-
-.galeria-enlazada .item img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease;
-}
-
-.galeria-enlazada .item:hover img {
-  transform: scale(1.03);
-}
-
-.galeria-enlazada .item span {
-  display: block;
-  margin-top: 0.5rem;
-  font-size: 1rem;
-  color: var(--color-principal, #1f2937);
-}
-.imagen-con-badge {
-  position: relative;
-  display: inline-block;
-  margin: 2rem 0;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-.imagen-con-badge img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
-}
-
-.imagen-con-badge .badge {
-  position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  background-color: #0077cc;
-  color: #fff;
-  font-size: 0.875rem;
-  padding: 0.25rem 0.6rem;
-  border-radius: 999px;
-  font-weight: 600;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  pointer-events: none;
-  user-select: none;
-}
-.imagen-overlay {
-  position: relative;
-  display: block;
-  margin: 2rem 0;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-.imagen-overlay img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.imagen-overlay .overlay-texto {
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: 600;
-  max-width: 90%;
-  backdrop-filter: blur(4px);
-}
-
-.text-columns {
-  column-count: 3;          /* Número de columnas */
-  column-gap: 2rem;         /* Espacio entre columnas */
-  column-rule: 1px solid #ddd; /* Línea entre columnas */
-  color: var(--color-principal);
-  font-size: 1.1rem;
-  line-height: 1.6;
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-@media (max-width: 600px) {
-  .text-columns {
-    column-count: 1; /* En móvil, una sola columna */
-  }
-}
-.nested-columns {
-  column-count: 2;
-  column-gap: 1.5rem;
-}
-
-.nested-columns .sub-column {
-  column-count: 1; /* columnas normales dentro */
-  margin-bottom: 1rem;
-}
-.media-columns {
-  display: flex;
-  gap: 2rem;
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  align-items: center;
-}
-
-.media-columns .media {
-  flex: 1;
-}
-
-.media-columns .media img,
-.media-columns .media video {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.media-columns .content {
-  flex: 2;
-  color: var(--color-principal);
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-@media (max-width: 768px) {
-  .media-columns {
-    flex-direction: column;
-  }
-
-  .media-columns .media,
-  .media-columns .content {
-    width: 100%;
-  }
-}
-/* === SEPARADORES VISUALES === */
-
-/* Línea horizontal sutil */
-.divider-line {
-  border: none;
-  border-top: 1px solid #e5e7eb; /* gris claro */
-  margin: 3rem auto;
-  max-width: 900px;
-}
-
-/* Separador con ícono decorativo */
-.divider-icon {
-  text-align: center;
-  font-size: 1.5rem;
-  margin: 3rem auto;
-  color: #9ca3af; /* gris medio */
-}
-
-/* Separador doble con líneas finas */
-.divider-double {
-  margin: 3rem auto;
-  width: 90%;
-  max-width: 900px;
-  height: 1px;
-  background: linear-gradient(to right, #e5e7eb 0%, #d1d5db 50%, #e5e7eb 100%);
-  position: relative;
-}
-.divider-double::after {
-  content: "";
-  display: block;
-  height: 1px;
-  margin-top: 0.75rem;
-  background: linear-gradient(to right, #e5e7eb 0%, #d1d5db 50%, #e5e7eb 100%);
-}
-
-/* Separador con texto centrado */
-.divider-text {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin: 4rem 0;
-  color: #6b7280;
-  font-size: 0.95rem;
-}
-.divider-text::before,
-.divider-text::after {
-  content: "";
-  flex: 1;
-  border-top: 1px solid #e5e7eb;
-  margin: 0 1rem;
-}
-
-/* Separador espaciado tipo bloque */
-.divider-block {
-  height: 40px;
-  background-color: #f3f4f6; /* gris claro */
-  margin: 2rem 0;
-  border-radius: 8px;
-}
-
-
-/* === Estilos generales para todos los acordeones === */
-.accordion {
-  width: 100%;
-  max-width: 800px;
-  margin: 1rem auto;
-  font-family: system-ui, sans-serif;
-}
-
-.accordion-item {
-  border-bottom: 1px solid #ddd;
-}
-
-.accordion-header {
-  background: #f5f5f5;
-  cursor: pointer;
-  padding: 1rem;
-  font-weight: 600;
-  user-select: none;
-  position: relative;
-  transition: background-color 0.3s ease;
-}
-
-.accordion-header:hover {
-  background: #e1e1e1;
-}
-
-.accordion-header::after {
-  content: '\25BC'; /* flecha hacia abajo */
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: transform 0.3s ease;
-}
-
-/* Cambio de .active a .is-active */
-.accordion-header.is-active::after {
-  transform: translateY(-50%) rotate(180deg); /* flecha hacia arriba */
-}
-
-.accordion-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-  padding: 0 1rem;
-  background: #fafafa;
-}
-
-.accordion-content p {
-  padding: 1rem 0;
-  margin: 0;
-  line-height: 1.5;
-  color: #333;
-}
-
-/* === Acordeón puro CSS con checkbox oculto === */
-.accordion-css label {
-  display: block;
-  background: #f5f5f5;
-  padding: 1rem;
-  cursor: pointer;
-  font-weight: 600;
-  position: relative;
-  user-select: none;
-}
-
-.accordion-css label::after {
-  content: '+';
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-weight: 900;
-  transition: transform 0.3s ease;
-}
-
-.accordion-css input[type="checkbox"] {
-  display: none;
-}
-
-.accordion-css input[type="checkbox"]:checked + label::after {
-  content: '-';
-}
-
-.accordion-css .content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-  background: #fafafa;
-  padding: 0 1rem;
-}
-
-.accordion-css input[type="checkbox"]:checked + label + .content {
-  max-height: 500px; /* valor alto para mostrar contenido */
-  padding: 1rem;
-}
-
-/* === Acordeón con detalle/summary (HTML5) solo dentro de .accordion-details === */
-.accordion-details details {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-  background: #fafafa;
-}
-
-.accordion-details summary {
-  cursor: pointer;
-  padding: 1rem;
-  font-weight: 600;
-  list-style: none;
-  user-select: none;
-}
-
-.accordion-details details[open] summary {
-  background: #e1e1e1;
-}
-
-.accordion-details details > p {
-  padding: 0 1rem 1rem 1rem;
-  margin: 0;
-  color: #333;
-  line-height: 1.5;
-}
-
-
-
-/* Estilos para tarjetas individuales simples */
-.tarjeta {
-  font-family: system-ui, sans-serif;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  overflow: hidden;
-  margin: 1rem auto;
-  max-width: 350px;
-  transition: transform 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-}
-
-.card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.card-content {
-  padding: 1rem;
-}
-
-.card-title {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  color: #111827;
-}
-
-.card-text {
-  font-size: 1rem;
-  color: #4b5563;
-  line-height: 1.5;
-}
-
-.card-button {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background: #3b82f6;
-  color: #ffffff;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  transition: background 0.3s ease;
-}
-
-.card-button:hover {
-  background: #2563eb;
-}
-
-/* === Variantes de cards === */
-
-/* Card horizontal */
-.card-horizontal {
-  display: flex;
-  flex-direction: row;
-  max-width: 600px;
-}
-.card-horizontal img {
-  width: 40%;
-  object-fit: cover;
-}
-.card-horizontal .card-content {
-  flex: 1;
-}
-
-/* Card con fondo color y sin imagen */
-.card-colored {
-  background: #f0f9ff;
-  border-left: 6px solid #3b82f6;
-}
-
-/* Card con ícono (sin imagen) */
-.card-icon {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.card-icon .icon {
-  font-size: 2rem;
-  color: #3b82f6;
-}
-
-/* Card con solo texto (simple) */
-.card-simple {
-  background: #f9fafb;
-  border: 1px dashed #d1d5db;
-}
-
-/* === NUEVO: Card tipo lista === */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-}
-
-.card-lista {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
-  transition: transform 0.2s ease;
-  padding: 0.5rem;
-}
-.card-lista:hover {
-  transform: scale(1.01);
-}
-.card-lista a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-  width: 100%;
-}
-.card-lista img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  flex-shrink: 0;
-  border-radius: 0.5rem;
-}
-.card-lista h3 {
-  font-size: 0.9rem;
-  margin: 0;
-  padding-left: 0.75rem;
-  flex: 1;
-  color: #1f2937;
-  line-height: 1.3;
-}
-
-@media (max-width: 600px) {
-  .cards-grid {
-    grid-template-columns: 1fr;
-  }
-  .card-lista {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .card-lista a {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .card-lista img {
-    display: none;
-  }
-  .card-lista h3 {
-    padding: 0.5rem 0 0;
-  }
-}
-
-/* === ENTRADAS RELACIONADAS === */
-.related-posts {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-.related-posts h3 {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  color: #1f2937;
-  border-bottom: 2px solid #e5e7eb;
-  padding-bottom: 0.5rem;
-  font-weight: 600;
-}
-.related-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.related-item {
-  display: flex;
-  gap: 1rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  box-shadow: 0 1px 4px rgb(0 0 0 / 0.05);
-  transition: box-shadow 0.2s ease;
-  background: #fff;
-}
-.related-item:hover {
-  box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
-}
-.related-item img {
-  width: 100px;
-  height: 80px;
-  object-fit: cover;
-  flex-shrink: 0;
-  border-radius: 0.75rem 0 0 0.75rem; /* imagen sin bordes en el lado derecho */
-}
-.related-content {
-  padding: 0.75rem 1rem;
-  display: flex;
-  align-items: center;
-}
-.related-content a {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #2563eb;
-  text-decoration: none;
-  line-height: 1.2;
-}
-.related-content a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .related-item {
-    flex-direction: row;
-  }
-  .related-item img {
-    width: 80px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 0.5rem 0 0 0.5rem; /* solo borde izquierdo */
-  }
-  .related-content {
-    padding: 0.5rem 0.75rem;
-  }
-}
-
-a {
-  font-size: 1rem;          /* Tamaño base relativo */
-  max-width: 100%;          /* No salirse del contenedor */
-  word-wrap: break-word;    /* Romper palabra si es muy larga */
-  white-space: normal;      /* Permite que el texto haga salto de línea */
-  display: inline-block;    /* Para poder controlar mejor el ancho */
-  color: #0077cc;
-  text-decoration: underline;
-}
-
-@media (max-width: 600px) {
-  a {
-    font-size: 0.9rem;      /* Tamaño más pequeño en móviles */
-  }
-}
-
-/* Preguntas Frecuentes (FAQ) */
-.faq-section {
-  max-width: 850px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-  font-family: system-ui, sans-serif;
-  color: #1f2937;
-}
-
-.faq-section h2 {
-  font-size: 1.75rem;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid #e5e7eb;
-  padding-bottom: 0.5rem;
-}
-
-.faq-section details {
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  padding: 0.75rem 1rem;
-  background: #f9fafb;
-}
-
-.faq-section summary {
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
-  color: #0077cc;
-}
-
-.faq-section summary:hover {
-  color: #005fa3;
-}
-
-.faq-section details[open] {
-  background: #f3f4f6;
-}
-
-.faq-section p {
-  margin-top: 0.5rem;
-  font-size: 0.95rem;
-  color: #374151;
-}
-
-
 
 .autor-box {
   max-width: 850px;
@@ -4294,201 +4639,12 @@ a {
   display: block;
 }
 
-/* TOC CAJA DE INDICE POST & PAGE */
-
-#toc-container {
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  padding: 1em;
-  font-family: system-ui, sans-serif;
-  font-size: 14px;
-  max-width: 100%;
-  margin-bottom: 1.5em;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-
-#toc-toggle {
-  background: none;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 14px;
-  color: #0366d6;
-  padding: 0;
-  margin-bottom: 0.5em;
-  display: flex;
-  align-items: center;
-}
-
-#toc-toggle:hover {
-  text-decoration: underline;
-}
-
-#toc ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-#toc li {
-  margin: 0.3em 0;
-}
-
-#toc li ul {
-  margin-left: 1em;
-}
-
-#toc a {
-  text-decoration: none;
-  color: #333;
-}
-
-#toc a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  #toc-container {
-    font-size: 13px;
-  }
-}
-#toc nav,
-#toc ul {
-  display: block !important;
-  list-style: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-#toc li {
-  display: block !important;
-  margin: 0.3em 0;
-}
-
-#toc li ul {
-  margin-left: 1em !important;
-}
-
-#toc a {
-  display: inline-block;
-  text-decoration: none;
-  color: #333;
-  padding: 2px 0;
-}
-
-#toc[hidden] {
-  display: none !important;
-}
-
-
-
-
-/* Contenedor del código pre */
-/* Bloque de código */
-pre {
-  position: relative;
-  background: #f3f4f6;
-  color: #1f2937;
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;
-  font-family: ui-monospace, SFMono-Regular, monospace;
-  font-size: 0.9rem;
-  max-width: 100%;
-  margin: 1.5rem 0;
-  border: 1px solid #e5e7eb;
-}
-
-/* Código */
-pre code {
-  white-space: pre;
-  display: block;
-}
-
-/* Botón de copiar */
-.copy-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: #e5e7eb;
-  color: #1f2937;
-  border: none;
-  font-size: 0.75rem;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  z-index: 10;
-}
-
-.copy-btn:hover {
-  background: #d1d5db;
-}
-.media-player {
-  position: relative;
-  width: 100%;
-  max-width: 850px;
-  margin: 2rem auto;
-  background-color: #000;
-  background-size: cover;
-  background-position: center;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  aspect-ratio: 16 / 9;
-}
-
-.media-player::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.45); /* capa oscura semitransparente */
-  z-index: 1;
-  transition: opacity 0.3s ease;
-}
-
-.media-player::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 72px;
-  height: 72px;
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.85); /* círculo blanco translúcido */
-  border-radius: 50%;
-  z-index: 2;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  background-image: url('https://cdn-icons-png.flaticon.com/512/727/727245.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 40%;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.media-player:hover::after {
-  transform: translate(-50%, -50%) scale(1.1);
-  background-color: rgba(255, 255, 255, 0.95);
-}
-
-.media-player iframe,
-.media-player video {
-  position: absolute;
-  inset: 0;
-  width: 100% !important;
-  height: 100% !important;
-  border: none;
-  border-radius: 12px;
-}
-
-.media-player.active::before,
-.media-player.active::after {
-  display: none;
-}
+/* ======================================================
+   50. BLOQUE:  FEED BLOGGER - FORMATO TEXTO DINAMICO 
+   ====================================================== */
 
 /* VARIANTE GRID - 3 columnas, texto + leer más */
+
 .feed-text[data-variant="grid"] {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -4579,7 +4735,9 @@ pre code {
     padding: 1rem;
   }
 }
+
 /* VARIANTE ALTERNATE - filas con imagen y texto alternados */
+
 .feed-text[data-variant="alternate"] {
   max-width: 900px;
   margin: 1.5rem auto;
@@ -4674,6 +4832,7 @@ pre code {
 }
 
 /* Variante reversa: imagen a la izquierda, texto a la derecha */
+
 .feed-text[data-variant="alternate"] .item-text.alt.reverse {
   flex-direction: row-reverse;
 }
@@ -4691,7 +4850,9 @@ pre code {
     margin-bottom: 1rem;
   }
 }
+
 /* VARIANTE TITLES - solo títulos en 3 columnas */
+
 .feed-text[data-variant="titles"] {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -4755,6 +4916,10 @@ pre code {
     padding: 1rem;
   }
 }
+
+/* ======================================================
+   51. BLOQUE:  FEED BLOGGER - CATALOGO STORE POR SIGNO $ 
+   ====================================================== */
 
 /* === Estilo para Catálogo tipo Tienda === */
 .feed-catalogo {
@@ -4860,129 +5025,52 @@ pre code {
 .item-producto .descripcion {
   display: none;
 }
+/* ======================================================
+   52. BLOQUE:  AUXILIAR - CLASE UTILITARIA PARA OCULTAR ELEMENTOS
+   ====================================================== */
 
-/* === Estilo base BUSCAR (escritorio) === */
-.post-header {
-  max-width: 850px; /* Igual que tu contenido */
-  margin: 0 auto;
-}
-
-.post-header .search-box {
-  display: flex;
-  max-width: 300px; /* No más ancho que esto */
-  margin-top: 10px;
-}
-
-.post-header .search-box input {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px 0 0 4px;
-  font-size: 14px;
-}
-
-.post-header .search-box button {
-  background: #1f2937;
-  color: #fff;
-  border: none;
-  padding: 0 12px;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-/* === Versión responsiva (móvil) === */
-@media (max-width: 600px) {
-  .post-header .search-box {
-    max-width: 100%;      /* Ocupar todo el ancho */
-  }
-
-  .post-header .search-box input {
-    font-size: 16px;      /* Texto un poco más grande para táctil */
-    padding: 10px;
-  }
-
-  .post-header .search-box button {
-    padding: 0 16px;
-    font-size: 16px;
-  }
-}
-
-
-/* Contenedor del artículo en el index */
-.index-contenedor {
-  max-width: 960px;
-  margin: 30px auto;
-  padding: 25px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-  font-family: system-ui, sans-serif;
-  color: #374151;
-  line-height: 1.7;
-}
-
-.index-contenedor h2 {
-  font-size: 1.6rem;
-  color: #111827;
-  margin-bottom: 12px;
-}
-
-.index-contenedor h3 {
-  font-size: 1.25rem;
-  color: #1f2937;
-  margin-top: 20px;
-  margin-bottom: 8px;
-}
-
-.index-contenedor p {
-  margin-bottom: 15px;
-}
-
-.index-contenedor ul {
-  list-style: none !important; /* fuerza quitar números */
-  padding-left: 0;
-  margin-bottom: 15px;
-}
-
-.index-contenedor ul li {
-  position: relative;
-  padding-left: 25px;
-  margin-bottom: 6px;
-}
-
-.index-contenedor ul li::before {
-  content: "\2022"; /* viñeta en Unicode para Blogger */
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #3b82f6; /* Azul suave */
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-/* Viñetas para sublistas */
-.index-contenedor ul ul li::before {
-  content: "\203A"; /* flecha Unicode segura */
-  color: #10b981; /* verde */
-}
-
-@media (max-width: 768px) {
-  .index-contenedor {
-    padding: 18px;
-  }
-  .index-contenedor h2 {
-    font-size: 1.4rem;
-  }
-}
-
-/** Clase utilitaria para ocultar elementos **/
 .none {display:none !important}
 a[imageanchor] {
 margin: 0 !important;
 }
 
+/* ================================
+   53. BLOQUE: AUXILAR - MARGEN DE IMAGEN DESTACADA DEL POST
+   ================================ */
+.img-post {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px 0;
+}
+
+/* ================================
+   54. BLOQUE: AUXILIAR - STICKY FOOTER SIEMPRE AL FINAL
+   ================================ */
+html, body {
+  height: 100%; /* Asegura altura completa */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Siempre ocupa toda la pantalla */
+}
+
+
+/* =========================================================
+   55. BLOQUE: AUXILIAR - SHORTCODES RESERVAR ESPACIO (CLS) PAGESPEED
+   ========================================================= */
+
+.shortcode-container {
+  min-height: 280px;          /* Altura mínima reservada */
+  display: flex;              /* Activa flexbox */
+  flex-direction: column;     /* Contenido en columna */
+  justify-content: center;    /* Centra verticalmente */
+  gap: 10px;                  /* Separación entre elementos internos */
+  padding: 10px 0;            /* Solo espacio arriba y abajo */
+  box-sizing: border-box;     /* Incluye padding en el tamaño total */
+}
 
 ]]></b:skin>
     
@@ -6463,7 +6551,7 @@ margin: 0 !important;
      formularios, animaciones y cualquier funcionalidad común.
 =================================================================== -->
    
-    <!-- ADMINISTRADOR DE CACHE PARA EVITAR SOBRECARGAR EL FEED DE BLOGGER  -->
+    <!-- 1. ADMINISTRADOR DE CACHE PARA EVITAR SOBRECARGAR EL FEED DE BLOGGER  -->
     <script>
 //<![CDATA[
 const fetchWithCacheManager = (() => {
@@ -6522,7 +6610,7 @@ const fetchWithCacheManager = (() => {
 //]]>
 </script>
    
-  <!-- MOVER Y HACER SCROLL SUAVE A LA CAJA DE COMENTARIOS -->
+  <!-- 2. MOVER Y HACER SCROLL SUAVE A LA CAJA DE COMENTARIOS -->
 <script>
 //<![CDATA[
 document.addEventListener("click", function (e) {
@@ -6559,7 +6647,7 @@ document.addEventListener("click", function (e) {
 //]]>
 </script>
     
-   <!-- Script para acordeón JS clásico -->
+   <!-- 3. Script para acordeón JS clásico -->
 <script>
 //<![CDATA[
   document.querySelectorAll('.accordion-header').forEach(header => {
@@ -6581,7 +6669,7 @@ document.addEventListener("click", function (e) {
 //]]>
 </script>
 
-     <!-- Script (cluster, carrusel, tarjetas, entradas relacionadas, etc.) -->
+     <!-- 4. Script (cluster, carrusel, tarjetas, entradas relacionadas, etc.) -->
      <script>
 //<![CDATA[
 const blogURL = location.origin;
@@ -6747,7 +6835,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //]]>
 </script>
     
-    <!-- Script para mini slider de imagenes -->
+    <!-- 5. Script para mini slider de imagenes -->
    <script>//<![CDATA[
 
 window.addEventListener("load", () => {
@@ -6855,7 +6943,7 @@ window.addEventListener("load", () => {
 //]]>
 </script>
     
-   <!-- Script CAJA DE AUTOR -->
+   <!-- 6. Script CAJA DE AUTOR -->
    <script>//<![CDATA[  
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -6926,7 +7014,7 @@ window.addEventListener("load", () => {
     //]]>
 </script>
 
-    <!-- Script TOC caja de contenido  -->
+    <!-- 7. Script TOC caja de contenido  -->
    <script>//<![CDATA[  
 document.addEventListener("DOMContentLoaded", function () {
   const tocContainer = document.getElementById("toc-container");
@@ -7009,7 +7097,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //]]>
 </script>
     
-     <!-- Script compartir code  -->
+     <!-- 8. Script compartir code  -->
    <script>//<![CDATA[  
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('pre > code').forEach(codeBlock => {
@@ -7036,7 +7124,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
     
    
-     <!-- Script SHORTCODE TEXTO aleatorio -->
+     <!-- 9. Script SHORTCODE TEXTO aleatorio -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", function () {
@@ -7099,7 +7187,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //]]>
 </script>
      
-<!-- ADSENSE AUTOMATICO EN EL 2DO PARRAFO  -->
+<!-- 10. ADSENSE AUTOMATICO EN EL 2DO PARRAFO  -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", function() {
@@ -7152,7 +7240,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //]]>
 </script>
   
- <!-- shortcodes por anuncios AdSense  -->
+ <!-- 11. shortcodes por anuncios AdSense  -->
     <script>
 //<![CDATA[
 document.addEventListener('DOMContentLoaded', function() {
@@ -7215,7 +7303,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //]]>
 </script>
     
-    <!-- JSON - OCULTA LA PRIMERA IMAGEN MENOS EN .ficha-producto, store, $xx.xx  -->
+    <!-- 12. JSON - OCULTA LA PRIMERA IMAGEN MENOS EN .ficha-producto, store, $xx.xx  -->
 <script>
 //<![CDATA[
 // Activador: true = se ejecuta / false = no hace nada
@@ -7280,7 +7368,7 @@ var activarOcultarImagen = true; // Variable para activar o desactivar el script
 //]]>
 </script>
     
-<!-- MENU ORBITAL (X) + BOTON CARRITO: CONTROL FOOTER -->
+<!-- 13. MENU ORBITAL (X) + BOTON CARRITO: CONTROL FOOTER -->
 <script defer='defer'>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", () => {
@@ -7366,7 +7454,7 @@ document.addEventListener("DOMContentLoaded", () => {
      funcionalidades de la tienda en línea.
 =================================================================== -->
 
-   <!-- CORE PAGAR PAYPAL & CARRITO DE COMPRAS -->
+   <!-- 14. CORE PAGAR PAYPAL & CARRITO DE COMPRAS -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", () => {
@@ -7503,7 +7591,8 @@ document.addEventListener("DOMContentLoaded", () => {
         total += subtotal;
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td data-label="Producto">${item.name}</td>
+  		  <td data-label="Imagen"><img src="${item.image}" alt="${item.name}" style="width:50px; height:auto;"></td>          
+		  <td data-label="Producto">${item.name}</td>
           <td data-label="Precio">$${item.price.toFixed(2)}</td>
           <td data-label="Cantidad"><input type="number" min="1" value="${item.qty}" data-index="${index}"></td>
           <td data-label="Subtotal">$${subtotal.toFixed(2)}</td>
@@ -7554,11 +7643,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 //]]>
 </script>
-
-
-
-   
-<!-- CATALOGO DE PRODUCTO POR ETIQUETA  -->
+  
+<!-- 15. CATALOGO DE PRODUCTO POR ETIQUETA  -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", () => {
@@ -7670,7 +7756,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 //]]></script>
     
-      <!-- Script CATALOGO STORE -->
+      <!-- 16. Script CATALOGO STORE -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", function () {
@@ -7739,7 +7825,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //]]>
 </script>
 
-       <!-- Tabla Comparativa de productos con el feed de blogger -->
+       <!-- 17. Tabla Comparativa de productos con el feed de blogger -->
    <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", () => {
@@ -7804,11 +7890,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
           html += `
             <tr>
-              <td><img src="${img}" alt="Imagen del artículo: ${title}" loading="lazy" width="80"></td>
-              <td><a href="${link}" target="_blank">${title}</a></td>
-              <td>${cleanText}</td>
-              <td>${precioEntry}</td>
-              <td><a href="${link}" class="boton-comprar" target="_blank">Comprar</a></td>
+              <td data-label="Imagen"><img src="${img}" alt="Imagen del artículo: ${title}" loading="lazy" width="80"></td>
+              <td data-label="Producto"><a href="${link}" target="_blank">${title}</a></td>
+              <td data-label="Descripción">${cleanText}</td>
+              <td data-label="Precio">${precioEntry}</td>
+              <td data-label="Comprar"><a href="${link}" class="boton-comprar" target="_blank">Comprar</a></td>
             </tr>
           `;
         });
@@ -7833,7 +7919,7 @@ document.addEventListener("DOMContentLoaded", () => {
      y contenido multimedia en la página.
 =================================================================== -->
 
-     <!-- Reproductor de video  -->
+     <!-- 18. Reproductor de video  -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", function () {
@@ -7890,7 +7976,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //]]>
 </script>
     
-     <!-- Reproductor De Audio (player nativo de HTML5) -->
+     <!-- 19. Reproductor De Audio (player nativo de HTML5) -->
     <script>//<![CDATA[
 document.addEventListener("DOMContentLoaded", ()=>{
   document.querySelectorAll(".shortcode-audio").forEach(box=>{
