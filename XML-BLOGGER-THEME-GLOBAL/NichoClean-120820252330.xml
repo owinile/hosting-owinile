@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateUrl='indie.xml' b:templateVersion='1.3.3' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html b:css='false' b:defaultwidgetversion='2' b:js='true' b:layoutsVersion='3' b:responsive='true' b:templateUrl='indie.xml' b:templateVersion='1.3.3' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   
   <!-- NichoClean v2.0.0 | Plantilla Blogger Minimalista, Rápida y Moderna -->
   
@@ -63,8 +63,7 @@
     <script async='async' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'/>
   
    <!-- Estilos CSS -->
-    <b:skin><![CDATA[
-
+  <b:skin><![CDATA[
 /* ==========================================================================
    ⚡ NichoClean CSS — Versión 2.0.0
    ──────────────────────────────────────────────────────────────
@@ -6392,6 +6391,7 @@ body {
     }
 
     .post-body a.b-tooltip-container .b-tooltip {
+      display: block !important;
       position: absolute;
       top: 100%;
       left: 50%;
