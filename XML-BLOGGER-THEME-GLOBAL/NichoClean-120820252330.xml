@@ -1110,11 +1110,12 @@ ul.x ul li::before {
     flex: 1 1 100%;
   }
 }
+
 /** ==========================
- * BOTONES BASE
+ * BOTONES BASE (solo clase)
  * ========================== */
-.boton,
-.boton-descarga {
+a.boton, button.boton, input[type="submit"].boton,
+a.boton-descarga, button.boton-descarga, input[type="submit"].boton-descarga {
   display: inline-flex;           /* flex para centrar icono + texto */
   align-items: center;            /* centra vertical */
   justify-content: center;        /* centra horizontal */
@@ -1131,8 +1132,8 @@ ul.x ul li::before {
 }
 
 /* Estados accesibles */
-.boton:focus-visible,
-.boton-descarga:focus-visible {
+a.boton:focus-visible, button.boton:focus-visible, input.boton:focus-visible,
+a.boton-descarga:focus-visible, button.boton-descarga:focus-visible, input.boton-descarga:focus-visible {
   outline: 3px solid rgba(59,130,246,0.4);
   outline-offset: 2px;
 }
@@ -1140,12 +1141,12 @@ ul.x ul li::before {
 /** ==========================
  * BOTÓN NORMAL
  * ========================== */
-.boton {
+a.boton, button.boton, input.boton {
   background-color: var(--color-acento);
   color: #fff;
 }
 
-.boton:hover {
+a.boton:hover, button.boton:hover, input.boton:hover {
   background-color: #fff;
   color: var(--color-acento);
   transform: translateY(-2px);
@@ -1155,12 +1156,12 @@ ul.x ul li::before {
 /** ==========================
  * BOTÓN INVERTIDO (bordeado, sin relleno)
  * ========================== */
-.boton.invertido {
+a.boton.invertido, button.boton.invertido, input.boton.invertido {
   background-color: #fff;
   color: var(--color-acento);
 }
 
-.boton.invertido:hover {
+a.boton.invertido:hover, button.boton.invertido:hover, input.boton.invertido:hover {
   background-color: var(--color-acento);
   color: #fff;
 }
@@ -1168,20 +1169,20 @@ ul.x ul li::before {
 /** ==========================
  * BOTÓN DESCARGA
  * ========================== */
-.boton-descarga {
+a.boton-descarga, button.boton-descarga, input.boton-descarga {
   background-color: var(--color-acento);
   color: #fff;
   position: relative;
   padding-left: 0.8rem; /* ya no necesitas 2rem porque usamos flex */
 }
 
-.boton-descarga svg {
+a.boton-descarga svg, button.boton-descarga svg, input.boton-descarga svg {
   width: 18px;
   height: 18px;
 }
 
 /* Hover descarga */
-.boton-descarga:hover {
+a.boton-descarga:hover, button.boton-descarga:hover, input.boton-descarga:hover {
   background-color: #fff;
   color: var(--color-acento);
   transform: translateY(-2px);
@@ -1191,12 +1192,12 @@ ul.x ul li::before {
 /** ==========================
  * DESCARGA INVERTIDO BOTÓN
  * ========================== */
-.boton-descarga.invertido {
+a.boton-descarga.invertido, button.boton-descarga.invertido, input.boton-descarga.invertido {
   background-color: #fff;
   color: var(--color-acento);
 }
 
-.boton-descarga.invertido:hover {
+a.boton-descarga.invertido:hover, button.boton-descarga.invertido:hover, input.boton-descarga.invertido:hover {
   background-color: var(--color-acento);
   color: #fff;
 }
