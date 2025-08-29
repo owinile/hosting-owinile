@@ -5837,7 +5837,7 @@ body {
 <div class='post-card' itemscope='' itemtype='https://schema.org/BlogPosting'>
   
   <a expr:href='data:post.url' itemprop='url'>
-    <img expr:alt='&quot;Imagen del artículo: &quot; + data:post.title' expr:src='data:post.featuredImage' itemprop='image' loading='lazy'/>
+    <img expr:alt='&quot;Imagen del artículo: &quot; + data:post.title' expr:src='data:post.featuredImage resizeImage 600 resizeImage &quot;4:3&quot;' itemprop='image' loading='lazy'/>
     <h3 itemprop='headline'><data:post.title/></h3>
   </a>
   
@@ -5866,7 +5866,7 @@ body {
 <div class='search-result' itemscope='' itemtype='https://schema.org/BlogPosting'>
   
   <a expr:href='data:post.url' itemprop='url'>
-    <img expr:alt='&quot;Imagen del artículo: &quot; + data:post.title' expr:src='data:post.featuredImage' itemprop='image' loading='lazy'/>
+    <img expr:alt='&quot;Imagen del artículo: &quot; + data:post.title' expr:src='data:post.featuredImage resizeImage 600 resizeImage &quot;4:3&quot;' itemprop='image' loading='lazy'/>
     <h3 itemprop='headline'><data:post.title/></h3>
   </a>
   
@@ -7196,11 +7196,11 @@ document.addEventListener("DOMContentLoaded", function () {
 //]]>
 </script>
      
-<!-- 10. ADSENSE AUTOMATICO EN EL 2DO PARRAFO  -->
+<!-- 10. ADSENSE AUTOMATICO EN EL 2DO PARRAFO -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", function() {
-// Evitar ejecución en páginas estáticas
+  // Evitar ejecución en páginas estáticas
   if (window.location.pathname.includes('/p/')) return;
   const postBody = document.querySelector('.post-body');
   if (!postBody) return;
@@ -7208,39 +7208,27 @@ document.addEventListener("DOMContentLoaded", function() {
   const paragraphs = postBody.querySelectorAll('p');
   if (paragraphs.length > 2) {
     const adDiv = document.createElement('div');
-    adDiv.className = 'adsense-ad';
+    adDiv.className = 'adsense-shortcode'; // mejor que adsense-ad
 
-    // Estilos inline para ambos casos
-    adDiv.style.margin = '1em 0';
-    adDiv.style.padding = '10px';
-    adDiv.style.background = 'var(--color-borde)';
-    adDiv.style.color = '#1f2937';
-    adDiv.style.fontStyle = 'italic';
-    adDiv.style.textAlign = 'center';
-    adDiv.style.borderRadius = '4px';
-    adDiv.style.fontSize = '0.9rem';
-
-    const monetized = false; // Cambiar a true para mostrar anuncio real
+    const monetized = true; // cambiar a false si quieres ver placeholders
 
     if (monetized) {
-      // Cuando haya anuncio real, normalmente no queremos ese estilo gris ni texto en cursiva
-      // Así que lo removemos o ajustamos
-      adDiv.style.background = 'transparent';
-      adDiv.style.color = 'inherit';
-      adDiv.style.fontStyle = 'normal';
-      adDiv.style.padding = '0';
-
       adDiv.innerHTML = `
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-XXXXXXXXXX"
-             data-ad-slot="3333333333"
+             data-ad-slot="2DO_PARRAFO_SLOT_1"
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
       `;
-      (adsbygoogle = window.adsbygoogle || []).push({});
+      // Forzar ejecución segura
+      if (window.adsbygoogle) {
+        try {
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch(e) { console.log("Error adsbygoogle:", e); }
+      }
     } else {
-      adDiv.textContent = '[Espacio reservado para anuncio post 3]';
+      adDiv.innerHTML = `<div class="adsense-placeholder">[Espacio reservado para anuncio post 3]</div>`;
     }
 
     paragraphs[1].parentNode.insertBefore(adDiv, paragraphs[1].nextSibling);
@@ -7248,6 +7236,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 //]]>
 </script>
+
   
  <!-- 11. shortcodes por anuncios AdSense  -->
     <script>
