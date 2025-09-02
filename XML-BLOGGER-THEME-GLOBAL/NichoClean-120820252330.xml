@@ -6547,8 +6547,7 @@ body {
     </b:widget>
   </b:section>
 </footer>
-
-    
+   
     <!-- =========================================================== 
   ATENCIÓN: Modificar el JavaScript base de NichoClean puede romper la plantilla.
   Haz copia de seguridad antes de cualquier cambio y prueba en un entorno seguro.
@@ -6678,8 +6677,8 @@ document.addEventListener("click", function (e) {
 //]]>
 </script>
 
-     <!-- 4. Script (cluster, carrusel, tarjetas, entradas relacionadas, etc.) -->
-     <script>
+    <!-- 4. Script (cluster, carrusel, tarjetas, entradas relacionadas, etc.) -->
+<script>
 //<![CDATA[
 const blogURL = location.origin;
 
@@ -6696,10 +6695,16 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchWithCacheManager(url, 600000) // 10 minutos caché
       .then(data => {
         let entradas = data.feed.entry || [];
-
         entradas = entradas.sort(() => Math.random() - 0.5);
 
         let html = '';
+        let jsonLD = {
+          "@context": "https://schema.org",
+          "@graph": []
+        };
+
+        // Variantes que queremos indexar para SEO
+        const variantesIndexables = ['tooltip', 'card', 'lista'];
 
         entradas.forEach(entry => {
           const titulo = entry.title.$t;
@@ -6720,11 +6725,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <meta itemprop="mainEntityOfPage" content="${link}"/>
           `;
 
+          // HTML según variante
           switch(variante) {
             case 'card':
-              let contenido = '';
-              if(entry.summary) contenido = entry.summary.$t;
-              else if(entry.content) contenido = entry.content.$t;
+              let contenido = entry.summary ? entry.summary.$t : (entry.content ? entry.content.$t : '');
               const descripcion = contenido.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
 
               html += `
@@ -6736,7 +6740,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3 itemprop='headline'>${titulo}</h3>
                     <p itemprop="description">${descripcion}</p>
                     ${metaDatos}
- 					<a href='${link}' class='button'>Leer más</a>
+                    <a href='${link}' class='button'>Leer más</a>
                   </div>
                 </article>
               `;
@@ -6805,16 +6809,16 @@ document.addEventListener('DOMContentLoaded', () => {
               break;
 
             case 'tooltip':
-  html += `
-    <article class='item-tooltip' itemscope itemtype='https://schema.org/Article' title='${titulo}'>
-      <a href='${link}' itemprop='url' title='${titulo}'>
-        <img alt='Imagen del artículo: ${titulo}' itemprop='image' src='${media}'/>
-      </a>
-      <meta itemprop='headline' content='${titulo}'/>
-      ${metaDatos}
-    </article>
-  `;
-  break;
+              html += `
+                <article class='item-tooltip' itemscope itemtype='https://schema.org/Article' title='${titulo}'>
+                  <a href='${link}' itemprop='url' title='${titulo}'>
+                    <img alt='Imagen del artículo: ${titulo}' itemprop='image' src='${media}'/>
+                  </a>
+                  <meta itemprop='headline' content='${titulo}'/>
+                  ${metaDatos}
+                </article>
+              `;
+              break;
 
             default:
               html += `
@@ -6827,13 +6831,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 </article>
               `;
           }
+
+          // Generar JSON-LD solo para variantes indexables
+          if(variantesIndexables.includes(variante)) {
+            jsonLD["@graph"].push({
+              "@type": "Article",
+              "headline": titulo,
+              "image": media,
+              "author": {
+                "@type": "Person",
+                "name": autor,
+                "url": autorUrl
+              },
+              "datePublished": fechaPublicacion,
+              "dateModified": fechaModificacion,
+              "mainEntityOfPage": link
+            });
+          }
+
         });
 
+        // Insertar HTML en contenedor
         if (variante === 'lista') {
           contenedor.innerHTML = `<ul class='galeria-lista'>${html}</ul>`;
         } else {
           contenedor.innerHTML = `<div class='galeria-${variante}'>${html}</div>`;
         }
+
+        // Insertar JSON-LD al final del contenedor
+        if(jsonLD["@graph"].length > 0){
+          const scriptLD = document.createElement('script');
+          scriptLD.type = 'application/ld+json';
+          scriptLD.textContent = JSON.stringify(jsonLD, null, 2);
+          contenedor.appendChild(scriptLD);
+        }
+
       })
       .catch(err => {
         contenedor.innerHTML = `<p>No se pudo cargar la galería para la etiqueta <strong>${etiqueta}</strong>.</p>`;
@@ -6843,8 +6875,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 //]]>
 </script>
-    
-    <!-- 5. Script para mini slider de imagenes -->
+
+        <!-- 5. Script para mini slider de imagenes -->
    <script>//<![CDATA[
 
 window.addEventListener("load", () => {
@@ -6952,44 +6984,45 @@ window.addEventListener("load", () => {
 //]]>
 </script>
     
-   <!-- 6. Script CAJA DE AUTOR -->
-   <script>//<![CDATA[  
+  <!-- 6. Script CAJA DE AUTOR + JSON-LD -->
+<script>
+//<![CDATA[
+document.addEventListener("DOMContentLoaded", function () {
+  const caja = document.querySelector("#autor-box");
+  if (!caja) return;
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const caja = document.querySelector("#autor-box");
-    if (!caja) return;
+  const nombreAutor = caja.dataset.autor;
 
-    const nombreAutor = caja.dataset.autor;
-
-    // Base local de autores
-    const autores = {
-      "Juan Pérez": {
-        bio: "Especialista en desarrollo web y diseño minimalista. Comparte recursos útiles para bloggers.",
-        avatar: "https://ui-avatars.com/api/?name=Juan+Pérez&background=0077cc&color=fff",
-        perfil: "https://www.blogger.com/profile/00000000000000000000",
-        facebook: "https://facebook.com/juan.perez",
-        twitter: "https://twitter.com/juanperez",
-        instagram: "https://instagram.com/juanperez",
-        email: "mailto:juan@example.com"
-      },
-      "Ana López": {
-        bio: "Apasionada por el SEO y la creación de contenido optimizado para blogs.",
-        avatar: "https://ui-avatars.com/api/?name=Ana+López&background=0077cc&color=fff&rounded=false",
-        perfil: "https://www.blogger.com/profile/11111111111111111111",
-        facebook: "",
-        twitter: "https://twitter.com/anal",
-        instagram: "",
-        email: ""
-      }
-    };
-
-    const autor = autores[nombreAutor];
-    if (!autor) {
-      caja.innerHTML = `<p style="color:red;">Autor "${nombreAutor}" no encontrado.</p>`;
-      return;
+  // Base local de autores
+  const autores = {
+    "Juan Pérez": {
+      bio: "Especialista en desarrollo web y diseño minimalista. Comparte recursos útiles para bloggers.",
+      avatar: "https://ui-avatars.com/api/?name=Juan+Pérez&background=0077cc&color=fff",
+      perfil: "https://www.blogger.com/profile/00000000000000000000",
+      facebook: "https://facebook.com/juan.perez",
+      twitter: "https://twitter.com/juanperez",
+      instagram: "https://instagram.com/juanperez",
+      email: "mailto:juan@example.com"
+    },
+    "Ana López": {
+      bio: "Apasionada por el SEO y la creación de contenido optimizado para blogs.",
+      avatar: "https://ui-avatars.com/api/?name=Ana+López&background=0077cc&color=fff&rounded=false",
+      perfil: "https://www.blogger.com/profile/11111111111111111111",
+      facebook: "",
+      twitter: "https://twitter.com/anal",
+      instagram: "",
+      email: ""
     }
+  };
 
-   const redes = `
+  const autor = autores[nombreAutor];
+  if (!autor) {
+    caja.innerHTML = `<p style="color:red;">Autor "${nombreAutor}" no encontrado.</p>`;
+    return;
+  }
+
+  // Redes sociales con SVG
+  const redes = `
   <div class="autor-redes">
     ${autor.facebook ? `<a href="${autor.facebook}" target="_blank" rel="noopener nofollow" aria-label="Facebook" class="red red-fb">
       <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 3H14v7A10 10 0 0 0 22 12z"/></svg>
@@ -7004,24 +7037,46 @@ window.addEventListener("load", () => {
       <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.5l8 5 8-5V6H4zm0 2.7v9.3h16V8.7l-8 5-8-5z"/></svg>
     </a>` : ""}
   </div>
-`;
+  `;
 
+  // Render visual
+  caja.innerHTML = `
+    <section class="autor-info" itemscope itemtype="https://schema.org/Person">
+      <img src="${autor.avatar}" loading="lazy" alt="Foto de ${nombreAutor}" class="autor-avatar" itemprop="image">
+      <div class="autor-detalles">
+        <h4 class="autor-nombre" itemprop="name">${nombreAutor}</h4>
+        <p class="autor-bio" itemprop="description">${autor.bio}</p>
+        <a href="${autor.perfil}" target="_blank" rel="author nofollow" class="autor-link">Ver perfil</a>
+        ${redes}
+      </div>
+    </section>
+  `;
 
-    caja.innerHTML = `
-      <section class="autor-info" itemscope itemtype="https://schema.org/Person">
-        <img src="${autor.avatar}" loading="lazy" alt="Foto de ${nombreAutor}" class="autor-avatar" itemprop="image">
-        <div class="autor-detalles">
-          <h4 class="autor-nombre" itemprop="name">${nombreAutor}</h4>
-          <p class="autor-bio" itemprop="description">${autor.bio}</p>
-          <a href="${autor.perfil}" target="_blank" rel="author nofollow" class="autor-link">Ver perfil</a>
-          ${redes}
-        </div>
-      </section>
-    `;
-  });
+  // JSON-LD dinámico
+  const jsonLD = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": nombreAutor,
+    "url": autor.perfil,
+    "image": autor.avatar,
+    "description": autor.bio,
+    "sameAs": [
+      ...(autor.facebook ? [autor.facebook] : []),
+      ...(autor.twitter ? [autor.twitter] : []),
+      ...(autor.instagram ? [autor.instagram] : []),
+      ...(autor.email ? [autor.email] : [])
+    ]
+  };
 
-    //]]>
+  const scriptLD = document.createElement('script');
+  scriptLD.type = 'application/ld+json';
+  scriptLD.textContent = JSON.stringify(jsonLD, null, 2);
+  caja.appendChild(scriptLD);
+
+});
+//]]>
 </script>
+
 
     <!-- 7. Script TOC caja de contenido  -->
    <script>//<![CDATA[  
@@ -7132,8 +7187,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //]]>
 </script>
     
-   
-     <!-- 9. Script SHORTCODE TEXTO aleatorio -->
+   <!-- 9. Script SHORTCODE TEXTO aleatorio con JSON-LD -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", function () {
@@ -7143,7 +7197,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const variant = block.dataset.variant || "grid";
     const url = `/feeds/posts/default/-/${tag}?alt=json&max-results=50`;
 
-    fetchWithCacheManager(url, 600000) // 600000 ms = 10 minutos
+    fetchWithCacheManager(url, 600000)
       .then(data => {
         let entries = data.feed.entry || [];
 
@@ -7151,6 +7205,11 @@ document.addEventListener("DOMContentLoaded", function () {
         entries = entries.sort(() => Math.random() - 0.5).slice(0, max);
 
         let html = '';
+        const jsonLD = {
+          "@context": "https://schema.org",
+          "@graph": []
+        };
+
         entries.forEach((entry, i) => {
           const title = entry.title.$t;
           const link = entry.link.find(l => l.rel === 'alternate').href;
@@ -7158,7 +7217,10 @@ document.addEventListener("DOMContentLoaded", function () {
           const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
           const img = imgMatch ? imgMatch[1] : '';
           const cleanText = content.replace(/<[^>]+>/g, '').substring(0, 150) + '...';
+          const author = entry.author?.[0]?.name?.$t || "Autor desconocido";
+          const authorUrl = entry.author?.[0]?.uri?.$t || "";
 
+          // Mantener lógica visual
           if (variant === 'grid') {
             html += `
               <div class="item-text grid">
@@ -7183,9 +7245,31 @@ document.addEventListener("DOMContentLoaded", function () {
                 <h3><a href="${link}">${title}</a></h3>
               </div>`;
           }
+
+          // Agregar JSON-LD para cada entrada
+          jsonLD["@graph"].push({
+            "@type": "Article",
+            "headline": title,
+            "image": img,
+            "author": {
+              "@type": "Person",
+              "name": author,
+              "url": authorUrl
+            },
+            "datePublished": entry.published?.$t || "",
+            "dateModified": entry.updated?.$t || "",
+            "mainEntityOfPage": link
+          });
         });
 
         block.innerHTML = html;
+
+        // Insertar JSON-LD en el DOM
+        const scriptLD = document.createElement('script');
+        scriptLD.type = 'application/ld+json';
+        scriptLD.textContent = JSON.stringify(jsonLD, null, 2);
+        block.appendChild(scriptLD);
+
       })
       .catch(err => {
         block.innerHTML = "<p>No se pudieron cargar las entradas.</p>";
@@ -7195,6 +7279,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 //]]>
 </script>
+
+    
      
 <!-- 10. ADSENSE AUTOMATICO EN EL 2DO PARRAFO -->
 <script>
@@ -7216,8 +7302,8 @@ document.addEventListener("DOMContentLoaded", function() {
       adDiv.innerHTML = `
         <ins class="adsbygoogle"
              style="display:block"
-             data-ad-client="ca-pub-XXXXXXXXXX"
-             data-ad-slot="2DO_PARRAFO_SLOT_1"
+             data-ad-client="ca-pub-2883340481783312"
+             data-ad-slot="4850910883"
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
       `;
@@ -7242,15 +7328,15 @@ document.addEventListener("DOMContentLoaded", function() {
     <script>
 //<![CDATA[
 document.addEventListener('DOMContentLoaded', function() {
-  const monetized = false; // Por defecto true o Cambiar a false para mostrar mensajes en vez de anuncios
+  const monetized = true; // Por defecto true o Cambiar a false para mostrar mensajes en vez de anuncios
 
   // Mapa con códigos AdSense o mensajes según el data-code
   const adsenseCodes = {
     'adsense-index-1': monetized ? `
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXX"
-           data-ad-slot="INDEX_SLOT_1"
+           data-ad-client="ca-pub-2883340481783312"
+           data-ad-slot="6902359156"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
     ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio index 1]</div>`,
@@ -7258,8 +7344,8 @@ document.addEventListener('DOMContentLoaded', function() {
     'adsense-index-2': monetized ? `
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXX"
-           data-ad-slot="INDEX_SLOT_2"
+           data-ad-client="ca-pub-2883340481783312"
+           data-ad-slot="9751883777"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
     ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio index 2]</div>`,
@@ -7267,8 +7353,8 @@ document.addEventListener('DOMContentLoaded', function() {
     'adsense-post-1': monetized ? `
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXX"
-           data-ad-slot="POST_SLOT_1"
+           data-ad-client="ca-pub-2883340481783312"
+           data-ad-slot="8438802108"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
     ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio post 1]</div>`,
@@ -7276,8 +7362,8 @@ document.addEventListener('DOMContentLoaded', function() {
     'adsense-post-2': monetized ? `
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXX"
-           data-ad-slot="POST_SLOT_2"
+           data-ad-client="ca-pub-2883340481783312"
+           data-ad-slot="9336950805"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
     ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio post 2]</div>`
@@ -7462,7 +7548,7 @@ document.addEventListener("DOMContentLoaded", () => {
     paypalEmail: "hola@owinile.com",
     returnUrl: "https://tusitio.com/p/gracias.html",
     cancelUrl: "https://tusitio.com/p/cancelado.html",
-    mostrarContador: true // false oculta el botón completo, true lo muestra
+    mostrarContador: false // false oculta el botón completo, true lo muestra
   };
 
   const KEY = 'cart';
@@ -7642,7 +7728,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //]]>
 </script>
   
-<!-- 15. CATALOGO DE PRODUCTO POR ETIQUETA  -->
+<!-- 15. CATALOGO DE PRODUCTO POR ETIQUETA con JSON-LD -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", () => {
@@ -7686,22 +7772,17 @@ document.addEventListener("DOMContentLoaded", () => {
           // -----------------------------
           // DETECCIÓN DE DISPONIBILIDAD
           // -----------------------------
-          // Creamos un DOM temporal para procesar solo la parte visible
           const tempDiv = document.createElement("div");
           tempDiv.innerHTML = content;
 
-          // Busca el span de disponibilidad visible (no comentado)
           let disponibilidadTexto = "En stock";
           let disponibilidadSchema = "https://schema.org/InStock";
-
           const spanDisponibilidad = tempDiv.querySelector("span.disponibilidad");
           if (spanDisponibilidad) {
-            // Si tiene clase 'agotado', marcar como Agotado
             if (spanDisponibilidad.classList.contains("agotado")) {
               disponibilidadTexto = "Agotado";
               disponibilidadSchema = "https://schema.org/OutOfStock";
             } else {
-              // Si no tiene clase 'agotado', está en stock
               disponibilidadTexto = spanDisponibilidad.textContent.trim();
               disponibilidadSchema = "https://schema.org/InStock";
             }
@@ -7739,6 +7820,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <a href="${link}" class="boton ficha-boton" target="_blank" rel="nofollow">Ver producto</a>
               </div>
+
+              <!-- JSON-LD por producto -->
+              <script type="application/ld+json">
+              {
+                "@context": "https://schema.org",
+                "@type": "Product",
+                "name": "${title.replace(/"/g,'\\"')}",
+                "image": "${img}",
+                "description": "${cleanText.replace(/"/g,'\\"')}",
+                "offers": {
+                  "@type": "Offer",
+                  "url": "${link}",
+                  "priceCurrency": "USD",
+                  "price": "${precioEntry.replace('$','')}",
+                  "availability": "${disponibilidadSchema}"
+                }
+              }
+              </script>
+
             </div>
           `;
         });
@@ -7752,9 +7852,10 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
-//]]></script>
-    
-      <!-- 16. Script CATALOGO STORE -->
+//]]>
+</script>
+
+    <!-- 16. Script CATALOGO STORE con JSON-LD -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", function () {
@@ -7762,7 +7863,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const max = parseInt(container.dataset.max, 10) || 6;
     const feedUrl = '/feeds/posts/default?alt=json&max-results=50';
 
-    // Uso fetch con cache para reducir llamadas repetidas
     fetchWithCacheManager(feedUrl, 600000) // cache 10 minutos
       .then(data => {
         const entries = data.feed.entry || [];
@@ -7787,12 +7887,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const text = temp.textContent || temp.innerText || "";
             const excerpt = text.substring(0, 120).trim() + "...";
 
-            return {
-              title, link, img, excerpt, price: priceTag
-            };
+            return { title, link, img, excerpt, price: priceTag };
           })
           .filter(Boolean)
-          .sort(() => Math.random() - 0.5) // mezcla aleatoria
+          .sort(() => Math.random() - 0.5)
           .slice(0, max);
 
         if (productos.length === 0) {
@@ -7800,6 +7898,7 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         }
 
+        // Insertar HTML de productos
         container.innerHTML = productos.map(p => `
           <div class="item-producto">
             <div class="img"><a href="${p.link}"><img src="${p.img}" loading="lazy" alt="Imagen del artículo: ${p.title}"></a></div>
@@ -7813,6 +7912,30 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
           </div>
         `).join('');
+
+        // -----------------------------
+        // JSON-LD por producto
+        // -----------------------------
+        const jsonLD = productos.map(p => ({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": p.title,
+          "image": p.img,
+          "description": p.excerpt,
+          "offers": {
+            "@type": "Offer",
+            "url": p.link,
+            "priceCurrency": "USD",
+            "price": p.price.replace('$',''),
+            "availability": "https://schema.org/InStock"
+          }
+        }));
+
+        const script = document.createElement("script");
+        script.type = "application/ld+json";
+        script.textContent = JSON.stringify(jsonLD, null, 2);
+        container.appendChild(script);
+
       })
       .catch(err => {
         container.innerHTML = "<p>Error al cargar productos.</p>";
@@ -7822,9 +7945,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 //]]>
 </script>
-
-       <!-- 17. Tabla Comparativa de productos con el feed de blogger -->
-   <script>
+     
+<!-- 17. Tabla Comparativa de productos con JSON-LD individual -->
+<script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".tabla-productos").forEach(block => {
@@ -7839,7 +7962,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const feedUrl = `/feeds/posts/default/-/${tema}?alt=json&max-results=100`;
 
-    // Cambié esta línea para usar fetchWithCacheManager con cache de 10 minutos (600000 ms)
     fetchWithCacheManager(feedUrl, 600000)
       .then(data => {
         const entradas = data.feed.entry || [];
@@ -7875,6 +7997,9 @@ document.addEventListener("DOMContentLoaded", () => {
             <tbody>
         `;
 
+        // Array para JSON-LD
+        const jsonLDArray = [];
+
         seleccionados.forEach(entry => {
           const title = entry.title?.$t || "Producto";
           const link = entry.link.find(l => l.rel === "alternate").href;
@@ -7895,10 +8020,35 @@ document.addEventListener("DOMContentLoaded", () => {
               <td data-label="Comprar"><a href="${link}" class="boton-comprar" target="_blank">Comprar</a></td>
             </tr>
           `;
+
+          // -----------------------------
+          // Agregar JSON-LD por producto
+          // -----------------------------
+          jsonLDArray.push({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": title,
+            "image": img,
+            "description": cleanText,
+            "offers": {
+              "@type": "Offer",
+              "url": link,
+              "priceCurrency": "USD",
+              "price": precioEntry.replace('$',''),
+              "availability": "https://schema.org/InStock"
+            }
+          });
         });
 
         html += "</tbody></table>";
         block.innerHTML = html;
+
+        // Insertar JSON-LD
+        const script = document.createElement("script");
+        script.type = "application/ld+json";
+        script.textContent = JSON.stringify(jsonLDArray, null, 2);
+        block.appendChild(script);
+
       })
       .catch(err => {
         block.innerHTML = "<p>Error al cargar los productos.</p>";
@@ -7908,6 +8058,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 //]]>
 </script>
+       
 
     <!-- ===========================================================
      🎬 BLOQUE MULTIMEDIA
@@ -7993,7 +8144,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
   });
 });
 //]]></script>
-    
-    
+        
   </body>
 </html>
