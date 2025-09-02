@@ -7279,9 +7279,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 //]]>
 </script>
-
-    
-     
+	  
 <!-- 10. ADSENSE AUTOMATICO EN EL 2DO PARRAFO -->
 <script>
 //<![CDATA[
@@ -7296,14 +7294,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const adDiv = document.createElement('div');
     adDiv.className = 'adsense-shortcode'; // mejor que adsense-ad
 
-    const monetized = true; // cambiar a false si quieres ver placeholders
+    const monetized = false; // cambiar a false si quieres ver placeholders
 
     if (monetized) {
       adDiv.innerHTML = `
         <ins class="adsbygoogle"
              style="display:block"
-             data-ad-client="ca-pub-2883340481783312"
-             data-ad-slot="4850910883"
+             data-ad-client="ca-pub-XXXXXXXXXX"
+             data-ad-slot="2DO_PARRAFO_SLOT_1"
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
       `;
@@ -7328,15 +7326,15 @@ document.addEventListener("DOMContentLoaded", function() {
     <script>
 //<![CDATA[
 document.addEventListener('DOMContentLoaded', function() {
-  const monetized = true; // Por defecto true o Cambiar a false para mostrar mensajes en vez de anuncios
+  const monetized = false; // Por defecto true o Cambiar a false para mostrar mensajes en vez de anuncios
 
   // Mapa con códigos AdSense o mensajes según el data-code
   const adsenseCodes = {
     'adsense-index-1': monetized ? `
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-2883340481783312"
-           data-ad-slot="6902359156"
+           data-ad-client="ca-pub-XXXXXXXXXX"
+           data-ad-slot="INDEX_SLOT_1"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
     ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio index 1]</div>`,
@@ -7344,8 +7342,8 @@ document.addEventListener('DOMContentLoaded', function() {
     'adsense-index-2': monetized ? `
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-2883340481783312"
-           data-ad-slot="9751883777"
+           data-ad-client="ca-pub-XXXXXXXXXX"
+           data-ad-slot="INDEX_SLOT_1"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
     ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio index 2]</div>`,
@@ -7353,8 +7351,8 @@ document.addEventListener('DOMContentLoaded', function() {
     'adsense-post-1': monetized ? `
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-2883340481783312"
-           data-ad-slot="8438802108"
+           data-ad-client="ca-pub-XXXXXXXXXX"
+           data-ad-slot="POST_SLOT_1"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
     ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio post 1]</div>`,
@@ -7362,8 +7360,8 @@ document.addEventListener('DOMContentLoaded', function() {
     'adsense-post-2': monetized ? `
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-2883340481783312"
-           data-ad-slot="9336950805"
+           data-ad-client="ca-pub-XXXXXXXXXX"
+           data-ad-slot="POST_SLOT_2"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
     ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio post 2]</div>`
