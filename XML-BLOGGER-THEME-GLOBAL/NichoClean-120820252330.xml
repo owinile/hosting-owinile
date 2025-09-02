@@ -7726,7 +7726,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //]]>
 </script>
   
-<!-- 15. CATALOGO DE PRODUCTO POR ETIQUETA con JSON-LD -->
+<!-- 15. CATALOGO DE PRODUCTO POR ETIQUETA con JSON-LD corregido -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", () => {
@@ -7761,6 +7761,9 @@ document.addEventListener("DOMContentLoaded", () => {
           .slice(0, cantidadMaxima);
 
         let html = `<div class="nivel3-grid">`;
+
+        // Array para almacenar todos los productos para JSON-LD
+        const jsonLDArray = [];
 
         seleccionados.forEach(entry => {
           const title = entry.title?.$t || "Producto";
@@ -7818,31 +7821,41 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <a href="${link}" class="boton ficha-boton" target="_blank" rel="nofollow">Ver producto</a>
               </div>
-
-              <!-- JSON-LD por producto -->
-              <script type="application/ld+json">
-              {
-                "@context": "https://schema.org",
-                "@type": "Product",
-                "name": "${title.replace(/"/g,'\\"')}",
-                "image": "${img}",
-                "description": "${cleanText.replace(/"/g,'\\"')}",
-                "offers": {
-                  "@type": "Offer",
-                  "url": "${link}",
-                  "priceCurrency": "USD",
-                  "price": "${precioEntry.replace('$','')}",
-                  "availability": "${disponibilidadSchema}"
-                }
-              }
-              </script>
-
             </div>
           `;
+
+          // -----------------------------
+          // Agregar producto al array JSON-LD
+          // -----------------------------
+          jsonLDArray.push({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": title,
+            "image": img,
+            "description": cleanText,
+            "offers": {
+              "@type": "Offer",
+              "url": link,
+              "priceCurrency": "USD",
+              "price": precioEntry.replace('$',''),
+              "availability": disponibilidadSchema
+            }
+          });
         });
 
         html += `</div>`;
         block.innerHTML = html;
+
+        // -----------------------------
+        // Insertar JSON-LD dinámicamente
+        // -----------------------------
+        if(jsonLDArray.length > 0){
+          const scriptLD = document.createElement("script");
+          scriptLD.type = "application/ld+json";
+          scriptLD.textContent = JSON.stringify(jsonLDArray, null, 2);
+          block.appendChild(scriptLD);
+        }
+
       })
       .catch(err => {
         block.innerHTML = "<p>Error al cargar productos.</p>";
@@ -7852,6 +7865,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 //]]>
 </script>
+
 
     <!-- 16. Script CATALOGO STORE con JSON-LD -->
 <script>
