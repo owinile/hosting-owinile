@@ -849,8 +849,8 @@ ul.x ul li::before {
   }
 
   .home-content {
-    font-size: 0.95rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1.55;
   }
 
   .home-content > h1:first-child,
@@ -1378,7 +1378,7 @@ a.boton-descarga.invertido:hover, button.boton-descarga.invertido:hover, input.b
 }
 
 /* =========================================================
-   21. BLOQUE: BLOG - CÓDIGO EN POST
+   21. BLOQUE: BLOG - CONTENEDOR DE CODIGO PRE/CODE
    ========================================================= */
 
 /* === Código inline dentro de párrafos === */
@@ -1393,22 +1393,49 @@ code {
 
 /* === Bloques de código completos === */
 pre {
-  background-color: #f0f0f0;
+  position: relative;
+  background: #f3f4f6;
+  color: #1f2937;
   padding: 1rem;
+  border-radius: 8px;
   overflow-x: auto;
-  border-radius: 6px;
-  margin: 1rem 0;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.9rem;
+  max-width: 100%;
+  margin: 1.5rem 0;
+  border: 1px solid #e5e7eb;
 }
 
 /* === Código dentro de los bloques <pre> === */
 pre code {
-  font-family: monospace;
-  color: var(--color-principal);
-  display: block;
   white-space: pre;
+  display: block;
+  color: var(--color-principal);
+}
+
+/* === Botón de copiar === */
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #e5e7eb;
+  color: #1f2937;
+  font-family: system-ui, sans-serif;
+  border: none;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  z-index: 10;
+}
+
+.copy-btn:hover {
+  background: #d1d5db;
+}
+
+.copy-btn:active {
+  background: #9ca3af;
 }
 
 /* =========================================================
@@ -3133,52 +3160,7 @@ a {
 }
 
 /* ======================================================
-   39. BLOQUE:  BLOG - CONTENEDOR DE CODIGO PRE/CODE
-   ====================================================== */
-
-/* Bloque de código */
-pre {
-  position: relative;
-  background: #f3f4f6;
-  color: #1f2937;
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;
-  font-family: ui-monospace, SFMono-Regular, monospace;
-  font-size: 0.9rem;
-  max-width: 100%;
-  margin: 1.5rem 0;
-  border: 1px solid #e5e7eb;
-}
-
-/* Código */
-pre code {
-  white-space: pre;
-  display: block;
-}
-
-/* Botón de copiar */
-.copy-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: #e5e7eb;
-  color: #1f2937;
-  border: none;
-  font-size: 0.75rem;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  z-index: 10;
-}
-
-.copy-btn:hover {
-  background: #d1d5db;
-}
-
-/* ======================================================
-   40. BLOQUE:  BLOG - MEDIA PLAYER HTML
+   39. BLOQUE:  BLOG - MEDIA PLAYER HTML
    ====================================================== */
 
 .media-player {
@@ -3245,7 +3227,7 @@ pre code {
 
 
 /* ======================================================
-   41. BLOQUE:  BLOG - BUSCAR (ESCRITORIO)
+   40. BLOQUE:  BLOG - BUSCAR (ESCRITORIO)
    ====================================================== */
 
 .post-header {
@@ -3296,7 +3278,7 @@ pre code {
 
 
 /* ======================================================
-   42. BLOQUE: BLOG - CONTENEDOR DE ARTICULOS PARA EL INDEX / HOME
+   41. BLOQUE: BLOG - CONTENEDOR DE ARTICULOS PARA EL INDEX / HOME
    ====================================================== */
 
 .index-contenedor {
@@ -3368,7 +3350,7 @@ pre code {
 
 
 /* ======================================================
-   43. BLOQUE: STORE - FICHA DE PRODUCTO DESTACADO
+   42. BLOQUE: STORE - FICHA DE PRODUCTO DESTACADO
    ====================================================== */
 
 /* === Contenedor general de la ficha === */
@@ -3525,7 +3507,7 @@ pre code {
 
 
 /* ======================================================
-   44. BLOQUE: STORE - TABLA CARRITO DE COMPRAS
+   43. BLOQUE: STORE - TABLA CARRITO DE COMPRAS
    ====================================================== */
 
 /* Contenedor principal del carrito */
@@ -3668,7 +3650,7 @@ pre code {
 }
 
 /* ======================================================
-   45. STORE - BOTON CARRITO FLOTANTE
+   44. STORE - BOTON CARRITO FLOTANTE
    ====================================================== */
 .ficha-botones {
   display: flex;
@@ -3723,7 +3705,7 @@ pre code {
 
 
 /* ==========================================================================
-   46. BLOQUE: FEED DE BLOGGER - GALERÍAS DINAMICAS
+   45. BLOQUE: FEED DE BLOGGER - GALERÍAS DINAMICAS
    Bloque 1 — Galería Cluster
    Bloque 2 — Galería Card
    Bloque 3 — Galería Lista
@@ -4274,7 +4256,7 @@ pre code {
 }
 
 /* ==========================================================================
-   47. BLOQUE: FEED DE BLOGGER - CATALOGO DINAMICO CON O SIN ETIQUETA
+   46. BLOQUE: FEED DE BLOGGER - CATALOGO DINAMICO CON O SIN ETIQUETA
      1. Contenedor general
      2. Ítem / tarjeta
      3. Elementos internos (imagen, info, título, descripción, meta)
@@ -4414,7 +4396,7 @@ pre code {
 }
 
 /* ======================================================
-   48. BLOQUE: FEED BLOGGER - TABLA COMPARATIVA HTML 
+   47. BLOQUE: FEED BLOGGER - TABLA COMPARATIVA HTML 
    ====================================================== */
 
 /* === Contenedor principal de la tabla === */
@@ -4543,7 +4525,7 @@ pre code {
 
 
 /* ======================================================
-   49. BLOQUE: FEED BLOGGER - CAJA DEL AUTOR HTML
+   48. BLOQUE: FEED BLOGGER - CAJA DEL AUTOR HTML
    ====================================================== */
 
 .autor-box {
@@ -4649,7 +4631,7 @@ pre code {
 }
 
 /* ======================================================
-   50. BLOQUE:  FEED BLOGGER - FORMATO TEXTO DINAMICO 
+   49. BLOQUE:  FEED BLOGGER - FORMATO TEXTO DINAMICO 
    ====================================================== */
 
 /* VARIANTE GRID - 3 columnas, texto + leer más */
@@ -4927,7 +4909,7 @@ pre code {
 }
 
 /* ======================================================
-   51. BLOQUE:  FEED BLOGGER - CATALOGO STORE POR SIGNO $ 
+   50. BLOQUE:  FEED BLOGGER - CATALOGO STORE POR SIGNO $ 
    ====================================================== */
 
 /* === Estilo para Catálogo tipo Tienda === */
@@ -5035,7 +5017,7 @@ pre code {
   display: none;
 }
 /* ======================================================
-   52. BLOQUE:  AUXILIAR - CLASE UTILITARIA PARA OCULTAR ELEMENTOS
+   51. BLOQUE:  AUXILIAR - CLASE UTILITARIA PARA OCULTAR ELEMENTOS
    ====================================================== */
 
 .none {display:none !important}
@@ -5044,7 +5026,7 @@ margin: 0 !important;
 }
 
 /* ================================
-   53. BLOQUE: AUXILAR - MARGEN DE IMAGEN DESTACADA DEL POST
+   52. BLOQUE: AUXILAR - MARGEN DE IMAGEN DESTACADA DEL POST
    ================================ */
 .img-post {
   max-width: 100%;
@@ -5054,7 +5036,7 @@ margin: 0 !important;
 }
 
 /* ================================
-   54. BLOQUE: AUXILIAR - STICKY FOOTER SIEMPRE AL FINAL
+   53. BLOQUE: AUXILIAR - STICKY FOOTER SIEMPRE AL FINAL
    ================================ */
 html, body {
   height: 100%; /* Asegura altura completa */
@@ -5068,7 +5050,7 @@ body {
 
 
 /* =========================================================
-   55. BLOQUE: AUXILIAR - SHORTCODES RESERVAR ESPACIO (CLS) PAGESPEED
+   54. BLOQUE: AUXILIAR - SHORTCODES RESERVAR ESPACIO (CLS) PAGESPEED
    ========================================================= */
 
 .shortcode-container {
@@ -6785,7 +6767,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'lightbox':
               html += `
                 <article class='item-lightbox' itemscope itemtype='https://schema.org/Article'>
-                  <a data-lightbox='gallery' href='${media}' itemprop='url'>
+                  <a data-lightbox='gallery' href='${media}' itemprop='url' target="_blank" rel="noopener noreferrer">
                     <img alt='Imagen del artículo: ${titulo}' itemprop='image' src='${media}'/>
                   </a>
                   <h3 itemprop='headline'>${titulo}</h3>
