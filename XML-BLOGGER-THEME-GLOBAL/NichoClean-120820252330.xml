@@ -1384,7 +1384,7 @@ a.boton-descarga.invertido:hover, button.boton-descarga.invertido:hover, input.b
 /* === Código inline dentro de párrafos === */
 code {
   font-family: monospace;
-  background-color: #f0f0f0;
+  background-color: #f0f0f0; /* fondo distinto para inline */
   padding: 0.2em 0.4em;
   border-radius: 4px;
   color: var(--color-principal);
@@ -1394,7 +1394,7 @@ code {
 /* === Bloques de código completos === */
 pre {
   position: relative;
-  background: #f3f4f6;
+  background: #f3f4f6; /* fondo del bloque */
   color: #1f2937;
   padding: 1rem;
   border-radius: 8px;
@@ -1408,9 +1408,13 @@ pre {
 
 /* === Código dentro de los bloques <pre> === */
 pre code {
-  white-space: pre;
   display: block;
+  white-space: pre;
+  min-width: 100%;       /* al menos ancho del pre */
+  width: max-content;    /* se expande según el contenido */
+  background-color: #f0f0f0; /* fondo ligeramente distinto para distinguir del pre */
   color: var(--color-principal);
+  padding-right: 1rem;   /* evita que el scroll deje ver el fondo del pre */
 }
 
 /* === Botón de copiar === */
@@ -1430,12 +1434,19 @@ pre code {
   z-index: 10;
 }
 
-.copy-btn:hover {
-  background: #d1d5db;
+.copy-btn:hover { background: #d1d5db; }
+.copy-btn:active { background: #9ca3af; }
+
+/* Contenedor envolvente para mantener el botón fijo */
+.code-wrap {
+  position: relative;
+  margin: 1.5rem 0; /* reemplaza el margen del pre */
 }
 
-.copy-btn:active {
-  background: #9ca3af;
+/* El <pre> dentro ya no necesita margen propio */
+.code-wrap > pre {
+  margin: 0;
+  padding-top: 2rem; /* deja espacio para el botón y evita tapar código */
 }
 
 /* =========================================================
@@ -7143,31 +7154,60 @@ document.addEventListener("DOMContentLoaded", function () {
 //]]>
 </script>
     
-     <!-- 8. Script compartir code  -->
-   <script>//<![CDATA[  
+<!-- 8. Script compartir code (final, sin lazy) -->
+<script>
+//<![CDATA[
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('pre > code').forEach(codeBlock => {
-    if (codeBlock.textContent.trim() === "") return; // No añadir si está vacío
+
+  // Selecciona todos los bloques <pre><code>
+  const codeBlocks = document.querySelectorAll('pre > code');
+  if (codeBlocks.length === 0) return; // no hay bloques, no hacer nada
+
+  codeBlocks.forEach(codeBlock => {
+
+    if (codeBlock.textContent.trim() === "") return; // no añadir si está vacío
 
     const pre = codeBlock.parentElement;
+
+    // Crear wrapper si no existe
+    let wrap = pre.parentElement;
+    if (!wrap.classList.contains('code-wrap')) {
+      wrap = document.createElement('div');
+      wrap.className = 'code-wrap';
+      pre.parentNode.insertBefore(wrap, pre);
+      wrap.appendChild(pre);
+    }
+
+    // Evitar botones duplicados
+    if (wrap.querySelector('.copy-btn')) return;
+
+    // Crear botón
     const button = document.createElement('button');
     button.className = 'copy-btn';
     button.textContent = 'Copiar';
 
+    // Evento copiar
     button.addEventListener('click', () => {
-      navigator.clipboard.writeText(codeBlock.textContent).then(() => {
-        button.textContent = 'Copiado';
-        setTimeout(() => {
-          button.textContent = 'Copiar';
-        }, 2000);
-      });
+      navigator.clipboard.writeText(codeBlock.textContent)
+        .then(() => {
+          button.textContent = 'Copiado';
+          setTimeout(() => button.textContent = 'Copiar', 2000);
+        })
+        .catch(() => {
+          button.textContent = 'Error';
+          setTimeout(() => button.textContent = 'Copiar', 2000);
+        });
     });
 
-    pre.appendChild(button);
+    // Insertar botón en el wrapper (no dentro del pre)
+    wrap.appendChild(button);
+
   });
+
 });
 //]]>
 </script>
+    
     
    <!-- 9. Script SHORTCODE TEXTO aleatorio con JSON-LD -->
 <script>
