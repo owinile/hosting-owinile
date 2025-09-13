@@ -6513,7 +6513,7 @@ body {
 
 <div id="comentarios-config"
      data-sistema="disqus"  
-     data-disqus-shortname="tutorial-blogger-4">
+     data-disqus-shortname="TU_SHORTNAME">
 </div>]]></b:widget-setting>
       </b:widget-settings>
       <b:includable id='main'>
@@ -7622,10 +7622,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== CONFIG GLOBAL =====
   window.TIENDA_CONFIG = {
-    paypalEmail: "hola@owinile.com",
+    paypalEmail: "demo@example.com",
     returnUrl: "https://tusitio.com/p/gracias.html",
     cancelUrl: "https://tusitio.com/p/cancelado.html",
-    mostrarContador: false // false oculta el botón completo, true lo muestra
+    mostrarContador: true // false oculta el botón completo, true lo muestra
   };
 
   const KEY = 'cart';
