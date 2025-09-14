@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html b:css='false' b:defaultwidgetversion='2' b:js='true' b:layoutsVersion='3' b:responsive='true' b:templateUrl='indie.xml' b:templateVersion='1.3.3' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   
-  <!-- NichoClean v2.0.0 | Revisión 11 (2025-09-12) | Plantilla Blogger Minimalista, Rápida y Moderna -->
+  <!-- NichoClean v2.0.0 | Revisión 12 (2025-09-14) | Plantilla Blogger Minimalista, Rápida y Moderna -->
   
      <!-- titulo ERROR 404 -->
     <b:if cond='data:blog.pageType == &quot;error_page&quot;'>  
@@ -60,7 +60,7 @@
     </b:loop>
     </b:if> 
 	<!-- Marca de versión -->
-  <meta name="nichoClean-version" content="v2.0.0-r11-2025-09-12">  
+  <meta name="nichoClean-version" content="v2.0.0-r12-2025-09-14"/>  
     <!-- Adsense -->
     <script async='async' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'/>
   
@@ -5120,8 +5120,7 @@ body {
         "query-input": "required name=search_term_string"
     }
 }
-//]]>
-  </script>
+//]]></script>
    
   </head>
 
@@ -6512,7 +6511,7 @@ body {
         <b:widget-setting name='content'><![CDATA[<!-- Gadget HTML de configuración Cambia data-sistema a "blogger" o "disqus". Cambia data-disqus-shortname por tu shortname de Disqus. -->
 
 <div id="comentarios-config"
-     data-sistema="disqus"  
+     data-sistema="blogger"  
      data-disqus-shortname="TU_SHORTNAME">
 </div>]]></b:widget-setting>
       </b:widget-settings>
@@ -8436,7 +8435,215 @@ searchForm.addEventListener("submit", function (e) {
 });
 //]]>
 </script>
+	  
+	   <!-- 23. Js Plugin para comentarios blogger/disqus -->
+<script>//<![CDATA[
+// Cache simple
+const fetchWithCache = (function(){
+  const CACHE_DURATION_MS = 10*60*1000; // 10 min
+  return async function(url){
+    const key = 'cache_' + url;
+    const cached = localStorage.getItem(key);
+    if(cached){
+      const obj = JSON.parse(cached);
+      if(Date.now() - obj.timestamp < CACHE_DURATION_MS) return obj.data;
+    }
+    const res = await fetch(url);
+    const data = await res.json();
+    localStorage.setItem(key, JSON.stringify({timestamp:Date.now(),data}));
+    return data;
+  }
+})();
 
-        
+(async function(){
+  const widget = document.querySelector('.recent-comments-widget');
+  if(!widget) return;
+
+  const bloggerLimit = parseInt(widget.dataset.bloggerLimit) || 5;
+  const disqusLimit  = parseInt(widget.dataset.disqusLimit)  || 5;
+  const disqusShort  = widget.dataset.disqusShortname;
+  const disqusKey    = widget.dataset.disqusApiKey;
+  const title        = widget.dataset.title || 'Comentarios recientes';
+  const system       = widget.dataset.sistema || 'both';
+  const truncateLen  = parseInt(widget.dataset.truncate) || 80;
+  const container    = widget.querySelector('.recent-comments-list');
+  const loadMoreLink = widget.querySelector('.load-more-comments');
+
+  let bloggerStart = 1;
+  let disqusCursor = null;
+  let bloggerDone = false;
+  let disqusDone = false;
+  let commentsLoaded = [];
+  let shownCount = 0;
+
+  // ---------- Estilos ----------
+  const css = `
+    .recent-comments-widget { font-family: system-ui,sans-serif; max-width:850px;width:95%;margin:auto; }
+    .recent-comments-widget h3 { font-size:18px;margin:0 0 10px;border-bottom:1px solid #ddd;padding-bottom:5px; }
+    .recent-comments-list { list-style:none;margin:0;padding:0; }
+    .recent-comments-list li { display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #eee; }
+    .recent-comments-list img { width:40px;height:40px;border-radius:50%;object-fit:cover; }
+    .recent-comments-list div { flex:1; }
+    .recent-comments-list p {
+      margin:4px 0 0;font-size:14px;color:#444;line-height:1.4;
+      display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;
+      overflow:hidden;text-overflow:ellipsis;word-wrap:break-word;
+    }
+    .recent-comments-list small { color:#999;font-size:12px;display:block; }
+    .load-more-comments { display:block;text-align:center;margin:10px auto;font-size:14px;color:#0073aa;text-decoration:none; }
+    .load-more-comments:hover { text-decoration:underline; }
+    .no-comments { text-align:center;color:#666;padding:10px 0; }
+  `;
+  const styleTag = document.createElement('style');
+  styleTag.textContent = css;
+  document.head.appendChild(styleTag);
+
+  // ---------- Título ----------
+  const h3 = document.createElement('h3');
+  h3.textContent = title;
+  widget.insertBefore(h3, container);
+
+  // ---------- Formato de fecha ----------
+  function formatDate(dateStr){
+    const d = new Date(dateStr);
+    return new Intl.DateTimeFormat('es-ES',{
+      day:'2-digit', month:'2-digit', year:'numeric',
+      hour:'2-digit', minute:'2-digit'
+    }).format(d);
+  }
+
+  // ---------- Renderizar comentarios ----------
+  function renderComments(comments){
+    if(comments.length===0 && shownCount===0){
+      container.innerHTML = '<div class="no-comments">No hay comentarios todavía.</div>';
+      return;
+    }
+    comments.forEach(c=>{
+      const li = document.createElement('li');
+      const img = document.createElement('img');
+      img.src = c.avatar;
+      img.alt = `Avatar de ${c.author}`;
+      img.loading = "lazy";
+
+      const div = document.createElement('div');
+
+      const a = document.createElement('a');
+      a.href = c.postLink;
+      a.target = "_blank";
+      a.title = `Ver comentario de ${c.author}`;
+      a.style.fontWeight = 'bold';
+      a.style.textDecoration = 'none';
+      a.style.color = '#333';
+      a.innerHTML = `${c.author} <span style="font-size:12px;color:#999;">[${c.source}]</span>`;
+
+      const p = document.createElement('p');
+      // truncar según atributo
+      p.textContent = c.content.length > truncateLen ? c.content.substring(0, truncateLen) + '…' : c.content;
+
+      const small = document.createElement('small');
+      small.textContent = c.date;
+
+      div.appendChild(a);
+      div.appendChild(p);
+      div.appendChild(small);
+
+      li.appendChild(img);
+      li.appendChild(div);
+
+      container.appendChild(li);
+    });
+  }
+
+  // ---------- Fetch Blogger ----------
+  async function fetchBlogger(){
+    if(bloggerDone || !['blogger','both'].includes(system)) return [];
+    const url = `${location.protocol}//${location.hostname}/feeds/comments/default?alt=json&start-index=${bloggerStart}&max-results=${bloggerLimit}`;
+    try{
+      const json = await fetchWithCache(url);
+      const entries = json.feed.entry || [];
+      if(entries.length===0){ bloggerDone=true; return []; }
+      bloggerStart += entries.length;
+      return entries.map(entry=>{
+        const author = entry.author[0].name.$t;
+        const avatar = entry.author[0].gd$image ? entry.author[0].gd$image.src : 'https://via.placeholder.com/40';
+        const content = (entry.content ? entry.content.$t : '').replace(/<[^>]+>/g,'');
+        let postLink = '/';
+        const alt = entry.link ? entry.link.find(l=>l.rel==='alternate') : null;
+        if(alt && alt.href) postLink = alt.href;
+        const dateISO = entry.published.$t;
+        const date = formatDate(dateISO);
+        return {author, avatar, content, postLink, date, dateISO, source:'blogger'};
+      });
+    } catch(e){
+      bloggerDone=true;
+      console.error('Error Blogger:',e);
+      return [];
+    }
+  }
+
+  // ---------- Fetch Disqus ----------
+  async function fetchDisqus(){
+    if(disqusDone || !['disqus','both'].includes(system) || !disqusShort || !disqusKey) return [];
+    let url = `https://disqus.com/api/3.0/forums/listPosts.json?forum=${disqusShort}&related=thread&limit=${disqusLimit}&api_key=${disqusKey}`;
+    if(disqusCursor) url += `&cursor=${disqusCursor}`;
+    try{
+      const data = await fetchWithCache(url);
+      if(!data.response.length){ disqusDone=true; return []; }
+      disqusCursor = data.cursor.hasNext ? data.cursor.next : null;
+      if(!disqusCursor) disqusDone=true;
+      return data.response.map(c=>{
+        const dateISO = c.createdAt;
+        return {
+          author: c.author.name,
+          avatar: (c.author.avatar && c.author.avatar.cache) || 'https://via.placeholder.com/40',
+          content: c.message.replace(/<[^>]+>/g,''),
+          postLink: c.thread.link,
+          date: formatDate(dateISO),
+          dateISO,
+          source:'disqus'
+        };
+      });
+    } catch(e){
+      disqusDone=true;
+      console.error('Error Disqus:',e);
+      const errDiv = document.createElement('div');
+      errDiv.className='no-comments';
+      errDiv.textContent='No se pudo conectar a Disqus';
+      container.appendChild(errDiv);
+      return [];
+    }
+  }
+
+  // ---------- Cargar comentarios ----------  
+  async function loadComments(){
+    if(!bloggerDone || !disqusDone){
+      const [blogger, disqus] = await Promise.all([fetchBlogger(), fetchDisqus()]);
+      const newFetched = [...blogger, ...disqus];
+      const filtered = newFetched.filter(c=>{
+        return !commentsLoaded.some(x=>x.author===c.author && x.dateISO===c.dateISO && x.postLink===c.postLink);
+      });
+      commentsLoaded.push(...filtered);
+    }
+
+    const sorted = [...commentsLoaded].sort((a,b)=>new Date(b.dateISO)-new Date(a.dateISO));
+    const batchSize = bloggerLimit + disqusLimit;
+    const nextComments = sorted.slice(shownCount, shownCount + batchSize);
+    renderComments(nextComments);
+    shownCount += nextComments.length;
+
+    if(shownCount >= sorted.length && bloggerDone && disqusDone){
+      loadMoreLink.style.display = 'none';
+    }
+  }
+
+  await loadComments();
+  loadMoreLink.addEventListener('click', async e=>{
+    e.preventDefault();
+    await loadComments();
+  });
+
+})();
+//]]></script>
+            
   </body>
 </html>
