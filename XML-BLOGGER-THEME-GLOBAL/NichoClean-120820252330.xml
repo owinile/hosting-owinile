@@ -5966,19 +5966,24 @@ body {
         <a expr:href='data:label.url'><data:label.name/></a><b:if cond='data:label.isLast != &quot;true&quot;'>. </b:if>
       </b:loop>
     </span>
-
-    <!-- Comentarios -->
-    <span class='comments-info'>
-      <b:if cond='data:post.numberOfComments &gt; 0'>
-        💬 <a class='numero-comentarios' expr:href='data:post.url + &quot;#comments&quot;'>
-          <data:post.numberOfComments/> comentarios
-        </a>
-      <b:else/>
-        💬 <a class='numero-comentarios' expr:href='data:post.url + &quot;#comments&quot;'>
-          Comentar
-        </a>
-      </b:if>
-    </span>
+     <!-- Comentarios-->
+  <!-- Placeholder visible mientras se decide qué sistema mostrar -->
+<span id='comentarios-placeholder'>💬 Cargando comentarios&#8230;</span>
+<span class='comments-info' style='display:none;'>
+  <!-- Blogger -->
+  <a class='numero-comentarios link-blogger' expr:href='data:post.url + &quot;#comments&quot;'>
+    💬
+    <b:if cond='data:post.numberOfComments &gt; 0'>
+      <data:post.numberOfComments/> comentarios
+    <b:else/>Comentar</b:if>
+  </a>
+  <!-- Disqus -->
+  <span class='link-disqus' style='display:none;'>
+    💬 <a class='numero-comentarios' expr:href='data:post.url + &quot;#disqus_thread&quot;'>
+      Comentarios
+    </a>
+  </span>
+</span>
   </div>
 
   <!-- Imagen destacada 
@@ -6058,19 +6063,24 @@ body {
         <a expr:href='data:label.url'><data:label.name/></a><b:if cond='data:label.isLast != &quot;true&quot;'>. </b:if>
       </b:loop>
     </span>
-
-    <!-- Comentarios -->
-    <span class='comments-info'>
-      <b:if cond='data:post.numberOfComments &gt; 0'>
-        💬 <a class='numero-comentarios' expr:href='data:post.url + &quot;#comments&quot;'>
-          <data:post.numberOfComments/> comentarios
-        </a>
-      <b:else/>
-        💬 <a class='numero-comentarios' expr:href='data:post.url + &quot;#comments&quot;'>
-          Comentar
-        </a>
-      </b:if>
-    </span>
+     <!-- Comentarios-->
+  <!-- Placeholder visible mientras se decide qué sistema mostrar -->
+<span id='comentarios-placeholder'>💬 Cargando comentarios&#8230;</span>
+<span class='comments-info' style='display:none;'>
+  <!-- Blogger -->
+  <a class='numero-comentarios link-blogger' expr:href='data:post.url + &quot;#comments&quot;'>
+    💬
+    <b:if cond='data:post.numberOfComments &gt; 0'>
+      <data:post.numberOfComments/> comentarios
+    <b:else/>Comentar</b:if>
+  </a>
+  <!-- Disqus -->
+  <span class='link-disqus' style='display:none;'>
+    💬 <a class='numero-comentarios' expr:href='data:post.url + &quot;#disqus_thread&quot;'>
+      Comentarios
+    </a>
+  </span>
+</span>
   </div>
 
   <b:if cond='data:post.featuredImage'>
@@ -8644,6 +8654,43 @@ const fetchWithCache = (function(){
 
 })();
 //]]></script>
+	  
+	  <!-- 24. Js Contador comentarios blogger/disqus en miga post -->
+<script>//<![CDATA[
+document.addEventListener('DOMContentLoaded', function () {
+  var cfg = document.getElementById('comentarios-config');
+  var sistema = cfg ? (cfg.getAttribute('data-sistema') || '').toLowerCase() : 'blogger';
+  var shortname = cfg ? (cfg.getAttribute('data-disqus-shortname') || '') : '';
+
+  var placeholder = document.getElementById('comentarios-placeholder');
+  var container = document.querySelector('.comments-info');
+  var linkB = container ? container.querySelector('.link-blogger') : null;
+  var linkD = container ? container.querySelector('.link-disqus') : null;
+
+  // Oculta placeholder y muestra el bloque de comentarios
+  if (placeholder) placeholder.style.display = 'none';
+  if (container) container.style.display = '';
+
+  if (sistema === 'disqus') {
+    if (linkB) linkB.style.display = 'none';
+    if (linkD) linkD.style.display = ''; // mostrar Disqus
+
+    // Inyectar count.js solo si no está
+    if (shortname && !document.getElementById('dsq-count-scr')) {
+      var s = document.createElement('script');
+      s.id = 'dsq-count-scr';
+      s.async = true;
+      s.src = '//' + shortname + '.disqus.com/count.js';
+      document.body.appendChild(s);
+    }
+  } else {
+    // Blogger por defecto
+    if (linkD) linkD.style.display = 'none';
+    if (linkB) linkB.style.display = ''; // mostrar Blogger
+  }
+});
+//]]></script>
+
             
   </body>
 </html>
