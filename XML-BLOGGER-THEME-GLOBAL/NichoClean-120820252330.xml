@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html b:css='false' b:defaultwidgetversion='2' b:js='true' b:layoutsVersion='3' b:responsive='true' b:templateUrl='indie.xml' b:templateVersion='1.3.3' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   
-  <!-- NichoClean v2.0.0 | Revisión 12 (2025-09-14) | Plantilla Blogger Minimalista, Rápida y Moderna -->
+  <!-- NichoClean v2.0.0 | Revisión 13 (2025-09-15) | Plantilla Blogger Minimalista, Rápida y Moderna -->
   
      <!-- titulo ERROR 404 -->
     <b:if cond='data:blog.pageType == &quot;error_page&quot;'>  
@@ -60,7 +60,7 @@
     </b:loop>
     </b:if> 
 	<!-- Marca de versión -->
-  <meta name="nichoClean-version" content="v2.0.0-r12-2025-09-14"/>  
+  <meta name="nichoClean-version" content="v2.0.0-r13-2025-09-15"/>  
     <!-- Adsense -->
     <script async='async' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'/>
   
