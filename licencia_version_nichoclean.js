@@ -1,5 +1,3 @@
-<script defer>
-//<![CDATA[
 (function(){
   // --- LICENCIA / VERSION ---
   var metaVersion = document.querySelector('meta[name="nichoClean-version"]');
@@ -83,5 +81,3 @@
     window.addEventListener("resize",ajustarTodo);
   });
 })();
-//]]>
-</script>
