@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html b:css='false' b:defaultwidgetversion='2' b:js='true' b:layoutsVersion='3' b:responsive='true' b:templateUrl='indie.xml' b:templateVersion='1.3.3' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   
-  <!-- NichoClean v2.0.0 | Revisión 13 (2025-09-15) | Plantilla Blogger Minimalista, Rápida y Moderna -->
+  <!-- NichoClean v2.0.0 | Revisión 14 (2025-09-16) | Plantilla Blogger Minimalista, Rápida y Moderna -->
   
      <!-- titulo ERROR 404 -->
     <b:if cond='data:blog.pageType == &quot;error_page&quot;'>  
@@ -60,7 +60,7 @@
     </b:loop>
     </b:if> 
 	<!-- Marca de versión -->
-  <meta name="nichoClean-version" content="v2.0.0-r13-2025-09-15"/>  
+  <meta name="nichoClean-version" content="v2.0.0-r14-2025-09-16"/>  
     <!-- Adsense -->
     <script async='async' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'/>
   
@@ -5966,14 +5966,13 @@ body {
         <a expr:href='data:label.url'><data:label.name/></a><b:if cond='data:label.isLast != &quot;true&quot;'>. </b:if>
       </b:loop>
     </span>
-     <!-- Comentarios-->
+ <!-- Comentarios-->
   <!-- Placeholder visible mientras se decide qué sistema mostrar -->
 <span id='comentarios-placeholder'>💬 Cargando comentarios&#8230;</span>
 <span class='comments-info' style='display:none;'>
   <!-- Blogger -->
-  <a class='numero-comentarios link-blogger' expr:href='data:post.url + &quot;#comments&quot;'>
-    💬
-    <b:if cond='data:post.numberOfComments &gt; 0'>
+  💬 <a class='numero-comentarios link-blogger' expr:href='data:post.url + &quot;#comments&quot;'>
+        <b:if cond='data:post.numberOfComments &gt; 0'>
       <data:post.numberOfComments/> comentarios
     <b:else/>Comentar</b:if>
   </a>
@@ -6063,14 +6062,13 @@ body {
         <a expr:href='data:label.url'><data:label.name/></a><b:if cond='data:label.isLast != &quot;true&quot;'>. </b:if>
       </b:loop>
     </span>
-     <!-- Comentarios-->
+<!-- Comentarios-->
   <!-- Placeholder visible mientras se decide qué sistema mostrar -->
 <span id='comentarios-placeholder'>💬 Cargando comentarios&#8230;</span>
 <span class='comments-info' style='display:none;'>
   <!-- Blogger -->
-  <a class='numero-comentarios link-blogger' expr:href='data:post.url + &quot;#comments&quot;'>
-    💬
-    <b:if cond='data:post.numberOfComments &gt; 0'>
+  💬 <a class='numero-comentarios link-blogger' expr:href='data:post.url + &quot;#comments&quot;'>
+        <b:if cond='data:post.numberOfComments &gt; 0'>
       <data:post.numberOfComments/> comentarios
     <b:else/>Comentar</b:if>
   </a>
@@ -7539,82 +7537,7 @@ var activarOcultarImagen = true; // Variable para activar o desactivar el script
 </script>
     
 <!-- 13. MENU ORBITAL (X) + BOTON CARRITO: CONTROL FOOTER -->
-<script defer='defer'>
-//<![CDATA[
-document.addEventListener("DOMContentLoaded", () => {
-  const menuBtn  = document.querySelector(".menu-toggle");      // Botón orbital
-  const menuList = document.querySelector("nav.main-nav ul");   // Menú orbital
-  const footer   = document.querySelector("footer");            // Footer
-  const cartBtn  = document.querySelector(".cart-float");       // Botón contador
-
-  const isMobile = () => window.innerWidth <= 768;
-
-  // --- Apertura / cierre menú orbital ---
-  if (menuBtn && menuList) {
-    menuBtn.addEventListener("click", () => {
-      menuList.classList.toggle("active");
-      menuBtn.classList.toggle("open"); // Cambia a "X"
-    });
-  }
-
-  // --- Ajuste del carrito flotante (móvil y desktop) ---
-  function ajustarCarrito() {
-    if (!cartBtn || !footer) return;
-
-    const vh = window.innerHeight;
-    const footerTop = footer.getBoundingClientRect().top;
-
-    // Si el footer entra en pantalla, elevamos el botón; mínimo 20px desde abajo
-    const overlap = footerTop < vh ? (vh - footerTop + 20) : 20;
-    cartBtn.style.bottom = overlap + "px";
-  }
-
-  // --- Ajuste del orbital respecto al carrito y footer (solo móvil) ---
-  function ajustarOrbital() {
-    if (!menuBtn || !footer) return;
-    if (!isMobile()) {
-      menuBtn.style.bottom = "16px"; // desktop orbital deshabilitado
-      return;
-    }
-
-    const carritoVisible = window.TIENDA_CONFIG?.mostrarContador ?? false;
-
-    // Posición inicial orbital
-    let baseBottom = carritoVisible ? 80 : 16;   
-
-    // Margen al llegar al footer
-    let margenFooter = carritoVisible ? 80 : 20; 
-
-    const footerTop = footer.getBoundingClientRect().top;
-    const vh = window.innerHeight;
-
-    // Si el footer entra en pantalla, el orbital sube
-    const overlap = footerTop < vh ? (vh - footerTop + margenFooter) : 0;
-
-    // Posición final
-    const btnBottom = overlap > 0 ? overlap : baseBottom;
-    menuBtn.style.bottom = btnBottom + "px";
-
-    // Menú orbital siempre 60px por encima del orbital
-    if (menuList) {
-      menuList.style.bottom = (btnBottom + 60) + "px";
-    }
-  }
-
-  // --- Inicializar posiciones ---
-  function ajustarTodo() {
-    ajustarCarrito();
-    ajustarOrbital();
-  }
-
-  // Ejecutar al inicio y en scroll/resize
-  setTimeout(ajustarTodo, 50); // Primer render
-  window.addEventListener("scroll", ajustarTodo, { passive: true });
-  window.addEventListener("resize", ajustarTodo);
-});
-//]]>
-</script>
-    
+<script defer='defer' src='https://cdn.jsdelivr.net/gh/owinile/hosting-owinile@main/orbital_full.js'/>
     
  <!-- ===========================================================
      🛒 SCRIPTS DE LA TIENDA ONLINE
