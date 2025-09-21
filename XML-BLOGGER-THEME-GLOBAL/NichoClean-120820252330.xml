@@ -2,15 +2,14 @@
 <!DOCTYPE html>
 <html b:css='false' b:defaultwidgetversion='2' b:js='true' b:layoutsVersion='3' b:responsive='true' b:templateUrl='indie.xml' b:templateVersion='1.3.3' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   
-  <!-- NichoClean v2.0.0 | Revisión 14 (2025-09-16) | Plantilla Blogger Minimalista, Rápida y Moderna -->
+  <!-- NichoClean v2.0.0 | Revisión 15 (2025-09-21) | Plantilla Blogger Minimalista, Rápida y Moderna -->
   
      <!-- titulo ERROR 404 -->
     <b:if cond='data:blog.pageType == &quot;error_page&quot;'>  
 <title>Oops. The Page you are Looking For is not Avaible.</title>  
 </b:if>
  
-  <head>
-    
+  <head>    
     <!-- MetaDatos Estructura básica y SEO -->
   <meta expr:charset='data:blog.encoding'/>
   <meta expr:content='data:view.isHomepage ? &quot;website&quot; : &quot;article&quot;' property='og:type'/>
@@ -60,7 +59,7 @@
     </b:loop>
     </b:if> 
 	<!-- Marca de versión -->
-  <meta name="nichoClean-version" content="v2.0.0-r14-2025-09-16"/>  
+  <meta content='v2.0.0-r15-2025-09-21' name='nichoClean-version'/>  
     <!-- Adsense -->
     <script async='async' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'/>
   
@@ -5121,13 +5120,13 @@ body {
     }
 }
 //]]></script>
-   
-  </head>
+	  
+     </head>
 
   <body>
     <header> 
  <b:section class='header-section' id='Header' maxwidgets='3' showaddelement='yes'>
-    <b:widget id='Header1' locked='true' title='NichoClean v2.0 (cabecera)' type='Header' version='2' visible='true'>
+    <b:widget id='Header1' locked='true' title='nichoClean rx (cabecera)' type='Header' version='2' visible='true'>
       <b:widget-settings>
         <b:widget-setting name='displayUrl'/>
         <b:widget-setting name='displayHeight'>0</b:widget-setting>
@@ -5190,7 +5189,7 @@ body {
     </b:widget>
     <b:widget id='PageList1' locked='true' title='Menú Principal' type='PageList' version='2' visible='true'>
       <b:widget-settings>
-        <b:widget-setting name='pageListJson'><![CDATA[{"2707630753882959278":{"href":"https://nichoclean.blogspot.com/p/faq.html","position":8,"title":"FAQ"},"link1":{"href":"/search/label/demo","position":1,"title":"Blog"},"link0":{"href":"/","position":0,"title":"Inicio"},"2652971899461500522":{"href":"https://nichoclean.blogspot.com/p/contacto.html","position":9,"title":"Contacto"},"link5":{"href":"/p/plugins-blogger.html","position":5,"title":"Modulos"},"link4":{"href":"/p/toolbox.html","position":4,"title":"ToolBox"},"link3":{"href":"/p/store.html","position":3,"title":"Store"},"link2":{"href":"/p/carrito_22.html","position":2,"title":"shopping"},"link8":{"href":"/p/search-box.html","position":10,"title":"🔍"},"link7":{"href":"/p/mapa-del-sitio.html","position":7,"title":"Indice"},"link6":{"href":"/p/acerca-del-sitio.html","position":6,"title":"Acerca de"}}]]></b:widget-setting>
+        <b:widget-setting name='pageListJson'><![CDATA[{"link1":{"href":"/search/label/demo","position":1,"title":"Blog"},"link0":{"href":"/","position":0,"title":"Inicio"},"link5":{"href":"/p/plugins-blogger.html","position":5,"title":"Modulos"},"link4":{"href":"/p/toolbox.html","position":4,"title":"ToolBox"},"link3":{"href":"/p/store.html","position":3,"title":"Store"},"link2":{"href":"/p/carrito_22.html","position":2,"title":"shopping"},"link8":{"href":"/p/search-box.html","position":8,"title":"🔍"},"link7":{"href":"/p/mapa-del-sitio.html","position":7,"title":"Indice"},"link6":{"href":"/p/acerca-del-sitio.html","position":6,"title":"Acerca de"}}]]></b:widget-setting>
         <b:widget-setting name='homeTitle'>Inicio</b:widget-setting>
       </b:widget-settings>
       <b:includable id='main'>
@@ -5380,6 +5379,7 @@ body {
       <b:widget-setting name='style.linkcolor'>#ffffff</b:widget-setting>
       <b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
       <b:widget-setting name='style.bgcolor'>#ffffff</b:widget-setting>
+      <b:widget-setting name='timestampLabel'/>
       <b:widget-setting name='reactionsLabel'/>
       <b:widget-setting name='showAuthorProfile'>true</b:widget-setting>
       <b:widget-setting name='style.layout'>1x1</b:widget-setting>
@@ -5966,7 +5966,7 @@ body {
         <a expr:href='data:label.url'><data:label.name/></a><b:if cond='data:label.isLast != &quot;true&quot;'>. </b:if>
       </b:loop>
     </span>
- <!-- Comentarios-->
+<!-- Comentarios-->
   <!-- Placeholder visible mientras se decide qué sistema mostrar -->
 <span id='comentarios-placeholder'>💬 Cargando comentarios&#8230;</span>
 <span class='comments-info' style='display:none;'>
@@ -5983,7 +5983,7 @@ body {
     </a>
   </span>
 </span>
-  </div>
+	</div>
 
   <!-- Imagen destacada 
   <figure class='featured-image'>
@@ -6090,11 +6090,12 @@ body {
 
   <!-- Contenido del artículo -->
   <div class='post-content' itemprop='articleBody'>
-    <div class='post-body'>
+    <div class='post-body' id='post-toc'>
       <data:post.body/>
 		<!-- adsense post2 -->
 <div class='adsense-shortcode' data-code='adsense-post-2'/>
-      
+     <!-- Marcador padre: se deja vacío, el JS inyecta la caja de autor -->
+<div class='autor-post' data-autor=''/>
         <!-- Compartir el post -->         
   <div class='custom-share-wrapper'>
   <h4 class='custom-share-title'>Compartir esta entrada</h4>
@@ -6136,7 +6137,7 @@ body {
 
   <!-- Contenido -->
   <div class='post-content' itemprop='mainContentOfPage'>
-    <div class='post-body'>
+     <div class='post-body' id='post-toc'>
       <data:post.body/>
 	<hr class='divider-line'/>
     </div>
@@ -6514,36 +6515,6 @@ body {
     
     <footer>
   <b:section class='footer-section' id='footer-section' showaddelement='yes'>
-	   <b:widget id='HTML5' locked='true' title='Selector de comentarios' type='HTML' version='2' visible='true'>
-      <b:widget-settings>
-        <b:widget-setting name='content'><![CDATA[<!-- Gadget HTML de configuración Cambia data-sistema a "blogger" o "disqus". Cambia data-disqus-shortname por tu shortname de Disqus. -->
-
-<div id="comentarios-config"
-     data-sistema="blogger"  
-     data-disqus-shortname="TU_SHORTNAME">
-</div>]]></b:widget-setting>
-      </b:widget-settings>
-      <b:includable id='main'>
- 
-  <div class='widget-content'>
-    <data:content/>
-  </div>
-</b:includable>
-    </b:widget>
-	  
-    <b:widget id='HTML4' locked='true' title='Botón Contador Carrito' type='HTML' version='2' visible='true'>
-      <b:widget-settings>
-        <b:widget-setting name='content'><![CDATA[<!-- ===== BOTÓN FLOTANTE CARRITO ===== -->
-<a href="/p/carrito_22.html" class="cart-float">
-  🛒 <span id="cart-count">0</span>
-</a>]]></b:widget-setting>
-      </b:widget-settings>
-      <b:includable id='main'>
-  <div class='widget-content'>
-    <data:content/>
-  </div>
-</b:includable>
-    </b:widget>
     <b:widget id='HTML2' locked='true' title='Copyright' type='HTML' version='2' visible='true'>
       <b:widget-settings>
         <b:widget-setting name='content'><![CDATA[<script>document.write(new Date().getFullYear());</script> <data:blog.title/>. Creado por<a href='https://blogspot.owinile.com/' rel='noopener' style='text-decoration: none;' target='_blank'>Owinile</a></data:blog.title>]]></b:widget-setting>
@@ -6604,6 +6575,277 @@ body {
     </b:widget>
   </b:section>
 </footer>
+    
+    <b:section id='config-plugins' maxwidgets='20' preferred='yes' showaddelement='yes'>
+      <b:widget id='HTML8' locked='true' title='Admin Cache Feed Blogger' type='HTML' version='2' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='content'><![CDATA[<!-- Gadget: Configuración Administrador de Cache -->
+<div id="config-cache" hidden
+     data-duracion="600000">
+</div>
+  <!--
+    Duración de caché en milisegundos:
+      600000 = 10 minutos
+      1200000 = 20 minutos
+      1800000 = 30 minutos
+      3600000 = 1 hora
+    Este gadget no se muestra en frontend.
+  -->]]></b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+ 
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+      </b:widget>
+      <b:widget id='HTML18' locked='true' title='Plugin Adsense Admin' type='HTML' version='2' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='content'><![CDATA[<div id="config-adsense-shortcodes" hidden
+     data-monetized="false"
+     data-client="ca-pub-XXXXXXXXXX"
+     data-slot-index1="INDEX_SLOT_1"
+     data-slot-index2="INDEX_SLOT_2"
+     data-slot-post1="POST_SLOT_1"
+     data-slot-post2="POST_SLOT_2">
+</div>
+<!-- Gadget: Configuración AdSense Shortcodes
+Opciones:
+- data-monetized="true|false" → Activar anuncios o usar placeholder.
+- data-client="ca-pub-XXXXXXXXXX" → ID de cliente AdSense.
+- data-slot-index1="SLOT_ID" → Slot para Index 1.
+- data-slot-index2="SLOT_ID" → Slot para Index 2.
+- data-slot-post1="SLOT_ID" → Slot para Post 1.
+- data-slot-post2="SLOT_ID" → Slot para Post 2.
+-->]]></b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+      </b:widget>
+      <b:widget id='HTML17' locked='true' title='Plugin Adsense 2do. Parrafo' type='HTML' version='2' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='content'><![CDATA[<!-- Gadget: Configuración AdSense Párrafo -->
+<div id="config-adsense-parrafo" hidden
+     data-monetized="false"
+     data-client="ca-pub-XXXXXXXXXX"
+     data-slot="2DO_PARRAFO_SLOT_1">
+</div>
+<!-- Opciones:
+- data-monetized="true|false" → Activar anuncios o mostrar placeholder.
+- data-client="ca-pub-XXXXXXXXXX" → ID de cliente AdSense (clave pública).
+- data-slot="SLOT_ID" → Identificador del bloque de anuncio.
+-->]]></b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+      </b:widget>
+      <b:widget id='HTML20' locked='true' title='Plugin Buscador AJAX' type='HTML' version='2' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='content'><![CDATA[<!-- Configuración Buscador Ajax -->
+<div id="config-search" hidden
+     data-max-results="10"
+     data-min-chars="3"
+     data-delay="500">
+</div>
+
+<!-- Opciones disponibles:
+  - data-max-results: Máximo de resultados a mostrar (default: 10).
+  - data-min-chars: Caracteres mínimos antes de iniciar la búsqueda (default: 3).
+  - data-delay: Retraso en ms tras dejar de escribir antes de buscar (default: 500).
+  -->]]></b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+ 
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+      </b:widget>
+      <b:widget id='HTML15' locked='true' title='Plugin TOC NichoClean' type='HTML' version='2' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='content'><![CDATA[<!-- Gadget: Configuración TOC NichoClean -->
+<div id="config-toc" hidden
+     data-activado="true"          
+     data-depth="2"                
+     data-title="Tabla de contenido"  
+     data-injectar="auto"
+	 >
+</div>
+
+<!--  
+data-activado="true|false"  
+  → Activa o desactiva el TOC globalmente.  
+
+data-profundidad="2|3|4|5"  
+  → Controla la profundidad:  
+     2 = solo H2  
+     3 = H2 + H3  
+     4 = H2 + H3 + H4  
+     5 = H2 + H3 + H4 + H5  
+
+data-titulo="Tabla de contenido"  
+  → Texto a mostrar como encabezado del TOC.  
+
+data-inyectar="auto|marcador|none"  
+  → auto     = se inyecta después del primer párrafo.  
+  → marcador = solo aparece donde el autor ponga <div id="toc-marker"></div>.  
+  → none     = no se inyecta automáticamente (el bloque queda disponible para uso manual).  
+-->]]></b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+  
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+      </b:widget>
+      <b:widget id='HTML7' locked='true' title='Plugin de autores' type='HTML' version='2' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='content'><![CDATA[<!-- Gadget: Configuración Autores NichoClean -->
+<!-- Opciones generales:
+     - data-activado="true|false" → Mostrar autores globalmente
+-->
+<div id="config-autores" hidden data-activado="false">
+
+  <!-- Autor principal -->
+  <div class="autor" data-rol="principal"
+       data-nombre="Juan Pérez"
+       data-activo="true"
+       data-avatar="https://ui-avatars.com/api/?name=Juan+Pérez&background=0077cc&color=fff"
+       data-bio="Especialista en desarrollo web y diseño minimalista. Comparte recursos útiles para bloggers."
+       data-perfil="https://tusitio.com/juan-perez"
+       data-facebook="https://facebook.com/juan.perez"
+       data-twitter="https://twitter.com/juanperez"
+       data-instagram="https://instagram.com/juanperez"
+       data-email="mailto:juan@example.com">
+  </div>
+
+  <!-- Autor invitado 1 -->
+  <div class="autor" data-rol="invitado1"
+       data-nombre="Ana López"
+       data-activo="false"
+       data-avatar="https://ui-avatars.com/api/?name=Ana+López&background=ff6600&color=fff"
+       data-bio="Apasionada por SEO y creación de contenido optimizado para blogs."
+       data-perfil="https://tusitio.com/ana-lopez"
+       data-facebook=""
+       data-twitter="https://twitter.com/anal"
+       data-instagram=""
+       data-email="">
+  </div>
+
+  <!-- Autor invitado 2 -->
+  <div class="autor" data-rol="invitado2"
+       data-nombre="Carlos Gómez"
+       data-activo="false"
+       data-avatar="https://ui-avatars.com/api/?name=Carlos+Gómez&background=00cc77&color=fff"
+       data-bio="Colaborador ocasional en tutoriales de programación y diseño."
+       data-perfil="https://tusitio.com/carlos-gomez"
+       data-facebook="https://facebook.com/carlos.gomez"
+       data-twitter=""
+       data-instagram="https://instagram.com/carlosgomez"
+       data-email="">
+  </div>
+
+</div>]]></b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'> 
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+      </b:widget>
+      <b:widget id='HTML5' locked='true' title='Plugin sistema de comentario' type='HTML' version='2' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='content'><![CDATA[<div id="comentarios-config"
+     data-sistema="blogger"  
+     data-disqus-shortname="TU_SHORTNAME">
+</div>
+<!-- Gadget HTML de configuración Cambia data-sistema a "blogger" o "disqus". Cambia data-disqus-shortname por tu shortname de Disqus. -->]]></b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+ 
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+      </b:widget>
+      <b:widget id='HTML16' locked='true' title='Plugin Comentarios Recientes' type='HTML' version='2' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='content'><![CDATA[<!-- Gadget fijo: configuración Últimos comentarios -->
+<div id="config-recent-comments"
+     data-blogger-limit="5"
+     data-disqus-limit="5"
+     data-disqus-shortname="tu-shortname-disqus"
+     data-disqus-api-key="XXXXXXXXXX"
+     data-title="Últimos comentarios"
+     data-sistema="both"
+     data-truncate="150"
+     data-cache="600000" 
+     hidden>
+</div>
+<!-- Gadget para mostrar los últimos comentarios
+Atributos importantes:
+- data-blogger-limit / data-disqus-limit → # de comentarios a mostrar
+- data-disqus-shortname / data-disqus-api-key → para comentarios Disqus
+- data-title → título de la sección
+- data-sistema → "blogger", "disqus" o "both"
+- data-truncate → longitud máxima de comentario
+- data-cache → tiempo de caché en ms
+El gadget se mantiene hidden y se activa vía JS del plugin. -->]]></b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+      </b:widget>
+      <b:widget id='HTML19' locked='true' title='Plugin Store Admin' type='HTML' version='2' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='content'><![CDATA[<!-- Gadget: Configuración Tienda / Carrito -->
+<div id="config-store" hidden
+     data-paypalemail="demo@example.com"
+     data-returnurl="https://tusitio.com/p/gracias.html"
+     data-cancelurl="https://tusitio.com/p/cancelado.html"
+     data-mostrarcontador="true">
+</div>
+
+<!-- Opciones disponibles:
+  - data-paypalemail     → Correo de PayPal (obligatorio, visible en HTML).
+  - data-returnurl       → URL de retorno al completar la compra.
+  - data-cancelurl       → URL de cancelación de la compra.
+  - data-mostrarcontador → true/false → Mostrar botón flotante del carrito.
+-->]]></b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+  
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+      </b:widget>
+      <b:widget id='HTML4' locked='true' title='Plugin Contador Carrito' type='HTML' version='2' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='content'><![CDATA[<!-- ===== BOTÓN FLOTANTE CARRITO ===== -->
+<a href="/p/carrito_22.html" class="cart-float">
+  🛒 <span id="cart-count">0</span>
+</a>]]></b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+      </b:widget>
+    </b:section>
+
    
     <!-- =========================================================== 
   ATENCIÓN: Modificar el JavaScript base de NichoClean puede romper la plantilla.
@@ -6615,38 +6857,143 @@ body {
      general del blog: menús, navegación, interacciones globales,
      formularios, animaciones y cualquier funcionalidad común.
 =================================================================== -->
-   
-    <!-- 1. ADMINISTRADOR DE CACHE PARA EVITAR SOBRECARGAR EL FEED DE BLOGGER  -->
-    <script>
+    
+<!-- 1. JS Critical Manager (config-plugins)  -->
+<script>
 //<![CDATA[
-const fetchWithCacheManager = (() => {
-  const CACHE_DURATION_MS = 10 * 60 * 1000; // 10 minutos por defecto
+(function () {
+  const NichoCleanError = {
+    criticalGadgets: [
+      { id: "config-cache", nombre: "Administrador de Cache" },
+      { id: "config-adsense-shortcodes", nombre: "AdSense Shortcodes" },
+      { id: "config-adsense-parrafo", nombre: "AdSense Párrafo" },
+      { id: "config-search", nombre: "Buscador Ajax" },
+      { id: "config-toc", nombre: "Tabla de Contenido (TOC)" },
+      { id: "config-autores", nombre: "Autores" },
+      { id: "comentarios-config", nombre: "Sistema de Comentarios" },
+      { id: "config-recent-comments", nombre: "Últimos Comentarios" },
+      { id: "config-store", nombre: "Tienda / Carrito" },
+      { id: "cart-count", nombre: "Contador Carrito Flotante" }
+    ],
 
-  // Función para obtener datos con caché
-  async function fetchWithCache(url, cacheDuration = CACHE_DURATION_MS) {
+    checkAllCriticalGadgets: function () {
+      // Array para almacenar todos los gadgets con problemas
+      const missingGadgets = [];
+
+      for (const { id, nombre } of this.criticalGadgets) {
+        const gadget = document.getElementById(id);
+
+        if (!gadget || (gadget.children.length === 0 && !gadget.hasAttributes() && !gadget.textContent.trim())) {
+          missingGadgets.push({ id, nombre });
+        }
+      }
+
+      if (missingGadgets.length > 0) {
+        this.showCriticalError(missingGadgets);
+        return false;
+      }
+
+      return true;
+    },
+
+    showCriticalError: function (missingGadgets) {
+      const listItems = missingGadgets
+        .map(g => `<li><code>${g.nombre}</code> (id="${g.id}")</li>`)
+        .join("");
+
+      document.body.innerHTML = `
+        <div style="
+          font-family: system-ui, sans-serif;
+          background: #fee2e2;
+          color: #991b1b;
+          padding: 2rem;
+          text-align: center;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        ">
+          <h1>⚠️ Error crítico</h1>
+          <p>Los siguientes gadgets faltan o están vacíos:</p>
+          <ul style="list-style: disc; margin: 1rem 0 1rem 2rem; text-align: left;">
+            ${listItems}
+          </ul>
+          <p>Restaura estos gadgets en la plantilla para que el blog funcione.</p>
+          <button onclick="location.reload()" style="
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            background: #991b1b;
+            color: #fff;
+            border-radius: 0.25rem;
+          ">Recargar</button>
+        </div>
+      `;
+      throw new Error(`NichoClean: falla crítica en ${missingGadgets.length} gadgets.`);
+    }
+  };
+
+  window.NichoCleanError = NichoCleanError;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    NichoCleanError.checkAllCriticalGadgets();
+  });
+})();
+//]]>
+</script>
+
+<!-- 2. JS Cache Manager (Feed post Blogger)  -->
+<script>//<![CDATA[
+const fetchWithCacheManager = (() => {
+
+  // Default de caché (10 minutos)
+  const DEFAULT_CACHE_MS = 10 * 60 * 1000;
+
+  let CACHE_MS = DEFAULT_CACHE_MS; // valor que se actualizará al leer gadget
+
+  // Función para leer gadget y actualizar CACHE_MS
+  function initCacheConfig() {
+    const gadget = document.getElementById("config-cache");
+    if (!gadget) return; // usa default
+
+    let duracion = parseInt(gadget.dataset.duracion, 10);
+    if (!isNaN(duracion) && duracion > 0) {
+      CACHE_MS = duracion;
+    }
+  }
+
+  // Esperar a que el DOM cargue para leer gadget
+  document.addEventListener("DOMContentLoaded", initCacheConfig);
+
+  // Función principal de fetch con cache
+  async function fetchWithCache(url, overrideDuration) {
+    const cacheDuration = overrideDuration || CACHE_MS;
+    const cacheKey = `cache_feed_${url}`;
+
     try {
-      const cacheKey = `cache_feed_${url}`;
       const cached = localStorage.getItem(cacheKey);
 
       if (cached) {
         const cachedObj = JSON.parse(cached);
         const age = Date.now() - cachedObj.timestamp;
+
         if (age < cacheDuration) {
-          // Cache válida
-          return cachedObj.data;
+          return cachedObj.data; // Cache válida
         } else {
-          // Cache vencida, eliminar
-          localStorage.removeItem(cacheKey);
+          localStorage.removeItem(cacheKey); // Cache vencida
         }
       }
 
-      // Hacer fetch real
+      // Fetch real
       const response = await fetch(url);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
       const data = await response.json();
 
-      // Guardar en cache con timestamp
+      // Guardar cache
       localStorage.setItem(cacheKey, JSON.stringify({
         timestamp: Date.now(),
         data: data
@@ -6657,25 +7004,25 @@ const fetchWithCacheManager = (() => {
     } catch (error) {
       console.error(`fetchWithCache error para URL: ${url}`, error);
 
-      // Intentar devolver cache aunque esté vencida para no perder funcionalidad
+      // Intentar devolver cache aunque esté vencida
       try {
-        const cached = localStorage.getItem(`cache_feed_${url}`);
+        const cached = localStorage.getItem(cacheKey);
         if (cached) {
-          const cachedObj = JSON.parse(cached);
-          return cachedObj.data;
+          return JSON.parse(cached).data;
         }
-      } catch { /* ignorar */ }
+      } catch {}
 
       throw error; // No hay cache y fetch falló
     }
   }
 
   return fetchWithCache;
+
 })();
 //]]>
 </script>
    
-  <!-- 2. MOVER Y HACER SCROLL SUAVE A LA CAJA DE COMENTARIOS -->
+<!-- 3. Js SCROLL CAJA DE COMENTARIOS -->
 <script>
 //<![CDATA[
 document.addEventListener("click", function (e) {
@@ -6712,7 +7059,7 @@ document.addEventListener("click", function (e) {
 //]]>
 </script>
     
-   <!-- 3. Script para acordeón JS clásico -->
+<!-- 4. Js acordeón clásico -->
 <script>
 //<![CDATA[
   document.querySelectorAll('.accordion-header').forEach(header => {
@@ -6734,7 +7081,7 @@ document.addEventListener("click", function (e) {
 //]]>
 </script>
 
-    <!-- 4. Script (cluster, carrusel, tarjetas, entradas relacionadas, etc.) -->
+<!-- 5. Js imagenes (cluster, carrusel, tarjetas, entradas relacionadas, etc.) -->
 <script>
 //<![CDATA[
 const blogURL = location.origin;
@@ -6749,7 +7096,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const url = `${blogURL}/feeds/posts/default/-/${etiqueta}?alt=json&max-results=${cantidad}`;
 
-    fetchWithCacheManager(url, 600000) // 10 minutos caché
+    fetchWithCacheManager(url) // usa la duración del gadget #config-cache
       .then(data => {
         let entradas = data.feed.entry || [];
         entradas = entradas.sort(() => Math.random() - 0.5);
@@ -6933,8 +7280,8 @@ document.addEventListener('DOMContentLoaded', () => {
 //]]>
 </script>
 
-        <!-- 5. Script para mini slider de imagenes -->
-   <script>//<![CDATA[
+<!-- 6. Js mini slider de imagenes -->
+<script>//<![CDATA[
 
 window.addEventListener("load", () => {
   setTimeout(() => {
@@ -7041,134 +7388,210 @@ window.addEventListener("load", () => {
 //]]>
 </script>
     
-  <!-- 6. Script CAJA DE AUTOR + JSON-LD -->
+<!-- 7. Js Autores Post -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", function () {
-  const caja = document.querySelector("#autor-box");
-  if (!caja) return;
 
-  const nombreAutor = caja.dataset.autor;
-
-  // Base local de autores
-  const autores = {
-    "Juan Pérez": {
-      bio: "Especialista en desarrollo web y diseño minimalista. Comparte recursos útiles para bloggers.",
-      avatar: "https://ui-avatars.com/api/?name=Juan+Pérez&background=0077cc&color=fff",
-      perfil: "https://www.blogger.com/profile/00000000000000000000",
-      facebook: "https://facebook.com/juan.perez",
-      twitter: "https://twitter.com/juanperez",
-      instagram: "https://instagram.com/juanperez",
-      email: "mailto:juan@example.com"
-    },
-    "Ana López": {
-      bio: "Apasionada por el SEO y la creación de contenido optimizado para blogs.",
-      avatar: "https://ui-avatars.com/api/?name=Ana+López&background=0077cc&color=fff&rounded=false",
-      perfil: "https://www.blogger.com/profile/11111111111111111111",
-      facebook: "",
-      twitter: "https://twitter.com/anal",
-      instagram: "",
-      email: ""
+  // --------------- helpers ---------------
+  function findPostScope(el) {
+    // Intenta encontrar el contenedor del post (varía según plantillas)
+    const scopes = ['article','.post','.post-body','.post-content','.entry','.blog-post'];
+    for (const s of scopes) {
+      const anc = el.closest(s);
+      if (anc) return anc;
     }
-  };
+    return document; // fallback global
+  }
 
-  const autor = autores[nombreAutor];
-  if (!autor) {
-    caja.innerHTML = `<p style="color:red;">Autor "${nombreAutor}" no encontrado.</p>`;
+  function safeText(s){ return (s||"").trim(); }
+
+  // --------------- obtener marcadores (soporte id o clase) ---------------
+  let markers = Array.from(document.querySelectorAll('.autor-post'));
+  if (markers.length === 0) {
+    const byId = document.querySelector('#autor-post');
+    if (byId) markers = [byId];
+  }
+
+  if (markers.length === 0) return; // no hay marcadores en la página
+
+  // --------------- leer gadget ---------------
+  const config = document.querySelector('#config-autores');
+  if (!config || config.dataset.activado !== "true") {
+    // ocultamos todos los marcadores
+    markers.forEach(m => { m.innerHTML = ""; m.style.display = "none"; });
     return;
   }
 
-  // Redes sociales con SVG
-  const redes = `
-  <div class="autor-redes">
-    ${autor.facebook ? `<a href="${autor.facebook}" target="_blank" rel="noopener nofollow" aria-label="Facebook" class="red red-fb">
-      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 3H14v7A10 10 0 0 0 22 12z"/></svg>
-    </a>` : ""}
-    ${autor.twitter ? `<a href="${autor.twitter}" target="_blank" rel="noopener nofollow" aria-label="Twitter" class="red red-tw">
-      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M22.5 5.9c-.8.4-1.7.6-2.6.8a4.6 4.6 0 0 0 2-2.6c-.9.6-1.9 1-3 1.2a4.5 4.5 0 0 0-7.7 4.1A12.8 12.8 0 0 1 3.1 4.9a4.5 4.5 0 0 0 1.4 6A4.4 4.4 0 0 1 3 10v.1a4.5 4.5 0 0 0 3.6 4.4c-.4.1-.8.2-1.3.2-.3 0-.6 0-.9-.1a4.5 4.5 0 0 0 4.2 3.1 9 9 0 0 1-6.6 1.8A12.8 12.8 0 0 0 9.5 21c7.9 0 12.2-6.6 12.2-12.3v-.6c.8-.6 1.5-1.3 2-2.2z"/></svg>
-    </a>` : ""}
-    ${autor.instagram ? `<a href="${autor.instagram}" target="_blank" rel="noopener nofollow" aria-label="Instagram" class="red red-ig">
-      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm4.5-.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
-    </a>` : ""}
-    ${autor.email ? `<a href="${autor.email}" aria-label="Correo" class="red red-mail">
-      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.5l8 5 8-5V6H4zm0 2.7v9.3h16V8.7l-8 5-8-5z"/></svg>
-    </a>` : ""}
-  </div>
-  `;
+  // construir mapa de autores desde el gadget (incluye inactivo flag)
+  const autores = {};
+  config.querySelectorAll('.autor').forEach(a => {
+    const nombre = safeText(a.dataset.nombre);
+    if (!nombre) return;
+    autores[nombre] = {
+      rol: a.dataset.rol || '',
+      activo: a.dataset.activo === "true",
+      avatar: a.dataset.avatar || '',
+      bio: a.dataset.bio || '',
+      perfil: a.dataset.perfil || '#',
+      facebook: a.dataset.facebook || '',
+      twitter: a.dataset.twitter || '',
+      instagram: a.dataset.instagram || '',
+      email: a.dataset.email || ''
+    };
+  });
 
-  // Render visual
-  caja.innerHTML = `
-    <section class="autor-info" itemscope itemtype="https://schema.org/Person">
-      <img src="${autor.avatar}" loading="lazy" alt="Foto de ${nombreAutor}" class="autor-avatar" itemprop="image">
-      <div class="autor-detalles">
-        <h4 class="autor-nombre" itemprop="name">${nombreAutor}</h4>
-        <p class="autor-bio" itemprop="description">${autor.bio}</p>
-        <a href="${autor.perfil}" target="_blank" rel="author nofollow" class="autor-link">Ver perfil</a>
-        ${redes}
+  // buscar autor principal activo (fallback)
+  let principalName = null;
+  for (const k in autores) {
+    if (autores[k].rol === 'principal' && autores[k].activo) { principalName = k; break; }
+  }
+
+  // --------------- procesar cada marcador ---------------
+  markers.forEach(marker => {
+    // limpiar estilos previos
+    marker.style.display = ""; // reset
+    marker.innerHTML = "";
+
+    // 1) autor propuesto por el marcador mismo (#autor-post data-autor="")
+    let markerDataAutor = safeText(marker.dataset.autor);
+
+    // 2) autor propuesto desde dentro del post (mini-marcador: <div data-autor="Ana López"></div>)
+    // buscarmos en el scope del post (no en todo el documento)
+    const postScope = findPostScope(marker);
+    let localAutorEl = null;
+    if (postScope && postScope !== document) {
+      localAutorEl = postScope.querySelector('[data-autor]');
+      // evita coger el mismo marker si éste tuviese data-autor (marker ya tenemos)
+      if (localAutorEl === marker) localAutorEl = null;
+    }
+    const localAutorName = localAutorEl ? safeText(localAutorEl.getAttribute('data-autor')) : "";
+
+    // regla de decisión (siguiendo lo que pediste):
+    // priorizar localAutorName (from the post small marker) if exists and active;
+    // else use marker.dataset.autor if set and active;
+    // else use principalName (if active);
+    // if author chosen is inactive -> do NOT show anything
+    let chosenName = "";
+    if (localAutorName && autores[localAutorName] && autores[localAutorName].activo) {
+      chosenName = localAutorName;
+    } else if (localAutorName && autores[localAutorName] && !autores[localAutorName].activo) {
+      // explicitly requested author is inactive -> do not show anything
+      marker.style.display = 'none';
+      return;
+    } else if (markerDataAutor && autores[markerDataAutor] && autores[markerDataAutor].activo) {
+      chosenName = markerDataAutor;
+    } else if (markerDataAutor && autores[markerDataAutor] && !autores[markerDataAutor].activo) {
+      // explicitly requested by marker but inactive -> hide
+      marker.style.display = 'none';
+      return;
+    } else if (principalName) {
+      chosenName = principalName;
+    } else {
+      // no author available
+      marker.style.display = 'none';
+      return;
+    }
+
+    const autor = autores[chosenName];
+    if (!autor || !autor.activo) { marker.style.display = 'none'; return; }
+
+    // --------------- construir HTML (inserta .autor-box dentro del marker) ---------------
+    const redes = `
+      <div class="autor-redes">
+        ${autor.facebook ? `<a href="${autor.facebook}" target="_blank" rel="noopener nofollow" aria-label="Facebook"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 3H14v7A10 10 0 0 0 22 12z"/></svg></a>` : ""}
+        ${autor.twitter ? `<a href="${autor.twitter}" target="_blank" rel="noopener nofollow" aria-label="Twitter"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M22.5 5.9c-.8.4-1.7.6-2.6.8a4.6 4.6 0 0 0 2-2.6c-.9.6-1.9 1-3 1.2a4.5 4.5 0 0 0-7.7 4.1A12.8 12.8 0 0 1 3.1 4.9a4.5 4.5 0 0 0 1.4 6A4.4 4.4 0 0 1 3 10v.1a4.5 4.5 0 0 0 3.6 4.4c-.4.1-.8.2-1.3.2-.3 0-.6 0-.9-.1a4.5 4.5 0 0 0 4.2 3.1 9 9 0 0 1-6.6 1.8A12.8 12.8 0 0 0 9.5 21c7.9 0 12.2-6.6 12.2-12.3v-.6c.8-.6 1.5-1.3 2-2.2z"/></svg></a>` : ""}
+        ${autor.instagram ? `<a href="${autor.instagram}" target="_blank" rel="noopener nofollow" aria-label="Instagram"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm4.5-.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></a>` : ""}
+        ${autor.email ? `<a href="${autor.email}" aria-label="Correo"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.5l8 5 8-5V6H4zm0 2.7v9.3h16V8.7l-8 5-8-5z"/></svg></a>` : ""}
       </div>
-    </section>
-  `;
+    `;
 
-  // JSON-LD dinámico
-  const jsonLD = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": nombreAutor,
-    "url": autor.perfil,
-    "image": autor.avatar,
-    "description": autor.bio,
-    "sameAs": [
-      ...(autor.facebook ? [autor.facebook] : []),
-      ...(autor.twitter ? [autor.twitter] : []),
-      ...(autor.instagram ? [autor.instagram] : []),
-      ...(autor.email ? [autor.email] : [])
-    ]
-  };
+    const inner = `
+      <div class="autor-box">
+        <section class="autor-info" itemscope itemtype="https://schema.org/Person">
+          <img src="${autor.avatar}" alt="Foto de ${chosenName}" class="autor-avatar" itemprop="image" loading="lazy">
+          <div class="autor-detalles">
+            <h4 class="autor-nombre" itemprop="name">${chosenName}</h4>
+            <p class="autor-bio" itemprop="description">${autor.bio}</p>
+            <a href="${autor.perfil}" target="_blank" rel="author nofollow" class="autor-link">Ver perfil</a>
+            ${redes}
+          </div>
+        </section>
+      </div>
+    `;
 
-  const scriptLD = document.createElement('script');
-  scriptLD.type = 'application/ld+json';
-  scriptLD.textContent = JSON.stringify(jsonLD, null, 2);
-  caja.appendChild(scriptLD);
+    marker.innerHTML = inner;
+
+    // JSON-LD dinámico (por marcador)
+    const jsonLD = {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": chosenName,
+      "url": autor.perfil,
+      "image": autor.avatar,
+      "description": autor.bio,
+      "sameAs": [
+        ...(autor.facebook ? [autor.facebook] : []),
+        ...(autor.twitter ? [autor.twitter] : []),
+        ...(autor.instagram ? [autor.instagram] : []),
+        ...(autor.email ? [autor.email] : [])
+      ]
+    };
+    const scriptLD = document.createElement("script");
+    scriptLD.type = "application/ld+json";
+    scriptLD.textContent = JSON.stringify(jsonLD, null, 2);
+    marker.appendChild(scriptLD);
+  });
 
 });
 //]]>
 </script>
 
-
-    <!-- 7. Script TOC caja de contenido  -->
-   <script>//<![CDATA[  
+<!-- 8. Js TOC caja de contenido  -->
+<script>
+//<![CDATA[
 document.addEventListener("DOMContentLoaded", function () {
-  const tocContainer = document.getElementById("toc-container");
-  const toc = document.getElementById("toc");
-  const toggle = document.getElementById("toc-toggle");
+  const config = document.getElementById("config-toc");
+  if (!config) return;
 
-  const content = document.querySelector(".post-body"); // Asegúrate que es el contenedor del post
+  const ACTIVADO = config.dataset.activado === "true";
+  const DEPTH = parseInt(config.dataset.depth || "2", 10);
+  const TITLE = config.dataset.title || "Tabla de contenido";
+  const MODO = config.dataset.injectar || "auto";
 
-  if (!content || !toc) return;
+  if (!ACTIVADO) return;
 
-  // Forzar estado inicial oculto (importante para móviles)
-  toc.setAttribute("hidden", "true");
-  toggle.setAttribute("aria-expanded", "false");
-  toggle.textContent = "📑 Mostrar tabla de contenido";
+  const content = document.querySelector("#post-toc");
+  if (!content) return;
 
-  const headers = content.querySelectorAll("h2, h3");
+  // Selección de encabezados según profundidad
+  const selector = Array.from({length: DEPTH-1}, (_,i)=>`h${i+2}`).join(",");
+  let headers = content.querySelectorAll(selector);
+  if (headers.length === 0) return;
 
-  if (headers.length === 0) {
-    tocContainer.style.display = "none";
-    return;
-  }
+  // Crear contenedor TOC
+  const tocContainer = document.createElement("div");
+  tocContainer.id = "toc-container";
+  tocContainer.innerHTML = `
+    <button id="toc-toggle" aria-expanded="false" aria-controls="toc">
+      📑 Mostrar ${TITLE}
+    </button>
+    <nav id="toc" aria-label="${TITLE}" hidden></nav>
+  `;
 
-  // Agrega encabezado semántico dentro del <nav>
-  const title = document.createElement("strong");
-  title.textContent = "Tabla de contenido";
-  toc.appendChild(title);
+  const toc = tocContainer.querySelector("#toc");
+  const toggle = tocContainer.querySelector("#toc-toggle");
+
+  // Construir lista
+  const titleEl = document.createElement("strong");
+  titleEl.textContent = TITLE;
+  toc.appendChild(titleEl);
 
   const ul = document.createElement("ul");
   let currentUl = ul;
   let lastLevel = 2;
 
   headers.forEach((header, index) => {
-    // Agrega id si no lo tiene (necesario para enlaces internos)
     if (!header.id) header.id = "toc-header-" + index;
     const level = parseInt(header.tagName.replace("H", ""), 10);
 
@@ -7198,27 +7621,67 @@ document.addEventListener("DOMContentLoaded", function () {
 
     lastLevel = level;
   });
-
   toc.appendChild(ul);
 
-  // Mostrar u ocultar TOC al hacer clic en el botón
+  // Inyección según modo
+  if (MODO === "marcador") {
+    const marker = document.getElementById("toc-marker");
+    if (marker) marker.replaceWith(tocContainer);
+  } else if (MODO === "auto") {
+    const firstPara = content.querySelector("p");
+    if (firstPara) {
+      firstPara.insertAdjacentElement("afterend", tocContainer);
+    } else {
+      content.prepend(tocContainer);
+    }
+  } else {
+    content.prepend(tocContainer);
+  }
+
+  // Toggle
   toggle.addEventListener("click", () => {
     const isHidden = toc.hasAttribute("hidden");
     if (isHidden) {
       toc.removeAttribute("hidden");
-      toggle.textContent = "📑 Ocultar tabla de contenido";
+      toggle.textContent = "📑 Ocultar " + TITLE;
       toggle.setAttribute("aria-expanded", "true");
     } else {
       toc.setAttribute("hidden", "true");
-      toggle.textContent = "📑 Mostrar tabla de contenido";
+      toggle.textContent = "📑 Mostrar " + TITLE;
       toggle.setAttribute("aria-expanded", "false");
     }
   });
+
+  // Extra CSS (resaltar sección activa)
+  const extraCSS = `
+    #toc a.active { 
+      font-weight: bold; 
+      color: #0366d6;
+    }
+  `;
+  const style = document.createElement("style");
+  style.textContent = extraCSS;
+  document.head.appendChild(style);
+
+  // Resaltar activo con IntersectionObserver
+  const links = toc.querySelectorAll("a");
+  const map = {};
+  links.forEach(link => map[link.getAttribute("href").substring(1)] = link);
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove("active"));
+        const link = map[e.target.id];
+        if (link) link.classList.add("active");
+      }
+    });
+  }, {rootMargin:"-50% 0px -50% 0px", threshold:0});
+  headers.forEach(h => obs.observe(h));
 });
 //]]>
 </script>
-    
-<!-- 8. Script compartir code (final, sin lazy) -->
+
+<!-- 9. Js compartir pre/code -->
 <script>
 //<![CDATA[
 document.addEventListener('DOMContentLoaded', function () {
@@ -7272,8 +7735,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //]]>
 </script>
     
-    
-   <!-- 9. Script SHORTCODE TEXTO aleatorio con JSON-LD -->
+<!-- 10. Js TEXTO aleatorio con JSON-LD -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", function () {
@@ -7283,7 +7745,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const variant = block.dataset.variant || "grid";
     const url = `/feeds/posts/default/-/${tag}?alt=json&max-results=50`;
 
-    fetchWithCacheManager(url, 600000)
+    fetchWithCacheManager(url) // usa la duración del gadget #config-cache
       .then(data => {
         let entries = data.feed.entry || [];
 
@@ -7366,28 +7828,34 @@ document.addEventListener("DOMContentLoaded", function () {
 //]]>
 </script>
 	  
-<!-- 10. ADSENSE AUTOMATICO EN EL 2DO PARRAFO -->
+<!-- 11. Js AdSense Automático en el 2do Párrafo -->
 <script>
 //<![CDATA[
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+  const config = document.getElementById("config-adsense-parrafo");
+  if (!config) return; // Si falta el gadget, salir en silencio
+
+  const monetized = config.dataset.monetized === "true";
+  const client = config.dataset.client || "ca-pub-0000000000000000";
+  const slot = config.dataset.slot || "SLOT_DEFAULT";
+
   // Evitar ejecución en páginas estáticas
   if (window.location.pathname.includes('/p/')) return;
-  const postBody = document.querySelector('.post-body');
+
+  const postBody = document.querySelector(".post-body");
   if (!postBody) return;
 
-  const paragraphs = postBody.querySelectorAll('p');
+  const paragraphs = postBody.querySelectorAll("p");
   if (paragraphs.length > 2) {
-    const adDiv = document.createElement('div');
-    adDiv.className = 'adsense-shortcode'; // mejor que adsense-ad
-
-    const monetized = false; // cambiar a false si quieres ver placeholders
+    const adDiv = document.createElement("div");
+    adDiv.className = "adsense-shortcode";
 
     if (monetized) {
       adDiv.innerHTML = `
         <ins class="adsbygoogle"
              style="display:block"
-             data-ad-client="ca-pub-XXXXXXXXXX"
-             data-ad-slot="2DO_PARRAFO_SLOT_1"
+             data-ad-client="${client}"
+             data-ad-slot="${slot}"
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
       `;
@@ -7395,83 +7863,72 @@ document.addEventListener("DOMContentLoaded", function() {
       if (window.adsbygoogle) {
         try {
           (adsbygoogle = window.adsbygoogle || []).push({});
-        } catch(e) { console.log("Error adsbygoogle:", e); }
+        } catch (e) {
+          // Aquí se podría integrar con un sistema centralizado de reportes
+          console.warn("Adsense error:", e);
+        }
       }
     } else {
-      adDiv.innerHTML = `<div class="adsense-placeholder">[Espacio reservado para anuncio post 3]</div>`;
+      adDiv.innerHTML = `<div class="adsense-placeholder">[Espacio reservado: adsense-post-3]</div>`;
     }
 
+    // Insertar después del 2º párrafo
     paragraphs[1].parentNode.insertBefore(adDiv, paragraphs[1].nextSibling);
   }
 });
 //]]>
 </script>
 
-  
- <!-- 11. shortcodes por anuncios AdSense  -->
-    <script>
+<!-- 12. Js AdSense Admin Shortcodes -->
+<script>
 //<![CDATA[
-document.addEventListener('DOMContentLoaded', function() {
-  const monetized = false; // Por defecto true o Cambiar a false para mostrar mensajes en vez de anuncios
+document.addEventListener("DOMContentLoaded", function () {
+  const config = document.getElementById("config-adsense-shortcodes");
+  if (!config) return; // salir en silencio si falta gadget
 
-  // Mapa con códigos AdSense o mensajes según el data-code
-  const adsenseCodes = {
-    'adsense-index-1': monetized ? `
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXX"
-           data-ad-slot="INDEX_SLOT_1"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-    ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio index 1]</div>`,
+  const monetized = config.dataset.monetized === "true";
+  const client = config.dataset.client || "ca-pub-0000000000000000";
 
-    'adsense-index-2': monetized ? `
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXX"
-           data-ad-slot="INDEX_SLOT_1"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-    ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio index 2]</div>`,
-
-    'adsense-post-1': monetized ? `
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXX"
-           data-ad-slot="POST_SLOT_1"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-    ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio post 1]</div>`,
-
-    'adsense-post-2': monetized ? `
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXX"
-           data-ad-slot="POST_SLOT_2"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-    ` : `<div class="adsense-placeholder">[Espacio reservado para anuncio post 2]</div>`
+  const slots = {
+    "adsense-index-1": config.dataset.slotIndex1 || "INDEX_SLOT_1",
+    "adsense-index-2": config.dataset.slotIndex2 || "INDEX_SLOT_2",
+    "adsense-post-1": config.dataset.slotPost1 || "POST_SLOT_1",
+    "adsense-post-2": config.dataset.slotPost2 || "POST_SLOT_2"
   };
 
-  // Buscar todos los divs que son shortcodes
-  const shortcodes = document.querySelectorAll('div.adsense-shortcode[data-code]');
-
-  shortcodes.forEach(div => {
+  document.querySelectorAll("div.adsense-shortcode[data-code]").forEach(div => {
     const code = div.dataset.code;
-    if (adsenseCodes[code]) {
-      div.innerHTML = adsenseCodes[code];
-      if (monetized && window.adsbygoogle) {
+    const slot = slots[code];
+    if (!slot) {
+      div.innerHTML = `<div class="adsense-placeholder">[Slot no definido: ${code}]</div>`;
+      return;
+    }
+
+    if (monetized) {
+      div.innerHTML = `
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="${client}"
+             data-ad-slot="${slot}"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      `;
+      if (window.adsbygoogle) {
         try {
           (adsbygoogle = window.adsbygoogle || []).push({});
-        } catch(e) {}
+        } catch (e) {
+          console.warn("Adsense error:", e);
+        }
       }
+    } else {
+      div.innerHTML = `<div class="adsense-placeholder">[Espacio reservado: ${code}]</div>`;
     }
   });
 });
 //]]>
 </script>
-    
-    <!-- 12. JSON - OCULTA LA PRIMERA IMAGEN MENOS EN .ficha-producto, store, $xx.xx  -->
+
+<!-- 13. Js OCULTA LA PRIMERA IMAGEN MENOS EN .ficha-producto, store, $xx.xx  -->
 <script>
 //<![CDATA[
 // Activador: true = se ejecuta / false = no hace nada
@@ -7536,9 +7993,9 @@ var activarOcultarImagen = true; // Variable para activar o desactivar el script
 //]]>
 </script>
     
-<!-- 13. MENU ORBITAL (X) + BOTON CARRITO: CONTROL FOOTER -->
+<!-- 14. JS MENU ORBITAL (X) + BOTON CARRITO: CONTROL FOOTER -->
 <script defer='defer' src='https://cdn.jsdelivr.net/gh/owinile/hosting-owinile@main/orbital_full.js'/>
-    
+	  
  <!-- ===========================================================
      🛒 SCRIPTS DE LA TIENDA ONLINE
      *****************************************************************
@@ -7547,20 +8004,44 @@ var activarOcultarImagen = true; // Variable para activar o desactivar el script
      funcionalidades de la tienda en línea.
 =================================================================== -->
 
-   <!-- 14. CORE PAGAR PAYPAL & CARRITO DE COMPRAS -->
+<!-- 15. Js CORE PAYPAL & CARRITO DE COMPRAS -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ===== CONFIG GLOBAL =====
-  window.TIENDA_CONFIG = {
-    paypalEmail: "demo@example.com",
-    returnUrl: "https://tusitio.com/p/gracias.html",
-    cancelUrl: "https://tusitio.com/p/cancelado.html",
-    mostrarContador: true // false oculta el botón completo, true lo muestra
+  // ==========================
+  // SCHEMA DE CONFIG
+  // ==========================
+  const schema = {
+    paypalEmail: { type: "string", default: "" },
+    returnUrl: { type: "string", default: "/" },
+    cancelUrl: { type: "string", default: "/" },
+    mostrarContador: { type: "boolean", default: true }
   };
 
-  const KEY = 'cart';
+  function getConfig(id, schema, nombre = "Módulo") {
+    const el = document.getElementById(id);
+    if (!el) {
+      console.warn(`⚠️ Falta configuración de ${nombre}. Usando defaults.`);
+      return Object.fromEntries(Object.entries(schema).map(([k, v]) => [k, v.default]));
+    }
+    const cfg = {};
+    for (const [key, def] of Object.entries(schema)) {
+      let val = el.dataset[key.toLowerCase()] ?? def.default;
+      switch (def.type) {
+        case "boolean": val = String(val).toLowerCase() === "true"; break;
+        case "number":  val = parseFloat(val) || def.default; break;
+        default:        val = val || def.default;
+      }
+      cfg[key] = val;
+    }
+    return cfg;
+  }
+
+  // Configuración global accesible en todo el JS
+  window.TIENDA_CONFIG = getConfig("config-store", schema, "Tienda");
+
+  const KEY = "cart";
 
   // ==========================
   // FUNCIONES COMUNES
@@ -7569,13 +8050,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartBtn = document.querySelector(".cart-float");
     if (!cartBtn) return;
 
-    // Mostrar u ocultar todo el botón flotante
+    // Mostrar u ocultar botón flotante
     cartBtn.style.display = window.TIENDA_CONFIG.mostrarContador ? "flex" : "none";
 
     // Actualizar número interno
     const countEl = cartBtn.querySelector("#cart-count");
     if (countEl) {
-      const cart = JSON.parse(localStorage.getItem(KEY) || '[]');
+      const cart = JSON.parse(localStorage.getItem(KEY) || "[]");
       const totalQty = cart.reduce((sum, i) => sum + (i.qty || 0), 0);
       countEl.textContent = totalQty;
     }
@@ -7583,8 +8064,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function ajustarCarritoFlotante() {
     const cartBtn = document.querySelector(".cart-float");
-    if (!cartBtn) return;
-    cartBtn.style.bottom = "16px";
+    if (cartBtn) cartBtn.style.bottom = "16px";
   }
 
   // ==========================
@@ -7597,18 +8077,17 @@ document.addEventListener("DOMContentLoaded", () => {
     let precio = 0;
     if (priceEl) {
       const raw = priceEl.getAttribute("content") || priceEl.textContent;
-      precio = parseFloat(raw.replace(/[^\d.,]/g,'').replace(',','.')) || 0;
+      precio = parseFloat(raw.replace(/[^\d.,]/g, "").replace(",", ".")) || 0;
     }
-
-    const disponibilidad = document.querySelector('.disponibilidad.agotado');
+    const disponibilidad = document.querySelector(".disponibilidad.agotado");
 
     botonPago.addEventListener("click", e => {
       e.preventDefault();
-      if(precio <= 0 || disponibilidad){
+      if (precio <= 0 || disponibilidad) {
+        // Aviso visual no intrusivo
         alert("Este producto no está disponible para compra.");
         return;
       }
-
       const url = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(window.TIENDA_CONFIG.paypalEmail)}&item_name=${encodeURIComponent(titulo)}&amount=${encodeURIComponent(precio)}&currency_code=USD&return=${encodeURIComponent(window.TIENDA_CONFIG.returnUrl)}&cancel_return=${encodeURIComponent(window.TIENDA_CONFIG.cancelUrl)}`;
       window.open(url, "_blank");
     });
@@ -7617,41 +8096,40 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================
   // BOTÓN AÑADIR AL CARRITO
   // ==========================
-  const addBtn = document.getElementById('add-to-cart');
+  const addBtn = document.getElementById("add-to-cart");
   if (addBtn) {
-    const name  = document.querySelector('.titulo-producto')?.textContent.trim() || 'Producto';
-    const sku   = document.querySelector('[itemprop="sku"]')?.getAttribute('content') || null;
-    const image = document.querySelector('.ficha-producto img[itemprop="image"]')?.src || '';
-    const priceEl = document.querySelector('.precio');
+    const name  = document.querySelector(".titulo-producto")?.textContent.trim() || "Producto";
+    const sku   = document.querySelector("[itemprop='sku']")?.getAttribute("content") || null;
+    const image = document.querySelector(".ficha-producto img[itemprop='image']")?.src || "";
+    const priceEl = document.querySelector(".precio");
     let price = 0;
     if (priceEl) {
-      const raw = priceEl.getAttribute('content') || priceEl.textContent;
-      price = parseFloat(raw.replace(/[^\d.,]/g,'').replace(',','.')) || 0;
+      const raw = priceEl.getAttribute("content") || priceEl.textContent;
+      price = parseFloat(raw.replace(/[^\d.,]/g, "").replace(",", ".")) || 0;
     }
+    const availabilitySoldOut = !!document.querySelector(".disponibilidad.agotado");
 
-    const availabilitySoldOut = !!document.querySelector('.disponibilidad.agotado');
-
-    if(availabilitySoldOut || price <= 0){
+    if (availabilitySoldOut || price <= 0) {
       addBtn.disabled = true;
-      addBtn.textContent = availabilitySoldOut ? 'Agotado' : 'No disponible';
-      addBtn.classList.add('is-disabled');
+      addBtn.textContent = availabilitySoldOut ? "Agotado" : "No disponible";
+      addBtn.classList.add("is-disabled");
     }
 
     function verificarBotonFicha() {
-      const cart = JSON.parse(localStorage.getItem(KEY) || '[]');
+      const cart = JSON.parse(localStorage.getItem(KEY) || "[]");
       const exists = cart.find(p => (p.sku && sku) ? p.sku === sku : (p.name === name && p.price === price));
       if (exists) {
-        addBtn.textContent = 'Añadir al carrito';
-        addBtn.classList.remove('is-added');
+        addBtn.textContent = "Añadir al carrito";
+        addBtn.classList.remove("is-added");
       }
     }
 
     verificarBotonFicha();
 
     addBtn.addEventListener("click", () => {
-      if(availabilitySoldOut || price <= 0) return;
+      if (availabilitySoldOut || price <= 0) return;
 
-      const cart = JSON.parse(localStorage.getItem(KEY) || '[]');
+      const cart = JSON.parse(localStorage.getItem(KEY) || "[]");
       const idx = cart.findIndex(p => (p.sku && sku) ? p.sku === sku : (p.name === name && p.price === price));
 
       if (idx >= 0) {
@@ -7661,8 +8139,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       localStorage.setItem(KEY, JSON.stringify(cart));
-      addBtn.textContent = 'Añadido ✓';
-      addBtn.classList.add('is-added');
+      addBtn.textContent = "Añadido ✓";
+      addBtn.classList.add("is-added");
       actualizarContadorGlobal();
       setTimeout(() => verificarBotonFicha(), 1200);
     });
@@ -7671,10 +8149,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================
   // CARRITO EN /p/carrito.html
   // ==========================
-  const cartTable = document.getElementById('cart-table');
+  const cartTable = document.getElementById("cart-table");
   if (cartTable) {
     function loadCart() {
-      const cart = JSON.parse(localStorage.getItem(KEY) || '[]');
+      const cart = JSON.parse(localStorage.getItem(KEY) || "[]");
       const tbody = cartTable.querySelector("tbody");
       tbody.innerHTML = "";
       let total = 0;
@@ -7684,8 +8162,8 @@ document.addEventListener("DOMContentLoaded", () => {
         total += subtotal;
         const tr = document.createElement("tr");
         tr.innerHTML = `
-  		  <td data-label="Imagen"><img src="${item.image}" alt="${item.name}" style="width:50px; height:auto;"></td>          
-		  <td data-label="Producto">${item.name}</td>
+          <td data-label="Imagen"><img src="${item.image}" alt="${item.name}" style="width:50px; height:auto;"></td>
+          <td data-label="Producto">${item.name}</td>
           <td data-label="Precio">$${item.price.toFixed(2)}</td>
           <td data-label="Cantidad"><input type="number" min="1" value="${item.qty}" data-index="${index}"></td>
           <td data-label="Subtotal">$${subtotal.toFixed(2)}</td>
@@ -7736,8 +8214,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 //]]>
 </script>
-  
-<!-- 15. CATALOGO DE PRODUCTO POR ETIQUETA con JSON-LD corregido -->
+
+<!-- 16. Js CATALOGO DE PRODUCTO POR ETIQUETA con JSON-LD -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", () => {
@@ -7747,7 +8225,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const feedUrl = `/feeds/posts/default?alt=json&max-results=100`;
 
-    fetchWithCacheManager(feedUrl, 600000) // cache 10 minutos
+    fetchWithCacheManager(feedUrl) // usa la duración del gadget #config-cache
       .then(data => {
         const entries = data.feed.entry || [];
 
@@ -7877,8 +8355,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //]]>
 </script>
 
-
-    <!-- 16. Script CATALOGO STORE con JSON-LD -->
+<!-- 17. Js CATALOGO STORE con JSON-LD -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", function () {
@@ -7886,7 +8363,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const max = parseInt(container.dataset.max, 10) || 6;
     const feedUrl = '/feeds/posts/default?alt=json&max-results=50';
 
-    fetchWithCacheManager(feedUrl, 600000) // cache 10 minutos
+    fetchWithCacheManager(feedUrl) // usa la duración del gadget #config-cache
       .then(data => {
         const entries = data.feed.entry || [];
 
@@ -7969,7 +8446,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //]]>
 </script>
      
-<!-- 17. Tabla Comparativa de productos con JSON-LD individual -->
+<!-- 18. Js Tabla Comparativa de productos con JSON-LD -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", () => {
@@ -7985,7 +8462,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const feedUrl = `/feeds/posts/default/-/${tema}?alt=json&max-results=100`;
 
-    fetchWithCacheManager(feedUrl, 600000)
+    fetchWithCacheManager(feedUrl) // usa la duración del gadget #config-cache
       .then(data => {
         const entradas = data.feed.entry || [];
 
@@ -8082,16 +8559,15 @@ document.addEventListener("DOMContentLoaded", () => {
 //]]>
 </script>
        
-
-    <!-- ===========================================================
-     🎬 BLOQUE MULTIMEDIA
+ <!-- ===========================================================
+     🎬 BLOQUE MULTIMEDIA & OTROS.
      *****************************************************************
      Aquí se incluyen todos los scripts y elementos relacionados
      con la carga y reproducción de videos, audios, reproductores
      y contenido multimedia en la página.
 =================================================================== -->
 
-     <!-- 18. Reproductor de video  -->
+<!-- 19. Js Reproductor de video  -->
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", function () {
@@ -8148,8 +8624,8 @@ document.addEventListener("DOMContentLoaded", function () {
 //]]>
 </script>
     
-     <!-- 19. Reproductor De Audio (player nativo de HTML5) -->
-    <script>//<![CDATA[
+<!-- 20. Js Reproductor De Audio (player nativo de HTML5) -->
+<script>//<![CDATA[
 document.addEventListener("DOMContentLoaded", ()=>{
   document.querySelectorAll(".shortcode-audio").forEach(box=>{
     const src   = box.dataset.src;
@@ -8168,7 +8644,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 });
 //]]></script>
 	  
-	   <!-- 20. Js Descargas Automaticas -->
+<!-- 21. Js Descargas Automaticas -->
 <script>//<![CDATA[
 document.addEventListener("DOMContentLoaded", function () {
   const boxes = document.querySelectorAll(".download-box");
@@ -8219,7 +8695,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 //]]></script>
 	  
-	   <!-- 21. Js Comentarios Blogger - Disqus -->
+<!-- 22. Js Selector Comentarios Blogger - Disqus -->
 <script>
 //<![CDATA[
 (function(){
@@ -8294,122 +8770,149 @@ document.addEventListener("DOMContentLoaded", function () {
 //]]>
 </script>
 	  
-	  <!-- 22. JS Buscador con Ajax (minimalista) -->
-   <script>
+<!-- 23. JS Buscador con Ajax -->
+<script>
 //<![CDATA[
-const searchInput = document.getElementById("ajax-search-input");
-const searchForm = document.getElementById("ajax-search-form");
-const resultsContainer = document.getElementById("search-results");
-let searchTimeout;
-const MAX_RESULTS = 10;
-
-searchInput.addEventListener("input", function () {
-  clearTimeout(searchTimeout);
-  let query = this.value.trim();
-
-  if (query.length < 3) {
-    resultsContainer.innerHTML = "<p>Escribe al menos 3 caracteres...</p>";
-    return;
+document.addEventListener("DOMContentLoaded", () => {
+  const config = document.getElementById("config-search");
+  if (!config) {
+    console.warn("Falta el gadget de configuración del Buscador Ajax. Se usan valores por defecto.");
   }
 
-  searchTimeout = setTimeout(() => {
-    resultsContainer.innerHTML = "<p>Buscando...</p>";
-    let url = `/feeds/posts/summary?alt=json&q=${encodeURIComponent(query)}&max-results=500`;
+  // --- Schema con defaults ---
+  const schema = {
+    maxResults: { type: "number", default: 10 },
+    minChars: { type: "number", default: 3 },
+    delay: { type: "number", default: 500 }
+  };
 
-    fetchWithCacheManager(url, 600000) // 10 min caché
-      .then(data => {
-        let entries = data.feed.entry || [];
-        if (entries.length === 0) {
-          resultsContainer.innerHTML = "<p>No se encontraron resultados.</p>";
-          return;
-        }
+  // --- Función para leer config con validación ---
+  function getConfigValue(attr, schema) {
+    let value = config ? config.dataset[attr] : undefined;
+    let parsed = schema.type === "number" ? parseInt(value, 10) : value;
+    return (!isNaN(parsed) && parsed > 0) ? parsed : schema.default;
+  }
 
-        // Tomamos solo los primeros MAX_RESULTS
-        const mostrar = entries.slice(0, MAX_RESULTS);
-        let html = "<ul class='search-result-list'>";
-        mostrar.forEach(entry => {
-          let title = entry.title.$t;
-          let link = entry.link.find(l => l.rel === "alternate").href;
-          let snippet = entry.summary ? entry.summary.$t.substring(0, 120) + "..." : "";
-          html += `
-            <li class="search-result-item">
-              <a href="${link}" target="_blank">${title}</a>
-              <p>${snippet}</p>
-            </li>`;
+  const MAX_RESULTS = getConfigValue("maxResults", schema.maxResults);
+  const MIN_CHARS   = getConfigValue("minChars", schema.minChars);
+  const DELAY       = getConfigValue("delay", schema.delay);
+
+  // --- Elementos del DOM ---
+  const searchInput = document.getElementById("ajax-search-input");
+  const searchForm = document.getElementById("ajax-search-form");
+  const resultsContainer = document.getElementById("search-results");
+  if (!searchInput || !searchForm || !resultsContainer) return;
+
+  let searchTimeout;
+
+  // --- Búsqueda Ajax ---
+  searchInput.addEventListener("input", function () {
+    clearTimeout(searchTimeout);
+    let query = this.value.trim();
+
+    if (query.length < MIN_CHARS) {
+      resultsContainer.innerHTML = `<p>Escribe al menos ${MIN_CHARS} caracteres...</p>`;
+      return;
+    }
+
+    searchTimeout = setTimeout(() => {
+      resultsContainer.innerHTML = "<p>Buscando...</p>";
+      let url = `/feeds/posts/summary?alt=json&q=${encodeURIComponent(query)}&max-results=500`;
+
+      fetchWithCacheManager(url) // usa la duración del gadget #config-cache
+        .then(data => {
+          let entries = (data.feed && data.feed.entry) || [];
+          if (entries.length === 0) {
+            resultsContainer.innerHTML = "<p>No se encontraron resultados.</p>";
+            return;
+          }
+
+          // Limitar resultados
+          const mostrar = entries.slice(0, MAX_RESULTS);
+          let html = "<ul class='search-result-list'>";
+          mostrar.forEach(entry => {
+            let title = entry.title.$t;
+            let link = entry.link.find(l => l.rel === "alternate").href;
+            let snippet = entry.summary ? entry.summary.$t.substring(0, 120) + "..." : "";
+            html += `
+              <li class="search-result-item">
+                <a href="${link}" target="_blank">${title}</a>
+                <p>${snippet}</p>
+              </li>`;
+          });
+
+          if (entries.length > MAX_RESULTS) {
+            html += `<li class="search-result-item more-results">
+                       <a href="/search?q=${encodeURIComponent(query)}">
+                         Ver todos los resultados →
+                       </a>
+                     </li>`;
+          }
+
+          html += "</ul>";
+          resultsContainer.innerHTML = html;
+        })
+        .catch(() => {
+          resultsContainer.innerHTML = "<p>Error al buscar. Intenta de nuevo.</p>";
         });
 
-        // Si hay más resultados que MAX_RESULTS, añadimos enlace
-        if (entries.length > MAX_RESULTS) {
-          html += `<li class="search-result-item more-results">
-                     <a href="/search?q=${encodeURIComponent(query)}">
-                       Ver todos los resultados →
-                     </a>
-                   </li>`;
-        }
+    }, DELAY);
+  });
 
-        html += "</ul>";
-        resultsContainer.innerHTML = html;
-      })
-      .catch(err => {
-        resultsContainer.innerHTML = "<p>Error al buscar. Intenta de nuevo.</p>";
-        console.error(err);
-      });
-
-  }, 500); // medio segundo de espera tras dejar de escribir
-});
-
-// --- Fallback SEO (submit clásico) ---
-searchForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-  let query = searchInput.value.trim();
-  if (query.length >= 3) {
-    searchInput.dispatchEvent(new Event("input")); // reutilizamos live search
-  }
+  // --- Fallback SEO (submit clásico) ---
+  searchForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let query = searchInput.value.trim();
+    if (query.length >= MIN_CHARS) {
+      searchInput.dispatchEvent(new Event("input"));
+    }
+  });
 });
 //]]>
 </script>
-	  
-	   <!-- 23. Js Plugin para comentarios blogger/disqus -->
-<script>//<![CDATA[
-// Cache simple
-const fetchWithCache = (function(){
-  const CACHE_DURATION_MS = 10*60*1000; // 10 min
-  return async function(url){
-    const key = 'cache_' + url;
-    const cached = localStorage.getItem(key);
-    if(cached){
-      const obj = JSON.parse(cached);
-      if(Date.now() - obj.timestamp < CACHE_DURATION_MS) return obj.data;
+
+<!-- 24. Js Últimos comentarios -->
+<script>
+//<![CDATA[
+const fetchRecentCommentsCache = (() => {
+  let CACHE_DURATION_MS = 10 * 60 * 1000;
+  return {
+    setDuration(ms){ CACHE_DURATION_MS = ms; },
+    async fetch(url){
+      const cacheKey = 'recent_comments_' + url;
+      try{
+        const cached = localStorage.getItem(cacheKey);
+        if(cached){
+          const obj = JSON.parse(cached);
+          if(Date.now() - obj.timestamp < CACHE_DURATION_MS) return obj.data;
+        }
+      } catch(e){ console.warn("Cache parse error", e); }
+      
+      const res = await fetch(url);
+      const data = await res.json();
+      try{
+        localStorage.setItem(cacheKey, JSON.stringify({timestamp:Date.now(),data}));
+      } catch(e){ console.warn("Cache save error", e); }
+      return data;
     }
-    const res = await fetch(url);
-    const data = await res.json();
-    localStorage.setItem(key, JSON.stringify({timestamp:Date.now(),data}));
-    return data;
-  }
+  };
 })();
 
 (async function(){
-  const widget = document.querySelector('.recent-comments-widget');
-  if(!widget) return;
+  const config = document.getElementById("config-recent-comments");
+  if(!config) return;
 
-  const bloggerLimit = parseInt(widget.dataset.bloggerLimit) || 5;
-  const disqusLimit  = parseInt(widget.dataset.disqusLimit)  || 5;
-  const disqusShort  = widget.dataset.disqusShortname;
-  const disqusKey    = widget.dataset.disqusApiKey;
-  const title        = widget.dataset.title || 'Comentarios recientes';
-  const system       = widget.dataset.sistema || 'both';
-  const truncateLen  = parseInt(widget.dataset.truncate) || 80;
-  const container    = widget.querySelector('.recent-comments-list');
-  const loadMoreLink = widget.querySelector('.load-more-comments');
+  const bloggerLimit = parseInt(config.dataset.bloggerLimit) || 5;
+  const disqusLimit  = parseInt(config.dataset.disqusLimit) || 5;
+  const disqusShort  = config.dataset.disqusShortname;
+  const disqusKey    = config.dataset.disqusApiKey;
+  const title        = config.dataset.title || 'Comentarios recientes';
+  const system       = config.dataset.sistema || 'both';
+  const truncateLen  = parseInt(config.dataset.truncate) || 80;
+  const cacheMs      = parseInt(config.dataset.cache) || 600000;
 
-  let bloggerStart = 1;
-  let disqusCursor = null;
-  let bloggerDone = false;
-  let disqusDone = false;
-  let commentsLoaded = [];
-  let shownCount = 0;
+  fetchRecentCommentsCache.setDuration(cacheMs);
 
-  // ---------- Estilos ----------
   const css = `
     .recent-comments-widget { font-family: system-ui,sans-serif; max-width:850px;width:95%;margin:auto; }
     .recent-comments-widget h3 { font-size:18px;margin:0 0 10px;border-bottom:1px solid #ddd;padding-bottom:5px; }
@@ -8423,20 +8926,17 @@ const fetchWithCache = (function(){
       overflow:hidden;text-overflow:ellipsis;word-wrap:break-word;
     }
     .recent-comments-list small { color:#999;font-size:12px;display:block; }
-    .load-more-comments { display:block;text-align:center;margin:10px auto;font-size:14px;color:#0073aa;text-decoration:none; }
+    .load-more-comments { display:block;text-align:center;margin:10px auto;font-size:14px;color:#0073aa;text-decoration:none; cursor:pointer; }
     .load-more-comments:hover { text-decoration:underline; }
-    .no-comments { text-align:center;color:#666;padding:10px 0; }
+    .no-comments, .error-comments { text-align:center;color:#666;padding:10px 0; }
   `;
-  const styleTag = document.createElement('style');
-  styleTag.textContent = css;
-  document.head.appendChild(styleTag);
+  if(!document.getElementById("recent-comments-style")){
+    const styleTag = document.createElement('style');
+    styleTag.id = "recent-comments-style";
+    styleTag.textContent = css;
+    document.head.appendChild(styleTag);
+  }
 
-  // ---------- Título ----------
-  const h3 = document.createElement('h3');
-  h3.textContent = title;
-  widget.insertBefore(h3, container);
-
-  // ---------- Formato de fecha ----------
   function formatDate(dateStr){
     const d = new Date(dateStr);
     return new Intl.DateTimeFormat('es-ES',{
@@ -8445,9 +8945,8 @@ const fetchWithCache = (function(){
     }).format(d);
   }
 
-  // ---------- Renderizar comentarios ----------
-  function renderComments(comments){
-    if(comments.length===0 && shownCount===0){
+  function renderComments(container, comments){
+    if(comments.length===0 && container.children.length===0){
       container.innerHTML = '<div class="no-comments">No hay comentarios todavía.</div>';
       return;
     }
@@ -8459,7 +8958,6 @@ const fetchWithCache = (function(){
       img.loading = "lazy";
 
       const div = document.createElement('div');
-
       const a = document.createElement('a');
       a.href = c.postLink;
       a.target = "_blank";
@@ -8470,7 +8968,6 @@ const fetchWithCache = (function(){
       a.innerHTML = `${c.author} <span style="font-size:12px;color:#999;">[${c.source}]</span>`;
 
       const p = document.createElement('p');
-      // truncar según atributo
       p.textContent = c.content.length > truncateLen ? c.content.substring(0, truncateLen) + '…' : c.content;
 
       const small = document.createElement('small');
@@ -8479,23 +8976,17 @@ const fetchWithCache = (function(){
       div.appendChild(a);
       div.appendChild(p);
       div.appendChild(small);
-
       li.appendChild(img);
       li.appendChild(div);
-
       container.appendChild(li);
     });
   }
 
-  // ---------- Fetch Blogger ----------
-  async function fetchBlogger(){
-    if(bloggerDone || !['blogger','both'].includes(system)) return [];
-    const url = `${location.protocol}//${location.hostname}/feeds/comments/default?alt=json&start-index=${bloggerStart}&max-results=${bloggerLimit}`;
+  async function fetchBlogger(startIndex){
+    const url = `${location.protocol}//${location.hostname}/feeds/comments/default?alt=json&start-index=${startIndex}&max-results=${bloggerLimit}`;
     try{
-      const json = await fetchWithCache(url);
+      const json = await fetchRecentCommentsCache.fetch(url);
       const entries = json.feed.entry || [];
-      if(entries.length===0){ bloggerDone=true; return []; }
-      bloggerStart += entries.length;
       return entries.map(entry=>{
         const author = entry.author[0].name.$t;
         const avatar = entry.author[0].gd$image ? entry.author[0].gd$image.src : 'https://via.placeholder.com/40';
@@ -8504,27 +8995,22 @@ const fetchWithCache = (function(){
         const alt = entry.link ? entry.link.find(l=>l.rel==='alternate') : null;
         if(alt && alt.href) postLink = alt.href;
         const dateISO = entry.published.$t;
-        const date = formatDate(dateISO);
-        return {author, avatar, content, postLink, date, dateISO, source:'blogger'};
+        return {author, avatar, content, postLink, date: formatDate(dateISO), dateISO, source:'blogger'};
       });
     } catch(e){
-      bloggerDone=true;
-      console.error('Error Blogger:',e);
+      console.error("Error Blogger:", e);
       return [];
     }
   }
 
-  // ---------- Fetch Disqus ----------
-  async function fetchDisqus(){
-    if(disqusDone || !['disqus','both'].includes(system) || !disqusShort || !disqusKey) return [];
+  async function fetchDisqus(cursor){
+    if(!disqusShort || !disqusKey) return {comments:[], nextCursor:null};
     let url = `https://disqus.com/api/3.0/forums/listPosts.json?forum=${disqusShort}&related=thread&limit=${disqusLimit}&api_key=${disqusKey}`;
-    if(disqusCursor) url += `&cursor=${disqusCursor}`;
+    if(cursor) url += `&cursor=${encodeURIComponent(cursor)}`;
     try{
-      const data = await fetchWithCache(url);
-      if(!data.response.length){ disqusDone=true; return []; }
-      disqusCursor = data.cursor.hasNext ? data.cursor.next : null;
-      if(!disqusCursor) disqusDone=true;
-      return data.response.map(c=>{
+      const data = await fetchRecentCommentsCache.fetch(url);
+      if(!data.response || !data.response.length) return {comments:[], nextCursor:null};
+      const comments = data.response.map(c=>{
         const dateISO = c.createdAt;
         return {
           author: c.author.name,
@@ -8536,49 +9022,102 @@ const fetchWithCache = (function(){
           source:'disqus'
         };
       });
+      const nextCursor = data.cursor?.next || null;
+      return {comments, nextCursor};
     } catch(e){
-      disqusDone=true;
-      console.error('Error Disqus:',e);
-      const errDiv = document.createElement('div');
-      errDiv.className='no-comments';
-      errDiv.textContent='No se pudo conectar a Disqus';
-      container.appendChild(errDiv);
-      return [];
+      console.error("Error Disqus:", e);
+      return {error:true, comments:[], nextCursor:null, message:'No se pudo conectar a Disqus'};
     }
   }
 
-  // ---------- Cargar comentarios ----------  
-  async function loadComments(){
-    if(!bloggerDone || !disqusDone){
-      const [blogger, disqus] = await Promise.all([fetchBlogger(), fetchDisqus()]);
+  function createWidget(marker){
+    const widget = document.createElement('div');
+    widget.className = "recent-comments-widget";
+
+    const h3 = document.createElement('h3');
+    h3.textContent = title;
+
+    const list = document.createElement('ul');
+    list.className = "recent-comments-list";
+
+    const more = document.createElement('a');
+    more.href = "#";
+    more.className = "load-more-comments";
+    more.textContent = "Cargar más";
+
+    widget.appendChild(h3);
+    widget.appendChild(list);
+    widget.appendChild(more);
+    marker.appendChild(widget);
+
+    return {list, more};
+  }
+
+  document.querySelectorAll(".recent-comments-marker").forEach(marker=>{
+    const {list, more} = createWidget(marker);
+
+    let bloggerIndex = 1;
+    let disqusCursor = null;
+    let loaded = [];
+    let shown = 0;
+
+    async function loadComments(){
+      let blogger = [];
+      let disqus = [];
+
+      // Traer comentarios Blogger
+      if(system!=='disqus'){
+        blogger = await fetchBlogger(bloggerIndex);
+        bloggerIndex += blogger.length;
+      }
+
+      // Traer comentarios Disqus
+      if(system!=='blogger'){
+        const result = await fetchDisqus(disqusCursor);
+        if(result.error){
+          if(!document.querySelector('.error-comments')){
+            const errDiv = document.createElement('div');
+            errDiv.className = 'error-comments';
+            errDiv.textContent = result.message;
+            list.appendChild(errDiv);
+          }
+        } else {
+          disqus = result.comments;
+          disqusCursor = result.nextCursor;
+        }
+      }
+
       const newFetched = [...blogger, ...disqus];
-      const filtered = newFetched.filter(c=>{
-        return !commentsLoaded.some(x=>x.author===c.author && x.dateISO===c.dateISO && x.postLink===c.postLink);
-      });
-      commentsLoaded.push(...filtered);
+      const unique = newFetched.filter(c=>!loaded.some(x=>x.author===c.author && x.dateISO===c.dateISO && x.postLink===c.postLink));
+      loaded.push(...unique);
+
+      // Ordenar todos por fecha
+      loaded.sort((a,b)=>new Date(b.dateISO)-new Date(a.dateISO));
+
+      // Mostrar siguiente batch
+      const batch = loaded.slice(shown, shown + bloggerLimit + disqusLimit);
+      renderComments(list, batch);
+      shown += batch.length;
+
+      // Mostrar/ocultar botón
+      if((system!=='disqus' && blogger.length>0) || (system!=='blogger' && disqusCursor) || shown < loaded.length){
+        more.style.display = 'block';
+      } else {
+        more.style.display = 'none';
+      }
     }
 
-    const sorted = [...commentsLoaded].sort((a,b)=>new Date(b.dateISO)-new Date(a.dateISO));
-    const batchSize = bloggerLimit + disqusLimit;
-    const nextComments = sorted.slice(shownCount, shownCount + batchSize);
-    renderComments(nextComments);
-    shownCount += nextComments.length;
-
-    if(shownCount >= sorted.length && bloggerDone && disqusDone){
-      loadMoreLink.style.display = 'none';
-    }
-  }
-
-  await loadComments();
-  loadMoreLink.addEventListener('click', async e=>{
-    e.preventDefault();
-    await loadComments();
+    loadComments();
+    more.addEventListener('click', e=>{
+      e.preventDefault();
+      loadComments();
+    });
   });
 
 })();
 //]]></script>
 	  
-	  <!-- 24. Js Contador comentarios blogger/disqus en miga post -->
+<!-- 25. Js Contador comentarios en miga post -->
 <script>//<![CDATA[
 document.addEventListener('DOMContentLoaded', function () {
   var cfg = document.getElementById('comentarios-config');
@@ -8613,7 +9152,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 //]]></script>
-
             
   </body>
 </html>
