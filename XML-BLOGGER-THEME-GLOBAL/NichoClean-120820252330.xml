@@ -5126,7 +5126,7 @@ body {
   <body>
     <header> 
  <b:section class='header-section' id='Header' maxwidgets='3' showaddelement='yes'>
-    <b:widget id='Header1' locked='true' title='nichoClean rx (cabecera)' type='Header' version='2' visible='true'>
+    <b:widget id='Header1' locked='true' title='NichoClean v2.0 (cabecera)' type='Header' version='2' visible='true'>
       <b:widget-settings>
         <b:widget-setting name='displayUrl'/>
         <b:widget-setting name='displayHeight'>0</b:widget-setting>
@@ -5189,7 +5189,7 @@ body {
     </b:widget>
     <b:widget id='PageList1' locked='true' title='Menú Principal' type='PageList' version='2' visible='true'>
       <b:widget-settings>
-        <b:widget-setting name='pageListJson'><![CDATA[{"link1":{"href":"/search/label/demo","position":1,"title":"Blog"},"link0":{"href":"/","position":0,"title":"Inicio"},"link5":{"href":"/p/plugins-blogger.html","position":5,"title":"Modulos"},"link4":{"href":"/p/toolbox.html","position":4,"title":"ToolBox"},"link3":{"href":"/p/store.html","position":3,"title":"Store"},"link2":{"href":"/p/carrito_22.html","position":2,"title":"shopping"},"link8":{"href":"/p/search-box.html","position":8,"title":"🔍"},"link7":{"href":"/p/mapa-del-sitio.html","position":7,"title":"Indice"},"link6":{"href":"/p/acerca-del-sitio.html","position":6,"title":"Acerca de"}}]]></b:widget-setting>
+        <b:widget-setting name='pageListJson'><![CDATA[{"2707630753882959278":{"href":"https://nichoclean.blogspot.com/p/faq.html","position":8,"title":"FAQ"},"link1":{"href":"/search/label/demo","position":1,"title":"Blog"},"link0":{"href":"/","position":0,"title":"Inicio"},"2652971899461500522":{"href":"https://nichoclean.blogspot.com/p/contacto.html","position":9,"title":"Contacto"},"link5":{"href":"/p/plugins-blogger.html","position":5,"title":"Modulos"},"link4":{"href":"/p/toolbox.html","position":4,"title":"ToolBox"},"link3":{"href":"/p/store.html","position":3,"title":"Store"},"link2":{"href":"/p/carrito_22.html","position":2,"title":"shopping"},"link8":{"href":"/p/search-box.html","position":10,"title":"🔍"},"link7":{"href":"/p/mapa-del-sitio.html","position":7,"title":"Indice"},"link6":{"href":"/p/acerca-del-sitio.html","position":6,"title":"Acerca de"}}]]></b:widget-setting>
         <b:widget-setting name='homeTitle'>Inicio</b:widget-setting>
       </b:widget-settings>
       <b:includable id='main'>
